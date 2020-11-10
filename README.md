@@ -1,6 +1,6 @@
-# <img src="https://render.githubusercontent.com/render/math?math=\gamma + b Jets">
+# gamma + b Jets
 
-This is the <img src="https://render.githubusercontent.com/render/math?math=\gamma + b Jets"> analysis repository
+This is the gamma + b Jets analysis repository
 
 ## References
 
