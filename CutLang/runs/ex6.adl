@@ -1,0 +1,6 @@
+algo BestZ
+  select      ALL                   # to count all events
+  select size(JET) >= 3
+  histo   hdrjj, "dR jj", 100, -6.2, 6.2, dR(JET_2 , JET_0) 
+  histo   hdejj, "dE jj", 100, -6.2, 6.2, dEta(JET_2 , JET_0) 
+  histo   hdpjj, "dp jj", 100, -6.2, 6.2, dPhi(JET_0 , JET_2) 
