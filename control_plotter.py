@@ -4,7 +4,7 @@ import ROOT
 
 plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/'
 plotlist = [
-{"var":"Photon_pt[0]","binning":(100,0,800),"x_axis":"p_{T}(#Gamma)[GeV]","y_axis":"Events","plot_limits":(),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt"}
+{"var":"Photon_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","plot_limits":(),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt"}
 #{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""},
 #{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""},
 #{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""},
@@ -119,8 +119,9 @@ for plot in plotlist:
 	h.Draw("Histo Same")
 	h.Draw("Histo Same")
 	#leg_sig.AddEntry(h, signal_dict['tex'],"l")
+	print("Integral of BKG:" , stack_hist.Integral())	
+	print("Integral of Signal:" , h.Integral())	
 	del h
-	
 	#leg.SetFillColor(0)
         #leg.SetLineColor(0)
         #leg.Draw()
