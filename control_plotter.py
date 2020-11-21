@@ -3,6 +3,8 @@ from helper import getChain, Set_axis_pad2, Set_axis_pad1, Draw_CMS_header
 import ROOT
 
 plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/'
+target_lumi = 35.9
+xsec = "(1)"
 plotlist = [
 {"var":"Photon_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","plot_limits":(),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt"}
 #{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""},
@@ -22,8 +24,11 @@ bkg_list = [
 {"sample":"TGJets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TGJets"), "tex":"TGets", "color":ROOT.kRed+3},
 {"sample":"TTGets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TTGJets"), "tex":"TTGJets", "color":ROOT.kBlue-7}
 ]
+for bkg in bkg_list:
+	bkg["weight"] = "("+xsec+"*"+str(target_lumi/float(bkg["chain"][1]))+"*genWeight)"
 #signal chain al
 signal_dict = {"sample":"GJets", "weight":"(1)", "chain":getChain(stype="signal",sname="GJets"), "tex":"GJets", "color":ROOT.kYellow}
+signal_dict["weight"] = "("+xsec+"*"+str(target_lumi/float(signal_dict["chain"][1]))+"*genWeight)"
 #define photon cuts
 
 single_photon_cut = "Sum$(Photon_pdgId==22)==1"
@@ -108,20 +113,18 @@ for plot in plotlist:
 	h_Stack.SetTitle("")
 	h_Stack.Draw("Histo")
 	htmp = "h_tmp"
-        h = ROOT.TH1D(htmp, htmp, *plot['binning'])
+        h_sig = ROOT.TH1D(htmp, htmp, *plot['binning'])
 	signal_dict["chain"][0].Draw(plot['var']+">>%s"%htmp, signal_dict['weight']+"*("+single_photon_TIGHT+")", 'goff')
        # h.SetFillColor(color)
-        h.SetLineColor(color)
-        h.SetLineWidth(3)
-        h.GetXaxis().SetNdivisions(505)
-        h.GetYaxis().SetTitle(plot['y_axis'])
-	h.SetTitle("")
-	h.Draw("Histo Same")
-	h.Draw("Histo Same")
+        h_sig.SetLineColor(color)
+        h_sig.SetLineWidth(3)
+        h_sig.GetXaxis().SetNdivisions(505)
+        h_sig.GetYaxis().SetTitle(plot['y_axis'])
+	h_sig.SetTitle("")
+	h_sig.Draw("Histo Same")
 	#leg_sig.AddEntry(h, signal_dict['tex'],"l")
 	print("Integral of BKG:" , stack_hist.Integral())	
-	print("Integral of Signal:" , h.Integral())	
-	del h
+	print("Integral of Signal:" , h_sig.Integral())	
 	#leg.SetFillColor(0)
         #leg.SetLineColor(0)
         #leg.Draw()
@@ -181,9 +184,5 @@ for plot in plotlist:
 
 	#define general(MET,vb) cuts
 	#define preselection cuts
-	#plot for loop yap
 
-	#canvas al
-	#chain.draw(var)
-	#save canvas
 
