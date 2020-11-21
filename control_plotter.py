@@ -3,8 +3,10 @@ from helper import getChain, Set_axis_pad2, Set_axis_pad1, Draw_CMS_header
 import ROOT
 
 plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/'
+target_lumi = 35.9
+xsec = "(1)"
 plotlist = [
-{"var":"Photon_pt[0]","binning":(100,0,800),"x_axis":"p_{T}(#Gamma)[GeV]","y_axis":"Events","plot_limits":(),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt"}
+{"var":"Photon_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","plot_limits":(),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt"}
 #{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""},
 #{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""},
 #{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""},
@@ -22,8 +24,11 @@ bkg_list = [
 {"sample":"TGJets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TGJets"), "tex":"TGets", "color":ROOT.kRed+3},
 {"sample":"TTGets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TTGJets"), "tex":"TTGJets", "color":ROOT.kBlue-7}
 ]
+for bkg in bkg_list:
+	bkg["weight"] = "("+xsec+"*"+str(target_lumi/float(bkg["chain"][1]))+"*genWeight)"
 #signal chain al
 signal_dict = {"sample":"GJets", "weight":"(1)", "chain":getChain(stype="signal",sname="GJets"), "tex":"GJets", "color":ROOT.kYellow}
+signal_dict["weight"] = "("+xsec+"*"+str(target_lumi/float(signal_dict["chain"][1]))+"*genWeight)"
 #define photon cuts
 
 single_photon_cut = "Sum$(Photon_pdgId==22)==1"
@@ -108,35 +113,30 @@ for plot in plotlist:
 	h_Stack.SetTitle("")
 	h_Stack.Draw("Histo")
 	htmp = "h_tmp"
-        h = ROOT.TH1D(htmp, htmp, *plot['binning'])
+        h_sig = ROOT.TH1D(htmp, htmp, *plot['binning'])
 	signal_dict["chain"][0].Draw(plot['var']+">>%s"%htmp, signal_dict['weight']+"*("+single_photon_TIGHT+")", 'goff')
        # h.SetFillColor(color)
-        h.SetLineColor(color)
-        h.SetLineWidth(3)
-        h.GetXaxis().SetNdivisions(505)
-        h.GetYaxis().SetTitle(plot['y_axis'])
-	h.SetTitle("")
-	h.Draw("Histo Same")
-	h.Draw("Histo Same")
+        h_sig.SetLineColor(signal_dict["color"])
+        h_sig.SetLineWidth(3)
+        h_sig.GetXaxis().SetNdivisions(505)
+        h_sig.GetYaxis().SetTitle(plot['y_axis'])
+	h_sig.SetTitle("")
+	h_sig.Draw("Histo Same")
 	#leg_sig.AddEntry(h, signal_dict['tex'],"l")
-	del h
-	
+	print("Integral of BKG:" , stack_hist.Integral())	
+	print("Integral of Signal:" , h_sig.Integral())	
 	#leg.SetFillColor(0)
         #leg.SetLineColor(0)
         #leg.Draw()
         #leg_sig.SetFillColor(0)
         #leg_sig.SetLineColor(0)
         #leg_sig.Draw()
-	print('WARNING!!! BE CAREFULL>>>>>>>')
-	Draw_CMS_header()
+	Draw_CMS_header(lumi_label=target_lumi)
 	#Pad1.RedrawAxis()
-	print('WARNING2222222!!! BE CAREFULL>>>>>>>')
 	cb.cd()
-	print('WARNING33333333!!! BE CAREFULL>>>>>>>')
 	Pad2 = ROOT.TPad("Pad2", "Pad2",  0, 0, 1, 0.31)
         Pad2.Draw()
         Pad2.cd()
-	print('WARNING44444444!!! BE CAREFULL>>>>>>>')
         #Pad2.Range(-0.7248462,-0.8571429,3.302077,2)
         Pad2.SetFillColor(0)
         Pad2.SetFillStyle(4000)
@@ -172,11 +172,9 @@ for plot in plotlist:
         h_ratio.GetYaxis().SetNdivisions(505)
 	h_ratio.Draw("E1")
         Func.Draw("same")
-	print('WARNING55555555555555!!! BE CAREFULL>>>>>>>')
         h_ratio.Draw("E1 Same")
 	cb.cd()
 	cb.Draw()
-	print('WARNING6666666666666!!! BE CAREFULL>>>>>>>')
 	cb.SaveAs(plots_path+plot['title']+'.png')
 	cb.SaveAs(plots_path+plot['title']+'.pdf')
 	cb.SaveAs(plots_path+plot['title']+'.root')
@@ -186,9 +184,5 @@ for plot in plotlist:
 
 	#define general(MET,vb) cuts
 	#define preselection cuts
-	#plot for loop yap
 
-	#canvas al
-	#chain.draw(var)
-	#save canvas
 
