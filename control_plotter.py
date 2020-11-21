@@ -119,8 +119,9 @@ for plot in plotlist:
 	h.Draw("Histo Same")
 	h.Draw("Histo Same")
 	#leg_sig.AddEntry(h, signal_dict['tex'],"l")
+	print("Integral of BKG:" , stack_hist.Integral())	
+	print("Integral of Signal:" , h.Integral())	
 	del h
-	
 	#leg.SetFillColor(0)
         #leg.SetLineColor(0)
         #leg.Draw()
