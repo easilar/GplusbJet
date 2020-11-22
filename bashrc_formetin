@@ -1,0 +1,13 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+export PATH=$HOME/.local/bin:/cvmfs/cms-bril.cern.ch/brilconda/bin:$PATH
+
+# User specific aliases and functions
+
+# --- add DL for HTT mass reconstruction ---
+. ~/Delphes_prod/bashrc_ext
