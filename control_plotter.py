@@ -21,7 +21,7 @@ plotlist = [
 #bkg listof dicts  olustur
 bkg_list = [
 {"sample":"QCD", "weight":"(1)", "chain":getChain(stype="bkg",sname="QCD"), "tex":"QCD", "color":ROOT.kCyan-6},
-{"sample":"TGJets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TGJets"), "tex":"TGets", "color":ROOT.kRed+3},
+{"sample":"TGJets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TGJets"), "tex":"TGJets", "color":ROOT.kRed+3},
 {"sample":"TTGets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TTGJets"), "tex":"TTGJets", "color":ROOT.kBlue-7}
 ]
 for bkg in bkg_list:
@@ -59,10 +59,10 @@ for plot in plotlist:
         latex.SetTextSize(0.05)
         latex.SetTextAlign(11)
         
-        #leg = ROOT.TLegend(0.65,0.5,0.93,0.925)
-        #leg.SetBorderSize(1)
-        #leg_sig = ROOT.TLegend(0.3,0.8,0.6,0.925)
-        #leg_sig.SetBorderSize(1)
+        leg = ROOT.TLegend(0.65,0.5,0.93,0.925)
+        leg.SetBorderSize(1)
+        leg_sig = ROOT.TLegend(0.3,0.8,0.6,0.925)
+        leg_sig.SetBorderSize(1)
         Pad1 = ROOT.TPad("Pad1", "Pad1", 0,0.31,1,1)
         Pad1.Draw()
         Pad1.cd()
@@ -102,7 +102,7 @@ for plot in plotlist:
 		h.SetTitle("")
 		Set_axis_pad1(h)
 		h_Stack.Add(h)
-		#leg.AddEntry(h, bkg['tex'],"f")
+		leg.AddEntry(h, bkg['tex'],"f")
 		del h
 	print('BKG loop finished.......')
 	stack_hist=ROOT.TH1F("stack_hist","stack_hist",plot['binning'][0],plot['binning'][1],plot['binning'][2])
@@ -122,15 +122,15 @@ for plot in plotlist:
         h_sig.GetYaxis().SetTitle(plot['y_axis'])
 	h_sig.SetTitle("")
 	h_sig.Draw("Histo Same")
-	#leg_sig.AddEntry(h, signal_dict['tex'],"l")
+	leg_sig.AddEntry(h_sig, signal_dict['tex'],"l")
 	print("Integral of BKG:" , stack_hist.Integral())	
 	print("Integral of Signal:" , h_sig.Integral())	
-	#leg.SetFillColor(0)
-        #leg.SetLineColor(0)
-        #leg.Draw()
-        #leg_sig.SetFillColor(0)
-        #leg_sig.SetLineColor(0)
-        #leg_sig.Draw()
+	leg.SetFillColor(0)
+        leg.SetLineColor(0)
+        leg.Draw()
+        leg_sig.SetFillColor(0)
+        leg_sig.SetLineColor(0)
+        leg_sig.Draw()
 	Draw_CMS_header(lumi_label=target_lumi)
 	#Pad1.RedrawAxis()
 	cb.cd()
