@@ -2,8 +2,8 @@ import helper
 from helper import getChain, Set_axis_pad2, Set_axis_pad1, Draw_CMS_header
 import ROOT
 
-#plots_path = '/afs/cern.ch/user/m/myalvac/gplusjets/plots/photon_cut_weighted_fullbkg'
-plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/'
+plots_path = '/afs/cern.ch/user/m/myalvac/gplusjets/plots/photon_cut_weighted_fullbkg'
+#plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/'
 target_lumi = 35.9
 xsec = "(1)"
 plotlist = [
