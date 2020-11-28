@@ -5,12 +5,13 @@ import pickle
 
 def getChain(year=2016,stype="signal",sname="GJets",pfile="samples.pkl"):
 	sample_dic = pickle.load(open(pfile,'rb'))
-	slist = sample_dic[year][stype][sname]
+	slist = sample_dic[year][stype][sname]['files_list']
+	sxsec = sample_dic[year][stype][sname]['xsec']
 	schain = ROOT.TChain("Events")
 	for f in slist:
         	schain.Add(f)
 	nevents = schain.GetEntries() 
-	return (schain, nevents)
+	return (schain, nevents, sxsec)
 
 def Set_axis_pad2(histo):
    histo.GetXaxis().SetLabelFont(42)
