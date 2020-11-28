@@ -12,7 +12,6 @@ if not os.path.exists(plots_path):
 
 target_lumi = 35.9
 
-xsec = "(1)"
 plotlist = [
 {"var":"Photon_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","plot_limits":(),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt"}
 #{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""},
