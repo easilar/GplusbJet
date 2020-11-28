@@ -31,8 +31,13 @@ bkg_list = [
 {"sample":"ST_tW_top", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_tW_top"), "tex":"ST_tW_top", "color":ROOT.kOrange}
 ]
 for bkg in bkg_list:
+<<<<<<< HEAD
+	print(bkg["sample"],bkg["chain"][1],bkg["chain"][2])
+	bkg["weight"] = "("+str(bkg["chain"][2])+"*"+str(target_lumi/float(bkg["chain"][1]))+"*genWeight)"
+=======
     print(bkg["sample"],bkg["chain"][1],bkg["chain"][2])
     bkg["weight"] = "("+str(bkg["chain"][2])+"*"+str(target_lumi/float(bkg["chain"][1]))+"*genWeight)"
+>>>>>>> 0e8eaea4cd77b81aba78d9f8b6f25e6e153ab2cc
 
 #signal chain al
 signal_dict = {"sample":"GJets", "weight":"(1)", "chain":getChain(stype="signal",sname="GJets"), "tex":"GJets", "color":ROOT.kYellow}
@@ -187,6 +192,19 @@ for plot in plotlist:
     h_ratio.Draw("E1")
         Func.Draw("same")
         h_ratio.Draw("E1 Same")
+<<<<<<< HEAD
+	cb.cd()
+	cb.Draw()
+	cb.SaveAs(plots_path+plot['title']+'.png')
+	cb.SaveAs(plots_path+plot['title']+'.pdf')
+	cb.SaveAs(plots_path+plot['title']+'.root')
+	cb.Clear()
+	del h_Stack
+	#define btag cuts
+
+	#define general(MET,vb) cuts
+	#define preselection cuts
+=======
     cb.cd()
     cb.Draw()
     cb.SaveAs(plots_path+plot['title']+'.png')
@@ -198,3 +216,4 @@ for plot in plotlist:
 
     #define general(MET,vb) cuts
     #define preselection cuts
+>>>>>>> 0e8eaea4cd77b81aba78d9f8b6f25e6e153ab2cc
