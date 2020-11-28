@@ -13,6 +13,21 @@ def getChain(year=2016,stype="signal",sname="GJets",pfile="samples.pkl"):
 	nevents = schain.GetEntries() 
 	return (schain, nevents, sxsec)
 
+def getYieldFromChain(c, cutString = "(1)", weight = "1", returnError=False, returnVar=False):
+  h = ROOT.TH1D('h_tmp', 'h_tmp', 1,0,2)
+  h.Sumw2()
+  c.Draw("1>>h_tmp", "("+weight+")*("+cutString+")", 'goff')
+  res = h.GetBinContent(1)
+  resErr = h.GetBinError(1)
+#  print "1>>h_tmp", weight+"*("+cutString+")",res,resErr
+  del h
+  if returnError:
+    return res, resErr
+  elif returnVar:
+    return res, resErr**2
+  return res 
+
+
 def Set_axis_pad2(histo):
    histo.GetXaxis().SetLabelFont(42)
    histo.GetXaxis().SetLabelOffset(0.007)
