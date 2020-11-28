@@ -3,7 +3,7 @@ from helper import getChain, Set_axis_pad2, Set_axis_pad1, Draw_CMS_header
 import ROOT
 
 plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/'
-plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/test/'
+#plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/test/'
 target_lumi = 35.9
 xsec = "(1)"
 plotlist = [
@@ -31,8 +31,13 @@ bkg_list = [
 {"sample":"ST_tW_top", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_tW_top"), "tex":"ST_tW_top", "color":ROOT.kOrange}
 ]
 for bkg in bkg_list:
+<<<<<<< HEAD
 	print(bkg["sample"],bkg["chain"][1],bkg["chain"][2])
 	bkg["weight"] = "("+str(bkg["chain"][2])+"*"+str(target_lumi/float(bkg["chain"][1]))+"*genWeight)"
+=======
+    print(bkg["sample"],bkg["chain"][1],bkg["chain"][2])
+    bkg["weight"] = "("+str(bkg["chain"][2])+"*"+str(target_lumi/float(bkg["chain"][1]))+"*genWeight)"
+>>>>>>> 0e8eaea4cd77b81aba78d9f8b6f25e6e153ab2cc
 
 #signal chain al
 signal_dict = {"sample":"GJets", "weight":"(1)", "chain":getChain(stype="signal",sname="GJets"), "tex":"GJets", "color":ROOT.kYellow}
@@ -50,9 +55,9 @@ photon_cut6 = "(Photon_pt[0]>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && 
 single_photon_TIGHT = single_photon_cut + "&&" +photon_cut
 print('Plot loop starting......')
 for plot in plotlist:
-	
-	cb = ROOT.TCanvas("cb","cb",564,232,600,600)
-	cb.SetHighLightColor(2)
+    
+    cb = ROOT.TCanvas("cb","cb",564,232,600,600)
+    cb.SetHighLightColor(2)
         cb.Range(0,0,1,1)
         cb.SetFillColor(0)
         cb.SetBorderMode(0)
@@ -67,8 +72,8 @@ for plot in plotlist:
         cb.SetFrameBorderMode(0)
         cb.SetFrameFillStyle(0)
         cb.cd()
-	
-	latex = ROOT.TLatex()
+    
+    latex = ROOT.TLatex()
         latex.SetNDC()
         latex.SetTextSize(0.05)
         latex.SetTextAlign(11)
@@ -101,54 +106,54 @@ for plot in plotlist:
         #ROOT.gStyle.SetHistMinimumZero()
         ROOT.gStyle.SetErrorX(.5)
         h_Stack = ROOT.THStack('h_Stack','h_Stack')
-	print('BKG loop starting........')
-	for bkg in bkg_list:
-		print(bkg['tex'])
-		color = bkg['color']
-		htmp = "h_tmp"
-		h = ROOT.TH1D(htmp, htmp, *plot['binning'])
-		bkg["chain"][0].Draw(plot['var']+">>%s"%htmp, bkg['weight']+"*("+single_photon_TIGHT+")", 'goff')	 
-		h.SetFillColor(color)
-		h.SetLineColor(ROOT.kBlack)
-		h.SetLineWidth(1)
-		h.GetXaxis().SetNdivisions(505)
-		h.GetYaxis().SetTitle(plot['y_axis'])
-		h.SetTitle("")
-		Set_axis_pad1(h)
-		h_Stack.Add(h)
-		leg.AddEntry(h, bkg['tex'],"f")
-		del h
-	print('BKG loop finished.......')
-	stack_hist=ROOT.TH1F("stack_hist","stack_hist",plot['binning'][0],plot['binning'][1],plot['binning'][2])
-	stack_hist.Merge(h_Stack.GetHists())
-	max_bin = stack_hist.GetMaximum()*10000
-	h_Stack.SetMaximum(max_bin)	
-	h_Stack.SetMinimum(0.00001)
-	h_Stack.SetTitle("")
-	h_Stack.Draw("Histo")
-	htmp = "h_tmp"
+    print('BKG loop starting........')
+    for bkg in bkg_list:
+        print(bkg['tex'])
+        color = bkg['color']
+        htmp = "h_tmp"
+        h = ROOT.TH1D(htmp, htmp, *plot['binning'])
+        bkg["chain"][0].Draw(plot['var']+">>%s"%htmp, bkg['weight']+"*("+single_photon_TIGHT+")", 'goff')    
+        h.SetFillColor(color)
+        h.SetLineColor(ROOT.kBlack)
+        h.SetLineWidth(1)
+        h.GetXaxis().SetNdivisions(505)
+        h.GetYaxis().SetTitle(plot['y_axis'])
+        h.SetTitle("")
+        Set_axis_pad1(h)
+        h_Stack.Add(h)
+        leg.AddEntry(h, bkg['tex'],"f")
+        del h
+    print('BKG loop finished.......')
+    stack_hist=ROOT.TH1F("stack_hist","stack_hist",plot['binning'][0],plot['binning'][1],plot['binning'][2])
+    stack_hist.Merge(h_Stack.GetHists())
+    max_bin = stack_hist.GetMaximum()*10000
+    h_Stack.SetMaximum(max_bin) 
+    h_Stack.SetMinimum(0.00001)
+    h_Stack.SetTitle("")
+    h_Stack.Draw("Histo")
+    htmp = "h_tmp"
         h_sig = ROOT.TH1D(htmp, htmp, *plot['binning'])
-	signal_dict["chain"][0].Draw(plot['var']+">>%s"%htmp, signal_dict['weight']+"*("+single_photon_TIGHT+")", 'goff')
+    signal_dict["chain"][0].Draw(plot['var']+">>%s"%htmp, signal_dict['weight']+"*("+single_photon_TIGHT+")", 'goff')
        # h.SetFillColor(color)
         h_sig.SetLineColor(signal_dict["color"])
         h_sig.SetLineWidth(3)
         h_sig.GetXaxis().SetNdivisions(505)
         h_sig.GetYaxis().SetTitle(plot['y_axis'])
-	h_sig.SetTitle("")
-	h_sig.Draw("Histo Same")
-	leg_sig.AddEntry(h_sig, signal_dict['tex'],"l")
-	print("Integral of BKG:" , stack_hist.Integral())	
-	print("Integral of Signal:" , h_sig.Integral())	
-	leg.SetFillColor(0)
+    h_sig.SetTitle("")
+    h_sig.Draw("Histo Same")
+    leg_sig.AddEntry(h_sig, signal_dict['tex'],"l")
+    print("Integral of BKG:" , stack_hist.Integral())   
+    print("Integral of Signal:" , h_sig.Integral()) 
+    leg.SetFillColor(0)
         leg.SetLineColor(0)
         leg.Draw()
         leg_sig.SetFillColor(0)
         leg_sig.SetLineColor(0)
         leg_sig.Draw()
-	Draw_CMS_header(lumi_label=target_lumi)
-	#Pad1.RedrawAxis()
-	cb.cd()
-	Pad2 = ROOT.TPad("Pad2", "Pad2",  0, 0, 1, 0.31)
+    Draw_CMS_header(lumi_label=target_lumi)
+    #Pad1.RedrawAxis()
+    cb.cd()
+    Pad2 = ROOT.TPad("Pad2", "Pad2",  0, 0, 1, 0.31)
         Pad2.Draw()
         Pad2.cd()
         #Pad2.Range(-0.7248462,-0.8571429,3.302077,2)
@@ -166,27 +171,28 @@ for plot in plotlist:
         Pad2.SetFrameBorderMode(0)
         Pad2.SetFrameFillStyle(0)
         Pad2.SetFrameBorderMode(0)
-	Func = ROOT.TF1('Func',"[0]",plot['binning'][1],plot['binning'][2])
+    Func = ROOT.TF1('Func',"[0]",plot['binning'][1],plot['binning'][2])
         Func.SetParameter(0,1)
         Func.SetLineColor(58)
         Func.SetLineWidth(2)
-	h_ratio = stack_hist.Clone('h_ratio')
+    h_ratio = stack_hist.Clone('h_ratio')
         h_ratio.Sumw2()
         h_ratio.SetStats(0)
         h_ratio.Divide(stack_hist)
-	h_ratio.SetMaximum(2)
+    h_ratio.SetMaximum(2)
         h_ratio.SetMinimum(0.01)
-	h_ratio.SetMarkerStyle(20)
+    h_ratio.SetMarkerStyle(20)
         h_ratio.SetMarkerSize(1.1)
         h_ratio.SetMarkerColor(ROOT.kBlack)
         h_ratio.SetTitle("")
-	Set_axis_pad2(h_ratio)
+    Set_axis_pad2(h_ratio)
         h_ratio.GetYaxis().SetTitle("Data/Pred. ")
         h_ratio.GetXaxis().SetTitle(plot['x_axis'])
         h_ratio.GetYaxis().SetNdivisions(505)
-	h_ratio.Draw("E1")
+    h_ratio.Draw("E1")
         Func.Draw("same")
         h_ratio.Draw("E1 Same")
+<<<<<<< HEAD
 	cb.cd()
 	cb.Draw()
 	cb.SaveAs(plots_path+plot['title']+'.png')
@@ -198,3 +204,16 @@ for plot in plotlist:
 
 	#define general(MET,vb) cuts
 	#define preselection cuts
+=======
+    cb.cd()
+    cb.Draw()
+    cb.SaveAs(plots_path+plot['title']+'.png')
+    cb.SaveAs(plots_path+plot['title']+'.pdf')
+    cb.SaveAs(plots_path+plot['title']+'.root')
+    cb.Clear()
+    del h_Stack
+    #define btag cuts
+
+    #define general(MET,vb) cuts
+    #define preselection cuts
+>>>>>>> 0e8eaea4cd77b81aba78d9f8b6f25e6e153ab2cc
