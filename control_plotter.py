@@ -3,6 +3,7 @@ from helper import getChain, Set_axis_pad2, Set_axis_pad1, Draw_CMS_header
 import ROOT
 
 plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/'
+plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/test/'
 target_lumi = 35.9
 xsec = "(1)"
 plotlist = [
@@ -22,17 +23,30 @@ plotlist = [
 bkg_list = [
 {"sample":"QCD", "weight":"(1)", "chain":getChain(stype="bkg",sname="QCD"), "tex":"QCD", "color":ROOT.kCyan-6},
 {"sample":"TGJets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TGJets"), "tex":"TGJets", "color":ROOT.kRed+3},
-{"sample":"TTGets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TTGJets"), "tex":"TTGJets", "color":ROOT.kBlue-7}
+{"sample":"TTGets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TTGJets"), "tex":"TTGJets", "color":ROOT.kBlue-7},
+{"sample":"ST_s_channel", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_s_channel"), "tex":"ST_s_channel", "color":ROOT.kViolet-6},
+{"sample":"ST_t_channel_antitop", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_t_channel_antitop"), "tex":"ST_t_channel_antitop", "color":ROOT.kPink},
+{"sample":"ST_t_channel_top", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_t_channel_top"), "tex":"ST_t_channel_top", "color":ROOT.kGreen-6},
+{"sample":"ST_tW_antitop", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_tW_antitop"), "tex":"ST_tW_antitop", "color":ROOT.kMagenta-4},
+{"sample":"ST_tW_top", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_tW_top"), "tex":"ST_tW_top", "color":ROOT.kOrange}
 ]
 for bkg in bkg_list:
-	bkg["weight"] = "("+xsec+"*"+str(target_lumi/float(bkg["chain"][1]))+"*genWeight)"
+	print(bkg["sample"],bkg["chain"][1],bkg["chain"][2])
+	bkg["weight"] = "("+str(bkg["chain"][2])+"*"+str(target_lumi/float(bkg["chain"][1]))+"*genWeight)"
+
 #signal chain al
 signal_dict = {"sample":"GJets", "weight":"(1)", "chain":getChain(stype="signal",sname="GJets"), "tex":"GJets", "color":ROOT.kYellow}
-signal_dict["weight"] = "("+xsec+"*"+str(target_lumi/float(signal_dict["chain"][1]))+"*genWeight)"
+signal_dict["weight"] = "("+str(signal_dict["chain"][2])+"*"+str(target_lumi/float(signal_dict["chain"][1]))+"*genWeight)"
 #define photon cuts
 
 single_photon_cut = "Sum$(Photon_pdgId==22)==1"
 photon_cut = "(Photon_pt[0]>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103 &&Photon_pfRelIso03_all <15 && Photon_pfRelIso03_chg < 10 && Photon_electronVeto)"
+photon_cut1 = "(Photon_pt[0]>40)"
+photon_cut2 = "(Photon_pt[0]>40 && abs(Photon_eta)<1.4442)"
+photon_cut3 = "(Photon_pt[0]>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08)"
+photon_cut4 = "(Photon_pt[0]>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103)"
+photon_cut5 = "(Photon_pt[0]>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103 &&Photon_pfRelIso03_all <15)"
+photon_cut6 = "(Photon_pt[0]>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103 &&Photon_pfRelIso03_all <15 && Photon_pfRelIso03_chg < 10)"
 single_photon_TIGHT = single_photon_cut + "&&" +photon_cut
 print('Plot loop starting......')
 for plot in plotlist:
@@ -184,5 +198,3 @@ for plot in plotlist:
 
 	#define general(MET,vb) cuts
 	#define preselection cuts
-
-
