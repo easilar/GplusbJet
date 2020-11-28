@@ -2,8 +2,12 @@ import helper
 from helper import getChain, Set_axis_pad2, Set_axis_pad1, Draw_CMS_header
 import ROOT
 
+<<<<<<< HEAD
 plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/test/'
+=======
+>>>>>>> added test directory as a subdirectory in plots directory
 plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/'
+#plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/test/'
 target_lumi = 35.9
 xsec = "(1)"
 plotlist = [
