@@ -192,7 +192,7 @@ for plot in plotlist:
     h_ratio.Draw("E1")
         Func.Draw("same")
         h_ratio.Draw("E1 Same")
-<<<<<<< HEAD
+
 	cb.cd()
 	cb.Draw()
 	cb.SaveAs(plots_path+plot['title']+'.png')
@@ -204,16 +204,4 @@ for plot in plotlist:
 
 	#define general(MET,vb) cuts
 	#define preselection cuts
-=======
-    cb.cd()
-    cb.Draw()
-    cb.SaveAs(plots_path+plot['title']+'.png')
-    cb.SaveAs(plots_path+plot['title']+'.pdf')
-    cb.SaveAs(plots_path+plot['title']+'.root')
-    cb.Clear()
-    del h_Stack
-    #define btag cuts
 
-    #define general(MET,vb) cuts
-    #define preselection cuts
->>>>>>> 0e8eaea4cd77b81aba78d9f8b6f25e6e153ab2cc
