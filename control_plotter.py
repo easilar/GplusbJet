@@ -3,7 +3,7 @@ from helper import getChain, Set_axis_pad2, Set_axis_pad1, Draw_CMS_header
 import ROOT
 import os
 
-test = False
+test = True
 plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/'
 if test: 
 	plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/'
@@ -31,13 +31,13 @@ bkg_list = [
 {"sample":"QCD", "weight":"(1)", "chain":getChain(stype="bkg",sname="QCD"), "tex":"QCD", "color":ROOT.kCyan-6},
 {"sample":"TGJets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TGJets"), "tex":"TGJets", "color":ROOT.kRed+3},
 {"sample":"TTGets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TTGJets"), "tex":"TTGJets", "color":ROOT.kBlue-7},
+{"sample":"ST_tW_antitop", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_tW_antitop"), "tex":"ST_tW_antitop", "color":ROOT.kMagenta-4},
+{"sample":"ST_tW_top", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_tW_top"), "tex":"ST_tW_top", "color":ROOT.kSpring+7},
 {"sample":"ST_s_channel", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_s_channel"), "tex":"ST_s_channel", "color":ROOT.kViolet-6},
 {"sample":"ST_t_channel_antitop", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_t_channel_antitop"), "tex":"ST_t_channel_antitop", "color":ROOT.kPink},
-{"sample":"ST_t_channel_top", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_t_channel_top"), "tex":"ST_t_channel_top", "color":ROOT.kGreen-6},
-{"sample":"ST_tW_antitop", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_tW_antitop"), "tex":"ST_tW_antitop", "color":ROOT.kMagenta-4},
-{"sample":"ST_tW_top", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_tW_top"), "tex":"ST_tW_top", "color":ROOT.kOrange}
+{"sample":"ST_t_channel_top", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_t_channel_top"), "tex":"ST_t_channel_top", "color":ROOT.kGreen-1}
 ]
-for bkg in bkg_list:
+for bkg in reversed(bkg_list):
     print(bkg["sample"],bkg["chain"][1],bkg["chain"][2])
     bkg["weight"] = "("+str(bkg["chain"][2])+"*"+str(target_lumi/float(bkg["chain"][1]))+"*genWeight)"
 
@@ -108,7 +108,7 @@ for plot in plotlist:
 	ROOT.gStyle.SetErrorX(.5)
 	h_Stack = ROOT.THStack('h_Stack','h_Stack')
 	print('BKG loop starting........')
-	for bkg in bkg_list:
+	for bkg in  reversed(bkg_list):
 		print(bkg['tex'])
 		color = bkg['color']
 		htmp = "h_tmp"
