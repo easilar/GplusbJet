@@ -13,12 +13,11 @@ if not os.path.exists(plots_path):
 target_lumi = 35.9
 
 plotlist = [
-{"var":"Photon_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","plot_limits":(),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt"}
-#{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""},
-#{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""},
-#{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""},
-#{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""},
-#{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""},
+{"var":"Photon_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","plot_limits":(),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt"},
+{"var":"Photon_eta[0]","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Leading Photon Eta","title":"LPhotonEta"},
+{"var":"Photon_r9","binning":(10,0,1),"x_axis":"R9(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Photon R9","title":"PhotonR9"},
+{"var":"Photon_hoe","binning":(100,0,1),"x_axis":"HoverE(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Photon HoverE","title":"Photonhoe"},
+{"var":"Photon_sieie","binning":(100,0,0.05),"x_axis":"#sigmai#etai#eta(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Photon Sigmaietaieta","title":"Photonsieie"}
 #{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""}
 
 
