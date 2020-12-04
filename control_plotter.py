@@ -15,17 +15,21 @@ target_lumi = 35.9
 plotlist = [
 {"var":"Photon_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","plot_limits":(),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt"},
 {"var":"Photon_eta[0]","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Leading Photon Eta","title":"LPhotonEta"},
-{"var":"Photon_r9","binning":(10,0,1),"x_axis":"R9(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Photon R9","title":"PhotonR9"},
-{"var":"Photon_hoe","binning":(100,0,1),"x_axis":"HoverE(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Photon HoverE","title":"Photonhoe"},
-{"var":"Photon_sieie","binning":(100,0,0.05),"x_axis":"#sigmai#etai#eta(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Photon Sigmaietaieta","title":"Photonsieie"}
+{"var":"Photon_r9","binning":(100,0,1.5),"x_axis":"R9(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Photon R9","title":"PhotonR9"},
+{"var":"Photon_hoe","binning":(100,0,0.085),"x_axis":"HoverE(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Photon HoverE","title":"Photonhoe"},
+{"var":"Photon_sieie","binning":(100,0,0.015),"x_axis":"#sigmai#etai#eta(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Photon Sigmaietaieta","title":"Photonsieie"},
 #{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""}
 
+{"var":"Jet_pt[0]","binning":(100,0,3000),"x_axis":"Jet_p_{T}[GeV]","y_axis":"Events","plot_limits":(),"histoname":"Leading Jet Pt[GeV]","title":"Jet_Pt"},
+{"var":"Jet_eta[0]","binning":(10,-2.5,2.5),"x_axis":"Jet_#eta","y_axis":"Events","plot_limits":(),"histoname":"Leading Jet #eta","title":"Jet_#eta"},
+{"var":"nJet","binning":(10,0,10),"x_axis":"Jet Multiplicity","y_axis":"Events","plot_limits":(),"histoname":"Leading Jet Multiplicity","title":"Jet Multiplicity"}
 
 ]
 
 #bkg chain al 
 #bkg listof dicts  olustur
 bkg_list = [
+{"sample":"TTbar", "weight":"(1)", "chain":getChain(stype="bkg",sname="TTbar"), "tex":"TTbar", "color":ROOT.kGray},
 {"sample":"QCD", "weight":"(1)", "chain":getChain(stype="bkg",sname="QCD"), "tex":"QCD", "color":ROOT.kCyan-6},
 {"sample":"TGJets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TGJets"), "tex":"TGJets", "color":ROOT.kRed+3},
 {"sample":"TTGets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TTGJets"), "tex":"TTGJets", "color":ROOT.kBlue-7},
@@ -37,22 +41,23 @@ bkg_list = [
 ]
 for bkg in reversed(bkg_list):
     print(bkg["sample"],bkg["chain"][1],bkg["chain"][2])
-    bkg["weight"] = "("+str(bkg["chain"][2])+"*"+str(target_lumi/float(bkg["chain"][1]))+"*genWeight)"
+    bkg["weight"] = "("+str(bkg["chain"][2])+"*1000""*"+str(target_lumi/float(bkg["chain"][1]))+"*genWeight)"
 
 #signal chain al
 signal_dict = {"sample":"GJets", "weight":"(1)", "chain":getChain(stype="signal",sname="GJets"), "tex":"GJets", "color":ROOT.kYellow}
-signal_dict["weight"] = "("+str(signal_dict["chain"][2])+"*"+str(target_lumi/float(signal_dict["chain"][1]))+"*genWeight)"
+signal_dict["weight"] = "("+str(signal_dict["chain"][2])+"*1000""*"+str(target_lumi/float(signal_dict["chain"][1]))+"*genWeight)"
 #define photon cuts
 
 single_photon_cut = "Sum$(Photon_pdgId==22)==1"
-photon_cut = "(Photon_pt[0]>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103 &&Photon_pfRelIso03_all <15 && Photon_pfRelIso03_chg < 10 && Photon_electronVeto)"
-photon_cut1 = "(Photon_pt[0]>40)"
-photon_cut2 = "(Photon_pt[0]>40 && abs(Photon_eta)<1.4442)"
-photon_cut3 = "(Photon_pt[0]>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08)"
-photon_cut4 = "(Photon_pt[0]>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103)"
-photon_cut5 = "(Photon_pt[0]>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103 &&Photon_pfRelIso03_all <15)"
-photon_cut6 = "(Photon_pt[0]>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103 &&Photon_pfRelIso03_all <15 && Photon_pfRelIso03_chg < 10)"
-single_photon_TIGHT = single_photon_cut + "&&" +photon_cut
+photon_cut = "(Photon_pt>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103 &&Photon_pfRelIso03_all <15 && Photon_pfRelIso03_chg < 10 && Photon_electronVeto)"
+single_photon_TIGHT = single_photon_cut + "&&" +"Sum$"+photon_cut+"==1"
+
+Njet_TIGHT_cut = "Sum$(Jet_pt>30 && abs(Jet_eta)<2.4 && Jet_jetId==7 && Jet_puIdDisc>-0.2)>=1"
+NbJets = "Sum$(Jet_pt>30 && abs(Jet_eta)<2.4 && Jet_jetId>=1 && Jet_puId>=4 && Jet_btagDeepB>=0.3093)==1 "
+event_cut = "&&".join([single_photon_TIGHT, Njet_TIGHT_cut, NbJets])
+PLot_cut = event_cut
+#plotlist = [plotlist[5]]
+
 print('Plot loop starting......')
 for plot in plotlist:
 	cb = ROOT.TCanvas("cb","cb",564,232,600,600)
@@ -111,7 +116,7 @@ for plot in plotlist:
 		color = bkg['color']
 		htmp = "h_tmp"
 		h = ROOT.TH1D(htmp, htmp, *plot['binning'])
-		bkg["chain"][0].Draw(plot['var']+">>%s"%htmp, bkg['weight']+"*("+single_photon_TIGHT+")", 'goff')    
+		bkg["chain"][0].Draw(plot['var']+">>%s"%htmp, bkg['weight']+"*("+PLot_cut+")", 'goff')    
 		h.SetFillColor(color)
 		h.SetLineColor(ROOT.kBlack)
 		h.SetLineWidth(1)
@@ -132,7 +137,7 @@ for plot in plotlist:
 	h_Stack.Draw("Histo")
 	htmp = "h_tmp"
 	h_sig = ROOT.TH1D(htmp, htmp, *plot['binning'])
-	signal_dict["chain"][0].Draw(plot['var']+">>%s"%htmp, signal_dict['weight']+"*("+single_photon_TIGHT+")", 'goff')
+	signal_dict["chain"][0].Draw(plot['var']+">>%s"%htmp, signal_dict['weight']+"*("+PLot_cut+")", 'goff')
 	# h.SetFillColor(color)
 	h_sig.SetLineColor(signal_dict["color"])
 	h_sig.SetLineWidth(3)
