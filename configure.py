@@ -1,3 +1,6 @@
+from array import array
+from math import pi, sqrt, cos, sin, sinh, log
+
 #Here we put plot configurations
 target_lumi = 35.9  #fb^{-1}
 

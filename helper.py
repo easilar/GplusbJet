@@ -2,12 +2,15 @@ import ROOT
 import os
 import sys
 import pickle
+from math import pi, sqrt, cos, sin, sinh, log
 
 def getChain(year=2016,stype="signal",sname="GJets",pfile="samples.pkl"):
 	sample_dic = pickle.load(open(pfile,'rb'))
-	slist = sample_dic[year][stype][sname]['files_list']
+	#slist = sample_dic[year][stype][sname]['files_list']
+	sdir = sample_dic[year][stype][sname]['dir']
 	sxsec = sample_dic[year][stype][sname]['xsec']
 	schain = ROOT.TChain("Events")
+        slist = os.listdir(sdir)
 	for f in slist:
         	schain.Add(f)
 	nevents = schain.GetEntries() 
@@ -28,6 +31,7 @@ def getYieldFromChain(c, cutString = "(1)", weight = "1", returnError=False, ret
   return res 
 
 def getPlotFromChain(c, var, binning, cutString = "(1)", weight = "weight", binningIsExplicit=False ,addOverFlowBin='',variableBinning=(False, 1)):
+  htmp = "h_tmp"
   if binningIsExplicit:
     h = ROOT.TH1D(htmp, htmp, len(binning)-1, array('d', binning))
   else:
