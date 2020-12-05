@@ -2,27 +2,34 @@ import helper
 from helper import getChain, Set_axis_pad2, Set_axis_pad1, Draw_CMS_header
 import ROOT
 import os
+import operator
 
-test = True
+import configure
+from configure import gPtBins , target_lumi
+
+from optparse import OptionParser
+parser = OptionParser()
+parser.add_option("--test", dest="test", default=False, action="store", help="can be true or false")
+(options, args) = parser.parse_args()
+
+
+test = options.test
 plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/'
 if test: 
 	plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/'
 if not os.path.exists(plots_path):
   os.makedirs(plots_path)
 
-target_lumi = 35.9
 
 plotlist = [
-{"var":"Photon_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","plot_limits":(),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt"},
-{"var":"Photon_eta[0]","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Leading Photon Eta","title":"LPhotonEta"},
-{"var":"Photon_r9","binning":(100,0,1.5),"x_axis":"R9(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Photon R9","title":"PhotonR9"},
-{"var":"Photon_hoe","binning":(100,0,0.085),"x_axis":"HoverE(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Photon HoverE","title":"Photonhoe"},
-{"var":"Photon_sieie","binning":(100,0,0.015),"x_axis":"#sigmai#etai#eta(#gamma)","y_axis":"Events","plot_limits":(),"histoname":"Photon Sigmaietaieta","title":"Photonsieie"},
-#{"var":"","binning":(),"x_axis":"","y_axis":"","plot_limits":(),"histoname":"","title":""}
-
-{"var":"Jet_pt[0]","binning":(100,0,3000),"x_axis":"Jet_p_{T}[GeV]","y_axis":"Events","plot_limits":(),"histoname":"Leading Jet Pt[GeV]","title":"Jet_Pt"},
-{"var":"Jet_eta[0]","binning":(10,-2.5,2.5),"x_axis":"Jet_#eta","y_axis":"Events","plot_limits":(),"histoname":"Leading Jet #eta","title":"Jet_#eta"},
-{"var":"nJet","binning":(10,0,10),"x_axis":"Jet Multiplicity","y_axis":"Events","plot_limits":(),"histoname":"Leading Jet Multiplicity","title":"Jet Multiplicity"}
+{"var":"Photon_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt"},
+{"var":"Photon_eta[0]","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Leading Photon Eta","title":"LPhotonEta"},
+{"var":"Photon_r9","binning":(100,0,1.5),"x_axis":"R9(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon R9","title":"PhotonR9"},
+{"var":"Photon_hoe","binning":(100,0,0.085),"x_axis":"HoverE(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon HoverE","title":"Photonhoe"},
+{"var":"Photon_sieie","binning":(100,0,0.015),"x_axis":"#sigmai#etai#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Sigmaietaieta","title":"Photonsieie"},
+{"var":"Jet_pt[0]","binning":(100,0,3000),"x_axis":"Jet_p_{T}[GeV]","y_axis":"Events","bin":(),"histoname":"Leading Jet Pt[GeV]","title":"Jet_Pt"},
+{"var":"Jet_eta[0]","binning":(10,-2.5,2.5),"x_axis":"Jet_#eta","y_axis":"Events","bin":(),"histoname":"Leading Jet #eta","title":"Jet_#eta"},
+{"var":"nJet","binning":(10,0,10),"x_axis":"Jet Multiplicity","y_axis":"Events","bin":(),"histoname":"Leading Jet Multiplicity","title":"Jet Multiplicity"}
 
 ]
 
@@ -52,9 +59,9 @@ single_photon_cut = "Sum$(Photon_pdgId==22)==1"
 photon_cut = "(Photon_pt>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103 &&Photon_pfRelIso03_all <15 && Photon_pfRelIso03_chg < 10 && Photon_electronVeto)"
 single_photon_TIGHT = single_photon_cut + "&&" +"Sum$"+photon_cut+"==1"
 
-Njet_TIGHT_cut = "Sum$(Jet_pt>30 && abs(Jet_eta)<2.4 && Jet_jetId==7 && Jet_puIdDisc>-0.2)>=1"
-NbJets = "Sum$(Jet_pt>30 && abs(Jet_eta)<2.4 && Jet_jetId>=1 && Jet_puId>=4 && Jet_btagDeepB>=0.3093)==1 "
-event_cut = "&&".join([single_photon_TIGHT, Njet_TIGHT_cut, NbJets])
+nJet_tight_cut = "Sum$(Jet_pt>30 && abs(Jet_eta)<2.4 && Jet_jetId==7 && Jet_puIdDisc>-0.2)>=1"
+nlooseDeepBJets = "Sum$(Jet_pt>30 && abs(Jet_eta)<2.4 && Jet_jetId>=1 && Jet_puId>=4 && Jet_btagDeepB>=0.3093)==1 "
+event_cut = "&&".join([single_photon_TIGHT, nJet_tight_cut, nlooseDeepBJets])
 PLot_cut = event_cut
 #plotlist = [plotlist[5]]
 
@@ -114,9 +121,10 @@ for plot in plotlist:
 	for bkg in  reversed(bkg_list):
 		print(bkg['tex'])
 		color = bkg['color']
-		htmp = "h_tmp"
-		h = ROOT.TH1D(htmp, htmp, *plot['binning'])
-		bkg["chain"][0].Draw(plot['var']+">>%s"%htmp, bkg['weight']+"*("+PLot_cut+")", 'goff')    
+		#htmp = "h_tmp"
+		#h = ROOT.TH1D(htmp, htmp, *plot['binning'])
+		#bkg["chain"][0].Draw(plot['var']+">>%s"%htmp, bkg['weight']+"*("+PLot_cut+")", 'goff')    
+		h = getPlotFromChain(bkg['chain'][0], plot['var'], plot['bin'], cutString = PLot_cut, weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=p["bin_set"])
 		h.SetFillColor(color)
 		h.SetLineColor(ROOT.kBlack)
 		h.SetLineWidth(1)
