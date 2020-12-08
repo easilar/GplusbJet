@@ -67,6 +67,7 @@ nJet_tight_cut = nJet_tight+">=1"
 event_cut = "&&".join([single_photon_tight_cut, nJet_tight_cut, nlooseDeepBJets_cut])
 plot_cut = event_cut
 plotlist = [plotlist[0]]
+bkg_list = [bkg_list[1]]
 
 print('Plot loop starting......')
 for plot in plotlist:
@@ -139,7 +140,8 @@ for plot in plotlist:
 		leg.AddEntry(h, bkg['tex'],"f")
 		del h
 	print('BKG loop finished.......')
-	stack_hist=ROOT.TH1F("stack_hist","stack_hist",plot['binning'][0],plot['binning'][1],plot['binning'][2])
+	if plot["bin_set"][0]: stack_hist=ROOT.TH1F("stack_hist","stack_hist", plot['bin'][0],plot['bin'][1]) 
+        else: stack_hist=ROOT.TH1F("stack_hist","stack_hist",plot['bin'][0],plot['bin'][1],plot['bin'][2])
 	stack_hist.Merge(h_Stack.GetHists())
 	max_bin = stack_hist.GetMaximum()*10000
 	h_Stack.SetMaximum(max_bin) 
@@ -201,7 +203,7 @@ for plot in plotlist:
 	h_ratio.SetMarkerColor(ROOT.kBlack)
 	h_ratio.SetTitle("")
 	Set_axis_pad2(h_ratio)
-	h_ratio.GetYaxis().SetTitle("Data/Pred. ")
+	h_ratio.GetYaxis().SetTitle("Data/MC")
 	h_ratio.GetXaxis().SetTitle(plot['x_axis'])
 	h_ratio.GetYaxis().SetNdivisions(505)
 	h_ratio.Draw("E1")

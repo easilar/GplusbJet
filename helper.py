@@ -11,8 +11,13 @@ def getChain(year=2016,stype="signal",sname="GJets",pfile="samples.pkl"):
 	sxsec = sample_dic[year][stype][sname]['xsec']
 	schain = ROOT.TChain("Events")
         slist = os.listdir(sdir)
-	for f in slist:
-        	schain.Add(f)
+ 	if stype=="data": 
+		for d in sample_dic[year][stype][sname].keys():
+			for f in os.listdir(sample_dic[year][stype][sname][d]["dir"]):
+				schain.Add(sample_dic[year][stype][sname][d]["dir"]+"/"+f)
+	else:	
+		for f in slist:
+			schain.Add(sdir+"/"+f)
 	nevents = schain.GetEntries() 
 	return (schain, nevents, sxsec)
 
@@ -42,7 +47,6 @@ def getPlotFromChain(c, var, binning, cutString = "(1)", weight = "weight", binn
   c.Draw(var+">>%s"%htmp, weight+"*("+cutString+")", 'goff')
   res = h.Clone()
   if variableBinning[0]:
-    h = ROOT.TH1D('h_tmp', 'h_tmp', *binning)
     c.Draw(var+">>h_tmp", weight+"*("+cutString+")", 'goff')
     h.Scale(variableBinning[1],"width")
     res = h.Clone()
