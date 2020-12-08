@@ -2,14 +2,22 @@ import ROOT
 import os
 import sys
 import pickle
+from math import pi, sqrt, cos, sin, sinh, log
 
 def getChain(year=2016,stype="signal",sname="GJets",pfile="samples.pkl"):
 	sample_dic = pickle.load(open(pfile,'rb'))
-	slist = sample_dic[year][stype][sname]['files_list']
+	#slist = sample_dic[year][stype][sname]['files_list']
+	sdir = sample_dic[year][stype][sname]['dir']
 	sxsec = sample_dic[year][stype][sname]['xsec']
 	schain = ROOT.TChain("Events")
-	for f in slist:
-        	schain.Add(f)
+        slist = os.listdir(sdir)
+ 	if stype=="data": 
+		for d in sample_dic[year][stype][sname].keys():
+			for f in os.listdir(sample_dic[year][stype][sname][d]["dir"]):
+				schain.Add(sample_dic[year][stype][sname][d]["dir"]+"/"+f)
+	else:	
+		for f in slist:
+			schain.Add(sdir+"/"+f)
 	nevents = schain.GetEntries() 
 	return (schain, nevents, sxsec)
 
@@ -27,6 +35,31 @@ def getYieldFromChain(c, cutString = "(1)", weight = "1", returnError=False, ret
     return res, resErr**2
   return res 
 
+def getPlotFromChain(c, var, binning, cutString = "(1)", weight = "weight", binningIsExplicit=False ,addOverFlowBin='',variableBinning=(False, 1)):
+  htmp = "h_tmp"
+  if binningIsExplicit:
+    h = ROOT.TH1D(htmp, htmp, len(binning)-1, array('d', binning))
+  else:
+    if len(binning)==6:
+      h = ROOT.TH2D(htmp, htmp, *binning)
+    else:
+      h = ROOT.TH1D(htmp, htmp, *binning)
+  c.Draw(var+">>%s"%htmp, weight+"*("+cutString+")", 'goff')
+  res = h.Clone()
+  if variableBinning[0]:
+    c.Draw(var+">>h_tmp", weight+"*("+cutString+")", 'goff')
+    h.Scale(variableBinning[1],"width")
+    res = h.Clone()
+  h.Delete()
+  del h
+  if addOverFlowBin.lower() == "upper" or addOverFlowBin.lower() == "both":
+    nbins = res.GetNbinsX()
+    res.SetBinContent(nbins , res.GetBinContent(nbins) + res.GetBinContent(nbins + 1))
+    res.SetBinError(nbins , sqrt(res.GetBinError(nbins)**2 + res.GetBinError(nbins + 1)**2))
+  if addOverFlowBin.lower() == "lower" or addOverFlowBin.lower() == "both":
+    res.SetBinContent(1 , res.GetBinContent(0) + res.GetBinContent(1))
+    res.SetBinError(1 , sqrt(res.GetBinError(0)**2 + res.GetBinError(1)**2))
+  return res
 
 def Set_axis_pad2(histo):
    histo.GetXaxis().SetLabelFont(42)
