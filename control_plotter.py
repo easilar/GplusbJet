@@ -20,6 +20,7 @@ if test:
 if not os.path.exists(plots_path):
   os.makedirs(plots_path)
 
+plot_sig_stack = True
 
 plotlist = [
 {"var":"Photon_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt","bin_set":(True , 25)},
@@ -36,25 +37,22 @@ plotlist = [
 #bkg chain al 
 #bkg listof dicts  olustur
 bkg_list = [
-{"sample":"TTJets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TTJets"), "tex":"TTJets", "color":ROOT.kGray},
-{"sample":"QCD", "weight":"(1)", "chain":getChain(stype="bkg",sname="QCD"), "tex":"QCD", "color":ROOT.kCyan-6},
-{"sample":"TGJets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TGJets"), "tex":"TGJets", "color":ROOT.kRed+3},
-{"sample":"TTGets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TTGJets"), "tex":"TTGJets", "color":ROOT.kBlue-7},
-{"sample":"ST_tW_antitop", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_tW_antitop"), "tex":"ST_tW_antitop", "color":ROOT.kMagenta-4},
-{"sample":"ST_tW_top", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_tW_top"), "tex":"ST_tW_top", "color":ROOT.kSpring+7},
-{"sample":"ST_s_channel", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_s_channel"), "tex":"ST_s_channel", "color":ROOT.kViolet-6},
-{"sample":"ST_t_channel_antitop", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_t_channel_antitop"), "tex":"ST_t_channel_antitop", "color":ROOT.kPink},
-{"sample":"ST_t_channel_top", "weight":"(1)", "chain":getChain(stype="bkg",sname="ST_t_channel_top"), "tex":"ST_t_channel_top", "color":ROOT.kGreen-1}
+{"sample":"TTJets", "weight":"(1)",  "tex":"TTJets", "color":ROOT.kGray},
+{"sample":"QCD", "weight":"(1)",  "tex":"QCD", "color":ROOT.kCyan-6},
+{"sample":"TGJets", "weight":"(1)", "tex":"TGJets", "color":ROOT.kRed+3},
+{"sample":"TTGets", "weight":"(1)", "tex":"TTGJets", "color":ROOT.kBlue-7},
+{"sample":"ST_tW_antitop", "weight":"(1)","tex":"ST_tW_antitop", "color":ROOT.kMagenta-4},
+{"sample":"ST_tW_top", "weight":"(1)", "tex":"ST_tW_top", "color":ROOT.kSpring+7},
+{"sample":"ST_s_channel", "weight":"(1)", "tex":"ST_s_channel", "color":ROOT.kViolet-6},
+{"sample":"ST_t_channel_antitop", "weight":"(1)", "tex":"ST_t_channel_antitop", "color":ROOT.kPink},
+{"sample":"ST_t_channel_top", "weight":"(1)","tex":"ST_t_channel_top", "color":ROOT.kGreen-1}
 ]
-for bkg in bkg_list:
-    print(bkg["sample"],bkg["chain"][1],bkg["chain"][2])
-    bkg["weight"] = "("+str(bkg["chain"][2])+"*1000""*"+str(target_lumi/float(bkg["chain"][1]))+"*genWeight)"
 
 #signal chain al
 signal_dict = {"sample":"GJets", "weight":"(1)", "chain":getChain(stype="signal",sname="GJets"), "tex":"GJets", "color":ROOT.kYellow}
 signal_dict["weight"] = "("+str(signal_dict["chain"][2])+"*1000""*"+str(target_lumi/float(signal_dict["chain"][1]))+"*genWeight)"
 #define photon cuts
-
+print(signal_dict["sample"],signal_dict["chain"][1],signal_dict["chain"][2])
 single_photon_cut = "Sum$(Photon_pdgId==22)==1"
 photon_cut = "(Photon_pt>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103 &&Photon_pfRelIso03_all <15 && Photon_pfRelIso03_chg < 10 && Photon_electronVeto)"
 single_photon_tight_cut = single_photon_cut + "&&" +"Sum$"+photon_cut+"==1"
@@ -68,9 +66,12 @@ event_cut = "&&".join([single_photon_tight_cut, nJet_tight_cut, nlooseDeepBJets_
 plot_cut = event_cut
 plotlist = [plotlist[0]]
 bkg_list = [bkg_list[1]]
-plot_sig_stack = True
-if plot_sig_stack :
-	bkg_list.append(signal_dict)
+for bkg in bkg_list:
+    bkg["chain"] = getChain(stype="bkg",sname=bkg["sample"])
+    print(bkg["sample"],bkg["chain"][1],bkg["chain"][2])
+    bkg["weight"] = "("+str(bkg["chain"][2])+"*1000""*"+str(target_lumi/float(bkg["chain"][1]))+"*genWeight)"
+if plot_sig_stack : bkg_list.append(signal_dict)
+print(bkg_list)
 print('Plot loop starting......')
 for plot in plotlist:
 	cb = ROOT.TCanvas("cb","cb",564,232,600,600)
@@ -141,6 +142,7 @@ for plot in plotlist:
 		Set_axis_pad1(h)
 		h_Stack.Add(h)
 		leg.AddEntry(h, bkg['tex'],"f")
+		print("Integral of"+bkg['tex']+":" , h.Integral()) 
 		del h
 	print('BKG loop finished.......')
 	if plot["bin_set"][0]: stack_hist=ROOT.TH1F("stack_hist","stack_hist", plot['bin'][0],plot['bin'][1]) 
@@ -164,14 +166,14 @@ for plot in plotlist:
 		h_sig.SetTitle("")
 		h_sig.Draw("Histo Same")
 		leg_sig.AddEntry(h_sig, signal_dict['tex'],"l")
-		print("Integral of BKG:" , stack_hist.Integral())   
-		print("Integral of Signal:" , h_sig.Integral()) 
-		leg.SetFillColor(0)
-		leg.SetLineColor(0)
-		leg.Draw()
 		leg_sig.SetFillColor(0)
 		leg_sig.SetLineColor(0)
 		leg_sig.Draw()
+		print("Integral of Signal:" , h_sig.Integral()) 
+	print("Integral of BKG:" , stack_hist.Integral())   
+	leg.SetFillColor(0)
+	leg.SetLineColor(0)
+	leg.Draw()
 	Draw_CMS_header(lumi_label=target_lumi)
 	#Pad1.RedrawAxis()
 	
