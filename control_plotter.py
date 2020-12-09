@@ -36,7 +36,7 @@ plotlist = [
 #bkg chain al 
 #bkg listof dicts  olustur
 bkg_list = [
-#{"sample":"TTbar", "weight":"(1)", "chain":getChain(stype="bkg",sname="TTbar"), "tex":"TTbar", "color":ROOT.kGray},
+{"sample":"TTJets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TTJets"), "tex":"TTJets", "color":ROOT.kGray},
 {"sample":"QCD", "weight":"(1)", "chain":getChain(stype="bkg",sname="QCD"), "tex":"QCD", "color":ROOT.kCyan-6},
 {"sample":"TGJets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TGJets"), "tex":"TGJets", "color":ROOT.kRed+3},
 {"sample":"TTGets", "weight":"(1)", "chain":getChain(stype="bkg",sname="TTGJets"), "tex":"TTGJets", "color":ROOT.kBlue-7},
@@ -68,7 +68,9 @@ event_cut = "&&".join([single_photon_tight_cut, nJet_tight_cut, nlooseDeepBJets_
 plot_cut = event_cut
 plotlist = [plotlist[0]]
 bkg_list = [bkg_list[1]]
-
+plot_sig_stack = True
+if plot_sig_stack :
+	bkg_list.append(signal_dict)
 print('Plot loop starting......')
 for plot in plotlist:
 	cb = ROOT.TCanvas("cb","cb",564,232,600,600)
@@ -122,7 +124,8 @@ for plot in plotlist:
 	ROOT.gStyle.SetErrorX(.5)
 	h_Stack = ROOT.THStack('h_Stack','h_Stack')
 	print('BKG loop starting........')
-	for bkg in  reversed(bkg_list):
+	#for bkg in  reversed(bkg_list):
+	for bkg in bkg_list:
 		print(bkg['tex'])
 		color = bkg['color']
 		#htmp = "h_tmp"
@@ -151,24 +154,28 @@ for plot in plotlist:
 	htmp = "h_tmp"
 	#h_sig = ROOT.TH1D(htmp, htmp, *plot['binning'])
 	#signal_dict["chain"][0].Draw(plot['var']+">>%s"%htmp, signal_dict['weight']+"*("+plot_cut+")", 'goff')
-	h_sig = getPlotFromChain(signal_dict["chain"][0], plot['var'], plot['bin'], cutString = plot_cut, weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
-	h_sig.SetLineColor(signal_dict["color"])
-	h_sig.SetLineWidth(3)
-	h_sig.GetXaxis().SetNdivisions(505)
-	h_sig.GetYaxis().SetTitle(plot['y_axis'])
-	h_sig.SetTitle("")
-	h_sig.Draw("Histo Same")
-	leg_sig.AddEntry(h_sig, signal_dict['tex'],"l")
-	print("Integral of BKG:" , stack_hist.Integral())   
-	print("Integral of Signal:" , h_sig.Integral()) 
-	leg.SetFillColor(0)
-	leg.SetLineColor(0)
-	leg.Draw()
-	leg_sig.SetFillColor(0)
-	leg_sig.SetLineColor(0)
-	leg_sig.Draw()
+	if not plot_sig_stack :
+		h_sig = getPlotFromChain(signal_dict["chain"][0], plot['var'], plot['bin'], cutString = plot_cut, weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+		h_sig.SetFillColor(signal_dict["color"])
+		h_sig.SetLineColor(ROOT.kBlack)
+		h_sig.SetLineWidth(1)
+		h_sig.GetXaxis().SetNdivisions(505)
+		h_sig.GetYaxis().SetTitle(plot['y_axis'])
+		h_sig.SetTitle("")
+		h_sig.Draw("Histo Same")
+		leg_sig.AddEntry(h_sig, signal_dict['tex'],"l")
+		print("Integral of BKG:" , stack_hist.Integral())   
+		print("Integral of Signal:" , h_sig.Integral()) 
+		leg.SetFillColor(0)
+		leg.SetLineColor(0)
+		leg.Draw()
+		leg_sig.SetFillColor(0)
+		leg_sig.SetLineColor(0)
+		leg_sig.Draw()
 	Draw_CMS_header(lumi_label=target_lumi)
 	#Pad1.RedrawAxis()
+	
+	
 	cb.cd()
 	Pad2 = ROOT.TPad("Pad2", "Pad2",  0, 0, 1, 0.31)
 	Pad2.Draw()
