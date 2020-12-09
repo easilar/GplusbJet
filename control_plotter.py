@@ -56,13 +56,13 @@ print(signal_dict["sample"],signal_dict["chain"][1],signal_dict["chain"][2])
 single_photon_cut = "Sum$(Photon_pdgId==22)==1"
 photon_cut = "(Photon_pt>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103 &&Photon_pfRelIso03_all <15 && Photon_pfRelIso03_chg < 10 && Photon_electronVeto)"
 single_photon_tight_cut = single_photon_cut + "&&" +"Sum$"+photon_cut+"==1"
-
+trigger = "(HLT_Photon30)"
 nJet_loose = "Sum$(Jet_pt>30 && abs(Jet_eta)<2.4 && Jet_jetId>=1)"
 nJet_tight = "Sum$(Jet_pt>30 && abs(Jet_eta)<2.4 && Jet_jetId>=7)"
 nlooseDeepBJets = "Sum$(Jet_pt>30 && abs(Jet_eta)<2.4 && Jet_jetId>=1 && Jet_puId>=4 && Jet_btagDeepB>=0.3093)"
 nlooseDeepBJets_cut = nlooseDeepBJets+">=1"
 nJet_tight_cut = nJet_tight+">=1"
-event_cut = "&&".join([single_photon_tight_cut, nJet_tight_cut, nlooseDeepBJets_cut])
+event_cut = "&&".join([single_photon_tight_cut,trigger, nJet_tight_cut, nlooseDeepBJets_cut])
 plot_cut = event_cut
 plotlist = [plotlist[0]]
 bkg_list = [bkg_list[1]]
