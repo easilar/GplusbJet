@@ -6,16 +6,20 @@ from math import pi, sqrt, cos, sin, sinh, log
 
 def getChain(year=2016,stype="signal",sname="GJets",pfile="samples.pkl"):
 	sample_dic = pickle.load(open(pfile,'rb'))
-	#slist = sample_dic[year][stype][sname]['files_list']
-	sdir = sample_dic[year][stype][sname]['dir']
-	sxsec = sample_dic[year][stype][sname]['xsec']
 	schain = ROOT.TChain("Events")
-        slist = os.listdir(sdir)
+	#slist = sample_dic[year][stype][sname]['files_list']
  	if stype=="data": 
+		print("data ")
+		sxsec = "(1)" 
 		for d in sample_dic[year][stype][sname].keys():
+			print(d)
 			for f in os.listdir(sample_dic[year][stype][sname][d]["dir"]):
+				print(f)
 				schain.Add(sample_dic[year][stype][sname][d]["dir"]+"/"+f)
 	else:	
+		sdir = sample_dic[year][stype][sname]['dir']
+		sxsec = sample_dic[year][stype][sname]['xsec']
+		slist = os.listdir(sdir)
 		for f in slist:
 			schain.Add(sdir+"/"+f)
 	nevents = schain.GetEntries() 
