@@ -35,7 +35,7 @@ Samples = {2016: \
 	# closes bkg
 	"data":{\
 		"SinglePhoton":{\
-			"B":{"dir":path_data+"Run2016B_02Apr2020_ver2-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016B-02Apr2020_ver2-v1/NANOAOD"},\
+			"B":{"dir":path_data+"Run2016B_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016B-02Apr2020_ver2-v1/NANOAOD"},\
 			"C":{"dir":path_data+"Run2016C_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016C-02Apr2020-v1/NANOAOD"},\
 			"D":{"dir":path_data+"Run2016D_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016D-02Apr2020-v1/NANOAOD"},\
 			"E":{"dir":path_data+"Run2016E_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016E-02Apr2020-v1/NANOAOD"},\
