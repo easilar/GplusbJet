@@ -216,7 +216,7 @@ F0.0
 sg8
 I1
 sg9
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016B_02Apr2020_ver2-v1'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016B_02Apr2020-v1'
 p62
 sg11
 I1
