@@ -2,7 +2,10 @@
 
 import pickle
 path_MC = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/"
-path_data = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/"
+path_orig_data = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/"
+path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied/"
+path_data_SM = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied/SingleMuon/"
+path_data_SM_orig = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SingleMuon/"
 GJets_2016 = path_MC+"GJet_Pt-15To6000_TuneCUETP8M1-Flat_13TeV_pythia8_20M/"
 QCD_2016 = path_MC+"QCD_Pt-15to7000_TuneCUETP8M1_FlatP6_13TeV_pythia8/"
 TGJets_2016 = path_MC+"TGJets_TuneCUETP8M1_13TeV_amcatnlo_madspin_pythia8/"
@@ -42,7 +45,16 @@ Samples = {2016: \
 			"F":{"dir":path_data+"Run2016F_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016F-02Apr2020-v1/NANOAOD"},\
 			"G":{"dir":path_data+"Run2016G_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016G-02Apr2020-v1/NANOAOD"},\
 			"H":{"dir":path_data+"Run2016H_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016H-02Apr2020-v1/NANOAOD"},\
-			} #signle photon
+			}, #single photon
+		"SingleMuon":{\
+			"B":{"dir":path_data_SM+"Run2016B_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2016B-02Apr2020_ver2-v1/NANOAOD"},\
+			"C":{"dir":path_data_SM+"Run2016C_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2016C-02Apr2020-v1/NANOAOD"},\
+			"D":{"dir":path_data_SM+"Run2016D_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2016D-02Apr2020-v1/NANOAOD"},\
+			"E":{"dir":path_data_SM+"Run2016E_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2016E-02Apr2020-v1/NANOAOD"},\
+			"F":{"dir":path_data_SM+"Run2016F_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2016F-02Apr2020-v1/NANOAOD"},\
+			"G":{"dir":path_data_SM+"Run2016G_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2016G-02Apr2020-v1/NANOAOD"},\
+			"H":{"dir":path_data_SM+"Run2016H_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2016H-02Apr2020-v1/NANOAOD"},\
+			} #single muon
 	} # closes data
 	} # closes the 2016
 	} # closes the sample dict
