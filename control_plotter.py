@@ -31,8 +31,9 @@ plotlist = [
 {"var":"Jet_pt[0]","binning":(100,0,3000),"x_axis":"Jet_p_{T}[GeV]","y_axis":"Events","bin":(),"histoname":"Leading Jet Pt[GeV]","title":"Jet_Pt","bin_set":(False , 1)},
 {"var":"Jet_eta[0]","binning":(10,-2.5,2.5),"x_axis":"Jet_#eta","y_axis":"Events","bin":(),"histoname":"Leading Jet #eta","title":"Jet_#eta","bin_set":(False , 1)},
 {"var":"nJet","binning":(10,0,10),"x_axis":"Jet Multiplicity","y_axis":"Events","bin":(),"histoname":"Leading Jet Multiplicity","title":"Jet Multiplicity","bin_set":(False , 1)}
-
 ]
+#data chain al
+data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="SinglePhoton"), "tex":"SinglePhoton", "color":ROOT.kBlack}
 
 #bkg chain al 
 #bkg listof dicts  olustur
@@ -100,6 +101,8 @@ for plot in plotlist:
 	leg.SetBorderSize(1)
 	leg_sig = ROOT.TLegend(0.3,0.8,0.6,0.925)
 	leg_sig.SetBorderSize(1)
+	leg_data = ROOT.TLegend(0.3,0.8,0.6,0.925)
+        leg_data.SetBorderSize(1)
 	Pad1 = ROOT.TPad("Pad1", "Pad1", 0,0.31,1,1)
 	Pad1.Draw()
 	Pad1.cd()
@@ -124,6 +127,16 @@ for plot in plotlist:
 	#ROOT.gStyle.SetHistMinimumZero()
 	ROOT.gStyle.SetErrorX(.5)
 	h_Stack = ROOT.THStack('h_Stack','h_Stack')
+	
+	h_data = getPlotFromChain(data_dict["chain"][0], plot['var'], plot['bin'], cutString = plot_cut, weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+       #h_data.SetFillColor(signal_dict["color"])
+        h_data.SetLineColor(ROOT.kBlack)
+        h_data.SetLineWidth(1)
+        h_data.GetXaxis().SetNdivisions(505)
+        h_data.GetYaxis().SetTitle(plot['y_axis'])
+        h_data.SetTitle("")
+        h_data.Draw("Histo")
+	
 	print('BKG loop starting........')
 	#for bkg in  reversed(bkg_list):
 	for bkg in bkg_list:
@@ -171,6 +184,9 @@ for plot in plotlist:
 		leg_sig.Draw()
 		print("Integral of Signal:" , h_sig.Integral()) 
 	print("Integral of BKG:" , stack_hist.Integral())   
+	leg_data.SetFillColor(0)
+	leg_data.SetLineColor(0)
+	leg_data.Draw()
 	leg.SetFillColor(0)
 	leg.SetLineColor(0)
 	leg.Draw()
