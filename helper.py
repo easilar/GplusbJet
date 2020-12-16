@@ -2,20 +2,23 @@ import ROOT
 import os
 import sys
 import pickle
+import json
 from math import pi, sqrt, cos, sin, sinh, log
 
-def getChain(year=2016,stype="signal",sname="GJets",pfile="samples.pkl"):
+
+
+def getChain(year=2016,stype="signal",sname="GJets",pfile="/afs/cern.ch/work/e/ecasilar/GplusbJets/samples.pkl",datatype="all"):
 	sample_dic = pickle.load(open(pfile,'rb'))
 	schain = ROOT.TChain("Events")
-	#slist = sample_dic[year][stype][sname]['files_list']
  	if stype=="data": 
-		print("data ")
 		sxsec = "(1)" 
-		for d in sample_dic[year][stype][sname].keys():
-			print(d)
-			for f in os.listdir(sample_dic[year][stype][sname][d]["dir"]):
-				print(f)
-				schain.Add(sample_dic[year][stype][sname][d]["dir"]+"/"+f)
+		if datatype=="all":
+			for d in sample_dic[year][stype][sname].keys():
+				for f in os.listdir(sample_dic[year][stype][sname][d]["dir"]):
+					schain.Add(sample_dic[year][stype][sname][d]["dir"]+"/"+f)
+		else :
+			for f in os.listdir(sample_dic[year][stype][sname][datatype]["dir"]):
+				schain.Add(sample_dic[year][stype][sname][datatype]["dir"]+"/"+f)
 	else:	
 		sdir = sample_dic[year][stype][sname]['dir']
 		sxsec = sample_dic[year][stype][sname]['xsec']
@@ -23,7 +26,7 @@ def getChain(year=2016,stype="signal",sname="GJets",pfile="samples.pkl"):
 		for f in slist:
 			schain.Add(sdir+"/"+f)
 	nevents = schain.GetEntries() 
-	return (schain, nevents, sxsec)
+	return (schain, nevents, sxsec,sample_dic)
 
 def getYieldFromChain(c, cutString = "(1)", weight = "1", returnError=False, returnVar=False):
   h = ROOT.TH1D('h_tmp', 'h_tmp', 1,0,2)
@@ -129,4 +132,73 @@ def Draw_CMS_header(lumi_label=12.88,CMS_Tag="Preliminary"):
    tex.SetLineWidth(2)
    tex.DrawLatex(0.26,0.96,CMS_Tag)
    return
+
+def applyLumi(origFilePath,newfilePath,cert_json_path):
+        data = json.load(open(cert_json_path))
+        curfile = origFilePath
+        newfilename = newfilePath
+        ch = ROOT.TChain("Events")
+        ch.Add(curfile)
+        nentries = ch.GetEntries()
+        print(" Creating new root-file ...")
+        newFile = ROOT.TFile(newfilename,"recreate")
+        print(" Creating new tree ...")
+        newchain = ch.CloneTree(0)
+        tree = newchain.GetTree()
+        print(nentries)
+        for jentry in range(nentries):
+           ch.GetEntry(jentry)
+           run = ch.GetLeaf('run').GetValue()
+           lumi = ch.GetLeaf('luminosityBlock').GetValue()
+           nPhoton = ch.GetLeaf('nPhoton').GetValue()
+           nJet = ch.GetLeaf('nJet').GetValue()
+           PV_npvsGood = ch.GetLeaf('PV_npvsGood').GetValue()
+           Flag_goodVertices = ch.GetLeaf('Flag_goodVertices').GetValue()
+           Flag_1 = ch.GetLeaf('Flag_globalSuperTightHalo2016Filter').GetValue()
+           Flag_2 = ch.GetLeaf('Flag_HBHENoiseFilter').GetValue()
+           Flag_3 = ch.GetLeaf('Flag_HBHENoiseIsoFilter').GetValue()
+           Flag_4 = ch.GetLeaf('Flag_EcalDeadCellTriggerPrimitiveFilter').GetValue()
+           Flag_5 = ch.GetLeaf('Flag_BadPFMuonFilter').GetValue()
+           Flag_6 = ch.GetLeaf('Flag_eeBadScFilter').GetValue()
+           if (jentry%50000 == 0) : print(jentry,run,lumi)
+           if not str(int(run)) in data.keys(): continue
+	   if not (PV_npvsGood>=1 and nPhoton>=1 and nJet>=1): continue
+	   if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5 and Flag_6): continue
+           if str(int(run)) in data.keys():
+                for lumiBlock in data[str(int(run))]:
+                        if (lumi >= lumiBlock[0] and lumi <= lumiBlock[1] ) : tree.Fill()
+        newFile.cd()
+        tree.Write()
+        #newFile.Close()
+        return
+
+def applyminCut(origChain,newfilePath):
+        newfilename = newfilePath
+        ch = origChain
+        nentries = ch.GetEntries()
+  	ch.Draw(">>eList", "PV_npvsGood>=1&&nPhoton>=1&&nJet>=1")
+  	elist = ROOT.gDirectory.Get("eList")
+  	number_events = elist.GetN()
+        print(" Creating new root-file ...")
+        newFile = ROOT.TFile(newfilename,"recreate")
+        print(" Creating new tree ...")
+        newchain = ch.CloneTree(0)
+        tree = newchain.GetTree()
+        print(number_events)
+        for jentry in range(number_events):
+           ch.GetEntry(elist.GetEntry(jentry))
+           if (jentry%50000 == 0) : print(jentry)
+           tree.Fill()
+        newFile.cd()
+        tree.Write()
+	newFile.Write()
+	newFile.Map()
+        newFile.Close()
+        return
+
+def setElist(c,cut):
+	c.Draw(">>eList", cut)
+	elist = ROOT.gDirectory.Get("eList")
+	c.SetEventList(elist)	
+	return c
 
