@@ -45,7 +45,6 @@ plotlist = [
 {"var":"MET_pt","binning":(30,0,600),"x_axis":"#slash{E}_{T}","y_axis":"Events","bin":(),"histoname":"Missing Et","title":"MET","bin_set":(False , 1)}
 ]
 for plot in plotlist:
-	if not plot["bin_set"][0]: plot["bin"] = plot["binning"]
 
 #bkg chain al 
 #bkg listof dicts  olustur
@@ -128,6 +127,8 @@ for plot in plotlist:
 	leg.SetBorderSize(1)
 	leg_sig = ROOT.TLegend(0.3,0.8,0.6,0.925)
 	leg_sig.SetBorderSize(1)
+	leg_data = ROOT.TLegend(0.3,0.8,0.6,0.925)
+        leg_data.SetBorderSize(1)
 	Pad1 = ROOT.TPad("Pad1", "Pad1", 0,0.31,1,1)
 	Pad1.Draw()
 	Pad1.cd()
@@ -152,6 +153,16 @@ for plot in plotlist:
 	#ROOT.gStyle.SetHistMinimumZero()
 	ROOT.gStyle.SetErrorX(.5)
 	h_Stack = ROOT.THStack('h_Stack','h_Stack')
+	
+	h_data = getPlotFromChain(data_dict["chain"][0], plot['var'], plot['bin'], cutString = plot_cut, weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+       #h_data.SetFillColor(signal_dict["color"])
+        h_data.SetLineColor(ROOT.kBlack)
+        h_data.SetLineWidth(1)
+        h_data.GetXaxis().SetNdivisions(505)
+        h_data.GetYaxis().SetTitle(plot['y_axis'])
+        h_data.SetTitle("")
+        h_data.Draw("Histo")
+	
 	print('BKG loop starting........')
 	#for bkg in  reversed(bkg_list):
 	for bkg in bkg_list:
