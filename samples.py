@@ -1,7 +1,8 @@
 # Sample dictionary for a GammaplusbJets Run II Analysis
 
 import pickle
-path_MC = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/"
+path_MC = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC_filtered/"
+path_MC_orig = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/"
 path_orig_data = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/"
 path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied/"
 path_data_SM = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied/SingleMuon/"

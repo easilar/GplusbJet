@@ -18,7 +18,7 @@ p8
 F382.7
 sS'dir'
 p9
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/GJet_Pt-15To6000_TuneCUETP8M1-Flat_13TeV_pythia8_20M/'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC_filtered/GJet_Pt-15To6000_TuneCUETP8M1-Flat_13TeV_pythia8_20M/'
 p10
 sS'equivalent_lumi'
 p11
@@ -40,7 +40,7 @@ F0.0
 sg8
 F0.0
 sg9
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC_filtered/ST_t-channel_antitop_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/'
 p18
 sg11
 F0.0
@@ -57,7 +57,7 @@ F0.0
 sg8
 F1.412
 sg9
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC_filtered/TTJets_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/'
 p22
 sg11
 F1.956
@@ -74,7 +74,7 @@ F0.1857
 sg8
 F0.01334
 sg9
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/ST_s-channel_4f_InclusiveDecays_13TeV-amcatnlo-pythia8'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC_filtered/ST_s-channel_4f_InclusiveDecays_13TeV-amcatnlo-pythia8'
 p26
 sg11
 F39.05
@@ -91,7 +91,7 @@ F0.0
 sg8
 F0.0
 sg9
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/ST_t-channel_top_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC_filtered/ST_t-channel_top_4f_inclusiveDecays_13TeV-powhegV2-madspin-pythia8_TuneCUETP8M1/'
 p30
 sg11
 F0.0
@@ -108,7 +108,7 @@ F0.0
 sg8
 F0.0305
 sg9
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC_filtered/ST_tW_top_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/'
 p34
 sg11
 F26.25
@@ -125,7 +125,7 @@ F0.0
 sg8
 F2159000.0
 sg9
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_Pt-15to7000_TuneCUETP8M1_FlatP6_13TeV_pythia8/'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC_filtered/QCD_Pt-15to7000_TuneCUETP8M1_FlatP6_13TeV_pythia8/'
 p38
 sg11
 F7.301e-07
@@ -142,7 +142,7 @@ F0.3381
 sg8
 F0.02629
 sg9
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/TTGJets_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC_filtered/TTGJets_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/'
 p42
 sg11
 F27.63
@@ -159,7 +159,7 @@ F0.4008
 sg8
 F0.01052
 sg9
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/TGJets_TuneCUETP8M1_13TeV_amcatnlo_madspin_pythia8/'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC_filtered/TGJets_TuneCUETP8M1_13TeV_amcatnlo_madspin_pythia8/'
 p46
 sg11
 F13.27
@@ -176,7 +176,7 @@ F0.0
 sg8
 F0.03055
 sg9
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC_filtered/ST_tW_antitop_5f_inclusiveDecays_13TeV-powheg-pythia8_TuneCUETP8M1/'
 p50
 sg11
 F26.27
