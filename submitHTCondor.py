@@ -14,6 +14,7 @@ import shutil
 parser = argparse.ArgumentParser()
 parser.add_argument("file", help="path to the file to be read. Each line will be submitted as a job")
 parser.add_argument("--name", default='job', help="job name")
+parser.add_argument("--qtime", default='workday', help="qtime espresso(20 dk) , longlunch(2h)")
 parser.add_argument("--keep_junk", default=False, action="store_true")
 parser.add_argument("--dry_run", default=False, action="store_true")
 parser.add_argument("--log_dir", default="/afs/cern.ch/work/e/ecasilar/GplusbJets/logs/", help="location of log files. Make sure dir exists or jobs will be held hostage.")
@@ -24,6 +25,7 @@ file_name = args.file
 job_name  = args.name if args.name else args.file
 #log_dir   = args.log_dir
 log_dir   = f'{args.log_dir}/{job_name}/'
+qtime = args.qtime
 
 lines = []
 
@@ -70,7 +72,7 @@ When_to_transfer_output = ON_EXIT
 Log    = {log_dir}/$(Cluster).$(Process).log
 Output = {log_dir}/$(Cluster).$(Process).out
 Error  = {log_dir}/$(Cluster).$(Process).err
-+JobFlavour = "workday"
++JobFlavour = {qtime}
 
 Queue ITEM from {file_name} 
 '''
@@ -110,7 +112,7 @@ with open(fname_jobrunner, 'w') as f:
 
 #fname_condor = os.path.join( tempdir, "condor_%s.submit"%job_temp_name )
 fname_condor = os.path.join( tempdir, "condor_script.submit" )
-condor_script = template_condor.format( log_dir=log_dir, file_name=file_name, job_name=job_name, executable=fname_jobrunner)
+condor_script = template_condor.format( log_dir=log_dir, qtime=qtime,file_name=file_name, job_name=job_name, executable=fname_jobrunner)
 with open(fname_condor, 'w') as f:
     print(condor_script, file=f)
 
