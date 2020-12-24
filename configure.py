@@ -21,9 +21,11 @@ gPtBins  = array('d', [float(x) for x in range(60,85,25)\
                                         ])
 
 ngood_vtx_cut = "(PV_npvsGood>=1)"
-single_photon_cut = "(nPhoton==1)"
+met_filters= "(Flag_goodVertices)&&(Flag_globalSuperTightHalo2016Filter)&&(Flag_HBHENoiseFilter)&&(Flag_HBHENoiseIsoFilter)&&(Flag_EcalDeadCellTriggerPrimitiveFilter)&&(Flag_BadPFMuonFilter)"
+single_photon_cut = "(nPhoton>=1)"
 photon_cut = "(Photon_pt>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103 &&Photon_pfRelIso03_all <15 && Photon_pfRelIso03_chg < 10 && Photon_electronVeto)"
-single_photon_tight_cut = single_photon_cut + "&&" +"Sum$"+photon_cut+"==1"
+nPhoton = "Sum$"+photon_cut
+single_photon_tight_cut = single_photon_cut+"&&"+"(Sum$"+photon_cut+"==1)"
 
 nJet_tight = "Sum$(Jet_pt>30 && abs(Jet_eta)<2.4 && Jet_jetId>=7 && Jet_puId>=7)"
 ntightDeepBJets = "Sum$(Jet_pt>30 && abs(Jet_eta)<2.4 && Jet_jetId>=7 && Jet_puId>=7 && Jet_btagDeepFlavB>=0.7221)"
@@ -35,7 +37,7 @@ cut_2b = ntightDeepBJets+"==2"
 muon_veto = "Sum$(Muon_pt>10&&abs(Muon_eta)<2.4&&Muon_looseId&&Muon_isPFcand&&(Muon_isGlobal||Muon_isTracker))==0"
 electron_veto = "Sum$(Electron_pt>10&&abs(Electron_eta)<2.5&&Electron_cutBased_Sum16>=1)==0"
 
-presel = "&&".join([ngood_vtx_cut,single_photon_tight_cut,nJet_tight_cut,muon_veto,electron_veto])
+presel = "&&".join([ngood_vtx_cut,met_filters,single_photon_tight_cut,muon_veto,electron_veto])
 sel_0b = "&&".join([presel,cut_0b])
 sel_1b = "&&".join([presel,cut_1b])
 sel_2b = "&&".join([presel,cut_2b])

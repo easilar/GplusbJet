@@ -21,25 +21,29 @@ index = plot_index
 
 region = options.region
 
+pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_orig.pkl"
+
 test = options.test
-plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/'
+plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/WithData/'
 if test: 
-	plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/'
+	plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/WithData/'
 if not os.path.exists(plots_path):
   os.makedirs(plots_path)
 
 plot_sig_stack = True
 
 plotlist = [
+{"var":"Photon_pt","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Photon Pt[GeV]","title":"PhotonPt","bin_set":(True , 25)},
+{"var":"Photon_eta","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Eta","title":"PhotonEta","bin_set":(False , 1)},
 {"var":"Photon_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt","bin_set":(True , 25)},
 {"var":"Photon_eta[0]","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Leading Photon Eta","title":"LPhotonEta","bin_set":(False , 1)},
-{"var":"Photon_pfRelIso03_all","binning":(45,0,15),"x_axis":"Rel Iso All #gamma","y_axis":"Events","bin":(),"histoname":"Photon_pfRelIso03_all","title":"Photon_pfRelIso03_all","bin_set":(False , 1)},
-{"var":"Photon_pfRelIso03_chg","binning":(45,0,15),"x_axis":"Rel Iso Chg #gamma","y_axis":"Events","bin":(),"histoname":"Photon_pfRelIso03_chg","title":"Photon_pfRelIso03_chg","bin_set":(False , 1)},
-{"var":"Photon_r9","binning":(50,0,1.5),"x_axis":"R9(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon R9","title":"PhotonR9","bin_set":(False , 1)},
-{"var":"Photon_hoe","binning":(50,0,0.085),"x_axis":"HoverE(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon HoverE","title":"Photonhoe","bin_set":(False , 1)},
-{"var":"Photon_sieie","binning":(50,0,0.015),"x_axis":"#sigmai#etai#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Sigmaietaieta","title":"Photonsieie","bin_set":(False , 1)},
-{"var":"Jet_pt[0]","binning":(100,0,3000),"x_axis":"Jet_p_{T}[GeV]","y_axis":"Events","bin":(),"histoname":"Leading Jet Pt[GeV]","title":"Jet_Pt","bin_set":(False , 1)},
-{"var":"Jet_eta[0]","binning":(10,-2.5,2.5),"x_axis":"Jet_#eta","y_axis":"Events","bin":(),"histoname":"Leading Jet #eta","title":"Jet_eta","bin_set":(False , 1)},
+{"var":"Photon_pfRelIso03_all","binning":(40,0,20),"x_axis":"Rel Iso All #gamma","y_axis":"Events","bin":(),"histoname":"Photon_pfRelIso03_all","title":"Photon_pfRelIso03_all","bin_set":(False , 1)},
+{"var":"Photon_pfRelIso03_chg","binning":(40,0,20),"x_axis":"Rel Iso Chg #gamma","y_axis":"Events","bin":(),"histoname":"Photon_pfRelIso03_chg","title":"Photon_pfRelIso03_chg","bin_set":(False , 1)},
+{"var":"Photon_r9","binning":(20,0,2),"x_axis":"R9(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon R9","title":"PhotonR9","bin_set":(False , 1)},
+{"var":"Photon_hoe","binning":(20,0,0.1),"x_axis":"HoverE(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon HoverE","title":"Photonhoe","bin_set":(False , 1)},
+{"var":"Photon_sieie","binning":(20,0,0.02),"x_axis":"#sigmai#etai#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Sigmaietaieta","title":"Photonsieie","bin_set":(False , 1)},
+{"var":"Jet_pt[0]","binning":(50,0,1000),"x_axis":"Jet_p_{T}[GeV]","y_axis":"Events","bin":(),"histoname":"Leading Jet Pt[GeV]","title":"Jet_Pt","bin_set":(False , 1)},
+{"var":"Jet_eta[0]","binning":(30,-3,3),"x_axis":"Jet_#eta","y_axis":"Events","bin":(),"histoname":"Leading Jet #eta","title":"Jet_eta","bin_set":(False , 1)},
 {"var":nJet_tight,"binning":(10,0,10),"x_axis":"Jet Multiplicity","y_axis":"Events","bin":(),"histoname":"Jet Multiplicity","title":"nJet","bin_set":(False , 1)},
 {"var":ntightDeepBJets,"binning":(10,0,10),"x_axis":"b Jet Multiplicity","y_axis":"Events","bin":(),"histoname":"b Jet Multiplicity","title":"nbJet","bin_set":(False , 1)},
 {"var":"MET_pt","binning":(30,0,600),"x_axis":"#slash{E}_{T}","y_axis":"Events","bin":(),"histoname":"Missing Et","title":"MET","bin_set":(False , 1)}
@@ -50,55 +54,52 @@ for plot in plotlist:
 #bkg chain al 
 #bkg listof dicts  olustur
 bkg_list = [
-{"sample":"TTJets", "weight":"(1)",  "tex":"TTJets", "color":ROOT.kGray},
-{"sample":"QCD", "weight":"(1)",  "tex":"QCD", "color":ROOT.kCyan-6},
-{"sample":"TGJets", "weight":"(1)", "tex":"TGJets", "color":ROOT.kRed+3},
-{"sample":"TTGJets", "weight":"(1)", "tex":"TTGJets", "color":ROOT.kBlue-7},
-{"sample":"ST_tW_antitop", "weight":"(1)","tex":"ST_tW_antitop", "color":ROOT.kMagenta-4},
-{"sample":"ST_tW_top", "weight":"(1)", "tex":"ST_tW_top", "color":ROOT.kSpring+7},
-{"sample":"ST_s_channel", "weight":"(1)", "tex":"ST_s_channel", "color":ROOT.kViolet-6},
-{"sample":"ST_t_channel_antitop", "weight":"(1)", "tex":"ST_t_channel_antitop", "color":ROOT.kPink},
-{"sample":"ST_t_channel_top", "weight":"(1)","tex":"ST_t_channel_top", "color":ROOT.kGreen-1}
+#{"sample":"ST_tW_antitop", "weight":"(1)","tex":"ST_tW_antitop", "color":ROOT.kMagenta-4},
+#{"sample":"ST_tW_top", "weight":"(1)", "tex":"ST_tW_top", "color":ROOT.kSpring+7},
+#{"sample":"ST_s_channel", "weight":"(1)", "tex":"ST_s_channel", "color":ROOT.kViolet-6},
+#{"sample":"ST_t_channel_antitop", "weight":"(1)", "tex":"ST_t_channel_antitop", "color":ROOT.kPink},
+#{"sample":"ST_t_channel_top", "weight":"(1)","tex":"ST_t_channel_top", "color":ROOT.kGreen-1},
+#{"sample":"TGJets", "weight":"(1)", "tex":"TGJets", "color":ROOT.kRed+3},
+#{"sample":"TTGJets", "weight":"(1)", "tex":"TTGJets", "color":ROOT.kBlue-7},
+#{"sample":"TTJets", "weight":"(1)",  "tex":"TTJets", "color":ROOT.kGray},
+{"sample":"QCD", "weight":"(1)",  "tex":"QCD", "color":ROOT.kCyan-6}
 ]
 
 #signal chain al
-signal_dict = {"sample":"GJets", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets"), "tex":"GJets", "color":ROOT.kYellow}
-signal_dict["weight"] = "("+str(signal_dict["chain_all"][2])+"*1000""*"+str(target_lumi/float(signal_dict["chain_all"][1]))+"*genWeight)"
+signal_dict = {"sample":"GJets", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kYellow}
+signal_dict["weight"] = "("+str(signal_dict["chain_all"][3]["xsec"])+"*1000""*"+str(target_lumi/float(signal_dict["chain_all"][3]["nevents"]))+")"
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
 #data dict al
-data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="SinglePhoton")[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
+data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="SinglePhoton",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
 
 #define photon cuts
-
 selections={
-"presel":presel,\
+"no_cut":"(1)",\
+"vtx_cut":ngood_vtx_cut,\
+"met_filters": "&&".join([ngood_vtx_cut,met_filters]),\
+"single_photon":"&&".join([ngood_vtx_cut,met_filters,single_photon_tight_cut]),\
+"presel":"&&".join([ngood_vtx_cut,met_filters,single_photon_tight_cut,muon_veto,electron_veto]),\
 "1b":sel_1b,\
 "2b":sel_2b,\
 "0b":sel_0b,\
 }
 
 plot_cut = selections[region]
-if test:
-	plotlist = [plotlist[0]]
-	bkg_list = [bkg_list[1]]
 
 plotlist = [plotlist[index]]
-
 for bkg in bkg_list:
-    bkg["chain_all"] = getChain(stype="bkg",sname=bkg["sample"])
+    bkg["chain_all"] = getChain(stype="bkg",sname=bkg["sample"],pfile=pfile,test=test)
     print(bkg["sample"],bkg["chain_all"][1],bkg["chain_all"][2])
     bkg["chain"] = bkg["chain_all"][0]
-    bkg["weight"] = "("+str(bkg["chain_all"][2])+"*1000""*"+str(target_lumi/float(bkg["chain_all"][1]))+"*genWeight)"
+    bkg["weight"] = "("+str(bkg["chain_all"][3]["xsec"])+"*1000""*"+str(target_lumi/float(bkg["chain_all"][3]["nevents"]))+"*"+bkg["weight"]+")"
     print(bkg["chain"].GetEntries())
 
-print(signal_dict["chain_all"][0].GetEntries())
 signal_dict["chain"] = signal_dict["chain_all"][0]
 print(signal_dict["chain"].GetEntries())
 data_dict["chain"] = data_dict["chain"]
 
 if plot_sig_stack : bkg_list.append(signal_dict)
-print(bkg_list)
 print('Plot loop starting......')
 for plot in plotlist:
 	print(plot["title"])
@@ -168,9 +169,12 @@ for plot in plotlist:
 		h.GetYaxis().SetTitle(plot['y_axis'])
 		h.SetTitle("")
 		Set_axis_pad1(h)
-		h_Stack.Add(h)
+		h.Scale(0.0002)
+		bkg["histo"] = h
 		leg.AddEntry(h, bkg['tex'],"f")
 		print("Integral of"+bkg['tex']+":" , h.Integral()) 
+                h_Stack.Add(bkg["histo"])
+                #leg_sig.AddEntry(bkg["histo"], bkg['tex'],"f")
 		del h
 	print('BKG loop finished.......')
 	if plot["bin_set"][0]: stack_hist=ROOT.TH1F("stack_hist","stack_hist", plot['bin'][0],plot['bin'][1]) 
@@ -186,8 +190,8 @@ for plot in plotlist:
         h_data.SetMarkerStyle(20)
         h_data.SetMarkerSize(1.1)
         h_data.SetLineColor(color)
-        h_data.GetXaxis().SetTitle(p['xaxis'])
-	h_data.GetYaxis().SetTitle(p['yaxis'])
+        h_data.GetXaxis().SetTitle(plot['x_axis'])
+	h_data.GetYaxis().SetTitle(plot['y_axis'])
         h_data.SetTitle("")
         #h_data.GetYaxis().SetTitleSize(0.05)
         #h_data.GetYaxis().SetLabelSize(0.05)
