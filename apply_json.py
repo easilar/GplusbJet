@@ -16,7 +16,7 @@ cert_json = "/afs/cern.ch/work/e/ecasilar/GplusbJets/json/Cert_271036-284044_13T
 
 orig_dir = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016"+data_letter+"_02Apr2020-v1/"
 
-targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_loose/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
+targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
 
 targetfilePath = targetdir+f
 origFilePath = orig_dir+f
@@ -27,7 +27,8 @@ origFilePath = origFilePath
 ch = ROOT.TChain("Events")
 ch.Add(origFilePath)
 nentries = ch.GetEntries()
-ch.Draw(">>eList", "(PV_npvsGood>=1&&nPhoton>=1)&&Sum$(Photon_pt>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103 &&Photon_pfRelIso03_all <15 && Photon_pfRelIso03_chg < 10 && Photon_electronVeto)==1")
+#ch.Draw(">>eList", "(PV_npvsGood>=1&&nPhoton>=1)&&Sum$(Photon_pt>40 && abs(Photon_eta)<1.4442 && Photon_hoe<0.08 && Photon_sieie<0.0103 &&Photon_pfRelIso03_all <15 && Photon_pfRelIso03_chg < 10 && Photon_electronVeto)==1")
+ch.Draw(">>eList", "(PV_npvsGood>=1)&&(HLT_Photon175)")
 elist = ROOT.gDirectory.Get("eList")
 number_events = elist.GetN()
 print(" Creating new root-file ...")
@@ -53,11 +54,12 @@ for jentry in range(number_events):
    Flag_6 = ch.GetLeaf('Flag_eeBadScFilter').GetValue()
    if (jentry%50000 == 0) : print(jentry,run,lumi)
    if not str(int(run)) in data.keys(): continue
-   #if not (PV_npvsGood>=1 and nPhoton>=1 and nJet>=1): continue
-   if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5 and Flag_6): continue
    if str(int(run)) in data.keys():
         for lumiBlock in data[str(int(run))]:
-                if (lumi >= lumiBlock[0] and lumi <= lumiBlock[1] ) : tree.Fill()
+                if not (lumi >= lumiBlock[0] and lumi <= lumiBlock[1] ) : continue
+   if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5 and Flag_6): continue
+   #if not (PV_npvsGood>=1 and nPhoton>=1 and nJet>=1): continue
+   tree.Fill()
 newFile.cd()
 tree.Write()
 newFile.Write()
