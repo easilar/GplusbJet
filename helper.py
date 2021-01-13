@@ -7,26 +7,34 @@ from math import pi, sqrt, cos, sin, sinh, log
 
 
 
-def getChain(year=2016,stype="signal",sname="GJets",pfile="/afs/cern.ch/work/e/ecasilar/GplusbJets/samples.pkl",datatype="all"):
+def getChain(year=2016,stype="signal",sname="GJets",pfile="/afs/cern.ch/work/e/ecasilar/GplusbJets/samples.pkl",datatype="all", test=False):
 	sample_dic = pickle.load(open(pfile,'rb'))
 	schain = ROOT.TChain("Events")
  	if stype=="data": 
 		sxsec = "(1)" 
 		if datatype=="all":
-			for d in sample_dic[year][stype][sname].keys():
-				for f in os.listdir(sample_dic[year][stype][sname][d]["dir"]):
-					schain.Add(sample_dic[year][stype][sname][d]["dir"]+"/"+f)
+			sdict = sample_dic[year][stype][sname]
+			for d in sdict.keys():
+				slist = os.listdir(sdict[d]["dir"])
+				if test: slist = slist[:1]
+				for f in slist:
+					schain.Add(sdict[d]["dir"]+"/"+f)
 		else :
-			for f in os.listdir(sample_dic[year][stype][sname][datatype]["dir"]):
-				schain.Add(sample_dic[year][stype][sname][datatype]["dir"]+"/"+f)
-	else:	
-		sdir = sample_dic[year][stype][sname]['dir']
-		sxsec = sample_dic[year][stype][sname]['xsec']
+			sdict = sample_dic[year][stype][sname][datatype]
+			slist = os.listdir(sdict["dir"])
+			if test: slist = slist[:1]
+			for f in slist:
+				schain.Add(sdict["dir"]+"/"+f)
+	else:
+		sdict = sample_dic[year][stype][sname]
+		sdir = sdict['dir']
+		sxsec = sdict['xsec']
 		slist = os.listdir(sdir)
+		if test : slist = slist[:1]
 		for f in slist:
 			schain.Add(sdir+"/"+f)
 	nevents = schain.GetEntries() 
-	return (schain, nevents, sxsec,sample_dic)
+	return (schain, nevents, sxsec, sdict)
 
 def getYieldFromChain(c, cutString = "(1)", weight = "1", returnError=False, returnVar=False):
   h = ROOT.TH1D('h_tmp', 'h_tmp', 1,0,2)
@@ -130,7 +138,7 @@ def Draw_CMS_header(lumi_label=12.88,CMS_Tag="Preliminary"):
    tex.SetTextFont(52)
    tex.SetTextSize(0.05)
    tex.SetLineWidth(2)
-   tex.DrawLatex(0.26,0.96,CMS_Tag)
+   tex.DrawLatex(0.29,0.96,CMS_Tag)
    return
 
 def applyLumi(origFilePath,newfilePath,cert_json_path):
