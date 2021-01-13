@@ -1,0 +1,1 @@
+xrdcp root://cms-xrd-global.cern.ch//store/data/Run2017D/SingleMuon/NANOAOD/02Apr2020-v1/230000/74A8FEE4-F8D6-9245-A797-D5F7EE774217.root /eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2017/data/SingleMuon/Run2017D-02Apr2020-v1/74A8FEE4-F8D6-9245-A797-D5F7EE774217.root
