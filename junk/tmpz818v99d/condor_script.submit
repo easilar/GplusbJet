@@ -1,0 +1,21 @@
+
+Executable   = /afs/cern.ch/user/m/myalvac/gplusjets/junk/tmpz818v99d/jobrunner.sh
+Args         = $(ITEM)
+
+use_x509userproxy = eval("/afs/cern.ch/user/m/myalvac/gplusjets/tmp/x509up_u56869")
+should_transfer_files = YES
+When_to_transfer_output = ON_EXIT
+
+#Log    = /afs/cern.ch/user/m/myalvac/gplusjets/logs//job//job_$(Cluster).$(Process).log
+#Output = /afs/cern.ch/user/m/myalvac/gplusjets/logs//job//job_$(Cluster).$(Process).out
+#Error  = /afs/cern.ch/user/m/myalvac/gplusjets/logs//job//job_$(Cluster).$(Process).err
+Log    = /afs/cern.ch/user/m/myalvac/gplusjets/logs//job//$(Cluster).$(Process).log
+Output = /afs/cern.ch/user/m/myalvac/gplusjets/logs//job//$(Cluster).$(Process).out
+Error  = /afs/cern.ch/user/m/myalvac/gplusjets/logs//job//$(Cluster).$(Process).err
+request_cpus = 1 
+request_disk = 5120MB
+request_memory = 64MB
++JobFlavour = "workday"
+
+Queue ITEM from Run2017_SingleMuon.sh 
+

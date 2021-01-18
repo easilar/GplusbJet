@@ -1,0 +1,1 @@
+/store/mc/RunIISummer16NanoAODv7/GJets_Pt-100To200_13TeV-sherpa/NANOAODSIM/PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/130000/34218C9E-9AA0-5F41-BA97-0FB6ADD83A8A.root

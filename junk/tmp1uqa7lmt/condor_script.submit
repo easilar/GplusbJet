@@ -1,0 +1,16 @@
+
+Executable   = /afs/cern.ch/user/m/myalvac/gplusjets/junk/tmp1uqa7lmt/jobrunner.sh
+Args         = $(ITEM)
+
+When_to_transfer_output = ON_EXIT
+
+#Log    = /afs/cern.ch/user/m/myalvac/gplusjets/logs//job//job_$(Cluster).$(Process).log
+#Output = /afs/cern.ch/user/m/myalvac/gplusjets/logs//job//job_$(Cluster).$(Process).out
+#Error  = /afs/cern.ch/user/m/myalvac/gplusjets/logs//job//job_$(Cluster).$(Process).err
+Log    = /afs/cern.ch/user/m/myalvac/gplusjets/logs//job//$(Cluster).$(Process).log
+Output = /afs/cern.ch/user/m/myalvac/gplusjets/logs//job//$(Cluster).$(Process).out
+Error  = /afs/cern.ch/user/m/myalvac/gplusjets/logs//job//$(Cluster).$(Process).err
++JobFlavour = "workday"
+
+Queue ITEM from Run2018_SingleMuon.sh 
+
