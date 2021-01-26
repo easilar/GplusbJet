@@ -15,7 +15,7 @@ if save_orig:
 GJets_2016 = path_MC+"GJet_Pt-15To6000_TuneCUETP8M1-Flat_13TeV_pythia8_20M/"
 GJets_Pt_100To200_2016 = path_MC+"GJets_Pt-100To200_13TeV-sherpa/"
 GJets_Pt_200To500_2016 = path_MC+"GJets_Pt-200To500_13TeV-sherpa/"
-GJets_Pt_500To1000_2016 = path_MC+"GJets_Pt-500To10000_3TeV-sherpa/"
+GJets_Pt_500To1000_2016 = path_MC+"GJets_Pt-500To1000_13TeV-sherpa/"
 GJets_Pt_1000To2000_2016 = path_MC+"GJets_Pt-1000To2000_13TeV-sherpa/"
 GJets_Pt_2000To5000_2016 = path_MC+"GJets_Pt-2000To5000_13TeV-sherpa/"
 QCD_2016 = path_MC+"QCD_Pt-15to7000_TuneCUETP8M1_FlatP6_13TeV_pythia8/"
@@ -106,4 +106,4 @@ Samples = {2016: \
 if save_orig:
 	pickle.dump(Samples, open("samples_orig.pkl", "wb"))
 else:
-	pickle.dump(Samples, open("samples.pkl", "wb"))
+	pickle.dump(Samples, open("samples_ana.pkl", "wb"))

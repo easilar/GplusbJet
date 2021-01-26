@@ -7,7 +7,7 @@ from math import pi, sqrt, cos, sin, sinh, log
 
 
 
-def getChain(year=2016,stype="signal",sname="GJets",pfile="/afs/cern.ch/work/e/ecasilar/GplusbJets/samples.pkl",datatype="all", test=False):
+def getChain(year=2016,stype="signal",sname="GJets",pfile="/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_orig.pkl",datatype="all", test=False):
 	sample_dic = pickle.load(open(pfile,'rb'))
 	schain = ROOT.TChain("Events")
  	if stype=="data": 
@@ -26,13 +26,22 @@ def getChain(year=2016,stype="signal",sname="GJets",pfile="/afs/cern.ch/work/e/e
 			for f in slist:
 				schain.Add(sdict["dir"]+"/"+f)
 	else:
-		sdict = sample_dic[year][stype][sname]
-		sdir = sdict['dir']
-		sxsec = sdict['xsec']
-		slist = os.listdir(sdir)
-		if test : slist = slist[:1]
-		for f in slist:
-			schain.Add(sdir+"/"+f)
+		if sample_dic[year][stype][sname].keys()[0].startswith(sname):
+			for s_bin in sample_dic[year][stype][sname].keys():
+				sdict = sample_dic[year][stype][sname][s_bin]
+				slist = os.listdir(sdict["dir"])
+				sxsec = sdict['xsec']
+				if test: slist = slist[:1]
+				for f in slist:
+					schain.Add(sdict["dir"]+"/"+f)
+		else:
+			sdict = sample_dic[year][stype][sname]
+			sdir = sdict['dir']
+			sxsec = sdict['xsec']
+			slist = os.listdir(sdir)
+			if test : slist = slist[:1]
+			for f in slist:
+				schain.Add(sdir+"/"+f)
 	nevents = schain.GetEntries() 
 	return (schain, nevents, sxsec, sdict)
 
