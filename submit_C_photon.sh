@@ -1,5 +1,5 @@
 python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=0FC148B2-8A3A-1B4C-9527-289119DEC381.root
-#python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=26F71AB9-D883-9943-98F0-1928EEBAF0F5.root
+python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=26F71AB9-D883-9943-98F0-1928EEBAF0F5.root
 python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=29226D5C-1748-5F41-81E1-3C3263F59777.root
 python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=334AF06A-0393-D84B-AE37-0D0E22013875.root
 python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=3EAF630B-9997-4741-9961-3B167307F7FC.root
@@ -14,7 +14,7 @@ python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filena
 python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=93BE8FD5-5713-8A4B-B730-554969D492C9.root
 python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=9853577E-02C1-D84F-9FA7-42A571C46D75.root
 python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=A142CC0A-24F8-B948-9D9A-0553DF77911F.root
-#python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=B13705E2-70ED-6944-9553-631CC9404B3B.root
+python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=B13705E2-70ED-6944-9553-631CC9404B3B.root
 python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=BCAA1290-6EC7-F242-ACD6-28869AA39F8B.root
 python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=C2129BA3-5B74-9E48-A64E-044E886C0CD9.root
 python /afs/cern.ch/work/e/ecasilar/GplusbJets/apply_json.py --letter=C --filename=C5F01D99-7A99-FE46-B6C8-609353AB41DD.root
