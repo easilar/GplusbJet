@@ -5,12 +5,7 @@ from math import pi, sqrt, cos, sin, sinh, log
 target_lumi = 35.9  #fb^{-1}
 
 #gamma Pt bins
-gPtBins  = array('d', [float(x) for x in range(60,85,25)\
-                                        +range(85,105,20)\
-                                        +range(105,130,25)\
-                                        +range(130,190,60)\
-                                        +range(190,220,30)\
-                                        +range(220,250,30)\
+gPtBins  = array('d', [float(x) for x in range(200,250,50)\
                                         +range(250,300,50)\
                                         +range(300,350,50)\
                                         +range(350,400,50)\
@@ -56,6 +51,7 @@ HLT_Photon30_R9Id90_HE10_IsoM\
 prob_trigger_3 = "(HLT_Photon165_HE10)"
 #ref_trigger = "(HLT_PFJet40)"
 ref_trigger = "(HLT_IsoMu24)"
+jet_photon_cut = "Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4&&Jet_pt>40&&abs(Jet_eta)<2.4&&Jet_jetId>=1&&Jet_pt[0]>100"
 
 
 

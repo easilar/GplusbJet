@@ -24,7 +24,7 @@ region = options.region
 pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_orig.pkl"
 
 test = options.test
-plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/WithData/'
+plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/G1Jet/'
 if test: 
 	plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/WithData/'
 if not os.path.exists(plots_path):
@@ -44,11 +44,12 @@ bkg_list = [
 #{"sample":"TGJets", "weight":"(1)", "tex":"TGJets", "color":ROOT.kRed+3},
 #{"sample":"TTGJets", "weight":"(1)", "tex":"TTGJets", "color":ROOT.kBlue-7},
 #{"sample":"TTJets", "weight":"(1)",  "tex":"TTJets", "color":ROOT.kGray},
-{"sample":"QCD", "weight":"(1)",  "tex":"QCD", "color":ROOT.kCyan-6}
+{"sample":"QCD_HT", "weight":"(1)",  "tex":"QCD", "color":ROOT.kCyan-6}
 ]
 
 #signal chain al
-signal_dict = {"sample":"GJets", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kYellow}
+#signal_dict = {"sample":"GJets", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kYellow}
+signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kYellow}
 signal_dict["weight"] = "("+str(signal_dict["chain_all"][3]["xsec"])+"*1000""*"+str(target_lumi/float(signal_dict["chain_all"][3]["nevents"]))+")"
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
@@ -57,6 +58,7 @@ data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="da
 
 #define photon cuts
 selections={
+"jetphoton": jet_photon_cut,\
 "no_cut":"(1)",\
 "vtx_cut":ngood_vtx_cut,\
 "met_filters": "&&".join([ngood_vtx_cut,met_filters]),\
@@ -69,6 +71,17 @@ selections={
 
 plot_cut = selections[region]
 
+#FOR QCD
+qcd_dict = sample_dic[2016]["bkg"]["QCD_HT"]
+qcd_hists = []
+for qcd_bin in qcd_dict.keys():
+	c = ROOT.TChain("Events")
+	c.Add(qcd_dict[qcd_bin]['dir']+"/*.root")
+	print(qcd_bin,c.GetEntries())
+	bin_weight = qcd_dict[qcd_bin]["xsec"]*1000*target_lumi*(1/float(qcd_dict[qcd_bin]["nevents"])) 
+	qcd_h = getPlotFromChain(c, plot['var'], plot['bin'], cutString = plot_cut, weight = bin_weight ,addOverFlowBin='both',variableBinning=plot["bin_set"])	
+	qcd_hists.append(qcd_h)
+	
 
 for bkg in bkg_list:
     bkg["chain_all"] = getChain(stype="bkg",sname=bkg["sample"],pfile=pfile,test=test)

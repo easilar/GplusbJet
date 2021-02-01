@@ -26,15 +26,16 @@ targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon1
 targetfilePath = targetdir+f
 origFilePath = orig_dir+f
 print("Working on data ",data_letter)
+print("Target directory :", targetfilePath)
 
 data = json.load(open(cert_json))
 origFilePath = origFilePath
 ch = ROOT.TChain("Events")
 ch.Add(origFilePath)
-number_events = ch.GetEntries()
-#ch.Draw(">>eList", "(PV_npvsGood>=1)")
-#elist = ROOT.gDirectory.Get("eList")
-#number_events = elist.GetN()
+#number_events = ch.GetEntries()
+ch.Draw(">>eList", "(PV_npvsGood>=1)")
+elist = ROOT.gDirectory.Get("eList")
+number_events = elist.GetN()
 print(" Creating new root-file ...")
 newFile = ROOT.TFile(targetfilePath,"recreate")
 print(" Creating new tree ...")
@@ -93,8 +94,8 @@ for jentry in range(number_events):
    nPhoton = ch.GetLeaf('nPhoton').GetValue()
    nJet = ch.GetLeaf('nJet').GetValue()
    #lJetpT = ch.GetLeaf('Jet_pt').GetValue(0)
-   HLT_Photon175 = ch.GetLeaf('HLT_Photon175').GetValue()
-   PV_npvsGood = ch.GetLeaf('PV_npvsGood').GetValue()
+   #HLT_Photon175 = ch.GetLeaf('HLT_Photon175').GetValue()
+   #PV_npvsGood = ch.GetLeaf('PV_npvsGood').GetValue()
    Flag_goodVertices = ch.GetLeaf('Flag_goodVertices').GetValue()
    Flag_1 = ch.GetLeaf('Flag_globalSuperTightHalo2016Filter').GetValue()
    Flag_2 = ch.GetLeaf('Flag_HBHENoiseFilter').GetValue()
@@ -107,7 +108,7 @@ for jentry in range(number_events):
    if str(int(run)) in data.keys():
         for lumiBlock in data[str(int(run))]:
                 if not (lumi >= lumiBlock[0] and lumi <= lumiBlock[1] ) : continue
-   if not HLT_Photon175 : continue
+   #if not HLT_Photon175 : continue
    if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5 and Flag_6): continue
    photons = []
    for ph in range(int(nPhoton)):
