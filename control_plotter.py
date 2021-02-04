@@ -16,12 +16,16 @@ parser.add_option("--region", dest="region", default="presel", action="store", h
 
 plot_index = options.plot
 
+#ROOT.setTDRStyle()
+ROOT.gStyle.SetOptStat(0)
+
+
 plot = plotlist[plot_index]
 if not plot["bin_set"][0]: plot["bin"] = plot["binning"]
 
 region = options.region
 
-pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_orig.pkl"
+pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
 
 test = options.test
 plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/G1Jet/'
@@ -44,13 +48,14 @@ bkg_list = [
 #{"sample":"TGJets", "weight":"(1)", "tex":"TGJets", "color":ROOT.kRed+3},
 #{"sample":"TTGJets", "weight":"(1)", "tex":"TTGJets", "color":ROOT.kBlue-7},
 #{"sample":"TTJets", "weight":"(1)",  "tex":"TTJets", "color":ROOT.kGray},
-{"sample":"QCD_HT", "weight":"(1)",  "tex":"QCD", "color":ROOT.kCyan-6}
+{"sample":"QCD_HT", "weight":"(1)",  "tex":"QCD", "color":ROOT.kAzure+6}
 ]
 
 #signal chain al
 #signal_dict = {"sample":"GJets", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kYellow}
-signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kYellow}
-signal_dict["weight"] = "("+str(signal_dict["chain_all"][3]["xsec"])+"*1000""*"+str(target_lumi/float(signal_dict["chain_all"][3]["nevents"]))+")"
+signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kBlue-3}
+signal_dict["weight"] = "(weight)"
+
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
 #data dict al
@@ -59,6 +64,7 @@ data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="da
 #define photon cuts
 selections={
 "jetphoton": jet_photon_cut,\
+"jet_cut":jet_cut,\
 "no_cut":"(1)",\
 "vtx_cut":ngood_vtx_cut,\
 "met_filters": "&&".join([ngood_vtx_cut,met_filters]),\
@@ -70,24 +76,11 @@ selections={
 }
 
 plot_cut = selections[region]
-
-#FOR QCD
-qcd_dict = sample_dic[2016]["bkg"]["QCD_HT"]
-qcd_hists = []
-for qcd_bin in qcd_dict.keys():
-	c = ROOT.TChain("Events")
-	c.Add(qcd_dict[qcd_bin]['dir']+"/*.root")
-	print(qcd_bin,c.GetEntries())
-	bin_weight = qcd_dict[qcd_bin]["xsec"]*1000*target_lumi*(1/float(qcd_dict[qcd_bin]["nevents"])) 
-	qcd_h = getPlotFromChain(c, plot['var'], plot['bin'], cutString = plot_cut, weight = bin_weight ,addOverFlowBin='both',variableBinning=plot["bin_set"])	
-	qcd_hists.append(qcd_h)
-	
-
 for bkg in bkg_list:
     bkg["chain_all"] = getChain(stype="bkg",sname=bkg["sample"],pfile=pfile,test=test)
     print(bkg["sample"],bkg["chain_all"][1],bkg["chain_all"][2])
     bkg["chain"] = bkg["chain_all"][0]
-    bkg["weight"] = "("+str(bkg["chain_all"][3]["xsec"])+"*1000""*"+str(target_lumi/float(bkg["chain_all"][3]["nevents"]))+"*"+bkg["weight"]+")"
+    bkg["weight"] = "(weight)"
     print(bkg["chain"].GetEntries())
 
 signal_dict["chain"] = signal_dict["chain_all"][0]
@@ -120,7 +113,7 @@ latex.SetNDC()
 latex.SetTextSize(0.05)
 latex.SetTextAlign(11)
 
-leg = ROOT.TLegend(0.65,0.5,0.93,0.925)
+leg = ROOT.TLegend(0.6,0.65,0.93,0.925)
 leg.SetBorderSize(1)
 leg_sig = ROOT.TLegend(0.3,0.8,0.6,0.925)
 leg_sig.SetBorderSize(1)
@@ -164,9 +157,8 @@ for bkg in bkg_list:
 	h.GetYaxis().SetTitle(plot['y_axis'])
 	h.SetTitle("")
 	Set_axis_pad1(h)
-	h.Scale(0.0002)
 	bkg["histo"] = h
-	leg.AddEntry(h, bkg['tex'],"f")
+	leg.AddEntry(h, bkg['tex']+" "+str(round(h.Integral())),"f")
 	print("Integral of"+bkg['tex']+":" , h.Integral()) 
         h_Stack.Add(bkg["histo"])
         #leg_sig.AddEntry(bkg["histo"], bkg['tex'],"f")

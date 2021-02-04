@@ -72,13 +72,13 @@ When_to_transfer_output = ON_EXIT
 Log    = {log_dir}/$(Cluster).$(Process).log
 Output = {log_dir}/$(Cluster).$(Process).out
 Error  = {log_dir}/$(Cluster).$(Process).err
+RequestCpus = 4
 +JobFlavour = {qtime}
 
 
 Queue ITEM from {file_name} 
 '''
 
-#RequestCpus = 6
 
 template_jobrunner =\
 '''\
