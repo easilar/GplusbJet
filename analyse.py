@@ -24,7 +24,8 @@ year = options.year
 stype = options.stype
 sname = options.sname
 
-pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_orig.pkl"
+#pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_orig.pkl"
+pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
 sdict = sample_dic[year][stype][sname][data_letter]
 
@@ -32,8 +33,6 @@ sdict = sample_dic[year][stype][sname][data_letter]
 if options.stype == "data":
 	cert_json = "/afs/cern.ch/work/e/ecasilar/GplusbJets/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
 	orig_dir = sdict["dir"]+"/"
-	#orig_dir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
-	#targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters_Photon_Jet/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
 	targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/"+sname+"/"+sdict["dir"].split("/")[-1]+"/"
 	data = json.load(open(cert_json))
 	xsec_v = 1.0
@@ -44,7 +43,15 @@ else:
 	xsec_v = sdict["xsec"]*1000 #femtobarn
 	weight_v = xsec_v*target_lumi*(1/float(sdict["nevents"]))
 	orig_dir = sdict["dir"]
-	targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/"+sdict["dir"].split("/")[-2]+"/"
+	targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/"+sname+"/"+sdict["dir"].split("/")[-2]+"/"
+
+#For PU
+puweight_file = ROOT.TFile("/afs/cern.ch/work/e/ecasilar/GplusbJets/PUfiles/puCorrection.root")
+pu68p6 = puweight_file.Get("h_ratio")
+
+#For Photon Scale Factor
+photon_SF_file = ROOT.TFile("/afs/cern.ch/work/e/ecasilar/GplusbJets/SF_files/Fall17V2_2016_Tight_photons.root")
+SF_MC = photon_SF_file.Get("EGamma_SF2D")
 
 targetfilePath = targetdir+f
 origFilePath = orig_dir+f
@@ -62,6 +69,8 @@ newchain = ch.CloneTree(0)
 tree = newchain.GetTree()
 xsec = array('f',[0])
 weight  = array('f',[0])
+puweight  = array('f',[0])
+PhotonSF  = array('f',[0])
 ngoodPhoton  = array('i',[0])
 goodPhoton_pt = array( 'd', 3*[ 0. ] )
 goodPhoton_eta = array( 'd', 3*[ 0. ] )
@@ -74,6 +83,8 @@ goodPhoton_pfRelIso03_all = array( 'd', 3*[ 0. ] )
 goodPhoton_pfRelIso03_chg = array( 'd', 3*[ 0. ] )
 tree.Branch("xsec",xsec,"xsec/F")
 tree.Branch("weight",weight,"weight/F")
+tree.Branch("puweight",puweight,"puweight/F")
+tree.Branch("PhotonSF",PhotonSF,"PhotonSF/F")
 tree.Branch("ngoodPhoton",ngoodPhoton,"ngoodPhoton/I")
 tree.Branch("goodPhoton_pt", goodPhoton_pt, "goodPhoton_pt[ngoodPhoton]/D")
 tree.Branch("goodPhoton_eta", goodPhoton_eta, "goodPhoton_eta[ngoodPhoton]/D")
@@ -119,6 +130,7 @@ for jentry in range(number_events):
    #lJetpT = ch.GetLeaf('Jet_pt').GetValue(0)
    HLT_Photon175 = ch.GetLeaf('HLT_Photon175').GetValue()
    PV_npvsGood = ch.GetLeaf('PV_npvsGood').GetValue()
+   Pileup_nTrueInt = ch.GetLeaf('Pileup_nTrueInt').GetValue()
    Flag_goodVertices = ch.GetLeaf('Flag_goodVertices').GetValue()
    Flag_1 = ch.GetLeaf('Flag_globalSuperTightHalo2016Filter').GetValue()
    Flag_2 = ch.GetLeaf('Flag_HBHENoiseFilter').GetValue()
@@ -137,10 +149,11 @@ for jentry in range(number_events):
    if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5): continue
    xsec[0] = xsec_v 
    weight[0] = weight_v 
+   puweight[0] = pu68p6.GetBinContent(pu68p6.FindBin(Pileup_nTrueInt))
    photons = []
    for ph in range(int(nPhoton)):
 	if ch.GetLeaf('Photon_cutBased').GetValue(ph)>=3 and ch.GetLeaf('Photon_pt').GetValue(ph)>=200 and (abs(ch.GetLeaf('Photon_eta').GetValue(ph))<1.4) :
-		photons.append({'index':ph,'phi':ch.GetLeaf('Photon_phi').GetValue(ph),'eta':ch.GetLeaf('Photon_eta').GetValue(ph)})
+		photons.append({'index':ph,'phi':ch.GetLeaf('Photon_phi').GetValue(ph),'eta':ch.GetLeaf('Photon_eta').GetValue(ph),'pt':ch.GetLeaf('Photon_pt').GetValue(ph)})
 		
    jets = []
    bjets = []
@@ -183,6 +196,9 @@ for jentry in range(number_events):
 		sel_photons.append(photon)
    ngoodPhoton[0] = len(sel_photons)
    if len(sel_photons) < 1 : continue
+   PhotonSF_ = SF_MC.GetBinContent(SF_MC.FindBin(sel_photons[0]["eta"],sel_photons[0]["pt"]))
+   if PhotonSF_ < 0.01 : PhotonSF_ = 1.0
+   PhotonSF[0] = PhotonSF_
    tree.Fill()
 newFile.cd()
 tree.Write()

@@ -72,7 +72,7 @@ When_to_transfer_output = ON_EXIT
 Log    = {log_dir}/$(Cluster).$(Process).log
 Output = {log_dir}/$(Cluster).$(Process).out
 Error  = {log_dir}/$(Cluster).$(Process).err
-RequestCpus = 6
+RequestCpus = 4
 +JobFlavour = {qtime}
 
 

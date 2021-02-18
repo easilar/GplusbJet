@@ -20,7 +20,7 @@ gjets = sample_dic[2016]["signal"]["G1Jet_Pt"]
 cut = "Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4"
 #cut = "Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4&&Jet_pt>40&&abs(Jet_eta)<2.4&&Jet_jetId>=7&&Jet_puId>=7&&Jet_pt[0]>100"
 #cut = "Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4&&Jet_pt>40&&abs(Jet_eta)<2.4&&Jet_jetId>=1&&Jet_pt[0]>100"
-#cut = "(1)"
+#cut = "ngoodPhoton==1"
 cb = ROOT.TCanvas("cb","cb",564,232,600,600)
 cb.cd()
 h_Stack = ROOT.THStack('h_Stack','h_Stack')
@@ -48,6 +48,8 @@ if plot_QCD:
 	leg.AddEntry(plot,"QCD_HT" ,"f")
 #chain_dict = getChain(stype="bkg",sname="QCD_HT",pfile="/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl")
 #cQCD = chain_dict[0]
+#plot = getPlotFromChain(cQCD,cplot["var"],cplot["binning"],cutString = cut ,weight="weight")
+#leg.AddEntry(plot,"QCD_HT" ,"f")
 #plot = getPlotFromChain(cQCD,"Photon_pt[0]",(40,0,2000),cutString = cut ,weight="weight")
 #plot = getPlotFromChain(cQCD,"Sum$(Jet_pt)",(200,0,5000),cutString = cut ,weight="weight")
 #plot.SetFillColor(color_qcd)	
@@ -60,23 +62,25 @@ if plot_QCD:
 #plot.GetXaxis().SetTitle('H_{T}')
 #plot.SetFillColor(color[ci])   
 print("start gjets")
-for ci,bin_name in enumerate(gjets.keys()):
-	print(gjets[bin_name])
-	if "50To100" in bin_name: continue
-	if not "_NOExt" in bin_name: continue
-	c = ROOT.TChain("Events")
-	c.Add(gjets[bin_name]["dir"]+"/*.root")
-	weight = gjets[bin_name]["xsec"]*1000*target_lumi*(1/float(gjets[bin_name]["nevents"]))
-	plot = getPlotFromChain(c,cplot["var"],cplot["binning"],cutString = cut ,weight=str(weight))
-	#plot.SetFillColor(color_gjets)
-	plot.SetFillColor(color[ci])
-	plot.SetLineColor(ROOT.kBlack)
-	leg.AddEntry(plot,bin_name ,"f")
-	h_Stack.Add(plot)
-
-#plot.SetFillColor(color_gjets)
-#plot.SetLineColor(ROOT.kBlack)
-#h_Stack.Add(plot)
+#for ci,bin_name in enumerate(gjets.keys()):
+#	print(gjets[bin_name])
+#	if "50To100" in bin_name: continue
+#	if not "_NOExt" in bin_name: continue
+#	c = ROOT.TChain("Events")
+#	c.Add(gjets[bin_name]["dir"]+"/*.root")
+#	weight = gjets[bin_name]["xsec"]*1000*target_lumi*(1/float(gjets[bin_name]["nevents"]))
+#	plot = getPlotFromChain(c,cplot["var"],cplot["binning"],cutString = cut ,weight=str(weight))
+#	#plot.SetFillColor(color_gjets)
+#	plot.SetFillColor(color[ci])
+#	plot.SetLineColor(ROOT.kBlack)
+#	leg.AddEntry(plot,bin_name ,"f")
+#	h_Stack.Add(plot)
+cGJets = getChain(stype="signal",sname="G1Jet_Pt",pfile="/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl")
+cGJets=cGJets[0]
+plot = getPlotFromChain(cGJets,cplot["var"],cplot["binning"],cutString = cut ,weight="weight*puweight")
+plot.SetFillColor(color_gjets)
+plot.SetLineColor(ROOT.kBlack)
+h_Stack.Add(plot)
 #ch_data = getChain(stype="data",sname="SinglePhoton",pfile=pfile)
 ch_data = getChain(stype="data",sname="SinglePhoton",pfile="/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl")
 ch = ch_data[0]
@@ -92,6 +96,6 @@ leg.SetFillColor(0)
 leg.SetLineColor(0)
 leg.Draw()
 cb.Draw()
-cb.SaveAs("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/"+cplot["title"]+"G1Jet.png")
-cb.SaveAs("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/"+cplot["title"]+"G1Jet.pdf")
-cb.SaveAs("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/"+cplot["title"]+"G1Jet.root")
+cb.SaveAs("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/"+cplot["title"]+"ece_pu.png")
+cb.SaveAs("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/"+cplot["title"]+"ece_pu.pdf")
+cb.SaveAs("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/"+cplot["title"]+"ece_pu.root")
