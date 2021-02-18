@@ -942,7 +942,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied/SingleMuon/Run2016C_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/SingleMuon/Run2016C_02Apr2020-v1'
 p220
 sg14
 I1
@@ -958,7 +958,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied/SingleMuon/Run2016B_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/SingleMuon/Run2016B_02Apr2020-v1'
 p223
 sg14
 I1
@@ -974,7 +974,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied/SingleMuon/Run2016E_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/SingleMuon/Run2016E_02Apr2020-v1'
 p226
 sg14
 I1
@@ -990,7 +990,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied/SingleMuon/Run2016D_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/SingleMuon/Run2016D_02Apr2020-v1'
 p229
 sg14
 I1
@@ -1006,7 +1006,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied/SingleMuon/Run2016G_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/SingleMuon/Run2016G_02Apr2020-v1'
 p232
 sg14
 I1
@@ -1022,7 +1022,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied/SingleMuon/Run2016F_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/SingleMuon/Run2016F_02Apr2020-v1'
 p235
 sg14
 I1
@@ -1038,7 +1038,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied/SingleMuon/Run2016H_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/SingleMuon/Run2016H_02Apr2020-v1'
 p238
 sg14
 I1
