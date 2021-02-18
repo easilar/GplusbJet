@@ -13,5 +13,6 @@ sdict = sample_dic[2016][stype][sname]
 for ci,bin_name in enumerate(sdict.keys()):
 	cur_dir = sdict[bin_name]["dir"]
 	flist = os.listdir(cur_dir)
+	#os.makedirs("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/"+sname+"/"+sdict[bin_name]["dir"].split("/")[-1]+"/")
 	for f in flist:
 		print("python /afs/cern.ch/work/e/ecasilar/GplusbJets/analyse.py --sname="+sname+" --stype="+stype+" --letter="+bin_name+" --filename="+f)

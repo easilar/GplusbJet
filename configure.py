@@ -54,13 +54,16 @@ prob_trigger_3 = "(HLT_Photon165_HE10)"
 #ref_trigger = "(HLT_PFJet40)"
 ref_trigger = "(HLT_IsoMu24)"
 jet_photon_cut = "Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4&&Jet_pt>40&&abs(Jet_eta)<2.4&&Jet_jetId>=1&&Jet_pt[0]>100"
-jet_cut = "ngoodPhoton==1&&abs(goodPhoton_eta)<=1.4&&goodJet_pt[0]>100"
+jet_cut = "(ngoodPhoton==1&&abs(goodPhoton_eta)<=1.4&&goodJet_pt[0]>100)"
+jet_cut_trig = "(ngoodPhoton==1&&abs(goodPhoton_eta)<=1.4&&goodJet_pt[0]>100&&HLT_Photon175)"
 
 
 #Plots
 plotlist = {
 "Photon_pt":{"var":"goodPhoton_pt","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Photon Pt[GeV]","title":"PhotonPt","bin_set":(True , 25)},
 "Photon_eta":{"var":"goodPhoton_eta","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Eta","title":"PhotonEta","bin_set":(False , 1)},
+"Photon_phi":{"var":"goodPhoton_phi","binning":(20,-4,4),"x_axis":"#phi(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Phi","title":"PhotonPhi","bin_set":(False , 1)},
+"Pileup_nTrueInt":{"var":"Pileup_nTrueInt","binning":(20,0,100),"x_axis":"N True Int.","y_axis":"Events","bin":(),"histoname":"Pileup_nTrueInt","title":"Pileup_nTrueInt","bin_set":(False , 1)},
 "LPhoton_pt":{"var":"goodPhoton_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt","bin_set":(True , 25)},
 "LPhoton_eta":{"var":"goodPhoton_eta[0]","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Leading Photon Eta","title":"LPhotonEta","bin_set":(False , 1)},
 "Photon_pfRelIso03_all":{"var":"goodPhoton_pfRelIso03_all","binning":(40,0,20),"x_axis":"Rel Iso All #gamma","y_axis":"Events","bin":(),"histoname":"Photon_pfRelIso03_all","title":"Photon_pfRelIso03_all","bin_set":(False , 1)},
