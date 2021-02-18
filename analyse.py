@@ -44,8 +44,8 @@ else:
 	xsec_v = sdict["xsec"]*1000 #femtobarn
 	weight_v = xsec_v*target_lumi*(1/float(sdict["nevents"]))
 	orig_dir = sdict["dir"]
-	targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/"+sdict["dir"].split("/")[-2]+"/"
-
+	#targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/"+sdict["dir"].split("/")[-2]+"/"
+	targetdir = "/eos/user/m/myalvac/GPlusBJets/"+sdict["dir"].split("/")[-2]+"/"
 targetfilePath = targetdir+f
 origFilePath = orig_dir+f
 print("Target path:" , targetfilePath)
