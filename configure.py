@@ -64,6 +64,7 @@ plotlist = {
 "Photon_eta":{"var":"goodPhoton_eta","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Eta","title":"PhotonEta","bin_set":(False , 1)},
 "Photon_phi":{"var":"goodPhoton_phi","binning":(20,-4,4),"x_axis":"#phi(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Phi","title":"PhotonPhi","bin_set":(False , 1)},
 "Pileup_nTrueInt":{"var":"Pileup_nTrueInt","binning":(20,0,100),"x_axis":"N True Int.","y_axis":"Events","bin":(),"histoname":"Pileup_nTrueInt","title":"Pileup_nTrueInt","bin_set":(False , 1)},
+"PV_npvsGood":{"var":"PV_npvsGood","binning":(100,0,100),"x_axis":"npvsGood","y_axis":"Events","bin":(),"histoname":"PV_npvsGood","title":"PV_npvsGood","bin_set":(False , 1)},
 "LPhoton_pt":{"var":"goodPhoton_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt","bin_set":(True , 25)},
 "LPhoton_eta":{"var":"goodPhoton_eta[0]","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Leading Photon Eta","title":"LPhotonEta","bin_set":(False , 1)},
 "Photon_pfRelIso03_all":{"var":"goodPhoton_pfRelIso03_all","binning":(40,0,20),"x_axis":"Rel Iso All #gamma","y_axis":"Events","bin":(),"histoname":"Photon_pfRelIso03_all","title":"Photon_pfRelIso03_all","bin_set":(False , 1)},
