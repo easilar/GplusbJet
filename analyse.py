@@ -28,24 +28,26 @@ sname = options.sname
 #orig_dir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
 if options.stype == "data":
 	cert_json = "/afs/cern.ch/work/e/ecasilar/GplusbJets/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
-	#orig_dir = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016"+data_letter+"_02Apr2020-v1/"
-	orig_dir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
+	orig_dir = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016"+data_letter+"_02Apr2020-v1/"
+#	orig_dir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
 	#targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters_Photon_Jet/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
-	targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
+	#targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
+	targetdir = "/eos/user/m/myalvac/GPlusBJets/"
 	data = json.load(open(cert_json))
 	xsec_v = 1.0
 	weight_v = 1.0
 	print("Working on data ",data_letter)
 else:
 	print("Working on MC", data_letter)
-	pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_orig.pkl"
+#	pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_orig.pkl"
+	pfile = "/afs/cern.ch/user/m/myalvac/GPlusbJets/samples_orig.pkl"
 	sample_dic = pickle.load(open(pfile,'rb'))
 	sdict = sample_dic[year][stype][sname][data_letter]
 	xsec_v = sdict["xsec"]*1000 #femtobarn
 	weight_v = xsec_v*target_lumi*(1/float(sdict["nevents"]))
 	orig_dir = sdict["dir"]
-	targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/"+sdict["dir"].split("/")[-2]+"/"
-
+	#targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/"+sdict["dir"].split("/")[-2]+"/"
+	targetdir = "/eos/user/m/myalvac/GPlusBJets/"+sdict["dir"].split("/")[-2]+"/"
 targetfilePath = targetdir+f
 origFilePath = orig_dir+f
 print("Target path:" , targetfilePath)
