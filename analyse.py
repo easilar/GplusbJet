@@ -24,8 +24,8 @@ year = options.year
 stype = options.stype
 sname = options.sname
 
-afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets/"
-targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
+afs_dir = os.environ["afs_dir"]
+targetdir_mainpath = os.environ["cern_box"]
 
 pfile = afs_dir+"/samples_orig.pkl"
 #pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
