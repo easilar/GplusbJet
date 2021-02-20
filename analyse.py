@@ -24,16 +24,20 @@ year = options.year
 stype = options.stype
 sname = options.sname
 
-#pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_orig.pkl"
-pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
+afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets/"
+targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
+
+pfile = afs_dir+"/samples_orig.pkl"
+#pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
 sdict = sample_dic[year][stype][sname][data_letter]
 
+
 #orig_dir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
 if options.stype == "data":
-	cert_json = "/afs/cern.ch/work/e/ecasilar/GplusbJets/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
+	cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
 	orig_dir = sdict["dir"]+"/"
-	targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/"+sname+"/"+sdict["dir"].split("/")[-1]+"/"
+	targetdir = targetdir_mainpath+"/data/"+sname+"/"+sdict["dir"].split("/")[-1]+"/"
 	data = json.load(open(cert_json))
 	xsec_v = 1.0
 	weight_v = 1.0
@@ -43,14 +47,14 @@ else:
 	xsec_v = sdict["xsec"]*1000 #femtobarn
 	weight_v = xsec_v*target_lumi*(1/float(sdict["nevents"]))
 	orig_dir = sdict["dir"]
-	targetdir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/"+sname+"/"+sdict["dir"].split("/")[-2]+"/"
+	targetdir = targetdir_mainpath+"/MC/"+sname+"/"+sdict["dir"].split("/")[-2]+"/"
 
 #For PU
-puweight_file = ROOT.TFile("/afs/cern.ch/work/e/ecasilar/GplusbJets/PUfiles/puCorrection.root")
+puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection.root")
 pu68p6 = puweight_file.Get("h_ratio")
 
 #For Photon Scale Factor
-photon_SF_file = ROOT.TFile("/afs/cern.ch/work/e/ecasilar/GplusbJets/SF_files/Fall17V2_2016_Tight_photons.root")
+photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/Fall17V2_2016_Tight_photons.root")
 SF_MC = photon_SF_file.Get("EGamma_SF2D")
 
 targetfilePath = targetdir+f
