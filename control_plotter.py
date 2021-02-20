@@ -48,13 +48,14 @@ bkg_list = [
 #{"sample":"TGJets", "weight":"(1)", "tex":"TGJets", "color":ROOT.kRed+3},
 #{"sample":"TTGJets", "weight":"(1)", "tex":"TTGJets", "color":ROOT.kBlue-7},
 #{"sample":"TTJets", "weight":"(1)",  "tex":"TTJets", "color":ROOT.kGray},
-{"sample":"QCD_HT", "weight":"(1)",  "tex":"QCD", "color":ROOT.kAzure+6}
+{"sample":"QCD_HT", "weight":"(1)",  "tex":"QCD", "color":ROOT.kBlue-3}
 ]
 
 #signal chain al
 #signal_dict = {"sample":"GJets", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kYellow}
-signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kBlue-3}
-signal_dict["weight"] = "(weight)"
+signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kAzure+6}
+#signal_dict["weight"] = "(weight*puweight*PhotonSF)"
+signal_dict["weight"] = "(weight*puweight)"
 
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
@@ -68,7 +69,7 @@ selections={
 "no_cut":"(1)",\
 "vtx_cut":ngood_vtx_cut,\
 "met_filters": "&&".join([ngood_vtx_cut,met_filters]),\
-"single_photon":"&&".join([ngood_vtx_cut,met_filters,single_photon_tight_cut]),\
+"single_photon":"ngoodPhoton==1&&(abs(goodPhoton_eta)<=1.4)",\
 "presel":"&&".join([ngood_vtx_cut,met_filters,single_photon_tight_cut,muon_veto,electron_veto]),\
 "1b":sel_1b,\
 "2b":sel_2b,\
@@ -76,20 +77,31 @@ selections={
 }
 
 plot_cut = selections[region]
+bkg_Int = 0
 for bkg in bkg_list:
     bkg["chain_all"] = getChain(stype="bkg",sname=bkg["sample"],pfile=pfile,test=test)
     print(bkg["sample"],bkg["chain_all"][1],bkg["chain_all"][2])
     bkg["chain"] = bkg["chain_all"][0]
-    bkg["weight"] = "(weight)"
+    #bkg["weight"] = "(weight*puweight*PhotonSF)"
+    bkg["weight"] = "(weight*puweight)"
+    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut, weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+    bkg["histo"] = h
+    bkg_Int+=bkg["histo"].Integral()
+    del h
     print(bkg["chain"].GetEntries())
 
 signal_dict["chain"] = signal_dict["chain_all"][0]
 print(signal_dict["chain"].GetEntries())
 data_dict["chain"] = data_dict["chain"]
-
 if plot_sig_stack : bkg_list.append(signal_dict)
-print('Ploting starts......')
+data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut, weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 
+
+print('Ploting starts......')
+signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut, weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+signalPlusbkg = bkg_Int+signal_dict["histo"].Integral()
+SF = data_dict["histo"].Integral()/signalPlusbkg
+print("MC Scale Factor: ", SF)
 print(plot["title"])
 cb = ROOT.TCanvas("cb","cb",564,232,600,600)
 cb.SetHighLightColor(2)
@@ -149,7 +161,9 @@ for bkg in bkg_list:
 	#htmp = "h_tmp"
 	#h = ROOT.TH1D(htmp, htmp, *plot['binning'])
 	#bkg["chain"][0].Draw(plot['var']+">>%s"%htmp, bkg['weight']+"*("+plot_cut+")", 'goff')    
-	h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut, weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+	#h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut, weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+	h = bkg["histo"]
+	h.Scale(SF)
 	h.SetFillColor(color)
 	h.SetLineColor(ROOT.kBlack)
 	h.SetLineWidth(1)
@@ -157,7 +171,6 @@ for bkg in bkg_list:
 	h.GetYaxis().SetTitle(plot['y_axis'])
 	h.SetTitle("")
 	Set_axis_pad1(h)
-	bkg["histo"] = h
 	leg.AddEntry(h, bkg['tex']+" "+str(round(h.Integral())),"f")
 	print("Integral of"+bkg['tex']+":" , h.Integral()) 
         h_Stack.Add(bkg["histo"])
@@ -205,7 +218,7 @@ if not plot_sig_stack :
 	leg_sig.Draw()
 	print("Integral of Signal:" , h_sig.Integral()) 
 h_data.Draw("E1 Same")
-leg.AddEntry(h_data, "Data","PL")
+leg.AddEntry(h_data, "Data "+str(h_data.Integral()),"PL")
 print("Integral of BKG:" , stack_hist.Integral())   
 print("Integral of DATA:" , h_data.Integral())
 leg.SetFillColor(0)
@@ -257,8 +270,8 @@ Func.Draw("same")
 h_ratio.Draw("E1 Same")
 cb.cd()
 cb.Draw()
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'.png')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'.pdf')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'.root')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'NoPhoSF.png')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'NoPhoSF.pdf')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'NoPhoSF.root')
 cb.Clear()
 del h_Stack

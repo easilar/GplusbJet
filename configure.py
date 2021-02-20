@@ -53,7 +53,8 @@ HLT_Photon30_R9Id90_HE10_IsoM\
 prob_trigger_3 = "(HLT_Photon165_HE10)"
 #ref_trigger = "(HLT_PFJet40)"
 ref_trigger = "(HLT_IsoMu24)"
-jet_photon_cut = "Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4&&Jet_pt>40&&abs(Jet_eta)<2.4&&Jet_jetId>=1&&Jet_pt[0]>100"
+#jet_photon_cut = "Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4&&Jet_pt>40&&abs(Jet_eta)<2.4&&Jet_jetId>=1&&Jet_pt[0]>100"
+jet_photon_cut = "Sum$(Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4)==1" #&&Jet_pt>40&&abs(Jet_eta)<2.4&&Jet_jetId>=1&&Jet_pt[0]>100"
 jet_cut = "(ngoodPhoton==1&&abs(goodPhoton_eta)<=1.4&&goodJet_pt[0]>100)"
 jet_cut_trig = "(ngoodPhoton==1&&abs(goodPhoton_eta)<=1.4&&goodJet_pt[0]>100&&HLT_Photon175)"
 
@@ -67,8 +68,8 @@ plotlist = {
 "PV_npvsGood":{"var":"PV_npvsGood","binning":(100,0,100),"x_axis":"npvsGood","y_axis":"Events","bin":(),"histoname":"PV_npvsGood","title":"PV_npvsGood","bin_set":(False , 1)},
 "LPhoton_pt":{"var":"goodPhoton_pt[0]","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Leading Photon Pt[GeV]","title":"LPhotonPt","bin_set":(True , 25)},
 "LPhoton_eta":{"var":"goodPhoton_eta[0]","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Leading Photon Eta","title":"LPhotonEta","bin_set":(False , 1)},
-"Photon_pfRelIso03_all":{"var":"goodPhoton_pfRelIso03_all","binning":(40,0,20),"x_axis":"Rel Iso All #gamma","y_axis":"Events","bin":(),"histoname":"Photon_pfRelIso03_all","title":"Photon_pfRelIso03_all","bin_set":(False , 1)},
-"Photon_pfRelIso03_chg":{"var":"goodPhoton_pfRelIso03_chg","binning":(40,0,20),"x_axis":"Rel Iso Chg #gamma","y_axis":"Events","bin":(),"histoname":"Photon_pfRelIso03_chg","title":"Photon_pfRelIso03_chg","bin_set":(False , 1)},
+"Photon_pfRelIso03_all":{"var":"goodPhoton_pfRelIso03_all","binning":(40,0,0.06),"x_axis":"Rel Iso All #gamma","y_axis":"Events","bin":(),"histoname":"Photon_pfRelIso03_all","title":"Photon_pfRelIso03_all","bin_set":(False , 1)},
+"Photon_pfRelIso03_chg":{"var":"goodPhoton_pfRelIso03_chg","binning":(40,0,0.006),"x_axis":"Rel Iso Chg #gamma","y_axis":"Events","bin":(),"histoname":"Photon_pfRelIso03_chg","title":"Photon_pfRelIso03_chg","bin_set":(False , 1)},
 "Photon_r9":{"var":"goodPhoton_r9","binning":(20,0,2),"x_axis":"R9(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon R9","title":"PhotonR9","bin_set":(False , 1)},
 "Photon_hoe":{"var":"goodPhoton_hoe","binning":(20,0,0.1),"x_axis":"HoverE(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon HoverE","title":"Photonhoe","bin_set":(False , 1)},
 "Photon_sieie":{"var":"goodPhoton_sieie","binning":(20,0,0.02),"x_axis":"#sigmai#etai#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Sigmaietaieta","title":"Photonsieie","bin_set":(False , 1)},
@@ -76,7 +77,7 @@ plotlist = {
 "LJet_eta":{"var":"goodJet_eta[0]","binning":(30,-3,3),"x_axis":"Jet_#eta","y_axis":"Events","bin":(),"histoname":"Leading Jet #eta","title":"Jet_eta","bin_set":(False , 1)},
 "nJet":{"var":"ngoodJet","binning":(10,0,10),"x_axis":"Jet Multiplicity","y_axis":"Events","bin":(),"histoname":"Jet Multiplicity","title":"nJet","bin_set":(False , 1)},
 "nBJet":{"var":"ngoodbJet","binning":(10,0,10),"x_axis":"b Jet Multiplicity","y_axis":"Events","bin":(),"histoname":"b Jet Multiplicity","title":"nbJet","bin_set":(False , 1)},
-"nBJet":{"var":"ngoodPhoton","binning":(10,0,10),"x_axis":"n #gamma","y_axis":"Events","bin":(),"histoname":"Photon Multiplicity","title":"ngoodPhoton","bin_set":(False , 1)},
+"ngoodPhoton":{"var":"ngoodPhoton","binning":(10,0,10),"x_axis":"n #gamma","y_axis":"Events","bin":(),"histoname":"Photon Multiplicity","title":"ngoodPhoton","bin_set":(False , 1)},
 "MET_pt":{"var":"MET_pt","binning":(30,0,600),"x_axis":"#slash{E}_{T}","y_axis":"Events","bin":(),"histoname":"Missing Et","title":"MET","bin_set":(False , 1)}
         }
 
