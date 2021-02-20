@@ -152,7 +152,7 @@ for jentry in range(number_events):
    puweight[0] = pu68p6.GetBinContent(pu68p6.FindBin(Pileup_nTrueInt))
    photons = []
    for ph in range(int(nPhoton)):
-	if ch.GetLeaf('Photon_cutBased').GetValue(ph)>=3 and ch.GetLeaf('Photon_pt').GetValue(ph)>=200 and (abs(ch.GetLeaf('Photon_eta').GetValue(ph))<1.4) :
+	if ch.GetLeaf('Photon_cutBased').GetValue(ph)>=3 and ch.GetLeaf('Photon_pt').GetValue(ph)>=40 and (abs(ch.GetLeaf('Photon_eta').GetValue(ph))<1.4) :
 		photons.append({'index':ph,'phi':ch.GetLeaf('Photon_phi').GetValue(ph),'eta':ch.GetLeaf('Photon_eta').GetValue(ph),'pt':ch.GetLeaf('Photon_pt').GetValue(ph)})
 		
    jets = []
@@ -196,8 +196,10 @@ for jentry in range(number_events):
 		sel_photons.append(photon)
    ngoodPhoton[0] = len(sel_photons)
    if len(sel_photons) < 1 : continue
-   PhotonSF_ = SF_MC.GetBinContent(SF_MC.FindBin(sel_photons[0]["eta"],sel_photons[0]["pt"]))
-   if PhotonSF_ < 0.01 : PhotonSF_ = 1.0
+   PhotonSF_ = 1.0 
+   if not options.stype == "data":
+   	PhotonSF_ = SF_MC.GetBinContent(SF_MC.FindBin(sel_photons[0]["eta"],sel_photons[0]["pt"]))
+   	if PhotonSF_ < 0.01 : PhotonSF_ = 1.0
    PhotonSF[0] = PhotonSF_
    tree.Fill()
 newFile.cd()
