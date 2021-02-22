@@ -134,7 +134,7 @@ for jentry in range(number_events):
    #lJetpT = ch.GetLeaf('Jet_pt').GetValue(0)
    HLT_Photon175 = ch.GetLeaf('HLT_Photon175').GetValue()
    PV_npvsGood = ch.GetLeaf('PV_npvsGood').GetValue()
-   Pileup_nTrueInt = ch.GetLeaf('Pileup_nTrueInt').GetValue()
+   if not options.stype=="data":Pileup_nTrueInt = ch.GetLeaf('Pileup_nTrueInt').GetValue()
    Flag_goodVertices = ch.GetLeaf('Flag_goodVertices').GetValue()
    Flag_1 = ch.GetLeaf('Flag_globalSuperTightHalo2016Filter').GetValue()
    Flag_2 = ch.GetLeaf('Flag_HBHENoiseFilter').GetValue()
@@ -153,7 +153,8 @@ for jentry in range(number_events):
    if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5): continue
    xsec[0] = xsec_v 
    weight[0] = weight_v 
-   puweight[0] = pu68p6.GetBinContent(pu68p6.FindBin(Pileup_nTrueInt))
+   puweight[0] = 1.0
+   if not options.stype=="data": puweight[0] = pu68p6.GetBinContent(pu68p6.FindBin(Pileup_nTrueInt))
    photons = []
    for ph in range(int(nPhoton)):
 	if ch.GetLeaf('Photon_cutBased').GetValue(ph)>=3 and ch.GetLeaf('Photon_pt').GetValue(ph)>=40 and (abs(ch.GetLeaf('Photon_eta').GetValue(ph))<1.4) :
