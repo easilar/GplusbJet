@@ -5,8 +5,13 @@ from math import pi, sqrt, cos, sin, sinh, log
 target_lumi = 35.9  #fb^{-1}
 
 #gamma Pt bins
-gPtBins  = array('d', [float(x) for x in range(150,200,50) 
-					+range(200,250,50)\
+gPtBins  = array('d', [float(x) for x in range(40,60,5)\
+					+range(60,85,5)\
+                                        +range(85,105,5)\
+                                        +range(105,130,10)\
+                                        +range(130,190,10)\
+                                        +range(190,220,10)\
+                                        +range(220,250,30)\
                                         +range(250,300,50)\
                                         +range(300,350,50)\
                                         +range(350,400,50)\
@@ -40,7 +45,7 @@ sel_1b = "&&".join([presel,cut_1b])
 sel_2b = "&&".join([presel,cut_2b])
 
 trigger = "(HLT_Photon30)"
-prob_trigger_1 = "(HLT_Photon30||HLT_Photon36||HLT_Photon50||HLT_Photon75||HLT_Photon90||HLT_Photon120||HLT_Photon175)"
+prob_triggers = ["HLT_Photon30","HLT_Photon36","HLT_Photon50","HLT_Photon75","HLT_Photon90","HLT_Photon120","HLT_Photon150","HLT_Photon165_HE10","HLT_Photon175"]
 prob_trigger_2 = "(\
 HLT_Photon30_R9Id90_HE10_IsoM\
 ||HLT_Photon36_R9Id90_HE10_IsoM\
@@ -61,7 +66,7 @@ jet_cut_trig = "(ngoodPhoton==1&&abs(goodPhoton_eta)<=1.4&&goodJet_pt[0]>100&&HL
 
 #Plots
 plotlist = {
-"Photon_pt":{"var":"goodPhoton_pt","binning":(100,0,2000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Photon Pt[GeV]","title":"PhotonPt","bin_set":(True , 25)},
+"Photon_pt":{"var":"goodPhoton_pt","binning":(100,0,3000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Photon Pt[GeV]","title":"PhotonPt","bin_set":(True , 25)},
 "Photon_eta":{"var":"goodPhoton_eta","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Eta","title":"PhotonEta","bin_set":(False , 1)},
 "Photon_phi":{"var":"goodPhoton_phi","binning":(20,-4,4),"x_axis":"#phi(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Phi","title":"PhotonPhi","bin_set":(False , 1)},
 "Pileup_nTrueInt":{"var":"Pileup_nTrueInt","binning":(20,0,100),"x_axis":"N True Int.","y_axis":"Events","bin":(),"histoname":"Pileup_nTrueInt","title":"Pileup_nTrueInt","bin_set":(False , 1)},
