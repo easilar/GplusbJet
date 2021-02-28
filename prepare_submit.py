@@ -6,8 +6,8 @@ pfile=os.environ["afs_dir"]+"/samples_orig.pkl"
 
 sample_dic = pickle.load(open(pfile,'rb'))
 #year = 2016
-year = 2017
-#year = 2018
+#year = 2017
+year = 2018
 #sname = "G1Jet_Pt"
 #sname = "QCD_HT"
 sname = "SingleMuon"

@@ -162,10 +162,10 @@ Samples = {2016: \
 	{
 	"data":{\
 		"SingleMuon":{\
-			"A":{"dir":path_data_SM_18+"Run2018A_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2018E-02Apr2020-v1/NANOAOD"},\
-			"B":{"dir":path_data_SM_18+"Run2018B_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2018B-02Apr2020-v1/NANOAOD"},\
-			"C":{"dir":path_data_SM_18+"Run2018C_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2018C-02Apr2020-v1/NANOAOD"},\
-			"D":{"dir":path_data_SM_18+"Run2018D_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2018D-02Apr2020-v1/NANOAOD"},\
+			"A":{"dir":path_data_SM_18+"Run2018A-02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2018E-02Apr2020-v1/NANOAOD"},\
+			"B":{"dir":path_data_SM_18+"Run2018B-02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2018B-02Apr2020-v1/NANOAOD"},\
+			"C":{"dir":path_data_SM_18+"Run2018C-02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2018C-02Apr2020-v1/NANOAOD"},\
+			"D":{"dir":path_data_SM_18+"Run2018D-02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2018D-02Apr2020-v1/NANOAOD"},\
 			
 		} #single muon
 		}# closes data

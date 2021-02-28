@@ -36,12 +36,14 @@ sdict = sample_dic[year][stype][sname][data_letter]
 if options.stype == "data":
    if year == 2016:
 	  cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
+      print("working on 2016")
    elif year == 2017:
       cert_json = afs_dir+"/json/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt"
+      print("working on 2017")
    elif year == 2018:
       cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt"   
-   #orig_dir = sdict["dir"]+"/"
-   orig_dir = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2017/data/SingleMuon/Run2017C-02Apr2020-v1/"
+      print("working on 2018")
+   orig_dir = sdict["dir"]+"/"
    targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+sdict["dir"].split("/")[-1]+"/"
    data = json.load(open(cert_json))
    xsec_v = 1.0
