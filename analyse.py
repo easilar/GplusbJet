@@ -11,7 +11,7 @@ from array import array
 
 from optparse import OptionParser
 parser = OptionParser()
-parser.add_option("--year", dest="year", default=2016, action="store", help="can be 2016,2017,2018")
+parser.add_option("--year", dest="year", default="2016", action="store", help="can be 2016,2017,2018")
 parser.add_option("--sname", dest="sname", default="SinglePhoton", action="store", help="can be QCD , GJets_Pt ... ")
 parser.add_option("--stype", dest="stype", default="data", action="store", help="can be data or signal or bkg")
 parser.add_option("--letter", dest="letter", default="B", action="store", help="if data can be B,C,D,E,F,G,H;if signal GJets_Pt_100To200")
@@ -20,13 +20,12 @@ parser.add_option("--filename", dest="filename", default="sample.root", action="
 
 data_letter = options.letter
 f = options.filename
-year = options.year
+exec("year="+options.year)
 stype = options.stype
 sname = options.sname
 
 afs_dir = os.environ["afs_dir"]
-targetdir_mainpath = os.environ["cern_box"]
-
+targetdir_mainpath = os.environ["cern_box"] 
 pfile = afs_dir+"/samples_orig.pkl"
 #pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
@@ -35,19 +34,25 @@ sdict = sample_dic[year][stype][sname][data_letter]
 
 #orig_dir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
 if options.stype == "data":
-	cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
-	orig_dir = sdict["dir"]+"/"
-	targetdir = targetdir_mainpath+"/data/"+sname+"/"+sdict["dir"].split("/")[-1]+"/"
-	data = json.load(open(cert_json))
-	xsec_v = 1.0
-	weight_v = 1.0
-	print("Working on data ",data_letter)
+   if year == 2016:
+	  cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
+   elif year == 2017:
+      cert_json = afs_dir+"/json/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt"
+   elif year == 2018:
+      cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt"   
+   #orig_dir = sdict["dir"]+"/"
+   orig_dir = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2017/data/SingleMuon/Run2017C-02Apr2020-v1/"
+   targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+sdict["dir"].split("/")[-1]+"/"
+   data = json.load(open(cert_json))
+   xsec_v = 1.0
+   weight_v = 1.0
+   print("Working on data ",data_letter)
 else:
-	print("Working on MC", data_letter)
-	xsec_v = sdict["xsec"]*1000 #femtobarn
-	weight_v = xsec_v*target_lumi*(1/float(sdict["nevents"]))
-	orig_dir = sdict["dir"]
-	targetdir = targetdir_mainpath+"/MC/"+sname+"/"+sdict["dir"].split("/")[-2]+"/"
+   print("Working on MC", data_letter)
+   xsec_v = sdict["xsec"]*1000 #femtobarn
+   weight_v = xsec_v*target_lumi*(1/float(sdict["nevents"]))
+   orig_dir = sdict["dir"]
+   targetdir = targetdir_mainpath+"/MC/"+sname+"/"+sdict["dir"].split("/")[-2]+"/"
 
 #For PU
 puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection.root")
@@ -142,6 +147,9 @@ for jentry in range(number_events):
    Flag_4 = ch.GetLeaf('Flag_EcalDeadCellTriggerPrimitiveFilter').GetValue()
    Flag_5 = ch.GetLeaf('Flag_BadPFMuonFilter').GetValue()
    Flag_6 = ch.GetLeaf('Flag_eeBadScFilter').GetValue()
+   Flag_7 = 1.0
+   if not year == 2016:
+      Flag_7 = ch.GetLeaf('Flag_ecalBadCalibFilterV2').GetValue()
    if (jentry%50000 == 0) : print(jentry,run,lumi)
    if options.stype == "data":
    	if not str(int(run)) in data.keys(): continue
@@ -150,7 +158,7 @@ for jentry in range(number_events):
                 	if not (lumi >= lumiBlock[0] and lumi <= lumiBlock[1] ) : continue
    	#if not HLT_Photon175 : continue
 	if not Flag_6 : continue
-   if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5): continue
+   if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5 and Flag_7): continue
    xsec[0] = xsec_v 
    weight[0] = weight_v 
    puweight[0] = 1.0
