@@ -1052,7 +1052,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/SingleMuon/Run2018A_02Apr2020-v1'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/SingleMuon/Run2018A-02Apr2020-v1'
 p243
 sg14
 I1
@@ -1068,7 +1068,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/SingleMuon/Run2018C_02Apr2020-v1'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/SingleMuon/Run2018C-02Apr2020-v1'
 p246
 sg14
 I1
@@ -1084,7 +1084,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/SingleMuon/Run2018B_02Apr2020-v1'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/SingleMuon/Run2018B-02Apr2020-v1'
 p249
 sg14
 I1
@@ -1100,7 +1100,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/SingleMuon/Run2018D_02Apr2020-v1'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/SingleMuon/Run2018D-02Apr2020-v1'
 p252
 sg14
 I1
