@@ -35,7 +35,7 @@ sdict = sample_dic[year][stype][sname][data_letter]
 #orig_dir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
 if options.stype == "data":
    if year == 2016:
-	  cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
+      cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
       print("working on 2016")
    elif year == 2017:
       cert_json = afs_dir+"/json/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt"
@@ -138,8 +138,6 @@ for jentry in range(number_events):
    lumi = ch.GetLeaf('luminosityBlock').GetValue()
    nPhoton = ch.GetLeaf('nPhoton').GetValue()
    nJet = ch.GetLeaf('nJet').GetValue()
-   #lJetpT = ch.GetLeaf('Jet_pt').GetValue(0)
-   HLT_Photon175 = ch.GetLeaf('HLT_Photon175').GetValue()
    PV_npvsGood = ch.GetLeaf('PV_npvsGood').GetValue()
    if not options.stype=="data":Pileup_nTrueInt = ch.GetLeaf('Pileup_nTrueInt').GetValue()
    Flag_goodVertices = ch.GetLeaf('Flag_goodVertices').GetValue()
@@ -151,16 +149,16 @@ for jentry in range(number_events):
    Flag_6 = ch.GetLeaf('Flag_eeBadScFilter').GetValue()
    Flag_7 = 1.0
    if not year == 2016:
-      Flag_7 = ch.GetLeaf('Flag_ecalBadCalibFilterV2').GetValue()
+      Flag_7 = ch.GetLeaf('Flag_ecalBadCalibFilter').GetValue()
    if (jentry%50000 == 0) : print(jentry,run,lumi)
    if options.stype == "data":
    	if not str(int(run)) in data.keys(): continue
    	if str(int(run)) in data.keys():
         	for lumiBlock in data[str(int(run))]:
                 	if not (lumi >= lumiBlock[0] and lumi <= lumiBlock[1] ) : continue
-   	#if not HLT_Photon175 : continue
 	if not Flag_6 : continue
    if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5 and Flag_7): continue
+   #print("Event passed json and met filters")
    xsec[0] = xsec_v 
    weight[0] = weight_v 
    puweight[0] = 1.0
@@ -168,6 +166,7 @@ for jentry in range(number_events):
    photons = []
    for ph in range(int(nPhoton)):
 	if ch.GetLeaf('Photon_cutBased').GetValue(ph)>=3 and ch.GetLeaf('Photon_pt').GetValue(ph)>=40 and (abs(ch.GetLeaf('Photon_eta').GetValue(ph))<1.4) :
+   		print("found good photon")
 		photons.append({'index':ph,'phi':ch.GetLeaf('Photon_phi').GetValue(ph),'eta':ch.GetLeaf('Photon_eta').GetValue(ph),'pt':ch.GetLeaf('Photon_pt').GetValue(ph)})
 		
    jets = []
@@ -199,6 +198,7 @@ for jentry in range(number_events):
 		dR_Pho_Jet = deltaR(photon["phi"],jet["phi"],photon["eta"],jet["eta"])
 		dRs.append(dR_Pho_Jet)
    	if len(dRs) and min(dRs) >= 0.5 : 
+   		#print("found good photon isolated from jets")
 		goodPhoton_pt[i] = ch.GetLeaf('Photon_pt').GetValue(photon["index"])
 		goodPhoton_eta[i] = ch.GetLeaf('Photon_eta').GetValue(photon["index"])
 		goodPhoton_phi[i] = ch.GetLeaf('Photon_phi').GetValue(photon["index"])
@@ -210,7 +210,10 @@ for jentry in range(number_events):
 		goodPhoton_pfRelIso03_chg[i] = ch.GetLeaf('Photon_pfRelIso03_chg').GetValue(photon["index"])
 		sel_photons.append(photon)
    ngoodPhoton[0] = len(sel_photons)
-   if len(sel_photons) < 1 : continue
+   #print("Before the photon cut")
+   if options.year == 2016 and len(sel_photons) < 1 : continue
+   if not options.year == 2016 and len(photons) < 1 : continue
+   #print("After the photon cut")
    PhotonSF_ = 1.0 
    if not options.stype == "data":
    	PhotonSF_ = SF_MC.GetBinContent(SF_MC.FindBin(sel_photons[0]["eta"],sel_photons[0]["pt"]))
