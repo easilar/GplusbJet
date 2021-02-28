@@ -1,0 +1,1414 @@
+OBJ: TObjArray	TObjArray	An array of objects : 0
+ OBJ: TBranch	run	run/i : 0 at: 0x5065e60
+ OBJ: TBranch	luminosityBlock	luminosityBlock/i : 0 at: 0x506fe80
+ OBJ: TBranch	event	event/l : 0 at: 0x5071090
+ OBJ: TBranch	CaloMET_phi	phi : 0 at: 0x5074320
+ OBJ: TBranch	CaloMET_pt	pt : 0 at: 0x5077480
+ OBJ: TBranch	CaloMET_sumEt	scalar sum of Et : 0 at: 0x5078690
+ OBJ: TBranch	ChsMET_phi	raw chs PF MET phi : 0 at: 0x50798a0
+ OBJ: TBranch	ChsMET_pt	raw chs PF MET pt : 0 at: 0x507aab0
+ OBJ: TBranch	ChsMET_sumEt	raw chs PF scalar sum of Et : 0 at: 0x507bcc0
+ OBJ: TBranch	nCorrT1METJet	Additional low-pt jets for Type-1 MET re-correction : 0 at: 0x507cf00
+ OBJ: TBranch	CorrT1METJet_area	jet catchment area, for JECs : 0 at: 0x507e160
+ OBJ: TBranch	CorrT1METJet_eta	eta : 0 at: 0x50801c0
+ OBJ: TBranch	CorrT1METJet_muonSubtrFactor	1-(muon-subtracted raw pt)/(raw pt) : 0 at: 0x50821e0
+ OBJ: TBranch	CorrT1METJet_phi	phi : 0 at: 0x5084250
+ OBJ: TBranch	CorrT1METJet_rawPt	pt()*jecFactor('Uncorrected') : 0 at: 0x5086270
+ OBJ: TBranch	nElectron	slimmedElectrons after basic selection (pt > 5 ) : 0 at: 0x50882d0
+ OBJ: TBranch	Electron_deltaEtaSC	delta eta (SC,ele) with sign : 0 at: 0x5089530
+ OBJ: TBranch	Electron_dr03EcalRecHitSumEt	Non-PF Ecal isolation within a delta R cone of 0.3 with electron pt > 35 GeV : 0 at: 0x508b590
+ OBJ: TBranch	Electron_dr03HcalDepth1TowerSumEt	Non-PF Hcal isolation within a delta R cone of 0.3 with electron pt > 35 GeV : 0 at: 0x508d630
+ OBJ: TBranch	Electron_dr03TkSumPt	Non-PF track isolation within a delta R cone of 0.3 with electron pt > 35 GeV : 0 at: 0x508f6f0
+ OBJ: TBranch	Electron_dr03TkSumPtHEEP	Non-PF track isolation within a delta R cone of 0.3 with electron pt > 35 GeV used in HEEP ID : 0 at: 0x5091780
+ OBJ: TBranch	Electron_dxy	dxy (with sign) wrt first PV, in cm : 0 at: 0x5093830
+ OBJ: TBranch	Electron_dxyErr	dxy uncertainty, in cm : 0 at: 0x5095840
+ OBJ: TBranch	Electron_dz	dz (with sign) wrt first PV, in cm : 0 at: 0x5097840
+ OBJ: TBranch	Electron_dzErr	dz uncertainty, in cm : 0 at: 0x5099850
+ OBJ: TBranch	Electron_eCorr	ratio of the calibrated energy/miniaod energy : 0 at: 0x509b850
+ OBJ: TBranch	Electron_eInvMinusPInv	1/E_SC - 1/p_trk : 0 at: 0x509d860
+ OBJ: TBranch	Electron_energyErr	energy error of the cluster-track combination : 0 at: 0x509f8d0
+ OBJ: TBranch	Electron_eta	eta : 0 at: 0x50a1940
+ OBJ: TBranch	Electron_hoe	H over E : 0 at: 0x50a3910
+ OBJ: TBranch	Electron_ip3d	3D impact parameter wrt first PV, in cm : 0 at: 0x50a58e0
+ OBJ: TBranch	Electron_jetPtRelv2	Relative momentum of the lepton with respect to the closest jet after subtracting the lepton : 0 at: 0x50a78f0
+ OBJ: TBranch	Electron_jetRelIso	Relative isolation in matched jet (1/ptRatio-1, pfRelIso04_all if no matched jet) : 0 at: 0x50a9990
+ OBJ: TBranch	Electron_mass	mass : 0 at: 0x50aba30
+ OBJ: TBranch	Electron_miniPFRelIso_all	mini PF relative isolation, total (with scaled rho*EA PU corrections) : 0 at: 0x50ada00
+ OBJ: TBranch	Electron_miniPFRelIso_chg	mini PF relative isolation, charged component : 0 at: 0x50afaa0
+ OBJ: TBranch	Electron_mvaFall17V1Iso	MVA Iso ID V1 score : 0 at: 0x50b1b20
+ OBJ: TBranch	Electron_mvaFall17V1noIso	MVA noIso ID V1 score : 0 at: 0x50b3b90
+ OBJ: TBranch	Electron_mvaFall17V2Iso	MVA Iso ID V2 score : 0 at: 0x50b5c00
+ OBJ: TBranch	Electron_mvaFall17V2noIso	MVA noIso ID V2 score : 0 at: 0x50b7c70
+ OBJ: TBranch	Electron_pfRelIso03_all	PF relative isolation dR=0.3, total (with rho*EA PU corrections) : 0 at: 0x50b9ce0
+ OBJ: TBranch	Electron_pfRelIso03_chg	PF relative isolation dR=0.3, charged component : 0 at: 0x50bbd80
+ OBJ: TBranch	Electron_phi	phi : 0 at: 0x50bde00
+ OBJ: TBranch	Electron_pt	p_{T} : 0 at: 0x50bfdd0
+ OBJ: TBranch	Electron_r9	R9 of the supercluster, calculated with full 5x5 region : 0 at: 0x50c1da0
+ OBJ: TBranch	Electron_scEtOverPt	(supercluster transverse energy)/pt-1 : 0 at: 0x50c3dc0
+ OBJ: TBranch	Electron_sieie	sigma_IetaIeta of the supercluster, calculated with full 5x5 region : 0 at: 0x50c5e30
+ OBJ: TBranch	Electron_sip3d	3D impact parameter significance wrt first PV, in cm : 0 at: 0x50c7e60
+ OBJ: TBranch	Electron_mvaTTH	TTH MVA lepton ID score : 0 at: 0x50c9e80
+ OBJ: TBranch	Electron_charge	electric charge : 0 at: 0x50cbe80
+ OBJ: TBranch	Electron_cutBased	cut-based ID Fall17 V2 (0:fail, 1:veto, 2:loose, 3:medium, 4:tight) : 0 at: 0x50cde50
+ OBJ: TBranch	Electron_cutBased_Fall17_V1	cut-based ID Fall17 V1 (0:fail, 1:veto, 2:loose, 3:medium, 4:tight) : 0 at: 0x50cfee0
+ OBJ: TBranch	Electron_jetIdx	index of the associated jet (-1 if none) : 0 at: 0x50d1f80
+ OBJ: TBranch	Electron_pdgId	PDG code assigned by the event reconstruction (not by MC truth) : 0 at: 0x50d3f90
+ OBJ: TBranch	Electron_photonIdx	index of the associated photon (-1 if none) : 0 at: 0x50d5fb0
+ OBJ: TBranch	Electron_tightCharge	Tight charge criteria (0:none, 1:isGsfScPixChargeConsistent, 2:isGsfCtfScPixChargeConsistent) : 0 at: 0x50d8020
+ OBJ: TBranch	Electron_vidNestedWPBitmap	VID compressed bitmap (MinPtCut,GsfEleSCEtaMultiRangeCut,GsfEleDEtaInSeedCut,GsfEleDPhiInCut,GsfEleFull5x5SigmaIEtaIEtaCut,GsfEleHadronicOverEMEnergyScaledCut,GsfEleEInverseMinusPInverseCut,GsfEleRelPFIsoScaledCut,GsfEleConversionVetoCut,GsfEleMissingHitsCut), 3 bits per cut : 0 at: 0x50da0c0
+ OBJ: TBranch	Electron_vidNestedWPBitmapHEEP	VID compressed bitmap (MinPtCut,GsfEleSCEtaMultiRangeCut,GsfEleDEtaInSeedCut,GsfEleDPhiInCut,GsfEleFull5x5SigmaIEtaIEtaWithSatCut,GsfEleFull5x5E2x5OverE5x5WithSatCut,GsfEleHadronicOverEMLinearCut,GsfEleValueMapIsoRhoCut,GsfEleEmHadD1IsoRhoCut,GsfEleDxyCut,GsfEleMissingHitsCut,GsfEleEcalDrivenCut), 1 bits per cut : 0 at: 0x50dc230
+ OBJ: TBranch	Electron_convVeto	pass conversion veto : 0 at: 0x50de3c0
+ OBJ: TBranch	Electron_cutBased_HEEP	cut-based HEEP ID : 0 at: 0x50e23a0
+ OBJ: TBranch	Electron_isPFcand	electron is PF candidate : 0 at: 0x50e4410
+ OBJ: TBranch	Electron_lostHits	number of missing inner hits : 0 at: 0x50e6470
+ OBJ: TBranch	Electron_mvaFall17V1Iso_WP80	MVA Iso ID V1 WP80 : 0 at: 0x50ea3f0
+ OBJ: TBranch	Electron_mvaFall17V1Iso_WP90	MVA Iso ID V1 WP90 : 0 at: 0x50ec460
+ OBJ: TBranch	Electron_mvaFall17V1Iso_WPL	MVA Iso ID V1 loose WP : 0 at: 0x50ee4d0
+ OBJ: TBranch	Electron_mvaFall17V1noIso_WP80	MVA noIso ID V1 WP80 : 0 at: 0x50f0540
+ OBJ: TBranch	Electron_mvaFall17V1noIso_WP90	MVA noIso ID V1 WP90 : 0 at: 0x50f25b0
+ OBJ: TBranch	Electron_mvaFall17V1noIso_WPL	MVA noIso ID V1 loose WP : 0 at: 0x50f4620
+ OBJ: TBranch	Electron_mvaFall17V2Iso_WP80	MVA Iso ID V2 WP80 : 0 at: 0x50f6690
+ OBJ: TBranch	Electron_mvaFall17V2Iso_WP90	MVA Iso ID V2 WP90 : 0 at: 0x50f8700
+ OBJ: TBranch	Electron_mvaFall17V2Iso_WPL	MVA Iso ID V2 loose WP : 0 at: 0x50fa770
+ OBJ: TBranch	Electron_mvaFall17V2noIso_WP80	MVA noIso ID V2 WP80 : 0 at: 0x50fc7e0
+ OBJ: TBranch	Electron_mvaFall17V2noIso_WP90	MVA noIso ID V2 WP90 : 0 at: 0x50fe850
+ OBJ: TBranch	Electron_mvaFall17V2noIso_WPL	MVA noIso ID V2 loose WP : 0 at: 0x51008c0
+ OBJ: TBranch	Electron_seedGain	Gain of the seed crystal : 0 at: 0x5102930
+ OBJ: TBranch	Flag_ecalBadCalibFilterV2	Bad ECAL calib flag (updated xtal list) : 0 at: 0x5104990
+ OBJ: TBranch	nFatJet	slimmedJetsAK8, i.e. ak8 fat jets for boosted analysis : 0 at: 0x5105c70
+ OBJ: TBranch	FatJet_area	jet catchment area, for JECs : 0 at: 0x5106ed0
+ OBJ: TBranch	FatJet_btagCMVA	CMVA V2 btag discriminator : 0 at: 0x5108ed0
+ OBJ: TBranch	FatJet_btagCSVV2	 pfCombinedInclusiveSecondaryVertexV2 b-tag discriminator (aka CSVV2) : 0 at: 0x510aed0
+ OBJ: TBranch	FatJet_btagDDBvL	DeepDoubleX (mass-decorrelated) discriminator for H(Z)->bb vs QCD : 0 at: 0x510cf60
+ OBJ: TBranch	FatJet_btagDDBvL_noMD	DeepDoubleX discriminator (no mass-decorrelation) for H(Z)->bb vs QCD : 0 at: 0x510eff0
+ OBJ: TBranch	FatJet_btagDDCvB	DeepDoubleX (mass-decorrelated) discriminator for H(Z)->cc vs H(Z)->bb : 0 at: 0x5111080
+ OBJ: TBranch	FatJet_btagDDCvB_noMD	DeepDoubleX discriminator (no mass-decorrelation) for H(Z)->cc vs H(Z)->bb : 0 at: 0x5113110
+ OBJ: TBranch	FatJet_btagDDCvL	DeepDoubleX (mass-decorrelated) discriminator for H(Z)->cc vs QCD : 0 at: 0x51151a0
+ OBJ: TBranch	FatJet_btagDDCvL_noMD	DeepDoubleX discriminator (no mass-decorrelation) for H(Z)->cc vs QCD : 0 at: 0x5117230
+ OBJ: TBranch	FatJet_btagDeepB	DeepCSV b+bb tag discriminator : 0 at: 0x51192c0
+ OBJ: TBranch	FatJet_btagHbb	Higgs to BB tagger discriminator : 0 at: 0x511b320
+ OBJ: TBranch	FatJet_deepTagMD_H4qvsQCD	Mass-decorrelated DeepBoostedJet tagger H->4q vs QCD discriminator : 0 at: 0x511d330
+ OBJ: TBranch	FatJet_deepTagMD_HbbvsQCD	Mass-decorrelated DeepBoostedJet tagger H->bb vs QCD discriminator : 0 at: 0x511f3d0
+ OBJ: TBranch	FatJet_deepTagMD_TvsQCD	Mass-decorrelated DeepBoostedJet tagger top vs QCD discriminator : 0 at: 0x5121470
+ OBJ: TBranch	FatJet_deepTagMD_WvsQCD	Mass-decorrelated DeepBoostedJet tagger W vs QCD discriminator : 0 at: 0x5123510
+ OBJ: TBranch	FatJet_deepTagMD_ZHbbvsQCD	Mass-decorrelated DeepBoostedJet tagger Z/H->bb vs QCD discriminator : 0 at: 0x51255a0
+ OBJ: TBranch	FatJet_deepTagMD_ZHccvsQCD	Mass-decorrelated DeepBoostedJet tagger Z/H->cc vs QCD discriminator : 0 at: 0x5127640
+ OBJ: TBranch	FatJet_deepTagMD_ZbbvsQCD	Mass-decorrelated DeepBoostedJet tagger Z->bb vs QCD discriminator : 0 at: 0x51296e0
+ OBJ: TBranch	FatJet_deepTagMD_ZvsQCD	Mass-decorrelated DeepBoostedJet tagger Z vs QCD discriminator : 0 at: 0x512b780
+ OBJ: TBranch	FatJet_deepTagMD_bbvsLight	Mass-decorrelated DeepBoostedJet tagger Z/H/gluon->bb vs light flavour discriminator : 0 at: 0x512d810
+ OBJ: TBranch	FatJet_deepTagMD_ccvsLight	Mass-decorrelated DeepBoostedJet tagger Z/H/gluon->cc vs light flavour discriminator : 0 at: 0x512f8c0
+ OBJ: TBranch	FatJet_deepTag_H	DeepBoostedJet tagger H(bb,cc,4q) sum : 0 at: 0x5131970
+ OBJ: TBranch	FatJet_deepTag_QCD	DeepBoostedJet tagger QCD(bb,cc,b,c,others) sum : 0 at: 0x51339e0
+ OBJ: TBranch	FatJet_deepTag_QCDothers	DeepBoostedJet tagger QCDothers value : 0 at: 0x5135a50
+ OBJ: TBranch	FatJet_deepTag_TvsQCD	DeepBoostedJet tagger top vs QCD discriminator : 0 at: 0x5137ad0
+ OBJ: TBranch	FatJet_deepTag_WvsQCD	DeepBoostedJet tagger W vs QCD discriminator : 0 at: 0x5139b40
+ OBJ: TBranch	FatJet_deepTag_ZvsQCD	DeepBoostedJet tagger Z vs QCD discriminator : 0 at: 0x513bbb0
+ OBJ: TBranch	FatJet_eta	eta : 0 at: 0x513dc20
+ OBJ: TBranch	FatJet_mass	mass : 0 at: 0x513fbf0
+ OBJ: TBranch	FatJet_msoftdrop	Corrected soft drop mass with PUPPI : 0 at: 0x5141bc0
+ OBJ: TBranch	FatJet_n2b1	N2 with beta=1 : 0 at: 0x5143c30
+ OBJ: TBranch	FatJet_n3b1	N3 with beta=1 : 0 at: 0x5145c00
+ OBJ: TBranch	FatJet_phi	phi : 0 at: 0x5147bd0
+ OBJ: TBranch	FatJet_pt	pt : 0 at: 0x5149ba0
+ OBJ: TBranch	FatJet_rawFactor	1 - Factor to get back to raw pT : 0 at: 0x514bb70
+ OBJ: TBranch	FatJet_tau1	Nsubjettiness (1 axis) : 0 at: 0x514dbe0
+ OBJ: TBranch	FatJet_tau2	Nsubjettiness (2 axis) : 0 at: 0x514fbe0
+ OBJ: TBranch	FatJet_tau3	Nsubjettiness (3 axis) : 0 at: 0x5151be0
+ OBJ: TBranch	FatJet_tau4	Nsubjettiness (4 axis) : 0 at: 0x5153be0
+ OBJ: TBranch	FatJet_lsf3	Lepton Subjet Fraction (3 subjets) : 0 at: 0x5155be0
+ OBJ: TBranch	FatJet_jetId	Jet ID flags bit1 is loose (always false in 2017 since it does not exist), bit2 is tight, bit3 is tightLepVeto : 0 at: 0x5157bf0
+ OBJ: TBranch	FatJet_subJetIdx1	index of first subjet : 0 at: 0x5159c40
+ OBJ: TBranch	FatJet_subJetIdx2	index of second subjet : 0 at: 0x515bca0
+ OBJ: TBranch	FatJet_electronIdx3SJ	index of electron matched to jet : 0 at: 0x515dd00
+ OBJ: TBranch	FatJet_muonIdx3SJ	index of muon matched to jet : 0 at: 0x515fd70
+ OBJ: TBranch	nFsrPhoton	Final state radiation photons emitted by muons : 0 at: 0x5161dd0
+ OBJ: TBranch	FsrPhoton_dROverEt2	deltaR to associated muon divided by photon et2 : 0 at: 0x5163020
+ OBJ: TBranch	FsrPhoton_eta	eta : 0 at: 0x5165090
+ OBJ: TBranch	FsrPhoton_phi	phi : 0 at: 0x5167060
+ OBJ: TBranch	FsrPhoton_pt	pt : 0 at: 0x5169030
+ OBJ: TBranch	FsrPhoton_relIso03	relative isolation in a 0.3 cone without CHS : 0 at: 0x516b000
+ OBJ: TBranch	FsrPhoton_muonIdx	index of associated muon : 0 at: 0x516d070
+ OBJ: TBranch	nIsoTrack	isolated tracks after basic selection (((pt>5 && (abs(pdgId) == 11 || abs(pdgId) == 13)) || pt > 10) && (abs(pdgId) < 15 || abs(eta) < 2.5) && abs(dxy) < 0.2 && abs(dz) < 0.1 && ((pfIsolationDR03().chargedHadronIso < 5 && pt < 25) || pfIsolationDR03().chargedHadronIso/pt < 0.2)) and lepton veto : 0 at: 0x516f0d0
+ OBJ: TBranch	IsoTrack_dxy	dxy (with sign) wrt first PV, in cm : 0 at: 0x5170420
+ OBJ: TBranch	IsoTrack_dz	dz (with sign) wrt first PV, in cm : 0 at: 0x5172460
+ OBJ: TBranch	IsoTrack_eta	eta : 0 at: 0x51744a0
+ OBJ: TBranch	IsoTrack_pfRelIso03_all	PF relative isolation dR=0.3, total (deltaBeta corrections) : 0 at: 0x51764a0
+ OBJ: TBranch	IsoTrack_pfRelIso03_chg	PF relative isolation dR=0.3, charged component : 0 at: 0x5178560
+ OBJ: TBranch	IsoTrack_phi	phi : 0 at: 0x517a610
+ OBJ: TBranch	IsoTrack_pt	pt : 0 at: 0x517c610
+ OBJ: TBranch	IsoTrack_miniPFRelIso_all	mini PF relative isolation, total (with scaled rho*EA PU corrections) : 0 at: 0x517e610
+ OBJ: TBranch	IsoTrack_miniPFRelIso_chg	mini PF relative isolation, charged component : 0 at: 0x51806e0
+ OBJ: TBranch	IsoTrack_fromPV	isolated track comes from PV : 0 at: 0x5182790
+ OBJ: TBranch	IsoTrack_pdgId	PDG id of PF cand : 0 at: 0x51847c0
+ OBJ: TBranch	IsoTrack_isHighPurityTrack	track is high purity : 0 at: 0x51867f0
+ OBJ: TBranch	IsoTrack_isPFcand	if isolated track is a PF candidate : 0 at: 0x5188860
+ OBJ: TBranch	IsoTrack_isFromLostTrack	if isolated track comes from a lost track : 0 at: 0x518a8d0
+ OBJ: TBranch	nJet	slimmedJets, i.e. ak4 PFJets CHS with JECs applied, after basic selection (pt > 15) : 0 at: 0x518c950
+ OBJ: TBranch	Jet_area	jet catchment area, for JECs : 0 at: 0x518dbd0
+ OBJ: TBranch	Jet_btagCMVA	CMVA V2 btag discriminator : 0 at: 0x518f870
+ OBJ: TBranch	Jet_btagCSVV2	 pfCombinedInclusiveSecondaryVertexV2 b-tag discriminator (aka CSVV2) : 0 at: 0x5191540
+ OBJ: TBranch	Jet_btagDeepB	DeepCSV b+bb tag discriminator : 0 at: 0x5193240
+ OBJ: TBranch	Jet_btagDeepC	DeepCSV charm btag discriminator : 0 at: 0x5194f10
+ OBJ: TBranch	Jet_btagDeepFlavB	DeepFlavour b+bb+lepb tag discriminator : 0 at: 0x5196bf0
+ OBJ: TBranch	Jet_btagDeepFlavC	DeepFlavour charm tag discriminator : 0 at: 0x5198930
+ OBJ: TBranch	Jet_chEmEF	charged Electromagnetic Energy Fraction : 0 at: 0x519a670
+ OBJ: TBranch	Jet_chFPV0EF	charged fromPV==0 Energy Fraction (energy excluded from CHS jets). Previously called betastar. : 0 at: 0x519c350
+ OBJ: TBranch	Jet_chFPV1EF	charged fromPV==1 Energy Fraction (component of the total charged Energy Fraction). : 0 at: 0x519e060
+ OBJ: TBranch	Jet_chFPV2EF	charged fromPV==2 Energy Fraction (component of the total charged Energy Fraction). : 0 at: 0x519fd70
+ OBJ: TBranch	Jet_chFPV3EF	charged fromPV==3 Energy Fraction (component of the total charged Energy Fraction). : 0 at: 0x51a1a80
+ OBJ: TBranch	Jet_chHEF	charged Hadron Energy Fraction : 0 at: 0x51a3790
+ OBJ: TBranch	Jet_eta	eta : 0 at: 0x51a5450
+ OBJ: TBranch	Jet_mass	mass : 0 at: 0x51a70e0
+ OBJ: TBranch	Jet_muEF	muon Energy Fraction : 0 at: 0x51a8d70
+ OBJ: TBranch	Jet_muonSubtrFactor	1-(muon-subtracted raw pt)/(raw pt) : 0 at: 0x51aaa30
+ OBJ: TBranch	Jet_neEmEF	neutral Electromagnetic Energy Fraction : 0 at: 0x51ac790
+ OBJ: TBranch	Jet_neHEF	neutral Hadron Energy Fraction : 0 at: 0x51ae490
+ OBJ: TBranch	Jet_phi	phi : 0 at: 0x51b0170
+ OBJ: TBranch	Jet_pt	pt : 0 at: 0x51b1e00
+ OBJ: TBranch	Jet_puIdDisc	Pilup ID discriminant with 102X (2018) training : 0 at: 0x51b3a90
+ OBJ: TBranch	Jet_qgl	Quark vs Gluon likelihood discriminator : 0 at: 0x51b5790
+ OBJ: TBranch	Jet_rawFactor	1 - Factor to get back to raw pT : 0 at: 0x51b7460
+ OBJ: TBranch	Jet_bRegCorr	pt correction for b-jet energy regression : 0 at: 0x51b9160
+ OBJ: TBranch	Jet_bRegRes	res on pt corrected with b-jet regression : 0 at: 0x51bae60
+ OBJ: TBranch	Jet_cRegCorr	pt correction for c-jet energy regression : 0 at: 0x51bcb60
+ OBJ: TBranch	Jet_cRegRes	res on pt corrected with c-jet regression : 0 at: 0x51be860
+ OBJ: TBranch	Jet_electronIdx1	index of first matching electron : 0 at: 0x51c0560
+ OBJ: TBranch	Jet_electronIdx2	index of second matching electron : 0 at: 0x51c22c0
+ OBJ: TBranch	Jet_jetId	Jet ID flags bit1 is loose (always false in 2017 since it does not exist), bit2 is tight, bit3 is tightLepVeto : 0 at: 0x51c4020
+ OBJ: TBranch	Jet_muonIdx1	index of first matching muon : 0 at: 0x51c5d50
+ OBJ: TBranch	Jet_muonIdx2	index of second matching muon : 0 at: 0x51c7a40
+ OBJ: TBranch	Jet_nConstituents	Number of particles in the jet : 0 at: 0x51c9730
+ OBJ: TBranch	Jet_nElectrons	number of electrons in the jet : 0 at: 0x51cb480
+ OBJ: TBranch	Jet_nMuons	number of muons in the jet : 0 at: 0x51cd170
+ OBJ: TBranch	Jet_puId	Pilup ID flags with 80X (2016) training : 0 at: 0x51cee60
+ OBJ: TBranch	MET_MetUnclustEnUpDeltaX	Delta (METx_mod-METx) Unclustered Energy Up : 0 at: 0x51d0b30
+ OBJ: TBranch	MET_MetUnclustEnUpDeltaY	Delta (METy_mod-METy) Unclustered Energy Up : 0 at: 0x51d1e50
+ OBJ: TBranch	MET_covXX	xx element of met covariance matrix : 0 at: 0x51d3170
+ OBJ: TBranch	MET_covXY	xy element of met covariance matrix : 0 at: 0x4cca1e0
+ OBJ: TBranch	MET_covYY	yy element of met covariance matrix : 0 at: 0x4ccb470
+ OBJ: TBranch	MET_phi	phi : 0 at: 0x4ccc700
+ OBJ: TBranch	MET_pt	pt : 0 at: 0x4ccd950
+ OBJ: TBranch	MET_significance	MET significance : 0 at: 0x4cceba0
+ OBJ: TBranch	MET_sumEt	scalar sum of Et : 0 at: 0x51e0050
+ OBJ: TBranch	MET_sumPtUnclustered	sumPt used for MET significance : 0 at: 0x51e1240
+ OBJ: TBranch	nMuon	slimmedMuons after basic selection (pt > 3 && (passed('CutBasedIdLoose') || passed('SoftCutBasedId') || passed('SoftMvaId') || passed('CutBasedIdGlobalHighPt') || passed('CutBasedIdTrkHighPt'))) : 0 at: 0x51e2550
+ OBJ: TBranch	Muon_dxy	dxy (with sign) wrt first PV, in cm : 0 at: 0x51e3880
+ OBJ: TBranch	Muon_dxyErr	dxy uncertainty, in cm : 0 at: 0x51e58a0
+ OBJ: TBranch	Muon_dxybs	dxy (with sign) wrt the beam spot, in cm : 0 at: 0x51e78c0
+ OBJ: TBranch	Muon_dz	dz (with sign) wrt first PV, in cm : 0 at: 0x51e98f0
+ OBJ: TBranch	Muon_dzErr	dz uncertainty, in cm : 0 at: 0x51eb8f0
+ OBJ: TBranch	Muon_eta	eta : 0 at: 0x51ed910
+ OBJ: TBranch	Muon_ip3d	3D impact parameter wrt first PV, in cm : 0 at: 0x51ef8f0
+ OBJ: TBranch	Muon_jetPtRelv2	Relative momentum of the lepton with respect to the closest jet after subtracting the lepton : 0 at: 0x51f1920
+ OBJ: TBranch	Muon_jetRelIso	Relative isolation in matched jet (1/ptRatio-1, pfRelIso04_all if no matched jet) : 0 at: 0x51f39c0
+ OBJ: TBranch	Muon_mass	mass : 0 at: 0x51f5a20
+ OBJ: TBranch	Muon_miniPFRelIso_all	mini PF relative isolation, total (with scaled rho*EA PU corrections) : 0 at: 0x51f7a10
+ OBJ: TBranch	Muon_miniPFRelIso_chg	mini PF relative isolation, charged component : 0 at: 0x51f9ac0
+ OBJ: TBranch	Muon_pfRelIso03_all	PF relative isolation dR=0.3, total (deltaBeta corrections) : 0 at: 0x51fbb50
+ OBJ: TBranch	Muon_pfRelIso03_chg	PF relative isolation dR=0.3, charged component : 0 at: 0x51fdbf0
+ OBJ: TBranch	Muon_pfRelIso04_all	PF relative isolation dR=0.4, total (deltaBeta corrections) : 0 at: 0x51ffc80
+ OBJ: TBranch	Muon_phi	phi : 0 at: 0x5201d20
+ OBJ: TBranch	Muon_pt	pt : 0 at: 0x5203d00
+ OBJ: TBranch	Muon_ptErr	ptError of the muon track : 0 at: 0x5205cc0
+ OBJ: TBranch	Muon_segmentComp	muon segment compatibility : 0 at: 0x5207ce0
+ OBJ: TBranch	Muon_sip3d	3D impact parameter significance wrt first PV : 0 at: 0x5209d60
+ OBJ: TBranch	Muon_softMva	soft MVA ID score : 0 at: 0x520bd90
+ OBJ: TBranch	Muon_tkRelIso	Tracker-based relative isolation dR=0.3 for highPt, trkIso/tunePpt : 0 at: 0x520ddb0
+ OBJ: TBranch	Muon_tunepRelPt	TuneP relative pt, tunePpt/pt : 0 at: 0x520fe00
+ OBJ: TBranch	Muon_mvaLowPt	Low pt muon ID score : 0 at: 0x5211e60
+ OBJ: TBranch	Muon_mvaTTH	TTH MVA lepton ID score : 0 at: 0x5213e80
+ OBJ: TBranch	Muon_charge	electric charge : 0 at: 0x5215ea0
+ OBJ: TBranch	Muon_jetIdx	index of the associated jet (-1 if none) : 0 at: 0x5217eb0
+ OBJ: TBranch	Muon_nStations	number of matched stations with default arbitration (segment & track) : 0 at: 0x5219ee0
+ OBJ: TBranch	Muon_nTrackerLayers	number of layers in the tracker : 0 at: 0x521bf30
+ OBJ: TBranch	Muon_pdgId	PDG code assigned by the event reconstruction (not by MC truth) : 0 at: 0x521dfb0
+ OBJ: TBranch	Muon_tightCharge	Tight charge criterion using pterr/pt of muonBestTrack (0:fail, 2:pass) : 0 at: 0x521fff0
+ OBJ: TBranch	Muon_fsrPhotonIdx	Index of the associated FSR photon : 0 at: 0x52220a0
+ OBJ: TBranch	Muon_highPtId	high-pT cut-based ID (1 = tracker high pT, 2 = global high pT, which includes tracker high pT) : 0 at: 0x5224130
+ OBJ: TBranch	Muon_highPurity	inner track is high purity : 0 at: 0x5226180
+ OBJ: TBranch	Muon_inTimeMuon	inTimeMuon ID : 0 at: 0x52281d0
+ OBJ: TBranch	Muon_isGlobal	muon is global muon : 0 at: 0x522a1f0
+ OBJ: TBranch	Muon_isPFcand	muon is PF candidate : 0 at: 0x522c200
+ OBJ: TBranch	Muon_isTracker	muon is tracker muon : 0 at: 0x522e210
+ OBJ: TBranch	Muon_looseId	muon is loose muon : 0 at: 0x5230220
+ OBJ: TBranch	Muon_mediumId	cut-based ID, medium WP : 0 at: 0x5232230
+ OBJ: TBranch	Muon_mediumPromptId	cut-based ID, medium prompt WP : 0 at: 0x5234240
+ OBJ: TBranch	Muon_miniIsoId	MiniIso ID from miniAOD selector (1=MiniIsoLoose, 2=MiniIsoMedium, 3=MiniIsoTight, 4=MiniIsoVeryTight) : 0 at: 0x52362b0
+ OBJ: TBranch	Muon_multiIsoId	MultiIsoId from miniAOD selector (1=MultiIsoLoose, 2=MultiIsoMedium) : 0 at: 0x5238310
+ OBJ: TBranch	Muon_mvaId	Mva ID from miniAOD selector (1=MvaLoose, 2=MvaMedium, 3=MvaTight) : 0 at: 0x523a390
+ OBJ: TBranch	Muon_pfIsoId	PFIso ID from miniAOD selector (1=PFIsoVeryLoose, 2=PFIsoLoose, 3=PFIsoMedium, 4=PFIsoTight, 5=PFIsoVeryTight, 6=PFIsoVeryVeryTight) : 0 at: 0x523c3d0
+ OBJ: TBranch	Muon_softId	soft cut-based ID : 0 at: 0x523e450
+ OBJ: TBranch	Muon_softMvaId	soft MVA ID : 0 at: 0x5240460
+ OBJ: TBranch	Muon_tightId	cut-based ID, tight WP : 0 at: 0x5242440
+ OBJ: TBranch	Muon_tkIsoId	TkIso ID (1=TkIsoLoose, 2=TkIsoTight) : 0 at: 0x5244450
+ OBJ: TBranch	Muon_triggerIdLoose	TriggerIdLoose ID : 0 at: 0x5246470
+ OBJ: TBranch	nPhoton	slimmedPhotons after basic selection (pt > 5 ) : 0 at: 0x52484e0
+ OBJ: TBranch	Photon_eCorr	ratio of the calibrated energy/miniaod energy : 0 at: 0x5249770
+ OBJ: TBranch	Photon_energyErr	energy error of the cluster from regression : 0 at: 0x524b7a0
+ OBJ: TBranch	Photon_eta	eta : 0 at: 0x524d830
+ OBJ: TBranch	Photon_hoe	H over E : 0 at: 0x524f820
+ OBJ: TBranch	Photon_mass	mass : 0 at: 0x5251810
+ OBJ: TBranch	Photon_mvaID	MVA ID score, Fall17V2 : 0 at: 0x5253800
+ OBJ: TBranch	Photon_mvaID_Fall17V1p1	MVA ID score, Fall17V1p1 : 0 at: 0x5255820
+ OBJ: TBranch	Photon_pfRelIso03_all	PF relative isolation dR=0.3, total (with rho*EA PU corrections) : 0 at: 0x52578b0
+ OBJ: TBranch	Photon_pfRelIso03_chg	PF relative isolation dR=0.3, charged component (with rho*EA PU corrections) : 0 at: 0x5259960
+ OBJ: TBranch	Photon_phi	phi : 0 at: 0x525ba10
+ OBJ: TBranch	Photon_pt	p_{T} : 0 at: 0x525da00
+ OBJ: TBranch	Photon_r9	R9 of the supercluster, calculated with full 5x5 region : 0 at: 0x525f9f0
+ OBJ: TBranch	Photon_sieie	sigma_IetaIeta of the supercluster, calculated with full 5x5 region : 0 at: 0x5261a30
+ OBJ: TBranch	Photon_charge	electric charge : 0 at: 0x5263a80
+ OBJ: TBranch	Photon_cutBased	cut-based ID bitmap, Fall17V2, (0:fail, 1:loose, 2:medium, 3:tight) : 0 at: 0x5265a90
+ OBJ: TBranch	Photon_cutBased_Fall17V1Bitmap	cut-based ID bitmap, Fall17V1, 2^(0:loose, 1:medium, 2:tight). : 0 at: 0x5267b20
+ OBJ: TBranch	Photon_electronIdx	index of the associated electron (-1 if none) : 0 at: 0x5269bd0
+ OBJ: TBranch	Photon_jetIdx	index of the associated jet (-1 if none) : 0 at: 0x526bc60
+ OBJ: TBranch	Photon_pdgId	PDG code assigned by the event reconstruction (not by MC truth) : 0 at: 0x526dc90
+ OBJ: TBranch	Photon_vidNestedWPBitmap	Fall17V2 VID compressed bitmap (MinPtCut,PhoSCEtaMultiRangeCut,PhoSingleTowerHadOverEmCut,PhoFull5x5SigmaIEtaIEtaCut,PhoAnyPFIsoWithEACut,PhoAnyPFIsoWithEAAndQuadScalingCut,PhoAnyPFIsoWithEACut), 2 bits per cut : 0 at: 0x526fcd0
+ OBJ: TBranch	Photon_electronVeto	pass electron veto : 0 at: 0x5271e20
+ OBJ: TBranch	Photon_isScEtaEB	is supercluster eta within barrel acceptance : 0 at: 0x5273ec0
+ OBJ: TBranch	Photon_isScEtaEE	is supercluster eta within endcap acceptance : 0 at: 0x5275f70
+ OBJ: TBranch	Photon_mvaID_WP80	MVA ID WP80, Fall17V2 : 0 at: 0x5278020
+ OBJ: TBranch	Photon_mvaID_WP90	MVA ID WP90, Fall17V2 : 0 at: 0x527a0c0
+ OBJ: TBranch	Photon_pixelSeed	has pixel seed : 0 at: 0x527c160
+ OBJ: TBranch	Photon_seedGain	Gain of the seed crystal : 0 at: 0x527e1d0
+ OBJ: TBranch	PuppiMET_phi	phi : 0 at: 0x5280250
+ OBJ: TBranch	PuppiMET_phiJERUp	JER up phi : 0 at: 0x52814a0
+ OBJ: TBranch	PuppiMET_phiJESUp	JES up phi : 0 at: 0x5282780
+ OBJ: TBranch	PuppiMET_pt	pt : 0 at: 0x5283a60
+ OBJ: TBranch	PuppiMET_ptJERUp	JER up pt : 0 at: 0x5284cb0
+ OBJ: TBranch	PuppiMET_ptJESUp	JES up pt : 0 at: 0x5285f90
+ OBJ: TBranch	PuppiMET_sumEt	scalar sum of Et : 0 at: 0x5287270
+ OBJ: TBranch	RawMET_phi	phi : 0 at: 0x52884f0
+ OBJ: TBranch	RawMET_pt	pt : 0 at: 0x5289740
+ OBJ: TBranch	RawMET_sumEt	scalar sum of Et : 0 at: 0x528a990
+ OBJ: TBranch	RawPuppiMET_phi	phi : 0 at: 0x528bc10
+ OBJ: TBranch	RawPuppiMET_pt	pt : 0 at: 0x528cec0
+ OBJ: TBranch	RawPuppiMET_sumEt	scalar sum of Et : 0 at: 0x528e110
+ OBJ: TBranch	fixedGridRhoFastjetAll	rho from all PF Candidates, used e.g. for JECs : 0 at: 0x528f420
+ OBJ: TBranch	fixedGridRhoFastjetCentral	rho from all PF Candidates for central region, used e.g. for JECs : 0 at: 0x5290740
+ OBJ: TBranch	fixedGridRhoFastjetCentralCalo	rho from calo towers with |eta| < 2.5, used e.g. egamma PFCluster isolation : 0 at: 0x5291a80
+ OBJ: TBranch	fixedGridRhoFastjetCentralChargedPileUp	rho from charged PF Candidates for central region, used e.g. for JECs : 0 at: 0x5292dc0
+ OBJ: TBranch	fixedGridRhoFastjetCentralNeutral	rho from neutral PF Candidates with |eta| < 2.5, used e.g. for rho corrections of some lepton isolations : 0 at: 0x5294130
+ OBJ: TBranch	nSoftActivityJet	jets clustered from charged candidates compatible with primary vertex (charge()!=0 && pvAssociationQuality()>=5 && vertexRef().key()==0) : 0 at: 0x52954c0
+ OBJ: TBranch	SoftActivityJet_eta	eta : 0 at: 0x5296840
+ OBJ: TBranch	SoftActivityJet_phi	phi : 0 at: 0x52988a0
+ OBJ: TBranch	SoftActivityJet_pt	pt : 0 at: 0x529a900
+ OBJ: TBranch	SoftActivityJetHT	scalar sum of soft activity jet pt, pt>1 : 0 at: 0x529c960
+ OBJ: TBranch	SoftActivityJetHT10	scalar sum of soft activity jet pt , pt >10 : 0 at: 0x529dc80
+ OBJ: TBranch	SoftActivityJetHT2	scalar sum of soft activity jet pt, pt >2 : 0 at: 0x529efa0
+ OBJ: TBranch	SoftActivityJetHT5	scalar sum of soft activity jet pt, pt>5 : 0 at: 0x52a02c0
+ OBJ: TBranch	SoftActivityJetNjets10	number of soft activity jet pt, pt >2 : 0 at: 0x52a15e0
+ OBJ: TBranch	SoftActivityJetNjets2	number of soft activity jet pt, pt >10 : 0 at: 0x52a2900
+ OBJ: TBranch	SoftActivityJetNjets5	number of soft activity jet pt, pt >5 : 0 at: 0x52a3c20
+ OBJ: TBranch	nSubJet	slimmedJetsAK8, i.e. ak8 fat jets for boosted analysis : 0 at: 0x52a4f40
+ OBJ: TBranch	SubJet_btagCMVA	CMVA V2 btag discriminator : 0 at: 0x52a61e0
+ OBJ: TBranch	SubJet_btagCSVV2	 pfCombinedInclusiveSecondaryVertexV2 b-tag discriminator (aka CSVV2) : 0 at: 0x52a8280
+ OBJ: TBranch	SubJet_btagDeepB	DeepCSV b+bb tag discriminator : 0 at: 0x52aa370
+ OBJ: TBranch	SubJet_eta	eta : 0 at: 0x52ac430
+ OBJ: TBranch	SubJet_mass	mass : 0 at: 0x52ae460
+ OBJ: TBranch	SubJet_n2b1	N2 with beta=1 : 0 at: 0x52b0490
+ OBJ: TBranch	SubJet_n3b1	N3 with beta=1 : 0 at: 0x52b24c0
+ OBJ: TBranch	SubJet_phi	phi : 0 at: 0x52b44f0
+ OBJ: TBranch	SubJet_pt	pt : 0 at: 0x52b6520
+ OBJ: TBranch	SubJet_rawFactor	1 - Factor to get back to raw pT : 0 at: 0x52b8550
+ OBJ: TBranch	SubJet_tau1	Nsubjettiness (1 axis) : 0 at: 0x52ba620
+ OBJ: TBranch	SubJet_tau2	Nsubjettiness (2 axis) : 0 at: 0x52bc680
+ OBJ: TBranch	SubJet_tau3	Nsubjettiness (3 axis) : 0 at: 0x52be6e0
+ OBJ: TBranch	SubJet_tau4	Nsubjettiness (4 axis) : 0 at: 0x52c0740
+ OBJ: TBranch	nTau	slimmedTaus after basic selection (pt > 18 && tauID('decayModeFindingNewDMs') && (tauID('byLooseCombinedIsolationDeltaBetaCorr3Hits') || tauID('byVLooseIsolationMVArun2v1DBoldDMwLT2015') || tauID('byVLooseIsolationMVArun2v1DBnewDMwLT') || tauID('byVLooseIsolationMVArun2v1DBdR03oldDMwLT') || tauID('byVVLooseIsolationMVArun2v1DBoldDMwLT') || tauID('byVVLooseIsolationMVArun2v1DBoldDMwLT2017v2') || tauID('byVVLooseIsolationMVArun2v1DBnewDMwLT2017v2') || tauID('byVVLooseIsolationMVArun2v1DBdR03oldDMwLT2017v2') || tauID('byVVVLooseDeepTau2017v2p1VSjet'))) : 0 at: 0x52c27a0
+ OBJ: TBranch	Tau_chargedIso	charged isolation : 0 at: 0x52c3c30
+ OBJ: TBranch	Tau_dxy	d_{xy} of lead track with respect to PV, in cm (with sign) : 0 at: 0x52c5c50
+ OBJ: TBranch	Tau_dz	d_{z} of lead track with respect to PV, in cm (with sign) : 0 at: 0x52c7c60
+ OBJ: TBranch	Tau_eta	eta : 0 at: 0x52c9c70
+ OBJ: TBranch	Tau_leadTkDeltaEta	eta of the leading track, minus tau eta : 0 at: 0x52cbc30
+ OBJ: TBranch	Tau_leadTkDeltaPhi	phi of the leading track, minus tau phi : 0 at: 0x52cdcc0
+ OBJ: TBranch	Tau_leadTkPtOverTauPt	pt of the leading track divided by tau pt : 0 at: 0x52cfd50
+ OBJ: TBranch	Tau_mass	mass : 0 at: 0x52d1de0
+ OBJ: TBranch	Tau_neutralIso	neutral (photon) isolation : 0 at: 0x52d3da0
+ OBJ: TBranch	Tau_phi	phi : 0 at: 0x52d5dc0
+ OBJ: TBranch	Tau_photonsOutsideSignalCone	sum of photons outside signal cone : 0 at: 0x52d7d80
+ OBJ: TBranch	Tau_pt	pt : 0 at: 0x52d9e20
+ OBJ: TBranch	Tau_puCorr	pileup correction : 0 at: 0x52dbde0
+ OBJ: TBranch	Tau_rawAntiEle	Anti-electron MVA discriminator V6 raw output discriminator : 0 at: 0x52dde00
+ OBJ: TBranch	Tau_rawAntiEle2018	Anti-electron MVA discriminator V6 raw output discriminator (2018) : 0 at: 0x52dfe40
+ OBJ: TBranch	Tau_rawDeepTau2017v2p1VSe	byDeepTau2017v2p1VSe raw output discriminator (deepTau2017v2p1) : 0 at: 0x52e1ef0
+ OBJ: TBranch	Tau_rawDeepTau2017v2p1VSjet	byDeepTau2017v2p1VSjet raw output discriminator (deepTau2017v2p1) : 0 at: 0x52e3f90
+ OBJ: TBranch	Tau_rawDeepTau2017v2p1VSmu	byDeepTau2017v2p1VSmu raw output discriminator (deepTau2017v2p1) : 0 at: 0x52e6050
+ OBJ: TBranch	Tau_rawIso	combined isolation (deltaBeta corrections) : 0 at: 0x52e8110
+ OBJ: TBranch	Tau_rawIsodR03	combined isolation (deltaBeta corrections, dR=0.3) : 0 at: 0x52ea140
+ OBJ: TBranch	Tau_rawMVAnewDM2017v2	byIsolationMVArun2v1DBnewDMwLT raw output discriminator (2017v2) : 0 at: 0x52ec180
+ OBJ: TBranch	Tau_rawMVAoldDM	byIsolationMVArun2v1DBoldDMwLT raw output discriminator (2015) : 0 at: 0x52ee230
+ OBJ: TBranch	Tau_rawMVAoldDM2017v1	byIsolationMVArun2v1DBoldDMwLT raw output discriminator (2017v1) : 0 at: 0x52f02b0
+ OBJ: TBranch	Tau_rawMVAoldDM2017v2	byIsolationMVArun2v1DBoldDMwLT raw output discriminator (2017v2) : 0 at: 0x52f2360
+ OBJ: TBranch	Tau_rawMVAoldDMdR032017v2	byIsolationMVArun2v1DBdR03oldDMwLT raw output discriminator (2017v2) : 0 at: 0x52f4410
+ OBJ: TBranch	Tau_charge	electric charge : 0 at: 0x52f64c0
+ OBJ: TBranch	Tau_decayMode	decayMode() : 0 at: 0x52f84d0
+ OBJ: TBranch	Tau_jetIdx	index of the associated jet (-1 if none) : 0 at: 0x52fa4c0
+ OBJ: TBranch	Tau_rawAntiEleCat	Anti-electron MVA discriminator V6 category : 0 at: 0x52fc4f0
+ OBJ: TBranch	Tau_rawAntiEleCat2018	Anti-electron MVA discriminator V6 category (2018) : 0 at: 0x52fe580
+ OBJ: TBranch	Tau_idAntiEle	Anti-electron MVA discriminator V6: bitmask 1 = VLoose, 2 = Loose, 4 = Medium, 8 = Tight, 16 = VTight : 0 at: 0x5300620
+ OBJ: TBranch	Tau_idAntiEle2018	Anti-electron MVA discriminator V6 (2018): bitmask 1 = VLoose, 2 = Loose, 4 = Medium, 8 = Tight, 16 = VTight : 0 at: 0x53026b0
+ OBJ: TBranch	Tau_idAntiMu	Anti-muon discriminator V3: : bitmask 1 = Loose, 2 = Tight : 0 at: 0x53047a0
+ OBJ: TBranch	Tau_idDecayMode	tauID('decayModeFinding') : 0 at: 0x5306800
+ OBJ: TBranch	Tau_idDecayModeNewDMs	tauID('decayModeFindingNewDMs') : 0 at: 0x5308880
+ OBJ: TBranch	Tau_idDeepTau2017v2p1VSe	byDeepTau2017v2p1VSe ID working points (deepTau2017v2p1): bitmask 1 = VVVLoose, 2 = VVLoose, 4 = VLoose, 8 = Loose, 16 = Medium, 32 = Tight, 64 = VTight, 128 = VVTight : 0 at: 0x530a920
+ OBJ: TBranch	Tau_idDeepTau2017v2p1VSjet	byDeepTau2017v2p1VSjet ID working points (deepTau2017v2p1): bitmask 1 = VVVLoose, 2 = VVLoose, 4 = VLoose, 8 = Loose, 16 = Medium, 32 = Tight, 64 = VTight, 128 = VVTight : 0 at: 0x530ca50
+ OBJ: TBranch	Tau_idDeepTau2017v2p1VSmu	byDeepTau2017v2p1VSmu ID working points (deepTau2017v2p1): bitmask 1 = VLoose, 2 = Loose, 4 = Medium, 8 = Tight : 0 at: 0x530eb90
+ OBJ: TBranch	Tau_idMVAnewDM2017v2	IsolationMVArun2v1DBnewDMwLT ID working point (2017v2): bitmask 1 = VVLoose, 2 = VLoose, 4 = Loose, 8 = Medium, 16 = Tight, 32 = VTight, 64 = VVTight : 0 at: 0x5310c80
+ OBJ: TBranch	Tau_idMVAoldDM	IsolationMVArun2v1DBoldDMwLT ID working point (2015): bitmask 1 = VLoose, 2 = Loose, 4 = Medium, 8 = Tight, 16 = VTight, 32 = VVTight : 0 at: 0x5312da0
+ OBJ: TBranch	Tau_idMVAoldDM2017v1	IsolationMVArun2v1DBoldDMwLT ID working point (2017v1): bitmask 1 = VVLoose, 2 = VLoose, 4 = Loose, 8 = Medium, 16 = Tight, 32 = VTight, 64 = VVTight : 0 at: 0x5314e50
+ OBJ: TBranch	Tau_idMVAoldDM2017v2	IsolationMVArun2v1DBoldDMwLT ID working point (2017v2): bitmask 1 = VVLoose, 2 = VLoose, 4 = Loose, 8 = Medium, 16 = Tight, 32 = VTight, 64 = VVTight : 0 at: 0x5316f70
+ OBJ: TBranch	Tau_idMVAoldDMdR032017v2	IsolationMVArun2v1DBoldDMdR0p3wLT ID working point (2017v2): bitmask 1 = VVLoose, 2 = VLoose, 4 = Loose, 8 = Medium, 16 = Tight, 32 = VTight, 64 = VVTight : 0 at: 0x5319090
+ OBJ: TBranch	TkMET_phi	raw track MET phi : 0 at: 0x531b1b0
+ OBJ: TBranch	TkMET_pt	raw track MET pt : 0 at: 0x531c430
+ OBJ: TBranch	TkMET_sumEt	raw track scalar sum of Et : 0 at: 0x531d6b0
+ OBJ: TBranch	nTrigObj	 : 0 at: 0x531e930
+ OBJ: TBranch	TrigObj_pt	pt : 0 at: 0x531fb80
+ OBJ: TBranch	TrigObj_eta	eta : 0 at: 0x5321bf0
+ OBJ: TBranch	TrigObj_phi	phi : 0 at: 0x5323c60
+ OBJ: TBranch	TrigObj_l1pt	pt of associated L1 seed : 0 at: 0x5325cd0
+ OBJ: TBranch	TrigObj_l1pt_2	pt of associated secondary L1 seed : 0 at: 0x5327d70
+ OBJ: TBranch	TrigObj_l2pt	pt of associated 'L2' seed (i.e. HLT before tracking/PF) : 0 at: 0x5329e20
+ OBJ: TBranch	TrigObj_id	ID of the object: 11 = Electron (PixelMatched e/gamma), 22 = Photon (PixelMatch-vetoed e/gamma), 13 = Muon, 15 = Tau, 1 = Jet, 6 = FatJet, 2 = MET, 3 = HT, 4 = MHT : 0 at: 0x532bee0
+ OBJ: TBranch	TrigObj_l1iso	iso of associated L1 seed : 0 at: 0x532e010
+ OBJ: TBranch	TrigObj_l1charge	charge of associated L1 seed : 0 at: 0x53300b0
+ OBJ: TBranch	TrigObj_filterBits	extra bits of associated information: 1 = CaloIdL_TrackIdL_IsoVL, 2 = 1e (WPTight), 4 = 1e (WPLoose), 8 = OverlapFilter PFTau, 16 = 2e, 32 = 1e-1mu, 64 = 1e-1tau, 128 = 3e, 256 = 2e-1mu, 512 = 1e-2mu, 1024 = 1e (32_L1DoubleEG_AND_L1SingleEGOr), 2048 = 1e (CaloIdVT_GsfTrkIdT), 4096 = 1e (PFJet), 8192 = 1e (Photon175_OR_Photon200) for Electron (PixelMatched e/gamma); 1 = TrkIsoVVL, 2 = Iso, 4 = OverlapFilter PFTau, 8 = 1mu, 16 = 2mu, 32 = 1mu-1e, 64 = 1mu-1tau, 128 = 3mu, 256 = 2mu-1e, 512 = 1mu-2e, 1024 = 1mu (Mu50), 2048 = 1mu (Mu100) for Muon; 1 = LooseChargedIso, 2 = MediumChargedIso, 4 = TightChargedIso, 8 = TightID OOSC photons, 16 = HPS, 32 = single-tau + tau+MET, 64 = di-tau, 128 = e-tau, 256 = mu-tau, 512 = VBF+di-tau for Tau; Jet bits: bit 0 for VBF cross-cleaned from loose iso PFTau, bit 1 for hltBTagCaloCSVp087Triple, bit 2 for hltDoubleCentralJet90, bit 3 for hltDoublePFCentralJetLooseID90, bit 4 for hltL1sTripleJetVBFIorHTTIorDoubleJetCIorSingleJet, bit 5 for hltQuadCentralJet30, bit 6 for hltQuadPFCentralJetLooseID30, bit 7 for hltL1sQuadJetC50IorQuadJetC60IorHTT280IorHTT300IorHTT320IorTripleJet846848VBFIorTripleJet887256VBFIorTripleJet927664VBF or hltL1sQuadJetCIorTripleJetVBFIorHTT, bit 8 for hltQuadCentralJet45, bit 9 for hltQuadPFCentralJetLooseID45, bit 10  for hltL1sQuadJetC60IorHTT380IorHTT280QuadJetIorHTT300QuadJet or hltL1sQuadJetC50to60IorHTT280to500IorHTT250to340QuadJet bit 11 for hltBTagCaloCSVp05Double or hltBTagCaloDeepCSVp17Double, bit 12 for hltPFCentralJetLooseIDQuad30, bit 13 for hlt1PFCentralJetLooseID75, bit 14 for hlt2PFCentralJetLooseID60, bit 15 for hlt3PFCentralJetLooseID45, bit 16 for hlt4PFCentralJetLooseID40, bit 17 for hltBTagPFCSVp070Triple or hltBTagPFDeepCSVp24Triple or hltBTagPFDeepCSV4p5Triple  for Jet; HT bits: bit 0 for hltL1sTripleJetVBFIorHTTIorDoubleJetCIorSingleJet, bit 1 for hltL1sQuadJetC50IorQuadJetC60IorHTT280IorHTT300IorHTT320IorTripleJet846848VBFIorTripleJet887256VBFIorTripleJet927664VBF or hltL1sQuadJetCIorTripleJetVBFIorHTT, bit 2 for hltL1sQuadJetC60IorHTT380IorHTT280QuadJetIorHTT300QuadJet or hltL1sQuadJetC50to60IorHTT280to500IorHTT250to340QuadJet, bit 3 for hltCaloQuadJet30HT300 or hltCaloQuadJet30HT320, bit 4 for hltPFCentralJetsLooseIDQuad30HT300 or hltPFCentralJetsLooseIDQuad30HT330 for HT; MHT bits: bit 0 for hltCaloQuadJet30HT300 or hltCaloQuadJet30HT320, bit 1 for hltPFCentralJetsLooseIDQuad30HT300 or hltPFCentralJetsLooseIDQuad30HT330 for MHT;  : 0 at: 0x53321b0
+ OBJ: TBranch	nOtherPV	 : 0 at: 0x5334c30
+ OBJ: TBranch	OtherPV_z	Z position of other primary vertices, excluding the main PV : 0 at: 0x51d4330
+ OBJ: TBranch	PV_ndof	main primary vertex number of degree of freedom : 0 at: 0x51d6360
+ OBJ: TBranch	PV_x	main primary vertex position x coordinate : 0 at: 0x51d75f0
+ OBJ: TBranch	PV_y	main primary vertex position y coordinate : 0 at: 0x51d8880
+ OBJ: TBranch	PV_z	main primary vertex position z coordinate : 0 at: 0x51d9b10
+ OBJ: TBranch	PV_chi2	main primary vertex reduced chi2 : 0 at: 0x51dada0
+ OBJ: TBranch	PV_score	main primary vertex score, i.e. sum pt2 of clustered objects : 0 at: 0x51dc030
+ OBJ: TBranch	PV_npvs	total number of reconstructed primary vertices : 0 at: 0x51dd2d0
+ OBJ: TBranch	PV_npvsGood	number of good reconstructed primary vertices. selection:!isFake && ndof > 4 && abs(z) <= 24 && position.Rho <= 2 : 0 at: 0x51de560
+ OBJ: TBranch	nSV	 : 0 at: 0x534d480
+ OBJ: TBranch	SV_dlen	decay length in cm : 0 at: 0x534e4e0
+ OBJ: TBranch	SV_dlenSig	decay length significance : 0 at: 0x53504d0
+ OBJ: TBranch	SV_dxy	2D decay length in cm : 0 at: 0x5352500
+ OBJ: TBranch	SV_dxySig	2D decay length significance : 0 at: 0x5354510
+ OBJ: TBranch	SV_pAngle	pointing angle, i.e. acos(p_SV * (SV - PV))  : 0 at: 0x5356520
+ OBJ: TBranch	Electron_cleanmask	simple cleaning mask with priority to leptons : 0 at: 0x5358540
+ OBJ: TBranch	Jet_cleanmask	simple cleaning mask with priority to leptons : 0 at: 0x535a5f0
+ OBJ: TBranch	Muon_cleanmask	simple cleaning mask with priority to leptons : 0 at: 0x535c620
+ OBJ: TBranch	Photon_cleanmask	simple cleaning mask with priority to leptons : 0 at: 0x535e640
+ OBJ: TBranch	Tau_cleanmask	simple cleaning mask with priority to leptons : 0 at: 0x53606f0
+ OBJ: TBranch	SV_chi2	reduced chi2, i.e. chi/ndof : 0 at: 0x5362740
+ OBJ: TBranch	SV_eta	eta : 0 at: 0x5364750
+ OBJ: TBranch	SV_mass	mass : 0 at: 0x5366730
+ OBJ: TBranch	SV_ndof	number of degrees of freedom : 0 at: 0x5368710
+ OBJ: TBranch	SV_phi	phi : 0 at: 0x536a720
+ OBJ: TBranch	SV_pt	pt : 0 at: 0x536c700
+ OBJ: TBranch	SV_x	secondary vertex X position, in cm : 0 at: 0x536e6e0
+ OBJ: TBranch	SV_y	secondary vertex Y position, in cm : 0 at: 0x5370700
+ OBJ: TBranch	SV_z	secondary vertex Z position, in cm : 0 at: 0x5372720
+ OBJ: TBranch	L1_AlwaysTrue	Trigger/flag bit (process: NANO) : 0 at: 0x5374740
+ OBJ: TBranch	L1_BPTX_AND_Ref1_VME	Trigger/flag bit (process: NANO) : 0 at: 0x53759d0
+ OBJ: TBranch	L1_BPTX_AND_Ref3_VME	Trigger/flag bit (process: NANO) : 0 at: 0x5376cf0
+ OBJ: TBranch	L1_BPTX_AND_Ref4_VME	Trigger/flag bit (process: NANO) : 0 at: 0x5378010
+ OBJ: TBranch	L1_BPTX_BeamGas_B1_VME	Trigger/flag bit (process: NANO) : 0 at: 0x5379330
+ OBJ: TBranch	L1_BPTX_BeamGas_B2_VME	Trigger/flag bit (process: NANO) : 0 at: 0x537a650
+ OBJ: TBranch	L1_BPTX_BeamGas_Ref1_VME	Trigger/flag bit (process: NANO) : 0 at: 0x537b970
+ OBJ: TBranch	L1_BPTX_BeamGas_Ref2_VME	Trigger/flag bit (process: NANO) : 0 at: 0x537cc90
+ OBJ: TBranch	L1_BPTX_NotOR_VME	Trigger/flag bit (process: NANO) : 0 at: 0x537dfb0
+ OBJ: TBranch	L1_BPTX_OR_Ref3_VME	Trigger/flag bit (process: NANO) : 0 at: 0x537f2d0
+ OBJ: TBranch	L1_BPTX_OR_Ref4_VME	Trigger/flag bit (process: NANO) : 0 at: 0x53805f0
+ OBJ: TBranch	L1_BPTX_RefAND_VME	Trigger/flag bit (process: NANO) : 0 at: 0x5381910
+ OBJ: TBranch	L1_BptxMinus	Trigger/flag bit (process: NANO) : 0 at: 0x5382c30
+ OBJ: TBranch	L1_BptxOR	Trigger/flag bit (process: NANO) : 0 at: 0x5383ec0
+ OBJ: TBranch	L1_BptxPlus	Trigger/flag bit (process: NANO) : 0 at: 0x5385150
+ OBJ: TBranch	L1_BptxXOR	Trigger/flag bit (process: NANO) : 0 at: 0x53863e0
+ OBJ: TBranch	L1_CDC_SingleMu_3_er1p2_TOP120_DPHI2p618_3p142	Trigger/flag bit (process: NANO) : 0 at: 0x5387670
+ OBJ: TBranch	L1_DoubleEG8er2p5_HTT260er	Trigger/flag bit (process: NANO) : 0 at: 0x53889c0
+ OBJ: TBranch	L1_DoubleEG8er2p5_HTT280er	Trigger/flag bit (process: NANO) : 0 at: 0x5389ce0
+ OBJ: TBranch	L1_DoubleEG8er2p5_HTT300er	Trigger/flag bit (process: NANO) : 0 at: 0x538b000
+ OBJ: TBranch	L1_DoubleEG8er2p5_HTT320er	Trigger/flag bit (process: NANO) : 0 at: 0x538c320
+ OBJ: TBranch	L1_DoubleEG8er2p5_HTT340er	Trigger/flag bit (process: NANO) : 0 at: 0x538d640
+ OBJ: TBranch	L1_DoubleEG_15_10_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x538e960
+ OBJ: TBranch	L1_DoubleEG_20_10_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x538fc80
+ OBJ: TBranch	L1_DoubleEG_22_10_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5390fa0
+ OBJ: TBranch	L1_DoubleEG_25_12_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x53922c0
+ OBJ: TBranch	L1_DoubleEG_25_14_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x53935e0
+ OBJ: TBranch	L1_DoubleEG_27_14_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5394900
+ OBJ: TBranch	L1_DoubleEG_LooseIso20_10_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5395c20
+ OBJ: TBranch	L1_DoubleEG_LooseIso22_10_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5396f40
+ OBJ: TBranch	L1_DoubleEG_LooseIso22_12_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5398260
+ OBJ: TBranch	L1_DoubleEG_LooseIso25_12_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5399580
+ OBJ: TBranch	L1_DoubleIsoTau32er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x539a8a0
+ OBJ: TBranch	L1_DoubleIsoTau34er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x539bbc0
+ OBJ: TBranch	L1_DoubleIsoTau36er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x539cee0
+ OBJ: TBranch	L1_DoubleJet100er2p3_dEta_Max1p6	Trigger/flag bit (process: NANO) : 0 at: 0x539e200
+ OBJ: TBranch	L1_DoubleJet100er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x539f550
+ OBJ: TBranch	L1_DoubleJet112er2p3_dEta_Max1p6	Trigger/flag bit (process: NANO) : 0 at: 0x53a0870
+ OBJ: TBranch	L1_DoubleJet120er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x53a1bc0
+ OBJ: TBranch	L1_DoubleJet150er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x53a2ee0
+ OBJ: TBranch	L1_DoubleJet30er2p5_Mass_Min150_dEta_Max1p5	Trigger/flag bit (process: NANO) : 0 at: 0x53a4200
+ OBJ: TBranch	L1_DoubleJet30er2p5_Mass_Min200_dEta_Max1p5	Trigger/flag bit (process: NANO) : 0 at: 0x53a5550
+ OBJ: TBranch	L1_DoubleJet30er2p5_Mass_Min250_dEta_Max1p5	Trigger/flag bit (process: NANO) : 0 at: 0x53a68a0
+ OBJ: TBranch	L1_DoubleJet30er2p5_Mass_Min300_dEta_Max1p5	Trigger/flag bit (process: NANO) : 0 at: 0x53a7bf0
+ OBJ: TBranch	L1_DoubleJet30er2p5_Mass_Min330_dEta_Max1p5	Trigger/flag bit (process: NANO) : 0 at: 0x53a8f40
+ OBJ: TBranch	L1_DoubleJet30er2p5_Mass_Min360_dEta_Max1p5	Trigger/flag bit (process: NANO) : 0 at: 0x53aa290
+ OBJ: TBranch	L1_DoubleJet35_Mass_Min450_IsoTau45_RmOvlp	Trigger/flag bit (process: NANO) : 0 at: 0x53ab5e0
+ OBJ: TBranch	L1_DoubleJet40er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x53ac930
+ OBJ: TBranch	L1_DoubleJet_100_30_DoubleJet30_Mass_Min620	Trigger/flag bit (process: NANO) : 0 at: 0x53adc50
+ OBJ: TBranch	L1_DoubleJet_110_35_DoubleJet35_Mass_Min620	Trigger/flag bit (process: NANO) : 0 at: 0x53aefa0
+ OBJ: TBranch	L1_DoubleJet_115_40_DoubleJet40_Mass_Min620	Trigger/flag bit (process: NANO) : 0 at: 0x53b02f0
+ OBJ: TBranch	L1_DoubleJet_115_40_DoubleJet40_Mass_Min620_Jet60TT28	Trigger/flag bit (process: NANO) : 0 at: 0x53b1640
+ OBJ: TBranch	L1_DoubleJet_120_45_DoubleJet45_Mass_Min620	Trigger/flag bit (process: NANO) : 0 at: 0x53b29c0
+ OBJ: TBranch	L1_DoubleJet_120_45_DoubleJet45_Mass_Min620_Jet60TT28	Trigger/flag bit (process: NANO) : 0 at: 0x53b3d10
+ OBJ: TBranch	L1_DoubleJet_80_30_Mass_Min420_DoubleMu0_SQ	Trigger/flag bit (process: NANO) : 0 at: 0x53b5090
+ OBJ: TBranch	L1_DoubleJet_80_30_Mass_Min420_IsoTau40_RmOvlp	Trigger/flag bit (process: NANO) : 0 at: 0x53b63e0
+ OBJ: TBranch	L1_DoubleJet_80_30_Mass_Min420_Mu8	Trigger/flag bit (process: NANO) : 0 at: 0x53b7730
+ OBJ: TBranch	L1_DoubleJet_90_30_DoubleJet30_Mass_Min620	Trigger/flag bit (process: NANO) : 0 at: 0x53b8a80
+ OBJ: TBranch	L1_DoubleLooseIsoEG22er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x53b9dd0
+ OBJ: TBranch	L1_DoubleLooseIsoEG24er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x53bb0f0
+ OBJ: TBranch	L1_DoubleMu0	Trigger/flag bit (process: NANO) : 0 at: 0x53bc410
+ OBJ: TBranch	L1_DoubleMu0_Mass_Min1	Trigger/flag bit (process: NANO) : 0 at: 0x53bd6a0
+ OBJ: TBranch	L1_DoubleMu0_OQ	Trigger/flag bit (process: NANO) : 0 at: 0x53be9c0
+ OBJ: TBranch	L1_DoubleMu0_SQ	Trigger/flag bit (process: NANO) : 0 at: 0x53bfcb0
+ OBJ: TBranch	L1_DoubleMu0_SQ_OS	Trigger/flag bit (process: NANO) : 0 at: 0x53c0fa0
+ OBJ: TBranch	L1_DoubleMu0_dR_Max1p6_Jet90er2p5_dR_Max0p8	Trigger/flag bit (process: NANO) : 0 at: 0x53c22c0
+ OBJ: TBranch	L1_DoubleMu0er1p4_SQ_OS_dR_Max1p4	Trigger/flag bit (process: NANO) : 0 at: 0x53c3610
+ OBJ: TBranch	L1_DoubleMu0er1p5_SQ	Trigger/flag bit (process: NANO) : 0 at: 0x53c4960
+ OBJ: TBranch	L1_DoubleMu0er1p5_SQ_OS	Trigger/flag bit (process: NANO) : 0 at: 0x53c5c80
+ OBJ: TBranch	L1_DoubleMu0er1p5_SQ_OS_dR_Max1p4	Trigger/flag bit (process: NANO) : 0 at: 0x53c6fa0
+ OBJ: TBranch	L1_DoubleMu0er1p5_SQ_dR_Max1p4	Trigger/flag bit (process: NANO) : 0 at: 0x53c82f0
+ OBJ: TBranch	L1_DoubleMu0er2p0_SQ_OS_dR_Max1p4	Trigger/flag bit (process: NANO) : 0 at: 0x53c9610
+ OBJ: TBranch	L1_DoubleMu0er2p0_SQ_dR_Max1p4	Trigger/flag bit (process: NANO) : 0 at: 0x53ca960
+ OBJ: TBranch	L1_DoubleMu10_SQ	Trigger/flag bit (process: NANO) : 0 at: 0x53cbc80
+ OBJ: TBranch	L1_DoubleMu18er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x53ccfa0
+ OBJ: TBranch	L1_DoubleMu3_OS_DoubleEG7p5Upsilon	Trigger/flag bit (process: NANO) : 0 at: 0x53ce2c0
+ OBJ: TBranch	L1_DoubleMu3_SQ_ETMHF50_HTT60er	Trigger/flag bit (process: NANO) : 0 at: 0x53cf610
+ OBJ: TBranch	L1_DoubleMu3_SQ_ETMHF50_Jet60er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x53d0930
+ OBJ: TBranch	L1_DoubleMu3_SQ_ETMHF50_Jet60er2p5_OR_DoubleJet40er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x53d1c80
+ OBJ: TBranch	L1_DoubleMu3_SQ_ETMHF60_Jet60er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x53d3000
+ OBJ: TBranch	L1_DoubleMu3_SQ_HTT220er	Trigger/flag bit (process: NANO) : 0 at: 0x53d4350
+ OBJ: TBranch	L1_DoubleMu3_SQ_HTT240er	Trigger/flag bit (process: NANO) : 0 at: 0x53d5670
+ OBJ: TBranch	L1_DoubleMu3_SQ_HTT260er	Trigger/flag bit (process: NANO) : 0 at: 0x53d6990
+ OBJ: TBranch	L1_DoubleMu3_dR_Max1p6_Jet90er2p5_dR_Max0p8	Trigger/flag bit (process: NANO) : 0 at: 0x53d7cb0
+ OBJ: TBranch	L1_DoubleMu4_SQ_EG9er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x53d9000
+ OBJ: TBranch	L1_DoubleMu4_SQ_OS	Trigger/flag bit (process: NANO) : 0 at: 0x53da320
+ OBJ: TBranch	L1_DoubleMu4_SQ_OS_dR_Max1p2	Trigger/flag bit (process: NANO) : 0 at: 0x53db640
+ OBJ: TBranch	L1_DoubleMu4p5_SQ_OS	Trigger/flag bit (process: NANO) : 0 at: 0x53dc960
+ OBJ: TBranch	L1_DoubleMu4p5_SQ_OS_dR_Max1p2	Trigger/flag bit (process: NANO) : 0 at: 0x53ddc80
+ OBJ: TBranch	L1_DoubleMu4p5er2p0_SQ_OS	Trigger/flag bit (process: NANO) : 0 at: 0x53defa0
+ OBJ: TBranch	L1_DoubleMu4p5er2p0_SQ_OS_Mass7to18	Trigger/flag bit (process: NANO) : 0 at: 0x53e02c0
+ OBJ: TBranch	L1_DoubleMu5Upsilon_OS_DoubleEG3	Trigger/flag bit (process: NANO) : 0 at: 0x53e1610
+ OBJ: TBranch	L1_DoubleMu5_SQ_EG9er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x53e2960
+ OBJ: TBranch	L1_DoubleMu9_SQ	Trigger/flag bit (process: NANO) : 0 at: 0x53e3c80
+ OBJ: TBranch	L1_DoubleMu_12_5	Trigger/flag bit (process: NANO) : 0 at: 0x53e4f70
+ OBJ: TBranch	L1_DoubleMu_15_5_SQ	Trigger/flag bit (process: NANO) : 0 at: 0x53e6290
+ OBJ: TBranch	L1_DoubleMu_15_7	Trigger/flag bit (process: NANO) : 0 at: 0x53e75b0
+ OBJ: TBranch	L1_DoubleMu_15_7_Mass_Min1	Trigger/flag bit (process: NANO) : 0 at: 0x53e88d0
+ OBJ: TBranch	L1_DoubleMu_15_7_SQ	Trigger/flag bit (process: NANO) : 0 at: 0x53e9bf0
+ OBJ: TBranch	L1_DoubleTau70er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x53eaf10
+ OBJ: TBranch	L1_ETM120	Trigger/flag bit (process: NANO) : 0 at: 0x53ec230
+ OBJ: TBranch	L1_ETM150	Trigger/flag bit (process: NANO) : 0 at: 0x53ed4c0
+ OBJ: TBranch	L1_ETMHF100	Trigger/flag bit (process: NANO) : 0 at: 0x53ee750
+ OBJ: TBranch	L1_ETMHF100_HTT60er	Trigger/flag bit (process: NANO) : 0 at: 0x53ef9e0
+ OBJ: TBranch	L1_ETMHF110	Trigger/flag bit (process: NANO) : 0 at: 0x53f0d00
+ OBJ: TBranch	L1_ETMHF110_HTT60er	Trigger/flag bit (process: NANO) : 0 at: 0x53f1f90
+ OBJ: TBranch	L1_ETMHF110_HTT60er_NotSecondBunchInTrain	Trigger/flag bit (process: NANO) : 0 at: 0x53f32b0
+ OBJ: TBranch	L1_ETMHF120	Trigger/flag bit (process: NANO) : 0 at: 0x53f4600
+ OBJ: TBranch	L1_ETMHF120_HTT60er	Trigger/flag bit (process: NANO) : 0 at: 0x53f5890
+ OBJ: TBranch	L1_ETMHF120_NotSecondBunchInTrain	Trigger/flag bit (process: NANO) : 0 at: 0x53f6bb0
+ OBJ: TBranch	L1_ETMHF130	Trigger/flag bit (process: NANO) : 0 at: 0x53f7f00
+ OBJ: TBranch	L1_ETMHF130_HTT60er	Trigger/flag bit (process: NANO) : 0 at: 0x53f9190
+ OBJ: TBranch	L1_ETMHF140	Trigger/flag bit (process: NANO) : 0 at: 0x53fa4b0
+ OBJ: TBranch	L1_ETMHF150	Trigger/flag bit (process: NANO) : 0 at: 0x53fb740
+ OBJ: TBranch	L1_ETMHF90_HTT60er	Trigger/flag bit (process: NANO) : 0 at: 0x53fc9d0
+ OBJ: TBranch	L1_ETT1200	Trigger/flag bit (process: NANO) : 0 at: 0x53fdcf0
+ OBJ: TBranch	L1_ETT1600	Trigger/flag bit (process: NANO) : 0 at: 0x53fef80
+ OBJ: TBranch	L1_ETT2000	Trigger/flag bit (process: NANO) : 0 at: 0x5400210
+ OBJ: TBranch	L1_FirstBunchAfterTrain	Trigger/flag bit (process: NANO) : 0 at: 0x54014a0
+ OBJ: TBranch	L1_FirstBunchBeforeTrain	Trigger/flag bit (process: NANO) : 0 at: 0x54027c0
+ OBJ: TBranch	L1_FirstBunchInTrain	Trigger/flag bit (process: NANO) : 0 at: 0x5403ae0
+ OBJ: TBranch	L1_FirstCollisionInOrbit	Trigger/flag bit (process: NANO) : 0 at: 0x5404e00
+ OBJ: TBranch	L1_FirstCollisionInTrain	Trigger/flag bit (process: NANO) : 0 at: 0x5406120
+ OBJ: TBranch	L1_HCAL_LaserMon_Trig	Trigger/flag bit (process: NANO) : 0 at: 0x5407440
+ OBJ: TBranch	L1_HCAL_LaserMon_Veto	Trigger/flag bit (process: NANO) : 0 at: 0x5408760
+ OBJ: TBranch	L1_HTT120er	Trigger/flag bit (process: NANO) : 0 at: 0x5409a80
+ OBJ: TBranch	L1_HTT160er	Trigger/flag bit (process: NANO) : 0 at: 0x540ad10
+ OBJ: TBranch	L1_HTT200er	Trigger/flag bit (process: NANO) : 0 at: 0x540bfa0
+ OBJ: TBranch	L1_HTT255er	Trigger/flag bit (process: NANO) : 0 at: 0x540d230
+ OBJ: TBranch	L1_HTT280er	Trigger/flag bit (process: NANO) : 0 at: 0x540e4c0
+ OBJ: TBranch	L1_HTT280er_QuadJet_70_55_40_35_er2p4	Trigger/flag bit (process: NANO) : 0 at: 0x540f750
+ OBJ: TBranch	L1_HTT320er	Trigger/flag bit (process: NANO) : 0 at: 0x5410aa0
+ OBJ: TBranch	L1_HTT320er_QuadJet_70_55_40_40_er2p4	Trigger/flag bit (process: NANO) : 0 at: 0x5411d30
+ OBJ: TBranch	L1_HTT320er_QuadJet_80_60_er2p1_45_40_er2p3	Trigger/flag bit (process: NANO) : 0 at: 0x5413080
+ OBJ: TBranch	L1_HTT320er_QuadJet_80_60_er2p1_50_45_er2p3	Trigger/flag bit (process: NANO) : 0 at: 0x54143d0
+ OBJ: TBranch	L1_HTT360er	Trigger/flag bit (process: NANO) : 0 at: 0x5415720
+ OBJ: TBranch	L1_HTT400er	Trigger/flag bit (process: NANO) : 0 at: 0x54169b0
+ OBJ: TBranch	L1_HTT450er	Trigger/flag bit (process: NANO) : 0 at: 0x5417c40
+ OBJ: TBranch	L1_IsoEG32er2p5_Mt40	Trigger/flag bit (process: NANO) : 0 at: 0x5418ed0
+ OBJ: TBranch	L1_IsoEG32er2p5_Mt44	Trigger/flag bit (process: NANO) : 0 at: 0x541a1f0
+ OBJ: TBranch	L1_IsoEG32er2p5_Mt48	Trigger/flag bit (process: NANO) : 0 at: 0x541b510
+ OBJ: TBranch	L1_IsoTau40er2p1_ETMHF100	Trigger/flag bit (process: NANO) : 0 at: 0x541c830
+ OBJ: TBranch	L1_IsoTau40er2p1_ETMHF110	Trigger/flag bit (process: NANO) : 0 at: 0x541db50
+ OBJ: TBranch	L1_IsoTau40er2p1_ETMHF120	Trigger/flag bit (process: NANO) : 0 at: 0x541ee70
+ OBJ: TBranch	L1_IsoTau40er2p1_ETMHF90	Trigger/flag bit (process: NANO) : 0 at: 0x5420190
+ OBJ: TBranch	L1_IsolatedBunch	Trigger/flag bit (process: NANO) : 0 at: 0x54214b0
+ OBJ: TBranch	L1_LastBunchInTrain	Trigger/flag bit (process: NANO) : 0 at: 0x54227d0
+ OBJ: TBranch	L1_LastCollisionInTrain	Trigger/flag bit (process: NANO) : 0 at: 0x5423af0
+ OBJ: TBranch	L1_LooseIsoEG22er2p1_IsoTau26er2p1_dR_Min0p3	Trigger/flag bit (process: NANO) : 0 at: 0x5424e10
+ OBJ: TBranch	L1_LooseIsoEG22er2p1_Tau70er2p1_dR_Min0p3	Trigger/flag bit (process: NANO) : 0 at: 0x5426160
+ OBJ: TBranch	L1_LooseIsoEG24er2p1_HTT100er	Trigger/flag bit (process: NANO) : 0 at: 0x54274b0
+ OBJ: TBranch	L1_LooseIsoEG24er2p1_IsoTau27er2p1_dR_Min0p3	Trigger/flag bit (process: NANO) : 0 at: 0x54287d0
+ OBJ: TBranch	L1_LooseIsoEG26er2p1_HTT100er	Trigger/flag bit (process: NANO) : 0 at: 0x5429b20
+ OBJ: TBranch	L1_LooseIsoEG26er2p1_Jet34er2p5_dR_Min0p3	Trigger/flag bit (process: NANO) : 0 at: 0x542ae40
+ OBJ: TBranch	L1_LooseIsoEG28er2p1_HTT100er	Trigger/flag bit (process: NANO) : 0 at: 0x542c190
+ OBJ: TBranch	L1_LooseIsoEG28er2p1_Jet34er2p5_dR_Min0p3	Trigger/flag bit (process: NANO) : 0 at: 0x542d4b0
+ OBJ: TBranch	L1_LooseIsoEG30er2p1_HTT100er	Trigger/flag bit (process: NANO) : 0 at: 0x542e800
+ OBJ: TBranch	L1_LooseIsoEG30er2p1_Jet34er2p5_dR_Min0p3	Trigger/flag bit (process: NANO) : 0 at: 0x542fb20
+ OBJ: TBranch	L1_MinimumBiasHF0_AND_BptxAND	Trigger/flag bit (process: NANO) : 0 at: 0x5430e70
+ OBJ: TBranch	L1_Mu10er2p3_Jet32er2p3_dR_Max0p4_DoubleJet32er2p3_dEta_Max1p6	Trigger/flag bit (process: NANO) : 0 at: 0x5432190
+ OBJ: TBranch	L1_Mu12er2p3_Jet40er2p1_dR_Max0p4_DoubleJet40er2p1_dEta_Max1p6	Trigger/flag bit (process: NANO) : 0 at: 0x5433510
+ OBJ: TBranch	L1_Mu12er2p3_Jet40er2p3_dR_Max0p4_DoubleJet40er2p3_dEta_Max1p6	Trigger/flag bit (process: NANO) : 0 at: 0x5434890
+ OBJ: TBranch	L1_Mu18er2p1_Tau24er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x5435c10
+ OBJ: TBranch	L1_Mu18er2p1_Tau26er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x5436f30
+ OBJ: TBranch	L1_Mu20_EG10er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5438250
+ OBJ: TBranch	L1_Mu22er2p1_IsoTau32er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x5439570
+ OBJ: TBranch	L1_Mu22er2p1_IsoTau34er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x543a890
+ OBJ: TBranch	L1_Mu22er2p1_IsoTau36er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x543bbb0
+ OBJ: TBranch	L1_Mu22er2p1_IsoTau40er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x543ced0
+ OBJ: TBranch	L1_Mu22er2p1_Tau70er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x543e1f0
+ OBJ: TBranch	L1_Mu3_Jet120er2p5_dR_Max0p4	Trigger/flag bit (process: NANO) : 0 at: 0x543f510
+ OBJ: TBranch	L1_Mu3_Jet120er2p5_dR_Max0p8	Trigger/flag bit (process: NANO) : 0 at: 0x5440830
+ OBJ: TBranch	L1_Mu3_Jet16er2p5_dR_Max0p4	Trigger/flag bit (process: NANO) : 0 at: 0x5441b50
+ OBJ: TBranch	L1_Mu3_Jet30er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5442e70
+ OBJ: TBranch	L1_Mu3_Jet35er2p5_dR_Max0p4	Trigger/flag bit (process: NANO) : 0 at: 0x5444190
+ OBJ: TBranch	L1_Mu3_Jet60er2p5_dR_Max0p4	Trigger/flag bit (process: NANO) : 0 at: 0x54454b0
+ OBJ: TBranch	L1_Mu3_Jet80er2p5_dR_Max0p4	Trigger/flag bit (process: NANO) : 0 at: 0x54467d0
+ OBJ: TBranch	L1_Mu3er1p5_Jet100er2p5_ETMHF40	Trigger/flag bit (process: NANO) : 0 at: 0x5447af0
+ OBJ: TBranch	L1_Mu3er1p5_Jet100er2p5_ETMHF50	Trigger/flag bit (process: NANO) : 0 at: 0x5448e10
+ OBJ: TBranch	L1_Mu5_EG23er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x544a130
+ OBJ: TBranch	L1_Mu5_LooseIsoEG20er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x544b450
+ OBJ: TBranch	L1_Mu6_DoubleEG10er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x544c770
+ OBJ: TBranch	L1_Mu6_DoubleEG12er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x544da90
+ OBJ: TBranch	L1_Mu6_DoubleEG15er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x544edb0
+ OBJ: TBranch	L1_Mu6_DoubleEG17er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54500d0
+ OBJ: TBranch	L1_Mu6_HTT240er	Trigger/flag bit (process: NANO) : 0 at: 0x54513f0
+ OBJ: TBranch	L1_Mu6_HTT250er	Trigger/flag bit (process: NANO) : 0 at: 0x54526e0
+ OBJ: TBranch	L1_Mu7_EG23er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54539d0
+ OBJ: TBranch	L1_Mu7_LooseIsoEG20er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5454cf0
+ OBJ: TBranch	L1_Mu7_LooseIsoEG23er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5456010
+ OBJ: TBranch	L1_NotBptxOR	Trigger/flag bit (process: NANO) : 0 at: 0x5457330
+ OBJ: TBranch	L1_QuadJet36er2p5_IsoTau52er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x54585c0
+ OBJ: TBranch	L1_QuadJet60er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54598e0
+ OBJ: TBranch	L1_QuadJet_95_75_65_20_DoubleJet_75_65_er2p5_Jet20_FWD3p0	Trigger/flag bit (process: NANO) : 0 at: 0x545ac00
+ OBJ: TBranch	L1_QuadMu0	Trigger/flag bit (process: NANO) : 0 at: 0x545bf80
+ OBJ: TBranch	L1_QuadMu0_OQ	Trigger/flag bit (process: NANO) : 0 at: 0x545d210
+ OBJ: TBranch	L1_QuadMu0_SQ	Trigger/flag bit (process: NANO) : 0 at: 0x545e4a0
+ OBJ: TBranch	L1_SecondBunchInTrain	Trigger/flag bit (process: NANO) : 0 at: 0x545f730
+ OBJ: TBranch	L1_SecondLastBunchInTrain	Trigger/flag bit (process: NANO) : 0 at: 0x5460a50
+ OBJ: TBranch	L1_SingleEG10er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5461d70
+ OBJ: TBranch	L1_SingleEG15er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5463090
+ OBJ: TBranch	L1_SingleEG26er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54643b0
+ OBJ: TBranch	L1_SingleEG34er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54656d0
+ OBJ: TBranch	L1_SingleEG36er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54669f0
+ OBJ: TBranch	L1_SingleEG38er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5467d10
+ OBJ: TBranch	L1_SingleEG40er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5469030
+ OBJ: TBranch	L1_SingleEG42er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x546a350
+ OBJ: TBranch	L1_SingleEG45er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x546b670
+ OBJ: TBranch	L1_SingleEG50	Trigger/flag bit (process: NANO) : 0 at: 0x546c990
+ OBJ: TBranch	L1_SingleEG60	Trigger/flag bit (process: NANO) : 0 at: 0x546dc20
+ OBJ: TBranch	L1_SingleEG8er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x546eeb0
+ OBJ: TBranch	L1_SingleIsoEG24er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x54701d0
+ OBJ: TBranch	L1_SingleIsoEG24er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x54714f0
+ OBJ: TBranch	L1_SingleIsoEG26er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x5472810
+ OBJ: TBranch	L1_SingleIsoEG26er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x5473b30
+ OBJ: TBranch	L1_SingleIsoEG26er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5474e50
+ OBJ: TBranch	L1_SingleIsoEG28er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x5476170
+ OBJ: TBranch	L1_SingleIsoEG28er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x5477490
+ OBJ: TBranch	L1_SingleIsoEG28er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54787b0
+ OBJ: TBranch	L1_SingleIsoEG30er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x5479ad0
+ OBJ: TBranch	L1_SingleIsoEG30er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x547adf0
+ OBJ: TBranch	L1_SingleIsoEG32er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x547c110
+ OBJ: TBranch	L1_SingleIsoEG32er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x547d430
+ OBJ: TBranch	L1_SingleIsoEG34er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x547e750
+ OBJ: TBranch	L1_SingleJet10erHE	Trigger/flag bit (process: NANO) : 0 at: 0x547fa70
+ OBJ: TBranch	L1_SingleJet120	Trigger/flag bit (process: NANO) : 0 at: 0x5480d90
+ OBJ: TBranch	L1_SingleJet120_FWD3p0	Trigger/flag bit (process: NANO) : 0 at: 0x5482080
+ OBJ: TBranch	L1_SingleJet120er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54833a0
+ OBJ: TBranch	L1_SingleJet12erHE	Trigger/flag bit (process: NANO) : 0 at: 0x54846c0
+ OBJ: TBranch	L1_SingleJet140er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54859e0
+ OBJ: TBranch	L1_SingleJet140er2p5_ETMHF80	Trigger/flag bit (process: NANO) : 0 at: 0x5486d00
+ OBJ: TBranch	L1_SingleJet140er2p5_ETMHF90	Trigger/flag bit (process: NANO) : 0 at: 0x5488020
+ OBJ: TBranch	L1_SingleJet160er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5489340
+ OBJ: TBranch	L1_SingleJet180	Trigger/flag bit (process: NANO) : 0 at: 0x548a660
+ OBJ: TBranch	L1_SingleJet180er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x548b950
+ OBJ: TBranch	L1_SingleJet200	Trigger/flag bit (process: NANO) : 0 at: 0x548cc70
+ OBJ: TBranch	L1_SingleJet20er2p5_NotBptxOR	Trigger/flag bit (process: NANO) : 0 at: 0x548df60
+ OBJ: TBranch	L1_SingleJet20er2p5_NotBptxOR_3BX	Trigger/flag bit (process: NANO) : 0 at: 0x548f280
+ OBJ: TBranch	L1_SingleJet35	Trigger/flag bit (process: NANO) : 0 at: 0x54905d0
+ OBJ: TBranch	L1_SingleJet35_FWD3p0	Trigger/flag bit (process: NANO) : 0 at: 0x5491860
+ OBJ: TBranch	L1_SingleJet35er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5492b80
+ OBJ: TBranch	L1_SingleJet43er2p5_NotBptxOR_3BX	Trigger/flag bit (process: NANO) : 0 at: 0x5493ea0
+ OBJ: TBranch	L1_SingleJet46er2p5_NotBptxOR_3BX	Trigger/flag bit (process: NANO) : 0 at: 0x54951f0
+ OBJ: TBranch	L1_SingleJet60	Trigger/flag bit (process: NANO) : 0 at: 0x5496540
+ OBJ: TBranch	L1_SingleJet60_FWD3p0	Trigger/flag bit (process: NANO) : 0 at: 0x54977d0
+ OBJ: TBranch	L1_SingleJet60er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5498af0
+ OBJ: TBranch	L1_SingleJet8erHE	Trigger/flag bit (process: NANO) : 0 at: 0x5499e10
+ OBJ: TBranch	L1_SingleJet90	Trigger/flag bit (process: NANO) : 0 at: 0x549b130
+ OBJ: TBranch	L1_SingleJet90_FWD3p0	Trigger/flag bit (process: NANO) : 0 at: 0x549c3c0
+ OBJ: TBranch	L1_SingleJet90er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x549d6e0
+ OBJ: TBranch	L1_SingleLooseIsoEG28er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x549ea00
+ OBJ: TBranch	L1_SingleLooseIsoEG30er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x549fd20
+ OBJ: TBranch	L1_SingleMu0_BMTF	Trigger/flag bit (process: NANO) : 0 at: 0x54a1040
+ OBJ: TBranch	L1_SingleMu0_DQ	Trigger/flag bit (process: NANO) : 0 at: 0x54a2360
+ OBJ: TBranch	L1_SingleMu0_EMTF	Trigger/flag bit (process: NANO) : 0 at: 0x54a3650
+ OBJ: TBranch	L1_SingleMu0_OMTF	Trigger/flag bit (process: NANO) : 0 at: 0x54a4970
+ OBJ: TBranch	L1_SingleMu10er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x54a5c90
+ OBJ: TBranch	L1_SingleMu12_DQ_BMTF	Trigger/flag bit (process: NANO) : 0 at: 0x54a6fb0
+ OBJ: TBranch	L1_SingleMu12_DQ_EMTF	Trigger/flag bit (process: NANO) : 0 at: 0x54a82d0
+ OBJ: TBranch	L1_SingleMu12_DQ_OMTF	Trigger/flag bit (process: NANO) : 0 at: 0x54a95f0
+ OBJ: TBranch	L1_SingleMu12er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x54aa910
+ OBJ: TBranch	L1_SingleMu14er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x54abc30
+ OBJ: TBranch	L1_SingleMu15_DQ	Trigger/flag bit (process: NANO) : 0 at: 0x54acf50
+ OBJ: TBranch	L1_SingleMu16er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x54ae270
+ OBJ: TBranch	L1_SingleMu18	Trigger/flag bit (process: NANO) : 0 at: 0x54af590
+ OBJ: TBranch	L1_SingleMu18er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x54b0820
+ OBJ: TBranch	L1_SingleMu20	Trigger/flag bit (process: NANO) : 0 at: 0x54b1b40
+ OBJ: TBranch	L1_SingleMu22	Trigger/flag bit (process: NANO) : 0 at: 0x54b2dd0
+ OBJ: TBranch	L1_SingleMu22_BMTF	Trigger/flag bit (process: NANO) : 0 at: 0x54b4060
+ OBJ: TBranch	L1_SingleMu22_EMTF	Trigger/flag bit (process: NANO) : 0 at: 0x54b5380
+ OBJ: TBranch	L1_SingleMu22_OMTF	Trigger/flag bit (process: NANO) : 0 at: 0x54b66a0
+ OBJ: TBranch	L1_SingleMu25	Trigger/flag bit (process: NANO) : 0 at: 0x54b79c0
+ OBJ: TBranch	L1_SingleMu3	Trigger/flag bit (process: NANO) : 0 at: 0x54b8c50
+ OBJ: TBranch	L1_SingleMu5	Trigger/flag bit (process: NANO) : 0 at: 0x54b9ee0
+ OBJ: TBranch	L1_SingleMu6er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x54bb170
+ OBJ: TBranch	L1_SingleMu7	Trigger/flag bit (process: NANO) : 0 at: 0x54bc490
+ OBJ: TBranch	L1_SingleMu7_DQ	Trigger/flag bit (process: NANO) : 0 at: 0x54bd720
+ OBJ: TBranch	L1_SingleMu7er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x54bea10
+ OBJ: TBranch	L1_SingleMu8er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x54bfd30
+ OBJ: TBranch	L1_SingleMu9er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x54c1050
+ OBJ: TBranch	L1_SingleMuCosmics	Trigger/flag bit (process: NANO) : 0 at: 0x54c2370
+ OBJ: TBranch	L1_SingleMuCosmics_BMTF	Trigger/flag bit (process: NANO) : 0 at: 0x54c3690
+ OBJ: TBranch	L1_SingleMuCosmics_EMTF	Trigger/flag bit (process: NANO) : 0 at: 0x54c49b0
+ OBJ: TBranch	L1_SingleMuCosmics_OMTF	Trigger/flag bit (process: NANO) : 0 at: 0x54c5cd0
+ OBJ: TBranch	L1_SingleMuOpen	Trigger/flag bit (process: NANO) : 0 at: 0x54c6ff0
+ OBJ: TBranch	L1_SingleMuOpen_NotBptxOR	Trigger/flag bit (process: NANO) : 0 at: 0x54c82e0
+ OBJ: TBranch	L1_SingleMuOpen_er1p1_NotBptxOR_3BX	Trigger/flag bit (process: NANO) : 0 at: 0x54c9600
+ OBJ: TBranch	L1_SingleMuOpen_er1p4_NotBptxOR_3BX	Trigger/flag bit (process: NANO) : 0 at: 0x54ca950
+ OBJ: TBranch	L1_SingleTau120er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x54cbca0
+ OBJ: TBranch	L1_SingleTau130er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x54ccfc0
+ OBJ: TBranch	L1_TOTEM_1	Trigger/flag bit (process: NANO) : 0 at: 0x54ce2e0
+ OBJ: TBranch	L1_TOTEM_2	Trigger/flag bit (process: NANO) : 0 at: 0x54cf570
+ OBJ: TBranch	L1_TOTEM_3	Trigger/flag bit (process: NANO) : 0 at: 0x54d0800
+ OBJ: TBranch	L1_TOTEM_4	Trigger/flag bit (process: NANO) : 0 at: 0x54d1a90
+ OBJ: TBranch	L1_TripleEG16er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54d2d20
+ OBJ: TBranch	L1_TripleEG_16_12_8_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54d4040
+ OBJ: TBranch	L1_TripleEG_16_15_8_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54d5360
+ OBJ: TBranch	L1_TripleEG_18_17_8_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54d6680
+ OBJ: TBranch	L1_TripleEG_18_18_12_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54d79a0
+ OBJ: TBranch	L1_TripleJet_100_80_70_DoubleJet_80_70_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54d8cc0
+ OBJ: TBranch	L1_TripleJet_105_85_75_DoubleJet_85_75_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54da010
+ OBJ: TBranch	L1_TripleJet_95_75_65_DoubleJet_75_65_er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54db360
+ OBJ: TBranch	L1_TripleMu0	Trigger/flag bit (process: NANO) : 0 at: 0x54dc6b0
+ OBJ: TBranch	L1_TripleMu0_OQ	Trigger/flag bit (process: NANO) : 0 at: 0x54dd940
+ OBJ: TBranch	L1_TripleMu0_SQ	Trigger/flag bit (process: NANO) : 0 at: 0x54dec30
+ OBJ: TBranch	L1_TripleMu3	Trigger/flag bit (process: NANO) : 0 at: 0x54dff20
+ OBJ: TBranch	L1_TripleMu3_SQ	Trigger/flag bit (process: NANO) : 0 at: 0x54e11b0
+ OBJ: TBranch	L1_TripleMu_5SQ_3SQ_0OQ	Trigger/flag bit (process: NANO) : 0 at: 0x54e24a0
+ OBJ: TBranch	L1_TripleMu_5SQ_3SQ_0OQ_DoubleMu_5_3_SQ_OS_Mass_Max9	Trigger/flag bit (process: NANO) : 0 at: 0x54e37c0
+ OBJ: TBranch	L1_TripleMu_5SQ_3SQ_0_DoubleMu_5_3_SQ_OS_Mass_Max9	Trigger/flag bit (process: NANO) : 0 at: 0x54e4b40
+ OBJ: TBranch	L1_TripleMu_5_3_3	Trigger/flag bit (process: NANO) : 0 at: 0x54e5ec0
+ OBJ: TBranch	L1_TripleMu_5_3_3_SQ	Trigger/flag bit (process: NANO) : 0 at: 0x54e71e0
+ OBJ: TBranch	L1_TripleMu_5_3p5_2p5	Trigger/flag bit (process: NANO) : 0 at: 0x54e8500
+ OBJ: TBranch	L1_TripleMu_5_3p5_2p5_DoubleMu_5_2p5_OS_Mass_5to17	Trigger/flag bit (process: NANO) : 0 at: 0x54e9820
+ OBJ: TBranch	L1_TripleMu_5_3p5_2p5_OQ_DoubleMu_5_2p5_OQ_OS_Mass_5to17	Trigger/flag bit (process: NANO) : 0 at: 0x54eaba0
+ OBJ: TBranch	L1_TripleMu_5_4_2p5_DoubleMu_5_2p5_OS_Mass_5to17	Trigger/flag bit (process: NANO) : 0 at: 0x54ebf20
+ OBJ: TBranch	L1_TripleMu_5_5_3	Trigger/flag bit (process: NANO) : 0 at: 0x54ed2a0
+ OBJ: TBranch	L1_UnpairedBunchBptxMinus	Trigger/flag bit (process: NANO) : 0 at: 0x54ee5c0
+ OBJ: TBranch	L1_UnpairedBunchBptxPlus	Trigger/flag bit (process: NANO) : 0 at: 0x54ef8e0
+ OBJ: TBranch	L1_ZeroBias	Trigger/flag bit (process: NANO) : 0 at: 0x54f0c00
+ OBJ: TBranch	L1_ZeroBias_copy	Trigger/flag bit (process: NANO) : 0 at: 0x54f1e90
+ OBJ: TBranch	L1Reco_step	Trigger/flag bit (process: RECO) : 0 at: 0x54f31b0
+ OBJ: TBranch	Flag_HBHENoiseFilter	Trigger/flag bit (process: RECO) : 0 at: 0x54f4440
+ OBJ: TBranch	Flag_HBHENoiseIsoFilter	Trigger/flag bit (process: RECO) : 0 at: 0x54f5760
+ OBJ: TBranch	Flag_CSCTightHaloFilter	Trigger/flag bit (process: RECO) : 0 at: 0x54f6a80
+ OBJ: TBranch	Flag_CSCTightHaloTrkMuUnvetoFilter	Trigger/flag bit (process: RECO) : 0 at: 0x54f7da0
+ OBJ: TBranch	Flag_CSCTightHalo2015Filter	Trigger/flag bit (process: RECO) : 0 at: 0x54f90f0
+ OBJ: TBranch	Flag_globalTightHalo2016Filter	Trigger/flag bit (process: RECO) : 0 at: 0x54fa410
+ OBJ: TBranch	Flag_globalSuperTightHalo2016Filter	Trigger/flag bit (process: RECO) : 0 at: 0x54fb730
+ OBJ: TBranch	Flag_HcalStripHaloFilter	Trigger/flag bit (process: RECO) : 0 at: 0x54fca80
+ OBJ: TBranch	Flag_hcalLaserEventFilter	Trigger/flag bit (process: RECO) : 0 at: 0x54fdda0
+ OBJ: TBranch	Flag_EcalDeadCellTriggerPrimitiveFilter	Trigger/flag bit (process: RECO) : 0 at: 0x54ff0c0
+ OBJ: TBranch	Flag_EcalDeadCellBoundaryEnergyFilter	Trigger/flag bit (process: RECO) : 0 at: 0x5500410
+ OBJ: TBranch	Flag_ecalBadCalibFilter	Trigger/flag bit (process: RECO) : 0 at: 0x5501760
+ OBJ: TBranch	Flag_goodVertices	Trigger/flag bit (process: RECO) : 0 at: 0x5502a80
+ OBJ: TBranch	Flag_eeBadScFilter	Trigger/flag bit (process: RECO) : 0 at: 0x5503da0
+ OBJ: TBranch	Flag_ecalLaserCorrFilter	Trigger/flag bit (process: RECO) : 0 at: 0x55050c0
+ OBJ: TBranch	Flag_trkPOGFilters	Trigger/flag bit (process: RECO) : 0 at: 0x55063e0
+ OBJ: TBranch	Flag_chargedHadronTrackResolutionFilter	Trigger/flag bit (process: RECO) : 0 at: 0x5507700
+ OBJ: TBranch	Flag_muonBadTrackFilter	Trigger/flag bit (process: RECO) : 0 at: 0x5508a50
+ OBJ: TBranch	Flag_BadChargedCandidateFilter	Trigger/flag bit (process: RECO) : 0 at: 0x5509d70
+ OBJ: TBranch	Flag_BadPFMuonFilter	Trigger/flag bit (process: RECO) : 0 at: 0x550b090
+ OBJ: TBranch	Flag_BadChargedCandidateSummer16Filter	Trigger/flag bit (process: RECO) : 0 at: 0x550c3b0
+ OBJ: TBranch	Flag_BadPFMuonSummer16Filter	Trigger/flag bit (process: RECO) : 0 at: 0x550d700
+ OBJ: TBranch	Flag_trkPOG_manystripclus53X	Trigger/flag bit (process: RECO) : 0 at: 0x550ea20
+ OBJ: TBranch	Flag_trkPOG_toomanystripclus53X	Trigger/flag bit (process: RECO) : 0 at: 0x550fd40
+ OBJ: TBranch	Flag_trkPOG_logErrorTooManyClusters	Trigger/flag bit (process: RECO) : 0 at: 0x5511060
+ OBJ: TBranch	Flag_METFilters	Trigger/flag bit (process: RECO) : 0 at: 0x55123b0
+ OBJ: TBranch	HLTriggerFirstPath	Trigger/flag bit (process: HLT) : 0 at: 0x55136a0
+ OBJ: TBranch	HLT_AK8PFJet360_TrimMass30	Trigger/flag bit (process: HLT) : 0 at: 0x55149b0
+ OBJ: TBranch	HLT_AK8PFJet380_TrimMass30	Trigger/flag bit (process: HLT) : 0 at: 0x5515cc0
+ OBJ: TBranch	HLT_AK8PFJet400_TrimMass30	Trigger/flag bit (process: HLT) : 0 at: 0x5516fd0
+ OBJ: TBranch	HLT_AK8PFJet420_TrimMass30	Trigger/flag bit (process: HLT) : 0 at: 0x55182e0
+ OBJ: TBranch	HLT_AK8PFHT750_TrimMass50	Trigger/flag bit (process: HLT) : 0 at: 0x5335ee0
+ OBJ: TBranch	HLT_AK8PFHT800_TrimMass50	Trigger/flag bit (process: HLT) : 0 at: 0x53371f0
+ OBJ: TBranch	HLT_AK8PFHT850_TrimMass50	Trigger/flag bit (process: HLT) : 0 at: 0x5338500
+ OBJ: TBranch	HLT_AK8PFHT900_TrimMass50	Trigger/flag bit (process: HLT) : 0 at: 0x5339810
+ OBJ: TBranch	HLT_CaloJet500_NoJetID	Trigger/flag bit (process: HLT) : 0 at: 0x533ab20
+ OBJ: TBranch	HLT_CaloJet550_NoJetID	Trigger/flag bit (process: HLT) : 0 at: 0x533be30
+ OBJ: TBranch	HLT_DoubleMu5_Upsilon_DoubleEle3_CaloIdL_TrackIdL	Trigger/flag bit (process: HLT) : 0 at: 0x533d140
+ OBJ: TBranch	HLT_DoubleMu3_DoubleEle7p5_CaloIdL_TrackIdL_Upsilon	Trigger/flag bit (process: HLT) : 0 at: 0x533e4b0
+ OBJ: TBranch	HLT_Trimuon5_3p5_2_Upsilon_Muon	Trigger/flag bit (process: HLT) : 0 at: 0x533f820
+ OBJ: TBranch	HLT_TrimuonOpen_5_3p5_2_Upsilon_Muon	Trigger/flag bit (process: HLT) : 0 at: 0x5340b30
+ OBJ: TBranch	HLT_DoubleEle25_CaloIdL_MW	Trigger/flag bit (process: HLT) : 0 at: 0x5341e70
+ OBJ: TBranch	HLT_DoubleEle27_CaloIdL_MW	Trigger/flag bit (process: HLT) : 0 at: 0x5343180
+ OBJ: TBranch	HLT_DoubleEle33_CaloIdL_MW	Trigger/flag bit (process: HLT) : 0 at: 0x5344490
+ OBJ: TBranch	HLT_DoubleEle24_eta2p1_WPTight_Gsf	Trigger/flag bit (process: HLT) : 0 at: 0x53457a0
+ OBJ: TBranch	HLT_DoubleEle8_CaloIdM_TrackIdM_Mass8_DZ_PFHT350	Trigger/flag bit (process: HLT) : 0 at: 0x5346ae0
+ OBJ: TBranch	HLT_DoubleEle8_CaloIdM_TrackIdM_Mass8_PFHT350	Trigger/flag bit (process: HLT) : 0 at: 0x5347e50
+ OBJ: TBranch	HLT_Ele27_Ele37_CaloIdL_MW	Trigger/flag bit (process: HLT) : 0 at: 0x5349190
+ OBJ: TBranch	HLT_Mu27_Ele37_CaloIdL_MW	Trigger/flag bit (process: HLT) : 0 at: 0x534a4a0
+ OBJ: TBranch	HLT_Mu37_Ele27_CaloIdL_MW	Trigger/flag bit (process: HLT) : 0 at: 0x534b7b0
+ OBJ: TBranch	HLT_Mu37_TkMu27	Trigger/flag bit (process: HLT) : 0 at: 0x5548030
+ OBJ: TBranch	HLT_DoubleMu4_3_Bs	Trigger/flag bit (process: HLT) : 0 at: 0x5549160
+ OBJ: TBranch	HLT_DoubleMu4_3_Jpsi	Trigger/flag bit (process: HLT) : 0 at: 0x554a470
+ OBJ: TBranch	HLT_DoubleMu4_JpsiTrk_Displaced	Trigger/flag bit (process: HLT) : 0 at: 0x554b780
+ OBJ: TBranch	HLT_DoubleMu4_LowMassNonResonantTrk_Displaced	Trigger/flag bit (process: HLT) : 0 at: 0x554ca90
+ OBJ: TBranch	HLT_DoubleMu3_Trk_Tau3mu	Trigger/flag bit (process: HLT) : 0 at: 0x554ddd0
+ OBJ: TBranch	HLT_DoubleMu3_TkMu_DsTau3Mu	Trigger/flag bit (process: HLT) : 0 at: 0x554f0e0
+ OBJ: TBranch	HLT_DoubleMu4_PsiPrimeTrk_Displaced	Trigger/flag bit (process: HLT) : 0 at: 0x55503f0
+ OBJ: TBranch	HLT_DoubleMu4_Mass3p8_DZ_PFHT350	Trigger/flag bit (process: HLT) : 0 at: 0x5551730
+ OBJ: TBranch	HLT_Mu3_PFJet40	Trigger/flag bit (process: HLT) : 0 at: 0x5552a70
+ OBJ: TBranch	HLT_Mu7p5_L2Mu2_Jpsi	Trigger/flag bit (process: HLT) : 0 at: 0x5553d50
+ OBJ: TBranch	HLT_Mu7p5_L2Mu2_Upsilon	Trigger/flag bit (process: HLT) : 0 at: 0x5555060
+ OBJ: TBranch	HLT_Mu7p5_Track2_Jpsi	Trigger/flag bit (process: HLT) : 0 at: 0x5556370
+ OBJ: TBranch	HLT_Mu7p5_Track3p5_Jpsi	Trigger/flag bit (process: HLT) : 0 at: 0x5557680
+ OBJ: TBranch	HLT_Mu7p5_Track7_Jpsi	Trigger/flag bit (process: HLT) : 0 at: 0x5558990
+ OBJ: TBranch	HLT_Mu7p5_Track2_Upsilon	Trigger/flag bit (process: HLT) : 0 at: 0x5559ca0
+ OBJ: TBranch	HLT_Mu7p5_Track3p5_Upsilon	Trigger/flag bit (process: HLT) : 0 at: 0x555afb0
+ OBJ: TBranch	HLT_Mu7p5_Track7_Upsilon	Trigger/flag bit (process: HLT) : 0 at: 0x555c2c0
+ OBJ: TBranch	HLT_DoublePhoton33_CaloIdL	Trigger/flag bit (process: HLT) : 0 at: 0x555d5d0
+ OBJ: TBranch	HLT_DoublePhoton70	Trigger/flag bit (process: HLT) : 0 at: 0x555e8e0
+ OBJ: TBranch	HLT_DoublePhoton85	Trigger/flag bit (process: HLT) : 0 at: 0x555fbf0
+ OBJ: TBranch	HLT_Ele20_WPTight_Gsf	Trigger/flag bit (process: HLT) : 0 at: 0x5560f00
+ OBJ: TBranch	HLT_Ele15_WPLoose_Gsf	Trigger/flag bit (process: HLT) : 0 at: 0x5562210
+ OBJ: TBranch	HLT_Ele17_WPLoose_Gsf	Trigger/flag bit (process: HLT) : 0 at: 0x5563520
+ OBJ: TBranch	HLT_Ele20_WPLoose_Gsf	Trigger/flag bit (process: HLT) : 0 at: 0x5564830
+ OBJ: TBranch	HLT_Ele20_eta2p1_WPLoose_Gsf	Trigger/flag bit (process: HLT) : 0 at: 0x5565b40
+ OBJ: TBranch	HLT_DiEle27_WPTightCaloOnly_L1DoubleEG	Trigger/flag bit (process: HLT) : 0 at: 0x5566e50
+ OBJ: TBranch	HLT_Ele27_WPTight_Gsf	Trigger/flag bit (process: HLT) : 0 at: 0x5568190
+ OBJ: TBranch	HLT_Ele32_WPTight_Gsf	Trigger/flag bit (process: HLT) : 0 at: 0x55694a0
+ OBJ: TBranch	HLT_Ele35_WPTight_Gsf	Trigger/flag bit (process: HLT) : 0 at: 0x556a7b0
+ OBJ: TBranch	HLT_Ele35_WPTight_Gsf_L1EGMT	Trigger/flag bit (process: HLT) : 0 at: 0x556bac0
+ OBJ: TBranch	HLT_Ele38_WPTight_Gsf	Trigger/flag bit (process: HLT) : 0 at: 0x556cdd0
+ OBJ: TBranch	HLT_Ele40_WPTight_Gsf	Trigger/flag bit (process: HLT) : 0 at: 0x556e0e0
+ OBJ: TBranch	HLT_Ele32_WPTight_Gsf_L1DoubleEG	Trigger/flag bit (process: HLT) : 0 at: 0x556f3f0
+ OBJ: TBranch	HLT_Ele24_eta2p1_WPTight_Gsf_LooseChargedIsoPFTauHPS30_eta2p1_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x5570730
+ OBJ: TBranch	HLT_Ele24_eta2p1_WPTight_Gsf_MediumChargedIsoPFTauHPS30_eta2p1_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x5571ad0
+ OBJ: TBranch	HLT_Ele24_eta2p1_WPTight_Gsf_TightChargedIsoPFTauHPS30_eta2p1_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x5572e70
+ OBJ: TBranch	HLT_Ele24_eta2p1_WPTight_Gsf_LooseChargedIsoPFTauHPS30_eta2p1_TightID_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x5574210
+ OBJ: TBranch	HLT_Ele24_eta2p1_WPTight_Gsf_MediumChargedIsoPFTauHPS30_eta2p1_TightID_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x55755b0
+ OBJ: TBranch	HLT_Ele24_eta2p1_WPTight_Gsf_TightChargedIsoPFTauHPS30_eta2p1_TightID_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x5576950
+ OBJ: TBranch	HLT_HT450_Beamspot	Trigger/flag bit (process: HLT) : 0 at: 0x5577cf0
+ OBJ: TBranch	HLT_HT300_Beamspot	Trigger/flag bit (process: HLT) : 0 at: 0x5579000
+ OBJ: TBranch	HLT_ZeroBias_Beamspot	Trigger/flag bit (process: HLT) : 0 at: 0x557a310
+ OBJ: TBranch	HLT_IsoMu20_eta2p1_LooseChargedIsoPFTauHPS27_eta2p1_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x557b620
+ OBJ: TBranch	HLT_IsoMu20_eta2p1_MediumChargedIsoPFTauHPS27_eta2p1_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x557c990
+ OBJ: TBranch	HLT_IsoMu20_eta2p1_TightChargedIsoPFTauHPS27_eta2p1_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x557dd00
+ OBJ: TBranch	HLT_IsoMu20_eta2p1_LooseChargedIsoPFTauHPS27_eta2p1_TightID_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x557f070
+ OBJ: TBranch	HLT_IsoMu20_eta2p1_MediumChargedIsoPFTauHPS27_eta2p1_TightID_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x5580410
+ OBJ: TBranch	HLT_IsoMu20_eta2p1_TightChargedIsoPFTauHPS27_eta2p1_TightID_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x55817b0
+ OBJ: TBranch	HLT_IsoMu24_eta2p1_TightChargedIsoPFTauHPS35_Trk1_eta2p1_Reg_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x5582b50
+ OBJ: TBranch	HLT_IsoMu24_eta2p1_MediumChargedIsoPFTauHPS35_Trk1_TightID_eta2p1_Reg_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x5583ef0
+ OBJ: TBranch	HLT_IsoMu24_eta2p1_TightChargedIsoPFTauHPS35_Trk1_TightID_eta2p1_Reg_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x5585290
+ OBJ: TBranch	HLT_IsoMu24_eta2p1_MediumChargedIsoPFTauHPS35_Trk1_eta2p1_Reg_CrossL1	Trigger/flag bit (process: HLT) : 0 at: 0x5586630
+ OBJ: TBranch	HLT_IsoMu27_LooseChargedIsoPFTauHPS20_Trk1_eta2p1_SingleL1	Trigger/flag bit (process: HLT) : 0 at: 0x55879d0
+ OBJ: TBranch	HLT_IsoMu27_MediumChargedIsoPFTauHPS20_Trk1_eta2p1_SingleL1	Trigger/flag bit (process: HLT) : 0 at: 0x5588d40
+ OBJ: TBranch	HLT_IsoMu27_TightChargedIsoPFTauHPS20_Trk1_eta2p1_SingleL1	Trigger/flag bit (process: HLT) : 0 at: 0x558a0b0
+ OBJ: TBranch	HLT_IsoMu20	Trigger/flag bit (process: HLT) : 0 at: 0x558b420
+ OBJ: TBranch	HLT_IsoMu24	Trigger/flag bit (process: HLT) : 0 at: 0x558c6a0
+ OBJ: TBranch	HLT_IsoMu24_eta2p1	Trigger/flag bit (process: HLT) : 0 at: 0x558d920
+ OBJ: TBranch	HLT_IsoMu27	Trigger/flag bit (process: HLT) : 0 at: 0x558ec30
+ OBJ: TBranch	HLT_IsoMu30	Trigger/flag bit (process: HLT) : 0 at: 0x558feb0
+ OBJ: TBranch	HLT_UncorrectedJetE30_NoBPTX	Trigger/flag bit (process: HLT) : 0 at: 0x5591130
+ OBJ: TBranch	HLT_UncorrectedJetE30_NoBPTX3BX	Trigger/flag bit (process: HLT) : 0 at: 0x5592440
+ OBJ: TBranch	HLT_UncorrectedJetE60_NoBPTX3BX	Trigger/flag bit (process: HLT) : 0 at: 0x5593750
+ OBJ: TBranch	HLT_UncorrectedJetE70_NoBPTX3BX	Trigger/flag bit (process: HLT) : 0 at: 0x5594a60
+ OBJ: TBranch	HLT_L1SingleMu18	Trigger/flag bit (process: HLT) : 0 at: 0x5595d70
+ OBJ: TBranch	HLT_L1SingleMu25	Trigger/flag bit (process: HLT) : 0 at: 0x5597080
+ OBJ: TBranch	HLT_L2Mu10	Trigger/flag bit (process: HLT) : 0 at: 0x5598390
+ OBJ: TBranch	HLT_L2Mu10_NoVertex_NoBPTX3BX	Trigger/flag bit (process: HLT) : 0 at: 0x5599610
+ OBJ: TBranch	HLT_L2Mu10_NoVertex_NoBPTX	Trigger/flag bit (process: HLT) : 0 at: 0x559a920
+ OBJ: TBranch	HLT_L2Mu45_NoVertex_3Sta_NoBPTX3BX	Trigger/flag bit (process: HLT) : 0 at: 0x559bc30
+ OBJ: TBranch	HLT_L2Mu40_NoVertex_3Sta_NoBPTX3BX	Trigger/flag bit (process: HLT) : 0 at: 0x559cf70
+ OBJ: TBranch	HLT_L2Mu50	Trigger/flag bit (process: HLT) : 0 at: 0x559e2b0
+ OBJ: TBranch	HLT_L2Mu23NoVtx_2Cha	Trigger/flag bit (process: HLT) : 0 at: 0x559f530
+ OBJ: TBranch	HLT_L2Mu23NoVtx_2Cha_CosmicSeed	Trigger/flag bit (process: HLT) : 0 at: 0x55a0840
+ OBJ: TBranch	HLT_DoubleL2Mu30NoVtx_2Cha_CosmicSeed_Eta2p4	Trigger/flag bit (process: HLT) : 0 at: 0x55a1b50
+ OBJ: TBranch	HLT_DoubleL2Mu30NoVtx_2Cha_Eta2p4	Trigger/flag bit (process: HLT) : 0 at: 0x55a2e90
+ OBJ: TBranch	HLT_DoubleL2Mu50	Trigger/flag bit (process: HLT) : 0 at: 0x55a41d0
+ OBJ: TBranch	HLT_DoubleL2Mu23NoVtx_2Cha_CosmicSeed	Trigger/flag bit (process: HLT) : 0 at: 0x55a54e0
+ OBJ: TBranch	HLT_DoubleL2Mu25NoVtx_2Cha_CosmicSeed	Trigger/flag bit (process: HLT) : 0 at: 0x55a6820
+ OBJ: TBranch	HLT_DoubleL2Mu25NoVtx_2Cha_CosmicSeed_Eta2p4	Trigger/flag bit (process: HLT) : 0 at: 0x55a7b60
+ OBJ: TBranch	HLT_DoubleL2Mu23NoVtx_2Cha	Trigger/flag bit (process: HLT) : 0 at: 0x55a8ea0
+ OBJ: TBranch	HLT_DoubleL2Mu25NoVtx_2Cha	Trigger/flag bit (process: HLT) : 0 at: 0x55aa1b0
+ OBJ: TBranch	HLT_DoubleL2Mu25NoVtx_2Cha_Eta2p4	Trigger/flag bit (process: HLT) : 0 at: 0x55ab4c0
+ OBJ: TBranch	HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL	Trigger/flag bit (process: HLT) : 0 at: 0x55ac800
+ OBJ: TBranch	HLT_Mu19_TrkIsoVVL_Mu9_TrkIsoVVL	Trigger/flag bit (process: HLT) : 0 at: 0x55adb40
+ OBJ: TBranch	HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x55aee80
+ OBJ: TBranch	HLT_Mu19_TrkIsoVVL_Mu9_TrkIsoVVL_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x55b01c0
+ OBJ: TBranch	HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass8	Trigger/flag bit (process: HLT) : 0 at: 0x55b1500
+ OBJ: TBranch	HLT_Mu19_TrkIsoVVL_Mu9_TrkIsoVVL_DZ_Mass8	Trigger/flag bit (process: HLT) : 0 at: 0x55b2840
+ OBJ: TBranch	HLT_Mu17_TrkIsoVVL_Mu8_TrkIsoVVL_DZ_Mass3p8	Trigger/flag bit (process: HLT) : 0 at: 0x55b3b80
+ OBJ: TBranch	HLT_Mu19_TrkIsoVVL_Mu9_TrkIsoVVL_DZ_Mass3p8	Trigger/flag bit (process: HLT) : 0 at: 0x55b4ec0
+ OBJ: TBranch	HLT_Mu25_TkMu0_Onia	Trigger/flag bit (process: HLT) : 0 at: 0x55b6200
+ OBJ: TBranch	HLT_Mu30_TkMu0_Psi	Trigger/flag bit (process: HLT) : 0 at: 0x55b7510
+ OBJ: TBranch	HLT_Mu30_TkMu0_Upsilon	Trigger/flag bit (process: HLT) : 0 at: 0x55b8820
+ OBJ: TBranch	HLT_Mu20_TkMu0_Phi	Trigger/flag bit (process: HLT) : 0 at: 0x55b9b30
+ OBJ: TBranch	HLT_Mu25_TkMu0_Phi	Trigger/flag bit (process: HLT) : 0 at: 0x55bae40
+ OBJ: TBranch	HLT_Mu12	Trigger/flag bit (process: HLT) : 0 at: 0x55bc150
+ OBJ: TBranch	HLT_Mu15	Trigger/flag bit (process: HLT) : 0 at: 0x55bd3d0
+ OBJ: TBranch	HLT_Mu20	Trigger/flag bit (process: HLT) : 0 at: 0x55be650
+ OBJ: TBranch	HLT_Mu27	Trigger/flag bit (process: HLT) : 0 at: 0x55bf8d0
+ OBJ: TBranch	HLT_Mu50	Trigger/flag bit (process: HLT) : 0 at: 0x55c0b50
+ OBJ: TBranch	HLT_Mu55	Trigger/flag bit (process: HLT) : 0 at: 0x55c1dd0
+ OBJ: TBranch	HLT_OldMu100	Trigger/flag bit (process: HLT) : 0 at: 0x55c3050
+ OBJ: TBranch	HLT_TkMu100	Trigger/flag bit (process: HLT) : 0 at: 0x55c42d0
+ OBJ: TBranch	HLT_DiPFJetAve40	Trigger/flag bit (process: HLT) : 0 at: 0x55c5550
+ OBJ: TBranch	HLT_DiPFJetAve60	Trigger/flag bit (process: HLT) : 0 at: 0x55c6860
+ OBJ: TBranch	HLT_DiPFJetAve80	Trigger/flag bit (process: HLT) : 0 at: 0x55c7b70
+ OBJ: TBranch	HLT_DiPFJetAve140	Trigger/flag bit (process: HLT) : 0 at: 0x55c8e80
+ OBJ: TBranch	HLT_DiPFJetAve200	Trigger/flag bit (process: HLT) : 0 at: 0x55ca190
+ OBJ: TBranch	HLT_DiPFJetAve260	Trigger/flag bit (process: HLT) : 0 at: 0x55cb4a0
+ OBJ: TBranch	HLT_DiPFJetAve320	Trigger/flag bit (process: HLT) : 0 at: 0x55cc7b0
+ OBJ: TBranch	HLT_DiPFJetAve400	Trigger/flag bit (process: HLT) : 0 at: 0x55cdac0
+ OBJ: TBranch	HLT_DiPFJetAve500	Trigger/flag bit (process: HLT) : 0 at: 0x55cedd0
+ OBJ: TBranch	HLT_DiPFJetAve15_HFJEC	Trigger/flag bit (process: HLT) : 0 at: 0x55d00e0
+ OBJ: TBranch	HLT_DiPFJetAve25_HFJEC	Trigger/flag bit (process: HLT) : 0 at: 0x55d13f0
+ OBJ: TBranch	HLT_DiPFJetAve60_HFJEC	Trigger/flag bit (process: HLT) : 0 at: 0x55d2700
+ OBJ: TBranch	HLT_DiPFJetAve80_HFJEC	Trigger/flag bit (process: HLT) : 0 at: 0x55d3a10
+ OBJ: TBranch	HLT_DiPFJetAve100_HFJEC	Trigger/flag bit (process: HLT) : 0 at: 0x55d4d20
+ OBJ: TBranch	HLT_DiPFJetAve160_HFJEC	Trigger/flag bit (process: HLT) : 0 at: 0x55d6030
+ OBJ: TBranch	HLT_DiPFJetAve220_HFJEC	Trigger/flag bit (process: HLT) : 0 at: 0x55d7340
+ OBJ: TBranch	HLT_DiPFJetAve300_HFJEC	Trigger/flag bit (process: HLT) : 0 at: 0x55d8650
+ OBJ: TBranch	HLT_AK8PFJet15	Trigger/flag bit (process: HLT) : 0 at: 0x55d9960
+ OBJ: TBranch	HLT_AK8PFJet25	Trigger/flag bit (process: HLT) : 0 at: 0x55dabe0
+ OBJ: TBranch	HLT_AK8PFJet40	Trigger/flag bit (process: HLT) : 0 at: 0x55dbe60
+ OBJ: TBranch	HLT_AK8PFJet60	Trigger/flag bit (process: HLT) : 0 at: 0x55dd0e0
+ OBJ: TBranch	HLT_AK8PFJet80	Trigger/flag bit (process: HLT) : 0 at: 0x55de360
+ OBJ: TBranch	HLT_AK8PFJet140	Trigger/flag bit (process: HLT) : 0 at: 0x55df5e0
+ OBJ: TBranch	HLT_AK8PFJet200	Trigger/flag bit (process: HLT) : 0 at: 0x55e08c0
+ OBJ: TBranch	HLT_AK8PFJet260	Trigger/flag bit (process: HLT) : 0 at: 0x55e1ba0
+ OBJ: TBranch	HLT_AK8PFJet320	Trigger/flag bit (process: HLT) : 0 at: 0x55e2e80
+ OBJ: TBranch	HLT_AK8PFJet400	Trigger/flag bit (process: HLT) : 0 at: 0x55e4160
+ OBJ: TBranch	HLT_AK8PFJet450	Trigger/flag bit (process: HLT) : 0 at: 0x55e5440
+ OBJ: TBranch	HLT_AK8PFJet500	Trigger/flag bit (process: HLT) : 0 at: 0x55e6720
+ OBJ: TBranch	HLT_AK8PFJet550	Trigger/flag bit (process: HLT) : 0 at: 0x55e7a00
+ OBJ: TBranch	HLT_PFJet15	Trigger/flag bit (process: HLT) : 0 at: 0x55e8ce0
+ OBJ: TBranch	HLT_PFJet25	Trigger/flag bit (process: HLT) : 0 at: 0x55e9f60
+ OBJ: TBranch	HLT_PFJet40	Trigger/flag bit (process: HLT) : 0 at: 0x55eb1e0
+ OBJ: TBranch	HLT_PFJet60	Trigger/flag bit (process: HLT) : 0 at: 0x55ec460
+ OBJ: TBranch	HLT_PFJet80	Trigger/flag bit (process: HLT) : 0 at: 0x55ed6e0
+ OBJ: TBranch	HLT_PFJet140	Trigger/flag bit (process: HLT) : 0 at: 0x55ee960
+ OBJ: TBranch	HLT_PFJet200	Trigger/flag bit (process: HLT) : 0 at: 0x55efbe0
+ OBJ: TBranch	HLT_PFJet260	Trigger/flag bit (process: HLT) : 0 at: 0x55f0e60
+ OBJ: TBranch	HLT_PFJet320	Trigger/flag bit (process: HLT) : 0 at: 0x55f20e0
+ OBJ: TBranch	HLT_PFJet400	Trigger/flag bit (process: HLT) : 0 at: 0x55f3360
+ OBJ: TBranch	HLT_PFJet450	Trigger/flag bit (process: HLT) : 0 at: 0x55f45e0
+ OBJ: TBranch	HLT_PFJet500	Trigger/flag bit (process: HLT) : 0 at: 0x55f5860
+ OBJ: TBranch	HLT_PFJet550	Trigger/flag bit (process: HLT) : 0 at: 0x55f6ae0
+ OBJ: TBranch	HLT_PFJetFwd15	Trigger/flag bit (process: HLT) : 0 at: 0x55f7d60
+ OBJ: TBranch	HLT_PFJetFwd25	Trigger/flag bit (process: HLT) : 0 at: 0x55f8fe0
+ OBJ: TBranch	HLT_PFJetFwd40	Trigger/flag bit (process: HLT) : 0 at: 0x55fa260
+ OBJ: TBranch	HLT_PFJetFwd60	Trigger/flag bit (process: HLT) : 0 at: 0x55fb4e0
+ OBJ: TBranch	HLT_PFJetFwd80	Trigger/flag bit (process: HLT) : 0 at: 0x55fc760
+ OBJ: TBranch	HLT_PFJetFwd140	Trigger/flag bit (process: HLT) : 0 at: 0x55fd9e0
+ OBJ: TBranch	HLT_PFJetFwd200	Trigger/flag bit (process: HLT) : 0 at: 0x55fecc0
+ OBJ: TBranch	HLT_PFJetFwd260	Trigger/flag bit (process: HLT) : 0 at: 0x55fffa0
+ OBJ: TBranch	HLT_PFJetFwd320	Trigger/flag bit (process: HLT) : 0 at: 0x5601280
+ OBJ: TBranch	HLT_PFJetFwd400	Trigger/flag bit (process: HLT) : 0 at: 0x5602560
+ OBJ: TBranch	HLT_PFJetFwd450	Trigger/flag bit (process: HLT) : 0 at: 0x5603840
+ OBJ: TBranch	HLT_PFJetFwd500	Trigger/flag bit (process: HLT) : 0 at: 0x5604b20
+ OBJ: TBranch	HLT_AK8PFJetFwd15	Trigger/flag bit (process: HLT) : 0 at: 0x5605e00
+ OBJ: TBranch	HLT_AK8PFJetFwd25	Trigger/flag bit (process: HLT) : 0 at: 0x5607110
+ OBJ: TBranch	HLT_AK8PFJetFwd40	Trigger/flag bit (process: HLT) : 0 at: 0x5608420
+ OBJ: TBranch	HLT_AK8PFJetFwd60	Trigger/flag bit (process: HLT) : 0 at: 0x5609730
+ OBJ: TBranch	HLT_AK8PFJetFwd80	Trigger/flag bit (process: HLT) : 0 at: 0x560aa40
+ OBJ: TBranch	HLT_AK8PFJetFwd140	Trigger/flag bit (process: HLT) : 0 at: 0x560bd50
+ OBJ: TBranch	HLT_AK8PFJetFwd200	Trigger/flag bit (process: HLT) : 0 at: 0x560d060
+ OBJ: TBranch	HLT_AK8PFJetFwd260	Trigger/flag bit (process: HLT) : 0 at: 0x560e370
+ OBJ: TBranch	HLT_AK8PFJetFwd320	Trigger/flag bit (process: HLT) : 0 at: 0x560f680
+ OBJ: TBranch	HLT_AK8PFJetFwd400	Trigger/flag bit (process: HLT) : 0 at: 0x5610990
+ OBJ: TBranch	HLT_AK8PFJetFwd450	Trigger/flag bit (process: HLT) : 0 at: 0x5611ca0
+ OBJ: TBranch	HLT_AK8PFJetFwd500	Trigger/flag bit (process: HLT) : 0 at: 0x5612fb0
+ OBJ: TBranch	HLT_PFHT180	Trigger/flag bit (process: HLT) : 0 at: 0x56142c0
+ OBJ: TBranch	HLT_PFHT250	Trigger/flag bit (process: HLT) : 0 at: 0x5615540
+ OBJ: TBranch	HLT_PFHT370	Trigger/flag bit (process: HLT) : 0 at: 0x56167c0
+ OBJ: TBranch	HLT_PFHT430	Trigger/flag bit (process: HLT) : 0 at: 0x5617a40
+ OBJ: TBranch	HLT_PFHT510	Trigger/flag bit (process: HLT) : 0 at: 0x5618cc0
+ OBJ: TBranch	HLT_PFHT590	Trigger/flag bit (process: HLT) : 0 at: 0x5619f40
+ OBJ: TBranch	HLT_PFHT680	Trigger/flag bit (process: HLT) : 0 at: 0x561b1c0
+ OBJ: TBranch	HLT_PFHT780	Trigger/flag bit (process: HLT) : 0 at: 0x561c440
+ OBJ: TBranch	HLT_PFHT890	Trigger/flag bit (process: HLT) : 0 at: 0x561d6c0
+ OBJ: TBranch	HLT_PFHT1050	Trigger/flag bit (process: HLT) : 0 at: 0x561e940
+ OBJ: TBranch	HLT_PFHT500_PFMET100_PFMHT100_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x561fbc0
+ OBJ: TBranch	HLT_PFHT500_PFMET110_PFMHT110_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5620f00
+ OBJ: TBranch	HLT_PFHT700_PFMET85_PFMHT85_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5622240
+ OBJ: TBranch	HLT_PFHT700_PFMET95_PFMHT95_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5623580
+ OBJ: TBranch	HLT_PFHT800_PFMET75_PFMHT75_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x56248c0
+ OBJ: TBranch	HLT_PFHT800_PFMET85_PFMHT85_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5625c00
+ OBJ: TBranch	HLT_PFMET110_PFMHT110_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5626f40
+ OBJ: TBranch	HLT_PFMET120_PFMHT120_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5628250
+ OBJ: TBranch	HLT_PFMET130_PFMHT130_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5629560
+ OBJ: TBranch	HLT_PFMET140_PFMHT140_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x562a870
+ OBJ: TBranch	HLT_PFMET100_PFMHT100_IDTight_CaloBTagDeepCSV_3p1	Trigger/flag bit (process: HLT) : 0 at: 0x562bb80
+ OBJ: TBranch	HLT_PFMET110_PFMHT110_IDTight_CaloBTagDeepCSV_3p1	Trigger/flag bit (process: HLT) : 0 at: 0x562cef0
+ OBJ: TBranch	HLT_PFMET120_PFMHT120_IDTight_CaloBTagDeepCSV_3p1	Trigger/flag bit (process: HLT) : 0 at: 0x562e260
+ OBJ: TBranch	HLT_PFMET130_PFMHT130_IDTight_CaloBTagDeepCSV_3p1	Trigger/flag bit (process: HLT) : 0 at: 0x562f5d0
+ OBJ: TBranch	HLT_PFMET140_PFMHT140_IDTight_CaloBTagDeepCSV_3p1	Trigger/flag bit (process: HLT) : 0 at: 0x5630940
+ OBJ: TBranch	HLT_PFMET120_PFMHT120_IDTight_PFHT60	Trigger/flag bit (process: HLT) : 0 at: 0x5631cb0
+ OBJ: TBranch	HLT_PFMETNoMu120_PFMHTNoMu120_IDTight_PFHT60	Trigger/flag bit (process: HLT) : 0 at: 0x5632ff0
+ OBJ: TBranch	HLT_PFMETTypeOne120_PFMHT120_IDTight_PFHT60	Trigger/flag bit (process: HLT) : 0 at: 0x5634330
+ OBJ: TBranch	HLT_PFMETTypeOne110_PFMHT110_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5635670
+ OBJ: TBranch	HLT_PFMETTypeOne120_PFMHT120_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x56369b0
+ OBJ: TBranch	HLT_PFMETTypeOne130_PFMHT130_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5637cf0
+ OBJ: TBranch	HLT_PFMETTypeOne140_PFMHT140_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5639030
+ OBJ: TBranch	HLT_PFMETNoMu110_PFMHTNoMu110_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x563a370
+ OBJ: TBranch	HLT_PFMETNoMu120_PFMHTNoMu120_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x563b6b0
+ OBJ: TBranch	HLT_PFMETNoMu130_PFMHTNoMu130_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x563c9f0
+ OBJ: TBranch	HLT_PFMETNoMu140_PFMHTNoMu140_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x563dd30
+ OBJ: TBranch	HLT_MonoCentralPFJet80_PFMETNoMu110_PFMHTNoMu110_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x563f070
+ OBJ: TBranch	HLT_MonoCentralPFJet80_PFMETNoMu120_PFMHTNoMu120_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x56403e0
+ OBJ: TBranch	HLT_MonoCentralPFJet80_PFMETNoMu130_PFMHTNoMu130_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5641750
+ OBJ: TBranch	HLT_MonoCentralPFJet80_PFMETNoMu140_PFMHTNoMu140_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5642ac0
+ OBJ: TBranch	HLT_L1ETMHadSeeds	Trigger/flag bit (process: HLT) : 0 at: 0x5643e30
+ OBJ: TBranch	HLT_CaloMHT90	Trigger/flag bit (process: HLT) : 0 at: 0x5645140
+ OBJ: TBranch	HLT_CaloMET80_NotCleaned	Trigger/flag bit (process: HLT) : 0 at: 0x56463c0
+ OBJ: TBranch	HLT_CaloMET90_NotCleaned	Trigger/flag bit (process: HLT) : 0 at: 0x56476d0
+ OBJ: TBranch	HLT_CaloMET100_NotCleaned	Trigger/flag bit (process: HLT) : 0 at: 0x56489e0
+ OBJ: TBranch	HLT_CaloMET110_NotCleaned	Trigger/flag bit (process: HLT) : 0 at: 0x5649cf0
+ OBJ: TBranch	HLT_CaloMET250_NotCleaned	Trigger/flag bit (process: HLT) : 0 at: 0x564b000
+ OBJ: TBranch	HLT_CaloMET70_HBHECleaned	Trigger/flag bit (process: HLT) : 0 at: 0x564c310
+ OBJ: TBranch	HLT_CaloMET80_HBHECleaned	Trigger/flag bit (process: HLT) : 0 at: 0x564d620
+ OBJ: TBranch	HLT_CaloMET90_HBHECleaned	Trigger/flag bit (process: HLT) : 0 at: 0x564e930
+ OBJ: TBranch	HLT_CaloMET100_HBHECleaned	Trigger/flag bit (process: HLT) : 0 at: 0x564fc40
+ OBJ: TBranch	HLT_CaloMET250_HBHECleaned	Trigger/flag bit (process: HLT) : 0 at: 0x5650f50
+ OBJ: TBranch	HLT_CaloMET300_HBHECleaned	Trigger/flag bit (process: HLT) : 0 at: 0x5652260
+ OBJ: TBranch	HLT_CaloMET350_HBHECleaned	Trigger/flag bit (process: HLT) : 0 at: 0x5653570
+ OBJ: TBranch	HLT_PFMET200_NotCleaned	Trigger/flag bit (process: HLT) : 0 at: 0x5654880
+ OBJ: TBranch	HLT_PFMET200_HBHECleaned	Trigger/flag bit (process: HLT) : 0 at: 0x5655b90
+ OBJ: TBranch	HLT_PFMET250_HBHECleaned	Trigger/flag bit (process: HLT) : 0 at: 0x5656ea0
+ OBJ: TBranch	HLT_PFMET300_HBHECleaned	Trigger/flag bit (process: HLT) : 0 at: 0x56581b0
+ OBJ: TBranch	HLT_PFMET200_HBHE_BeamHaloCleaned	Trigger/flag bit (process: HLT) : 0 at: 0x56594c0
+ OBJ: TBranch	HLT_PFMETTypeOne200_HBHE_BeamHaloCleaned	Trigger/flag bit (process: HLT) : 0 at: 0x565a800
+ OBJ: TBranch	HLT_MET105_IsoTrk50	Trigger/flag bit (process: HLT) : 0 at: 0x565bb40
+ OBJ: TBranch	HLT_MET120_IsoTrk50	Trigger/flag bit (process: HLT) : 0 at: 0x565ce50
+ OBJ: TBranch	HLT_SingleJet30_Mu12_SinglePFJet40	Trigger/flag bit (process: HLT) : 0 at: 0x565e160
+ OBJ: TBranch	HLT_Mu12_DoublePFJets40_CaloBTagDeepCSV_p71	Trigger/flag bit (process: HLT) : 0 at: 0x565f4a0
+ OBJ: TBranch	HLT_Mu12_DoublePFJets100_CaloBTagDeepCSV_p71	Trigger/flag bit (process: HLT) : 0 at: 0x56607e0
+ OBJ: TBranch	HLT_Mu12_DoublePFJets200_CaloBTagDeepCSV_p71	Trigger/flag bit (process: HLT) : 0 at: 0x5661b20
+ OBJ: TBranch	HLT_Mu12_DoublePFJets350_CaloBTagDeepCSV_p71	Trigger/flag bit (process: HLT) : 0 at: 0x5662e60
+ OBJ: TBranch	HLT_Mu12_DoublePFJets40MaxDeta1p6_DoubleCaloBTagDeepCSV_p71	Trigger/flag bit (process: HLT) : 0 at: 0x56641a0
+ OBJ: TBranch	HLT_Mu12_DoublePFJets54MaxDeta1p6_DoubleCaloBTagDeepCSV_p71	Trigger/flag bit (process: HLT) : 0 at: 0x5665510
+ OBJ: TBranch	HLT_Mu12_DoublePFJets62MaxDeta1p6_DoubleCaloBTagDeepCSV_p71	Trigger/flag bit (process: HLT) : 0 at: 0x5666880
+ OBJ: TBranch	HLT_DoublePFJets40_CaloBTagDeepCSV_p71	Trigger/flag bit (process: HLT) : 0 at: 0x5667bf0
+ OBJ: TBranch	HLT_DoublePFJets100_CaloBTagDeepCSV_p71	Trigger/flag bit (process: HLT) : 0 at: 0x5668f30
+ OBJ: TBranch	HLT_DoublePFJets200_CaloBTagDeepCSV_p71	Trigger/flag bit (process: HLT) : 0 at: 0x566a270
+ OBJ: TBranch	HLT_DoublePFJets350_CaloBTagDeepCSV_p71	Trigger/flag bit (process: HLT) : 0 at: 0x566b5b0
+ OBJ: TBranch	HLT_DoublePFJets116MaxDeta1p6_DoubleCaloBTagDeepCSV_p71	Trigger/flag bit (process: HLT) : 0 at: 0x566c8f0
+ OBJ: TBranch	HLT_DoublePFJets128MaxDeta1p6_DoubleCaloBTagDeepCSV_p71	Trigger/flag bit (process: HLT) : 0 at: 0x566dc60
+ OBJ: TBranch	HLT_Photon300_NoHE	Trigger/flag bit (process: HLT) : 0 at: 0x566efd0
+ OBJ: TBranch	HLT_Mu8_TrkIsoVVL	Trigger/flag bit (process: HLT) : 0 at: 0x56702e0
+ OBJ: TBranch	HLT_Mu8_DiEle12_CaloIdL_TrackIdL_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x56715f0
+ OBJ: TBranch	HLT_Mu8_DiEle12_CaloIdL_TrackIdL	Trigger/flag bit (process: HLT) : 0 at: 0x5672930
+ OBJ: TBranch	HLT_Mu8_Ele8_CaloIdM_TrackIdM_Mass8_PFHT350_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x5673c70
+ OBJ: TBranch	HLT_Mu8_Ele8_CaloIdM_TrackIdM_Mass8_PFHT350	Trigger/flag bit (process: HLT) : 0 at: 0x5674fb0
+ OBJ: TBranch	HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x56762f0
+ OBJ: TBranch	HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ_PFDiJet30	Trigger/flag bit (process: HLT) : 0 at: 0x5677660
+ OBJ: TBranch	HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ_CaloDiJet30	Trigger/flag bit (process: HLT) : 0 at: 0x56789d0
+ OBJ: TBranch	HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ_PFDiJet30_PFBtagDeepCSV_1p5	Trigger/flag bit (process: HLT) : 0 at: 0x5679d40
+ OBJ: TBranch	HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ_CaloDiJet30_CaloBtagDeepCSV_1p5	Trigger/flag bit (process: HLT) : 0 at: 0x567b0e0
+ OBJ: TBranch	HLT_Mu8_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL	Trigger/flag bit (process: HLT) : 0 at: 0x567c4b0
+ OBJ: TBranch	HLT_Mu17_TrkIsoVVL	Trigger/flag bit (process: HLT) : 0 at: 0x567d7f0
+ OBJ: TBranch	HLT_Mu19_TrkIsoVVL	Trigger/flag bit (process: HLT) : 0 at: 0x567eb00
+ OBJ: TBranch	HLT_BTagMu_AK4DiJet20_Mu5	Trigger/flag bit (process: HLT) : 0 at: 0x567fe10
+ OBJ: TBranch	HLT_BTagMu_AK4DiJet40_Mu5	Trigger/flag bit (process: HLT) : 0 at: 0x5681120
+ OBJ: TBranch	HLT_BTagMu_AK4DiJet70_Mu5	Trigger/flag bit (process: HLT) : 0 at: 0x5682430
+ OBJ: TBranch	HLT_BTagMu_AK4DiJet110_Mu5	Trigger/flag bit (process: HLT) : 0 at: 0x5683740
+ OBJ: TBranch	HLT_BTagMu_AK4DiJet170_Mu5	Trigger/flag bit (process: HLT) : 0 at: 0x5684a50
+ OBJ: TBranch	HLT_BTagMu_AK4Jet300_Mu5	Trigger/flag bit (process: HLT) : 0 at: 0x5685d60
+ OBJ: TBranch	HLT_BTagMu_AK8DiJet170_Mu5	Trigger/flag bit (process: HLT) : 0 at: 0x5687070
+ OBJ: TBranch	HLT_BTagMu_AK8Jet170_DoubleMu5	Trigger/flag bit (process: HLT) : 0 at: 0x5688380
+ OBJ: TBranch	HLT_BTagMu_AK8Jet300_Mu5	Trigger/flag bit (process: HLT) : 0 at: 0x5689690
+ OBJ: TBranch	HLT_Ele15_Ele8_CaloIdL_TrackIdL_IsoVL	Trigger/flag bit (process: HLT) : 0 at: 0x568a9a0
+ OBJ: TBranch	HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x568bce0
+ OBJ: TBranch	HLT_Ele23_Ele12_CaloIdL_TrackIdL_IsoVL	Trigger/flag bit (process: HLT) : 0 at: 0x568d020
+ OBJ: TBranch	HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x568e360
+ OBJ: TBranch	HLT_Mu23_TrkIsoVVL_Ele12_CaloIdL_TrackIdL_IsoVL	Trigger/flag bit (process: HLT) : 0 at: 0x568f6d0
+ OBJ: TBranch	HLT_Mu12_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL	Trigger/flag bit (process: HLT) : 0 at: 0x5690a10
+ OBJ: TBranch	HLT_Mu12_TrkIsoVVL_Ele23_CaloIdL_TrackIdL_IsoVL_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x5691d50
+ OBJ: TBranch	HLT_Mu12_DoublePhoton20	Trigger/flag bit (process: HLT) : 0 at: 0x56930c0
+ OBJ: TBranch	HLT_TriplePhoton_20_20_20_CaloIdLV2	Trigger/flag bit (process: HLT) : 0 at: 0x56943d0
+ OBJ: TBranch	HLT_TriplePhoton_20_20_20_CaloIdLV2_R9IdVL	Trigger/flag bit (process: HLT) : 0 at: 0x5695710
+ OBJ: TBranch	HLT_TriplePhoton_30_30_10_CaloIdLV2	Trigger/flag bit (process: HLT) : 0 at: 0x5696a50
+ OBJ: TBranch	HLT_TriplePhoton_30_30_10_CaloIdLV2_R9IdVL	Trigger/flag bit (process: HLT) : 0 at: 0x5697d90
+ OBJ: TBranch	HLT_TriplePhoton_35_35_5_CaloIdLV2_R9IdVL	Trigger/flag bit (process: HLT) : 0 at: 0x56990d0
+ OBJ: TBranch	HLT_Photon20	Trigger/flag bit (process: HLT) : 0 at: 0x569a410
+ OBJ: TBranch	HLT_Photon33	Trigger/flag bit (process: HLT) : 0 at: 0x569b690
+ OBJ: TBranch	HLT_Photon50	Trigger/flag bit (process: HLT) : 0 at: 0x569c910
+ OBJ: TBranch	HLT_Photon75	Trigger/flag bit (process: HLT) : 0 at: 0x569db90
+ OBJ: TBranch	HLT_Photon90	Trigger/flag bit (process: HLT) : 0 at: 0x569ee10
+ OBJ: TBranch	HLT_Photon120	Trigger/flag bit (process: HLT) : 0 at: 0x56a0090
+ OBJ: TBranch	HLT_Photon150	Trigger/flag bit (process: HLT) : 0 at: 0x56a1310
+ OBJ: TBranch	HLT_Photon175	Trigger/flag bit (process: HLT) : 0 at: 0x56a2590
+ OBJ: TBranch	HLT_Photon200	Trigger/flag bit (process: HLT) : 0 at: 0x56a3810
+ OBJ: TBranch	HLT_Photon100EB_TightID_TightIso	Trigger/flag bit (process: HLT) : 0 at: 0x56a4a90
+ OBJ: TBranch	HLT_Photon110EB_TightID_TightIso	Trigger/flag bit (process: HLT) : 0 at: 0x56a5dd0
+ OBJ: TBranch	HLT_Photon120EB_TightID_TightIso	Trigger/flag bit (process: HLT) : 0 at: 0x56a7110
+ OBJ: TBranch	HLT_Photon100EBHE10	Trigger/flag bit (process: HLT) : 0 at: 0x56a8450
+ OBJ: TBranch	HLT_Photon100EEHE10	Trigger/flag bit (process: HLT) : 0 at: 0x56a9760
+ OBJ: TBranch	HLT_Photon100EE_TightID_TightIso	Trigger/flag bit (process: HLT) : 0 at: 0x56aaa70
+ OBJ: TBranch	HLT_Photon50_R9Id90_HE10_IsoM	Trigger/flag bit (process: HLT) : 0 at: 0x56abdb0
+ OBJ: TBranch	HLT_Photon75_R9Id90_HE10_IsoM	Trigger/flag bit (process: HLT) : 0 at: 0x56ad0c0
+ OBJ: TBranch	HLT_Photon75_R9Id90_HE10_IsoM_EBOnly_CaloMJJ300_PFJetsMJJ400DEta3	Trigger/flag bit (process: HLT) : 0 at: 0x56ae3d0
+ OBJ: TBranch	HLT_Photon75_R9Id90_HE10_IsoM_EBOnly_CaloMJJ400_PFJetsMJJ600DEta3	Trigger/flag bit (process: HLT) : 0 at: 0x56af770
+ OBJ: TBranch	HLT_Photon90_R9Id90_HE10_IsoM	Trigger/flag bit (process: HLT) : 0 at: 0x56b0b10
+ OBJ: TBranch	HLT_Photon120_R9Id90_HE10_IsoM	Trigger/flag bit (process: HLT) : 0 at: 0x56b1e20
+ OBJ: TBranch	HLT_Photon165_R9Id90_HE10_IsoM	Trigger/flag bit (process: HLT) : 0 at: 0x56b3130
+ OBJ: TBranch	HLT_Diphoton30_22_R9Id_OR_IsoCaloId_AND_HE_R9Id_Mass90	Trigger/flag bit (process: HLT) : 0 at: 0x56b4440
+ OBJ: TBranch	HLT_Diphoton30_22_R9Id_OR_IsoCaloId_AND_HE_R9Id_Mass95	Trigger/flag bit (process: HLT) : 0 at: 0x56b57b0
+ OBJ: TBranch	HLT_Diphoton30PV_18PV_R9Id_AND_IsoCaloId_AND_HE_R9Id_PixelVeto_Mass55	Trigger/flag bit (process: HLT) : 0 at: 0x56b6b20
+ OBJ: TBranch	HLT_Diphoton30PV_18PV_R9Id_AND_IsoCaloId_AND_HE_R9Id_NoPixelVeto_Mass55	Trigger/flag bit (process: HLT) : 0 at: 0x56b7ec0
+ OBJ: TBranch	HLT_Photon35_TwoProngs35	Trigger/flag bit (process: HLT) : 0 at: 0x56b9260
+ OBJ: TBranch	HLT_IsoMu24_TwoProngs35	Trigger/flag bit (process: HLT) : 0 at: 0x56ba570
+ OBJ: TBranch	HLT_Dimuon0_Jpsi_L1_NoOS	Trigger/flag bit (process: HLT) : 0 at: 0x56bb880
+ OBJ: TBranch	HLT_Dimuon0_Jpsi_NoVertexing_NoOS	Trigger/flag bit (process: HLT) : 0 at: 0x56bcb90
+ OBJ: TBranch	HLT_Dimuon0_Jpsi	Trigger/flag bit (process: HLT) : 0 at: 0x56bded0
+ OBJ: TBranch	HLT_Dimuon0_Jpsi_NoVertexing	Trigger/flag bit (process: HLT) : 0 at: 0x56bf1e0
+ OBJ: TBranch	HLT_Dimuon0_Jpsi_L1_4R_0er1p5R	Trigger/flag bit (process: HLT) : 0 at: 0x56c04f0
+ OBJ: TBranch	HLT_Dimuon0_Jpsi_NoVertexing_L1_4R_0er1p5R	Trigger/flag bit (process: HLT) : 0 at: 0x56c1800
+ OBJ: TBranch	HLT_Dimuon0_Jpsi3p5_Muon2	Trigger/flag bit (process: HLT) : 0 at: 0x56c2b40
+ OBJ: TBranch	HLT_Dimuon0_Upsilon_L1_4p5	Trigger/flag bit (process: HLT) : 0 at: 0x56c3e50
+ OBJ: TBranch	HLT_Dimuon0_Upsilon_L1_5	Trigger/flag bit (process: HLT) : 0 at: 0x56c5160
+ OBJ: TBranch	HLT_Dimuon0_Upsilon_L1_4p5NoOS	Trigger/flag bit (process: HLT) : 0 at: 0x56c6470
+ OBJ: TBranch	HLT_Dimuon0_Upsilon_L1_4p5er2p0	Trigger/flag bit (process: HLT) : 0 at: 0x56c7780
+ OBJ: TBranch	HLT_Dimuon0_Upsilon_L1_4p5er2p0M	Trigger/flag bit (process: HLT) : 0 at: 0x56c8a90
+ OBJ: TBranch	HLT_Dimuon0_Upsilon_NoVertexing	Trigger/flag bit (process: HLT) : 0 at: 0x56c9dd0
+ OBJ: TBranch	HLT_Dimuon0_Upsilon_L1_5M	Trigger/flag bit (process: HLT) : 0 at: 0x56cb0e0
+ OBJ: TBranch	HLT_Dimuon0_LowMass_L1_0er1p5R	Trigger/flag bit (process: HLT) : 0 at: 0x56cc3f0
+ OBJ: TBranch	HLT_Dimuon0_LowMass_L1_0er1p5	Trigger/flag bit (process: HLT) : 0 at: 0x56cd700
+ OBJ: TBranch	HLT_Dimuon0_LowMass	Trigger/flag bit (process: HLT) : 0 at: 0x56cea10
+ OBJ: TBranch	HLT_Dimuon0_LowMass_L1_4	Trigger/flag bit (process: HLT) : 0 at: 0x56cfd20
+ OBJ: TBranch	HLT_Dimuon0_LowMass_L1_4R	Trigger/flag bit (process: HLT) : 0 at: 0x56d1030
+ OBJ: TBranch	HLT_Dimuon0_LowMass_L1_TM530	Trigger/flag bit (process: HLT) : 0 at: 0x56d2340
+ OBJ: TBranch	HLT_Dimuon0_Upsilon_Muon_L1_TM0	Trigger/flag bit (process: HLT) : 0 at: 0x56d3650
+ OBJ: TBranch	HLT_Dimuon0_Upsilon_Muon_NoL1Mass	Trigger/flag bit (process: HLT) : 0 at: 0x56d4960
+ OBJ: TBranch	HLT_TripleMu_5_3_3_Mass3p8_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x56d5ca0
+ OBJ: TBranch	HLT_TripleMu_10_5_5_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x56d6fb0
+ OBJ: TBranch	HLT_TripleMu_12_10_5	Trigger/flag bit (process: HLT) : 0 at: 0x56d82c0
+ OBJ: TBranch	HLT_Tau3Mu_Mu7_Mu1_TkMu1_Tau15	Trigger/flag bit (process: HLT) : 0 at: 0x56d95d0
+ OBJ: TBranch	HLT_Tau3Mu_Mu7_Mu1_TkMu1_Tau15_Charge1	Trigger/flag bit (process: HLT) : 0 at: 0x56da8e0
+ OBJ: TBranch	HLT_Tau3Mu_Mu7_Mu1_TkMu1_IsoTau15	Trigger/flag bit (process: HLT) : 0 at: 0x56dbc20
+ OBJ: TBranch	HLT_Tau3Mu_Mu7_Mu1_TkMu1_IsoTau15_Charge1	Trigger/flag bit (process: HLT) : 0 at: 0x56dcf60
+ OBJ: TBranch	HLT_DoubleMu3_DZ_PFMET50_PFMHT60	Trigger/flag bit (process: HLT) : 0 at: 0x56de2a0
+ OBJ: TBranch	HLT_DoubleMu3_DZ_PFMET70_PFMHT70	Trigger/flag bit (process: HLT) : 0 at: 0x56df5e0
+ OBJ: TBranch	HLT_DoubleMu3_DZ_PFMET90_PFMHT90	Trigger/flag bit (process: HLT) : 0 at: 0x56e0920
+ OBJ: TBranch	HLT_DoubleMu3_Trk_Tau3mu_NoL1Mass	Trigger/flag bit (process: HLT) : 0 at: 0x56e1c60
+ OBJ: TBranch	HLT_DoubleMu4_Jpsi_Displaced	Trigger/flag bit (process: HLT) : 0 at: 0x56e2fa0
+ OBJ: TBranch	HLT_DoubleMu4_Jpsi_NoVertexing	Trigger/flag bit (process: HLT) : 0 at: 0x56e42b0
+ OBJ: TBranch	HLT_DoubleMu4_JpsiTrkTrk_Displaced	Trigger/flag bit (process: HLT) : 0 at: 0x56e55c0
+ OBJ: TBranch	HLT_DoubleMu43NoFiltersNoVtx	Trigger/flag bit (process: HLT) : 0 at: 0x56e6900
+ OBJ: TBranch	HLT_DoubleMu48NoFiltersNoVtx	Trigger/flag bit (process: HLT) : 0 at: 0x56e7c10
+ OBJ: TBranch	HLT_Mu43NoFiltersNoVtx_Photon43_CaloIdL	Trigger/flag bit (process: HLT) : 0 at: 0x56e8f20
+ OBJ: TBranch	HLT_Mu48NoFiltersNoVtx_Photon48_CaloIdL	Trigger/flag bit (process: HLT) : 0 at: 0x56ea260
+ OBJ: TBranch	HLT_Mu38NoFiltersNoVtxDisplaced_Photon38_CaloIdL	Trigger/flag bit (process: HLT) : 0 at: 0x56eb5a0
+ OBJ: TBranch	HLT_Mu43NoFiltersNoVtxDisplaced_Photon43_CaloIdL	Trigger/flag bit (process: HLT) : 0 at: 0x56ec910
+ OBJ: TBranch	HLT_DoubleMu33NoFiltersNoVtxDisplaced	Trigger/flag bit (process: HLT) : 0 at: 0x56edc80
+ OBJ: TBranch	HLT_DoubleMu40NoFiltersNoVtxDisplaced	Trigger/flag bit (process: HLT) : 0 at: 0x56eefc0
+ OBJ: TBranch	HLT_DoubleMu20_7_Mass0to30_L1_DM4	Trigger/flag bit (process: HLT) : 0 at: 0x56f0300
+ OBJ: TBranch	HLT_DoubleMu20_7_Mass0to30_L1_DM4EG	Trigger/flag bit (process: HLT) : 0 at: 0x56f1640
+ OBJ: TBranch	HLT_HT425	Trigger/flag bit (process: HLT) : 0 at: 0x56f2980
+ OBJ: TBranch	HLT_HT430_DisplacedDijet40_DisplacedTrack	Trigger/flag bit (process: HLT) : 0 at: 0x56f3c00
+ OBJ: TBranch	HLT_HT500_DisplacedDijet40_DisplacedTrack	Trigger/flag bit (process: HLT) : 0 at: 0x56f4f40
+ OBJ: TBranch	HLT_HT430_DisplacedDijet60_DisplacedTrack	Trigger/flag bit (process: HLT) : 0 at: 0x56f6280
+ OBJ: TBranch	HLT_HT400_DisplacedDijet40_DisplacedTrack	Trigger/flag bit (process: HLT) : 0 at: 0x56f75c0
+ OBJ: TBranch	HLT_HT650_DisplacedDijet60_Inclusive	Trigger/flag bit (process: HLT) : 0 at: 0x56f8900
+ OBJ: TBranch	HLT_HT550_DisplacedDijet60_Inclusive	Trigger/flag bit (process: HLT) : 0 at: 0x56f9c40
+ OBJ: TBranch	HLT_DiJet110_35_Mjj650_PFMET110	Trigger/flag bit (process: HLT) : 0 at: 0x56faf80
+ OBJ: TBranch	HLT_DiJet110_35_Mjj650_PFMET120	Trigger/flag bit (process: HLT) : 0 at: 0x56fc290
+ OBJ: TBranch	HLT_DiJet110_35_Mjj650_PFMET130	Trigger/flag bit (process: HLT) : 0 at: 0x56fd5a0
+ OBJ: TBranch	HLT_TripleJet110_35_35_Mjj650_PFMET110	Trigger/flag bit (process: HLT) : 0 at: 0x56fe8b0
+ OBJ: TBranch	HLT_TripleJet110_35_35_Mjj650_PFMET120	Trigger/flag bit (process: HLT) : 0 at: 0x56ffbf0
+ OBJ: TBranch	HLT_TripleJet110_35_35_Mjj650_PFMET130	Trigger/flag bit (process: HLT) : 0 at: 0x5700f30
+ OBJ: TBranch	HLT_Ele30_eta2p1_WPTight_Gsf_CentralPFJet35_EleCleaned	Trigger/flag bit (process: HLT) : 0 at: 0x5702270
+ OBJ: TBranch	HLT_Ele28_eta2p1_WPTight_Gsf_HT150	Trigger/flag bit (process: HLT) : 0 at: 0x57035e0
+ OBJ: TBranch	HLT_Ele28_HighEta_SC20_Mass55	Trigger/flag bit (process: HLT) : 0 at: 0x5704920
+ OBJ: TBranch	HLT_DoubleMu20_7_Mass0to30_Photon23	Trigger/flag bit (process: HLT) : 0 at: 0x5705c30
+ OBJ: TBranch	HLT_Ele15_IsoVVVL_PFHT450_CaloBTagDeepCSV_4p5	Trigger/flag bit (process: HLT) : 0 at: 0x5706f70
+ OBJ: TBranch	HLT_Ele15_IsoVVVL_PFHT450_PFMET50	Trigger/flag bit (process: HLT) : 0 at: 0x57082b0
+ OBJ: TBranch	HLT_Ele15_IsoVVVL_PFHT450	Trigger/flag bit (process: HLT) : 0 at: 0x57095f0
+ OBJ: TBranch	HLT_Ele50_IsoVVVL_PFHT450	Trigger/flag bit (process: HLT) : 0 at: 0x570a900
+ OBJ: TBranch	HLT_Ele15_IsoVVVL_PFHT600	Trigger/flag bit (process: HLT) : 0 at: 0x570bc10
+ OBJ: TBranch	HLT_Mu4_TrkIsoVVL_DiPFJet90_40_DEta3p5_MJJ750_HTT300_PFMETNoMu60	Trigger/flag bit (process: HLT) : 0 at: 0x570cf20
+ OBJ: TBranch	HLT_Mu8_TrkIsoVVL_DiPFJet40_DEta3p5_MJJ750_HTT300_PFMETNoMu60	Trigger/flag bit (process: HLT) : 0 at: 0x570e2c0
+ OBJ: TBranch	HLT_Mu10_TrkIsoVVL_DiPFJet40_DEta3p5_MJJ750_HTT350_PFMETNoMu60	Trigger/flag bit (process: HLT) : 0 at: 0x570f630
+ OBJ: TBranch	HLT_Mu15_IsoVVVL_PFHT450_CaloBTagDeepCSV_4p5	Trigger/flag bit (process: HLT) : 0 at: 0x57109a0
+ OBJ: TBranch	HLT_Mu15_IsoVVVL_PFHT450_PFMET50	Trigger/flag bit (process: HLT) : 0 at: 0x5711ce0
+ OBJ: TBranch	HLT_Mu15_IsoVVVL_PFHT450	Trigger/flag bit (process: HLT) : 0 at: 0x5713020
+ OBJ: TBranch	HLT_Mu50_IsoVVVL_PFHT450	Trigger/flag bit (process: HLT) : 0 at: 0x5714330
+ OBJ: TBranch	HLT_Mu15_IsoVVVL_PFHT600	Trigger/flag bit (process: HLT) : 0 at: 0x5715640
+ OBJ: TBranch	HLT_Mu3er1p5_PFJet100er2p5_PFMET70_PFMHT70_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5716950
+ OBJ: TBranch	HLT_Mu3er1p5_PFJet100er2p5_PFMET80_PFMHT80_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5717cc0
+ OBJ: TBranch	HLT_Mu3er1p5_PFJet100er2p5_PFMET90_PFMHT90_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x5719030
+ OBJ: TBranch	HLT_Mu3er1p5_PFJet100er2p5_PFMET100_PFMHT100_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x571a3a0
+ OBJ: TBranch	HLT_Mu3er1p5_PFJet100er2p5_PFMETNoMu70_PFMHTNoMu70_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x571b710
+ OBJ: TBranch	HLT_Mu3er1p5_PFJet100er2p5_PFMETNoMu80_PFMHTNoMu80_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x571ca80
+ OBJ: TBranch	HLT_Mu3er1p5_PFJet100er2p5_PFMETNoMu90_PFMHTNoMu90_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x571ddf0
+ OBJ: TBranch	HLT_Mu3er1p5_PFJet100er2p5_PFMETNoMu100_PFMHTNoMu100_IDTight	Trigger/flag bit (process: HLT) : 0 at: 0x571f160
+ OBJ: TBranch	HLT_Dimuon10_PsiPrime_Barrel_Seagulls	Trigger/flag bit (process: HLT) : 0 at: 0x57204d0
+ OBJ: TBranch	HLT_Dimuon20_Jpsi_Barrel_Seagulls	Trigger/flag bit (process: HLT) : 0 at: 0x5721810
+ OBJ: TBranch	HLT_Dimuon12_Upsilon_y1p4	Trigger/flag bit (process: HLT) : 0 at: 0x5722b50
+ OBJ: TBranch	HLT_Dimuon14_Phi_Barrel_Seagulls	Trigger/flag bit (process: HLT) : 0 at: 0x5723e60
+ OBJ: TBranch	HLT_Dimuon18_PsiPrime	Trigger/flag bit (process: HLT) : 0 at: 0x57251a0
+ OBJ: TBranch	HLT_Dimuon25_Jpsi	Trigger/flag bit (process: HLT) : 0 at: 0x57264b0
+ OBJ: TBranch	HLT_Dimuon18_PsiPrime_noCorrL1	Trigger/flag bit (process: HLT) : 0 at: 0x57277c0
+ OBJ: TBranch	HLT_Dimuon24_Upsilon_noCorrL1	Trigger/flag bit (process: HLT) : 0 at: 0x5728ad0
+ OBJ: TBranch	HLT_Dimuon24_Phi_noCorrL1	Trigger/flag bit (process: HLT) : 0 at: 0x5729de0
+ OBJ: TBranch	HLT_Dimuon25_Jpsi_noCorrL1	Trigger/flag bit (process: HLT) : 0 at: 0x572b0f0
+ OBJ: TBranch	HLT_DiMu4_Ele9_CaloIdL_TrackIdL_DZ_Mass3p8	Trigger/flag bit (process: HLT) : 0 at: 0x572c400
+ OBJ: TBranch	HLT_DiMu9_Ele9_CaloIdL_TrackIdL_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x572d740
+ OBJ: TBranch	HLT_DiMu9_Ele9_CaloIdL_TrackIdL	Trigger/flag bit (process: HLT) : 0 at: 0x572ea80
+ OBJ: TBranch	HLT_DoubleIsoMu20_eta2p1	Trigger/flag bit (process: HLT) : 0 at: 0x572fd90
+ OBJ: TBranch	HLT_TrkMu12_DoubleTrkMu5NoFiltersNoVtx	Trigger/flag bit (process: HLT) : 0 at: 0x57310a0
+ OBJ: TBranch	HLT_TrkMu16_DoubleTrkMu6NoFiltersNoVtx	Trigger/flag bit (process: HLT) : 0 at: 0x57323e0
+ OBJ: TBranch	HLT_TrkMu17_DoubleTrkMu8NoFiltersNoVtx	Trigger/flag bit (process: HLT) : 0 at: 0x5733720
+ OBJ: TBranch	HLT_Mu8	Trigger/flag bit (process: HLT) : 0 at: 0x5734a60
+ OBJ: TBranch	HLT_Mu17	Trigger/flag bit (process: HLT) : 0 at: 0x5735ce0
+ OBJ: TBranch	HLT_Mu19	Trigger/flag bit (process: HLT) : 0 at: 0x5736f60
+ OBJ: TBranch	HLT_Mu17_Photon30_IsoCaloId	Trigger/flag bit (process: HLT) : 0 at: 0x57381e0
+ OBJ: TBranch	HLT_Ele8_CaloIdL_TrackIdL_IsoVL_PFJet30	Trigger/flag bit (process: HLT) : 0 at: 0x57394f0
+ OBJ: TBranch	HLT_Ele12_CaloIdL_TrackIdL_IsoVL_PFJet30	Trigger/flag bit (process: HLT) : 0 at: 0x573a830
+ OBJ: TBranch	HLT_Ele15_CaloIdL_TrackIdL_IsoVL_PFJet30	Trigger/flag bit (process: HLT) : 0 at: 0x573bb70
+ OBJ: TBranch	HLT_Ele23_CaloIdL_TrackIdL_IsoVL_PFJet30	Trigger/flag bit (process: HLT) : 0 at: 0x573ceb0
+ OBJ: TBranch	HLT_Ele8_CaloIdM_TrackIdM_PFJet30	Trigger/flag bit (process: HLT) : 0 at: 0x573e1f0
+ OBJ: TBranch	HLT_Ele17_CaloIdM_TrackIdM_PFJet30	Trigger/flag bit (process: HLT) : 0 at: 0x573f530
+ OBJ: TBranch	HLT_Ele23_CaloIdM_TrackIdM_PFJet30	Trigger/flag bit (process: HLT) : 0 at: 0x5740870
+ OBJ: TBranch	HLT_Ele50_CaloIdVT_GsfTrkIdT_PFJet165	Trigger/flag bit (process: HLT) : 0 at: 0x5741bb0
+ OBJ: TBranch	HLT_Ele115_CaloIdVT_GsfTrkIdT	Trigger/flag bit (process: HLT) : 0 at: 0x5742ef0
+ OBJ: TBranch	HLT_Ele135_CaloIdVT_GsfTrkIdT	Trigger/flag bit (process: HLT) : 0 at: 0x5744200
+ OBJ: TBranch	HLT_Ele145_CaloIdVT_GsfTrkIdT	Trigger/flag bit (process: HLT) : 0 at: 0x5745510
+ OBJ: TBranch	HLT_Ele200_CaloIdVT_GsfTrkIdT	Trigger/flag bit (process: HLT) : 0 at: 0x5746820
+ OBJ: TBranch	HLT_Ele250_CaloIdVT_GsfTrkIdT	Trigger/flag bit (process: HLT) : 0 at: 0x5747b30
+ OBJ: TBranch	HLT_Ele300_CaloIdVT_GsfTrkIdT	Trigger/flag bit (process: HLT) : 0 at: 0x5748e40
+ OBJ: TBranch	HLT_PFHT330PT30_QuadPFJet_75_60_45_40_TriplePFBTagDeepCSV_4p5	Trigger/flag bit (process: HLT) : 0 at: 0x574a150
+ OBJ: TBranch	HLT_PFHT330PT30_QuadPFJet_75_60_45_40	Trigger/flag bit (process: HLT) : 0 at: 0x574b4c0
+ OBJ: TBranch	HLT_PFHT400_SixPFJet32_DoublePFBTagDeepCSV_2p94	Trigger/flag bit (process: HLT) : 0 at: 0x574c800
+ OBJ: TBranch	HLT_PFHT400_SixPFJet32	Trigger/flag bit (process: HLT) : 0 at: 0x574db40
+ OBJ: TBranch	HLT_PFHT450_SixPFJet36_PFBTagDeepCSV_1p59	Trigger/flag bit (process: HLT) : 0 at: 0x574ee50
+ OBJ: TBranch	HLT_PFHT450_SixPFJet36	Trigger/flag bit (process: HLT) : 0 at: 0x5750190
+ OBJ: TBranch	HLT_PFHT350	Trigger/flag bit (process: HLT) : 0 at: 0x57514a0
+ OBJ: TBranch	HLT_PFHT350MinPFJet15	Trigger/flag bit (process: HLT) : 0 at: 0x5752720
+ OBJ: TBranch	HLT_Photon60_R9Id90_CaloIdL_IsoL	Trigger/flag bit (process: HLT) : 0 at: 0x5753a30
+ OBJ: TBranch	HLT_Photon60_R9Id90_CaloIdL_IsoL_DisplacedIdL	Trigger/flag bit (process: HLT) : 0 at: 0x5754d70
+ OBJ: TBranch	HLT_Photon60_R9Id90_CaloIdL_IsoL_DisplacedIdL_PFHT350MinPFJet15	Trigger/flag bit (process: HLT) : 0 at: 0x57560b0
+ OBJ: TBranch	HLT_ECALHT800	Trigger/flag bit (process: HLT) : 0 at: 0x5757420
+ OBJ: TBranch	HLT_DiSC30_18_EIso_AND_HE_Mass70	Trigger/flag bit (process: HLT) : 0 at: 0x57586a0
+ OBJ: TBranch	HLT_Physics	Trigger/flag bit (process: HLT) : 0 at: 0x57599e0
+ OBJ: TBranch	HLT_Physics_part0	Trigger/flag bit (process: HLT) : 0 at: 0x575ac60
+ OBJ: TBranch	HLT_Physics_part1	Trigger/flag bit (process: HLT) : 0 at: 0x575bf70
+ OBJ: TBranch	HLT_Physics_part2	Trigger/flag bit (process: HLT) : 0 at: 0x575d280
+ OBJ: TBranch	HLT_Physics_part3	Trigger/flag bit (process: HLT) : 0 at: 0x575e590
+ OBJ: TBranch	HLT_Physics_part4	Trigger/flag bit (process: HLT) : 0 at: 0x575f8a0
+ OBJ: TBranch	HLT_Physics_part5	Trigger/flag bit (process: HLT) : 0 at: 0x5760bb0
+ OBJ: TBranch	HLT_Physics_part6	Trigger/flag bit (process: HLT) : 0 at: 0x5761ec0
+ OBJ: TBranch	HLT_Physics_part7	Trigger/flag bit (process: HLT) : 0 at: 0x57631d0
+ OBJ: TBranch	HLT_Random	Trigger/flag bit (process: HLT) : 0 at: 0x57644e0
+ OBJ: TBranch	HLT_ZeroBias	Trigger/flag bit (process: HLT) : 0 at: 0x5765760
+ OBJ: TBranch	HLT_ZeroBias_Alignment	Trigger/flag bit (process: HLT) : 0 at: 0x57669e0
+ OBJ: TBranch	HLT_ZeroBias_part0	Trigger/flag bit (process: HLT) : 0 at: 0x5767cf0
+ OBJ: TBranch	HLT_ZeroBias_part1	Trigger/flag bit (process: HLT) : 0 at: 0x5769000
+ OBJ: TBranch	HLT_ZeroBias_part2	Trigger/flag bit (process: HLT) : 0 at: 0x576a310
+ OBJ: TBranch	HLT_ZeroBias_part3	Trigger/flag bit (process: HLT) : 0 at: 0x576b620
+ OBJ: TBranch	HLT_ZeroBias_part4	Trigger/flag bit (process: HLT) : 0 at: 0x576c930
+ OBJ: TBranch	HLT_ZeroBias_part5	Trigger/flag bit (process: HLT) : 0 at: 0x576dc40
+ OBJ: TBranch	HLT_ZeroBias_part6	Trigger/flag bit (process: HLT) : 0 at: 0x576ef50
+ OBJ: TBranch	HLT_ZeroBias_part7	Trigger/flag bit (process: HLT) : 0 at: 0x5770260
+ OBJ: TBranch	HLT_AK4CaloJet30	Trigger/flag bit (process: HLT) : 0 at: 0x5771570
+ OBJ: TBranch	HLT_AK4CaloJet40	Trigger/flag bit (process: HLT) : 0 at: 0x5772880
+ OBJ: TBranch	HLT_AK4CaloJet50	Trigger/flag bit (process: HLT) : 0 at: 0x5773b90
+ OBJ: TBranch	HLT_AK4CaloJet80	Trigger/flag bit (process: HLT) : 0 at: 0x5774ea0
+ OBJ: TBranch	HLT_AK4CaloJet100	Trigger/flag bit (process: HLT) : 0 at: 0x57761b0
+ OBJ: TBranch	HLT_AK4CaloJet120	Trigger/flag bit (process: HLT) : 0 at: 0x57774c0
+ OBJ: TBranch	HLT_AK4PFJet30	Trigger/flag bit (process: HLT) : 0 at: 0x57787d0
+ OBJ: TBranch	HLT_AK4PFJet50	Trigger/flag bit (process: HLT) : 0 at: 0x5779a50
+ OBJ: TBranch	HLT_AK4PFJet80	Trigger/flag bit (process: HLT) : 0 at: 0x577acd0
+ OBJ: TBranch	HLT_AK4PFJet100	Trigger/flag bit (process: HLT) : 0 at: 0x577bf50
+ OBJ: TBranch	HLT_AK4PFJet120	Trigger/flag bit (process: HLT) : 0 at: 0x577d230
+ OBJ: TBranch	HLT_SinglePhoton10_Eta3p1ForPPRef	Trigger/flag bit (process: HLT) : 0 at: 0x577e510
+ OBJ: TBranch	HLT_SinglePhoton20_Eta3p1ForPPRef	Trigger/flag bit (process: HLT) : 0 at: 0x577f850
+ OBJ: TBranch	HLT_SinglePhoton30_Eta3p1ForPPRef	Trigger/flag bit (process: HLT) : 0 at: 0x5780b90
+ OBJ: TBranch	HLT_Photon20_HoverELoose	Trigger/flag bit (process: HLT) : 0 at: 0x5781ed0
+ OBJ: TBranch	HLT_Photon30_HoverELoose	Trigger/flag bit (process: HLT) : 0 at: 0x57831e0
+ OBJ: TBranch	HLT_EcalCalibration	Trigger/flag bit (process: HLT) : 0 at: 0x57844f0
+ OBJ: TBranch	HLT_HcalCalibration	Trigger/flag bit (process: HLT) : 0 at: 0x5785800
+ OBJ: TBranch	HLT_L1UnpairedBunchBptxMinus	Trigger/flag bit (process: HLT) : 0 at: 0x5786b10
+ OBJ: TBranch	HLT_L1UnpairedBunchBptxPlus	Trigger/flag bit (process: HLT) : 0 at: 0x5787e20
+ OBJ: TBranch	HLT_L1NotBptxOR	Trigger/flag bit (process: HLT) : 0 at: 0x5789130
+ OBJ: TBranch	HLT_L1_CDC_SingleMu_3_er1p2_TOP120_DPHI2p618_3p142	Trigger/flag bit (process: HLT) : 0 at: 0x578a410
+ OBJ: TBranch	HLT_CDC_L2cosmic_5_er1p0	Trigger/flag bit (process: HLT) : 0 at: 0x578b780
+ OBJ: TBranch	HLT_CDC_L2cosmic_5p5_er1p0	Trigger/flag bit (process: HLT) : 0 at: 0x578ca90
+ OBJ: TBranch	HLT_HcalNZS	Trigger/flag bit (process: HLT) : 0 at: 0x578dda0
+ OBJ: TBranch	HLT_HcalPhiSym	Trigger/flag bit (process: HLT) : 0 at: 0x578f020
+ OBJ: TBranch	HLT_HcalIsolatedbunch	Trigger/flag bit (process: HLT) : 0 at: 0x57902a0
+ OBJ: TBranch	HLT_IsoTrackHB	Trigger/flag bit (process: HLT) : 0 at: 0x57915b0
+ OBJ: TBranch	HLT_IsoTrackHE	Trigger/flag bit (process: HLT) : 0 at: 0x5792830
+ OBJ: TBranch	HLT_ZeroBias_FirstCollisionAfterAbortGap	Trigger/flag bit (process: HLT) : 0 at: 0x5793ab0
+ OBJ: TBranch	HLT_ZeroBias_IsolatedBunches	Trigger/flag bit (process: HLT) : 0 at: 0x5794df0
+ OBJ: TBranch	HLT_ZeroBias_FirstCollisionInTrain	Trigger/flag bit (process: HLT) : 0 at: 0x5796100
+ OBJ: TBranch	HLT_ZeroBias_LastCollisionInTrain	Trigger/flag bit (process: HLT) : 0 at: 0x5797440
+ OBJ: TBranch	HLT_ZeroBias_FirstBXAfterTrain	Trigger/flag bit (process: HLT) : 0 at: 0x5798780
+ OBJ: TBranch	HLT_IsoMu24_eta2p1_MediumChargedIsoPFTau50_Trk30_eta2p1_1pr	Trigger/flag bit (process: HLT) : 0 at: 0x5799a90
+ OBJ: TBranch	HLT_MediumChargedIsoPFTau50_Trk30_eta2p1_1pr_MET90	Trigger/flag bit (process: HLT) : 0 at: 0x579ae00
+ OBJ: TBranch	HLT_MediumChargedIsoPFTau50_Trk30_eta2p1_1pr_MET100	Trigger/flag bit (process: HLT) : 0 at: 0x579c170
+ OBJ: TBranch	HLT_MediumChargedIsoPFTau50_Trk30_eta2p1_1pr_MET110	Trigger/flag bit (process: HLT) : 0 at: 0x579d4e0
+ OBJ: TBranch	HLT_MediumChargedIsoPFTau50_Trk30_eta2p1_1pr_MET120	Trigger/flag bit (process: HLT) : 0 at: 0x579e850
+ OBJ: TBranch	HLT_MediumChargedIsoPFTau50_Trk30_eta2p1_1pr_MET130	Trigger/flag bit (process: HLT) : 0 at: 0x579fbc0
+ OBJ: TBranch	HLT_MediumChargedIsoPFTau50_Trk30_eta2p1_1pr_MET140	Trigger/flag bit (process: HLT) : 0 at: 0x57a0f30
+ OBJ: TBranch	HLT_MediumChargedIsoPFTau50_Trk30_eta2p1_1pr	Trigger/flag bit (process: HLT) : 0 at: 0x57a22a0
+ OBJ: TBranch	HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1_1pr	Trigger/flag bit (process: HLT) : 0 at: 0x57a35e0
+ OBJ: TBranch	HLT_MediumChargedIsoPFTau180HighPtRelaxedIso_Trk50_eta2p1	Trigger/flag bit (process: HLT) : 0 at: 0x57a4950
+ OBJ: TBranch	HLT_MediumChargedIsoPFTau200HighPtRelaxedIso_Trk50_eta2p1	Trigger/flag bit (process: HLT) : 0 at: 0x57a5cc0
+ OBJ: TBranch	HLT_MediumChargedIsoPFTau220HighPtRelaxedIso_Trk50_eta2p1	Trigger/flag bit (process: HLT) : 0 at: 0x57a7030
+ OBJ: TBranch	HLT_Ele16_Ele12_Ele8_CaloIdL_TrackIdL	Trigger/flag bit (process: HLT) : 0 at: 0x57a83a0
+ OBJ: TBranch	HLT_Rsq0p35	Trigger/flag bit (process: HLT) : 0 at: 0x57a96e0
+ OBJ: TBranch	HLT_Rsq0p40	Trigger/flag bit (process: HLT) : 0 at: 0x57aa960
+ OBJ: TBranch	HLT_RsqMR300_Rsq0p09_MR200	Trigger/flag bit (process: HLT) : 0 at: 0x57abbe0
+ OBJ: TBranch	HLT_RsqMR320_Rsq0p09_MR200	Trigger/flag bit (process: HLT) : 0 at: 0x57acef0
+ OBJ: TBranch	HLT_RsqMR300_Rsq0p09_MR200_4jet	Trigger/flag bit (process: HLT) : 0 at: 0x57ae200
+ OBJ: TBranch	HLT_RsqMR320_Rsq0p09_MR200_4jet	Trigger/flag bit (process: HLT) : 0 at: 0x57af510
+ OBJ: TBranch	HLT_IsoMu27_MET90	Trigger/flag bit (process: HLT) : 0 at: 0x57b0820
+ OBJ: TBranch	HLT_DoubleTightChargedIsoPFTauHPS35_Trk1_eta2p1_Reg	Trigger/flag bit (process: HLT) : 0 at: 0x57b1b30
+ OBJ: TBranch	HLT_DoubleMediumChargedIsoPFTauHPS35_Trk1_TightID_eta2p1_Reg	Trigger/flag bit (process: HLT) : 0 at: 0x57b2ea0
+ OBJ: TBranch	HLT_DoubleMediumChargedIsoPFTauHPS35_Trk1_eta2p1_Reg	Trigger/flag bit (process: HLT) : 0 at: 0x57b4210
+ OBJ: TBranch	HLT_DoubleTightChargedIsoPFTauHPS35_Trk1_TightID_eta2p1_Reg	Trigger/flag bit (process: HLT) : 0 at: 0x57b5580
+ OBJ: TBranch	HLT_DoubleMediumChargedIsoPFTauHPS40_Trk1_eta2p1_Reg	Trigger/flag bit (process: HLT) : 0 at: 0x57b68f0
+ OBJ: TBranch	HLT_DoubleTightChargedIsoPFTauHPS40_Trk1_eta2p1_Reg	Trigger/flag bit (process: HLT) : 0 at: 0x57b7c60
+ OBJ: TBranch	HLT_DoubleMediumChargedIsoPFTauHPS40_Trk1_TightID_eta2p1_Reg	Trigger/flag bit (process: HLT) : 0 at: 0x57b8fd0
+ OBJ: TBranch	HLT_DoubleTightChargedIsoPFTauHPS40_Trk1_TightID_eta2p1_Reg	Trigger/flag bit (process: HLT) : 0 at: 0x57ba340
+ OBJ: TBranch	HLT_VBF_DoubleLooseChargedIsoPFTauHPS20_Trk1_eta2p1	Trigger/flag bit (process: HLT) : 0 at: 0x57bb6b0
+ OBJ: TBranch	HLT_VBF_DoubleMediumChargedIsoPFTauHPS20_Trk1_eta2p1	Trigger/flag bit (process: HLT) : 0 at: 0x57bca20
+ OBJ: TBranch	HLT_VBF_DoubleTightChargedIsoPFTauHPS20_Trk1_eta2p1	Trigger/flag bit (process: HLT) : 0 at: 0x57bdd90
+ OBJ: TBranch	HLT_Photon50_R9Id90_HE10_IsoM_EBOnly_PFJetsMJJ300DEta3_PFMET50	Trigger/flag bit (process: HLT) : 0 at: 0x57bf100
+ OBJ: TBranch	HLT_Photon75_R9Id90_HE10_IsoM_EBOnly_PFJetsMJJ300DEta3	Trigger/flag bit (process: HLT) : 0 at: 0x57c0470
+ OBJ: TBranch	HLT_Photon75_R9Id90_HE10_IsoM_EBOnly_PFJetsMJJ600DEta3	Trigger/flag bit (process: HLT) : 0 at: 0x57c17e0
+ OBJ: TBranch	HLT_PFMET100_PFMHT100_IDTight_PFHT60	Trigger/flag bit (process: HLT) : 0 at: 0x57c2b50
+ OBJ: TBranch	HLT_PFMETNoMu100_PFMHTNoMu100_IDTight_PFHT60	Trigger/flag bit (process: HLT) : 0 at: 0x57c3e90
+ OBJ: TBranch	HLT_PFMETTypeOne100_PFMHT100_IDTight_PFHT60	Trigger/flag bit (process: HLT) : 0 at: 0x57c51d0
+ OBJ: TBranch	HLT_Mu18_Mu9_SameSign	Trigger/flag bit (process: HLT) : 0 at: 0x57c6510
+ OBJ: TBranch	HLT_Mu18_Mu9_SameSign_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x57c7820
+ OBJ: TBranch	HLT_Mu18_Mu9	Trigger/flag bit (process: HLT) : 0 at: 0x57c8b30
+ OBJ: TBranch	HLT_Mu18_Mu9_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x57c9db0
+ OBJ: TBranch	HLT_Mu20_Mu10_SameSign	Trigger/flag bit (process: HLT) : 0 at: 0x57cb090
+ OBJ: TBranch	HLT_Mu20_Mu10_SameSign_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x57cc3a0
+ OBJ: TBranch	HLT_Mu20_Mu10	Trigger/flag bit (process: HLT) : 0 at: 0x57cd6b0
+ OBJ: TBranch	HLT_Mu20_Mu10_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x57ce930
+ OBJ: TBranch	HLT_Mu23_Mu12_SameSign	Trigger/flag bit (process: HLT) : 0 at: 0x57cfc40
+ OBJ: TBranch	HLT_Mu23_Mu12_SameSign_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x57d0f50
+ OBJ: TBranch	HLT_Mu23_Mu12	Trigger/flag bit (process: HLT) : 0 at: 0x57d2260
+ OBJ: TBranch	HLT_Mu23_Mu12_DZ	Trigger/flag bit (process: HLT) : 0 at: 0x57d34e0
+ OBJ: TBranch	HLT_DoubleMu2_Jpsi_DoubleTrk1_Phi1p05	Trigger/flag bit (process: HLT) : 0 at: 0x57d47f0
+ OBJ: TBranch	HLT_DoubleMu2_Jpsi_DoubleTkMu0_Phi	Trigger/flag bit (process: HLT) : 0 at: 0x57d5b30
+ OBJ: TBranch	HLT_DoubleMu3_DCA_PFMET50_PFMHT60	Trigger/flag bit (process: HLT) : 0 at: 0x57d6e70
+ OBJ: TBranch	HLT_TripleMu_5_3_3_Mass3p8_DCA	Trigger/flag bit (process: HLT) : 0 at: 0x57d81b0
+ OBJ: TBranch	HLT_QuadPFJet98_83_71_15_DoublePFBTagDeepCSV_1p3_7p7_VBF1	Trigger/flag bit (process: HLT) : 0 at: 0x57d94c0
+ OBJ: TBranch	HLT_QuadPFJet103_88_75_15_DoublePFBTagDeepCSV_1p3_7p7_VBF1	Trigger/flag bit (process: HLT) : 0 at: 0x57da830
+ OBJ: TBranch	HLT_QuadPFJet111_90_80_15_DoublePFBTagDeepCSV_1p3_7p7_VBF1	Trigger/flag bit (process: HLT) : 0 at: 0x57dbba0
+ OBJ: TBranch	HLT_QuadPFJet98_83_71_15_PFBTagDeepCSV_1p3_VBF2	Trigger/flag bit (process: HLT) : 0 at: 0x57dcf10
+ OBJ: TBranch	HLT_QuadPFJet103_88_75_15_PFBTagDeepCSV_1p3_VBF2	Trigger/flag bit (process: HLT) : 0 at: 0x57de250
+ OBJ: TBranch	HLT_QuadPFJet105_88_76_15_PFBTagDeepCSV_1p3_VBF2	Trigger/flag bit (process: HLT) : 0 at: 0x57df5c0
+ OBJ: TBranch	HLT_QuadPFJet111_90_80_15_PFBTagDeepCSV_1p3_VBF2	Trigger/flag bit (process: HLT) : 0 at: 0x57e0930
+ OBJ: TBranch	HLT_QuadPFJet98_83_71_15	Trigger/flag bit (process: HLT) : 0 at: 0x57e1ca0
+ OBJ: TBranch	HLT_QuadPFJet103_88_75_15	Trigger/flag bit (process: HLT) : 0 at: 0x57e2fb0
+ OBJ: TBranch	HLT_QuadPFJet105_88_76_15	Trigger/flag bit (process: HLT) : 0 at: 0x57e42c0
+ OBJ: TBranch	HLT_QuadPFJet111_90_80_15	Trigger/flag bit (process: HLT) : 0 at: 0x57e55d0
+ OBJ: TBranch	HLT_AK8PFJet330_TrimMass30_PFAK8BTagDeepCSV_p17	Trigger/flag bit (process: HLT) : 0 at: 0x57e68e0
+ OBJ: TBranch	HLT_AK8PFJet330_TrimMass30_PFAK8BTagDeepCSV_p1	Trigger/flag bit (process: HLT) : 0 at: 0x57e7c20
+ OBJ: TBranch	HLT_AK8PFJet330_TrimMass30_PFAK8BoostedDoubleB_p02	Trigger/flag bit (process: HLT) : 0 at: 0x57e8f60
+ OBJ: TBranch	HLT_AK8PFJet330_TrimMass30_PFAK8BoostedDoubleB_np2	Trigger/flag bit (process: HLT) : 0 at: 0x57ea2d0
+ OBJ: TBranch	HLT_AK8PFJet330_TrimMass30_PFAK8BoostedDoubleB_np4	Trigger/flag bit (process: HLT) : 0 at: 0x57eb640
+ OBJ: TBranch	HLT_Diphoton30_18_R9IdL_AND_HE_AND_IsoCaloId_NoPixelVeto_Mass55	Trigger/flag bit (process: HLT) : 0 at: 0x57ec9b0
+ OBJ: TBranch	HLT_Diphoton30_18_R9IdL_AND_HE_AND_IsoCaloId_NoPixelVeto	Trigger/flag bit (process: HLT) : 0 at: 0x57edd20
+ OBJ: TBranch	HLT_Mu12_IP6_part0	Trigger/flag bit (process: HLT) : 0 at: 0x57ef090
+ OBJ: TBranch	HLT_Mu12_IP6_part1	Trigger/flag bit (process: HLT) : 0 at: 0x57f03a0
+ OBJ: TBranch	HLT_Mu12_IP6_part2	Trigger/flag bit (process: HLT) : 0 at: 0x57f16b0
+ OBJ: TBranch	HLT_Mu12_IP6_part3	Trigger/flag bit (process: HLT) : 0 at: 0x57f29c0
+ OBJ: TBranch	HLT_Mu12_IP6_part4	Trigger/flag bit (process: HLT) : 0 at: 0x57f3cd0
+ OBJ: TBranch	HLT_Mu9_IP5_part0	Trigger/flag bit (process: HLT) : 0 at: 0x57f4fe0
+ OBJ: TBranch	HLT_Mu9_IP5_part1	Trigger/flag bit (process: HLT) : 0 at: 0x57f62f0
+ OBJ: TBranch	HLT_Mu9_IP5_part2	Trigger/flag bit (process: HLT) : 0 at: 0x57f7600
+ OBJ: TBranch	HLT_Mu9_IP5_part3	Trigger/flag bit (process: HLT) : 0 at: 0x57f8910
+ OBJ: TBranch	HLT_Mu9_IP5_part4	Trigger/flag bit (process: HLT) : 0 at: 0x57f9c20
+ OBJ: TBranch	HLT_Mu7_IP4_part0	Trigger/flag bit (process: HLT) : 0 at: 0x57faf30
+ OBJ: TBranch	HLT_Mu7_IP4_part1	Trigger/flag bit (process: HLT) : 0 at: 0x57fc240
+ OBJ: TBranch	HLT_Mu7_IP4_part2	Trigger/flag bit (process: HLT) : 0 at: 0x57fd550
+ OBJ: TBranch	HLT_Mu7_IP4_part3	Trigger/flag bit (process: HLT) : 0 at: 0x57fe860
+ OBJ: TBranch	HLT_Mu7_IP4_part4	Trigger/flag bit (process: HLT) : 0 at: 0x57ffb70
+ OBJ: TBranch	HLT_Mu9_IP4_part0	Trigger/flag bit (process: HLT) : 0 at: 0x5800e80
+ OBJ: TBranch	HLT_Mu9_IP4_part1	Trigger/flag bit (process: HLT) : 0 at: 0x5802190
+ OBJ: TBranch	HLT_Mu9_IP4_part2	Trigger/flag bit (process: HLT) : 0 at: 0x58034a0
+ OBJ: TBranch	HLT_Mu9_IP4_part3	Trigger/flag bit (process: HLT) : 0 at: 0x58047b0
+ OBJ: TBranch	HLT_Mu9_IP4_part4	Trigger/flag bit (process: HLT) : 0 at: 0x5805ac0
+ OBJ: TBranch	HLT_Mu8_IP5_part0	Trigger/flag bit (process: HLT) : 0 at: 0x5806dd0
+ OBJ: TBranch	HLT_Mu8_IP5_part1	Trigger/flag bit (process: HLT) : 0 at: 0x58080e0
+ OBJ: TBranch	HLT_Mu8_IP5_part2	Trigger/flag bit (process: HLT) : 0 at: 0x58093f0
+ OBJ: TBranch	HLT_Mu8_IP5_part3	Trigger/flag bit (process: HLT) : 0 at: 0x580a700
+ OBJ: TBranch	HLT_Mu8_IP5_part4	Trigger/flag bit (process: HLT) : 0 at: 0x580ba10
+ OBJ: TBranch	HLT_Mu8_IP6_part0	Trigger/flag bit (process: HLT) : 0 at: 0x580cd20
+ OBJ: TBranch	HLT_Mu8_IP6_part1	Trigger/flag bit (process: HLT) : 0 at: 0x580e030
+ OBJ: TBranch	HLT_Mu8_IP6_part2	Trigger/flag bit (process: HLT) : 0 at: 0x580f340
+ OBJ: TBranch	HLT_Mu8_IP6_part3	Trigger/flag bit (process: HLT) : 0 at: 0x5810650
+ OBJ: TBranch	HLT_Mu8_IP6_part4	Trigger/flag bit (process: HLT) : 0 at: 0x5811960
+ OBJ: TBranch	HLT_Mu9_IP6_part0	Trigger/flag bit (process: HLT) : 0 at: 0x5812c70
+ OBJ: TBranch	HLT_Mu9_IP6_part1	Trigger/flag bit (process: HLT) : 0 at: 0x5813f80
+ OBJ: TBranch	HLT_Mu9_IP6_part2	Trigger/flag bit (process: HLT) : 0 at: 0x5815290
+ OBJ: TBranch	HLT_Mu9_IP6_part3	Trigger/flag bit (process: HLT) : 0 at: 0x58165a0
+ OBJ: TBranch	HLT_Mu9_IP6_part4	Trigger/flag bit (process: HLT) : 0 at: 0x58178b0
+ OBJ: TBranch	HLT_Mu8_IP3_part0	Trigger/flag bit (process: HLT) : 0 at: 0x5818bc0
+ OBJ: TBranch	HLT_Mu8_IP3_part1	Trigger/flag bit (process: HLT) : 0 at: 0x5819ed0
+ OBJ: TBranch	HLT_Mu8_IP3_part2	Trigger/flag bit (process: HLT) : 0 at: 0x581b1e0
+ OBJ: TBranch	HLT_Mu8_IP3_part3	Trigger/flag bit (process: HLT) : 0 at: 0x581c4f0
+ OBJ: TBranch	HLT_Mu8_IP3_part4	Trigger/flag bit (process: HLT) : 0 at: 0x581d800
+ OBJ: TBranch	HLT_QuadPFJet105_88_76_15_DoublePFBTagDeepCSV_1p3_7p7_VBF1	Trigger/flag bit (process: HLT) : 0 at: 0x581eb10
+ OBJ: TBranch	HLT_TrkMu6NoFiltersNoVtx	Trigger/flag bit (process: HLT) : 0 at: 0x581fe80
+ OBJ: TBranch	HLT_TrkMu16NoFiltersNoVtx	Trigger/flag bit (process: HLT) : 0 at: 0x5821190
+ OBJ: TBranch	HLTriggerFinalPath	Trigger/flag bit (process: HLT) : 0 at: 0x58224a0
+ OBJ: TBranch	HLT_Ele28_WPTight_Gsf	Trigger/flag bit (process: HLT) : 0 at: 0x58237b0
+ OBJ: TBranch	HLT_Ele30_WPTight_Gsf	Trigger/flag bit (process: HLT) : 0 at: 0x58248a0
+ OBJ: TBranch	HLT_DoubleL2Mu23NoVtx_2Cha_CosmicSeed_NoL2Matched	Trigger/flag bit (process: HLT) : 0 at: 0x5825990
+ OBJ: TBranch	HLT_DoubleL2Mu25NoVtx_2Cha_CosmicSeed_NoL2Matched	Trigger/flag bit (process: HLT) : 0 at: 0x5826ae0
+ OBJ: TBranch	HLT_DoubleL2Mu23NoVtx_2Cha_NoL2Matched	Trigger/flag bit (process: HLT) : 0 at: 0x5827c30
+ OBJ: TBranch	HLT_DoubleL2Mu25NoVtx_2Cha_NoL2Matched	Trigger/flag bit (process: HLT) : 0 at: 0x5828d50
+ OBJ: TBranch	HLT_DoubleTrkMu_16_6_NoFiltersNoVtx	Trigger/flag bit (process: HLT) : 0 at: 0x5829e70
+ OBJ: TBranch	L1_DoubleIsoTau28er2p1_Mass_Max80	Trigger/flag bit (process: NANO) : 0 at: 0x582af90
+ OBJ: TBranch	L1_DoubleIsoTau28er2p1_Mass_Max90	Trigger/flag bit (process: NANO) : 0 at: 0x582bc90
+ OBJ: TBranch	L1_DoubleMu4p5er2p0_SQ_OS_Mass_Min7	Trigger/flag bit (process: NANO) : 0 at: 0x582c990
+ OBJ: TBranch	L1_DoubleMu8_SQ	Trigger/flag bit (process: NANO) : 0 at: 0x582d690
+ OBJ: TBranch	L1_IsoTau40er2p1_ETMHF80	Trigger/flag bit (process: NANO) : 0 at: 0x582e330
+ OBJ: TBranch	L1_Mu7_EG20er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x582f000
+ OBJ: TBranch	L1_SingleEG28_FWD2p5	Trigger/flag bit (process: NANO) : 0 at: 0x582fcd0
+ OBJ: TBranch	L1_SingleEG28er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x58309a0
+ OBJ: TBranch	L1_SingleEG28er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x5831670
+ OBJ: TBranch	L1_SingleEG28er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5832340
+ OBJ: TBranch	L1_SingleIsoEG28_FWD2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5833010
+ OBJ: TBranch	L1_SingleJet140er2p5_ETMHF70	Trigger/flag bit (process: NANO) : 0 at: 0x5833ce0
+ OBJ: TBranch	L1_SingleLooseIsoEG26er1p5	Trigger/flag bit (process: NANO) : 0 at: 0x58349b0
+ OBJ: TBranch	L1_SingleLooseIsoEG26er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5835680
+ OBJ: TBranch	L1_SingleLooseIsoEG28_FWD2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5836350
+ OBJ: TBranch	L1_SingleLooseIsoEG28er2p1	Trigger/flag bit (process: NANO) : 0 at: 0x5837020
+ OBJ: TBranch	L1_SingleLooseIsoEG28er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x5837cf0
+ OBJ: TBranch	L1_SingleLooseIsoEG30er2p5	Trigger/flag bit (process: NANO) : 0 at: 0x58389c0
