@@ -64,15 +64,15 @@ latex.SetTextAlign(11)
 
 ROOT.gStyle.SetErrorX(.5)
 #start data
-h_data_den = getPlotFromChain(c, plot['var'], plot['bin'], cutString =den_cut , weight = "(1)" ,addOverFlowBin='both',variableBinning=plot["bin_set"]) 
-h_data_num = getPlotFromChain(c, plot['var'], plot['bin'], cutString =num_cut , weight = "(1)" ,addOverFlowBin='both',variableBinning=plot["bin_set"]) 
+h_data_den = getPlotFromChain(c, plot['var'], (50,0,200), cutString =den_cut , weight = "(1)" ,addOverFlowBin='both',variableBinning=plot["bin_set"]) 
+h_data_num = getPlotFromChain(c, plot['var'], (50,0,200), cutString =num_cut , weight = "(1)" ,addOverFlowBin='both',variableBinning=plot["bin_set"]) 
 Func = ROOT.TF1('Func',"[0]",plot['binning'][1],plot['binning'][2])
 Func.SetParameter(0,0.1)
 Func.SetLineColor(58)
 Func.SetLineWidth(2)
 
 #func = ROOT.TF1('func', '[0]*TMath::Erf((x-[1])/[2])', 40., 500.)  # non def pos erf
-func = ROOT.TF1("func", "([0]/(1+ TMath::Exp(-[1]*(x-[2]))))", 0., 3000.) 
+func = ROOT.TF1("func", "([0]/(1+ TMath::Exp(-[1]*(x-[2]))))", 0., 200.) 
 # func = ROOT.TF1('func', '0.5 * ([0]*TMath::Erf((x-[1])/[2]) + 1)', 25., 180.) # def pos erf
 func.SetParameter(0,  1.0)
 func.SetParameter(1,  0.1)
