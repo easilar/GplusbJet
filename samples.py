@@ -2,7 +2,7 @@
 
 import pickle
 
-save_orig = True
+save_orig = False
 
 path_MC = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/"
 #path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/"
@@ -27,15 +27,15 @@ GJets_Pt_500To1000_2016 = path_MC+"GJets_Pt-500To1000_13TeV-sherpa/"
 GJets_Pt_1000To2000_2016 = path_MC+"GJets_Pt-1000To2000_13TeV-sherpa/"
 GJets_Pt_2000To5000_2016 = path_MC+"GJets_Pt-2000To5000_13TeV-sherpa/"
 G1Jet_Pt_50To100_2016 = path_MC+"G1Jet_Pt-50To100_TuneCUETP8M1_13TeV-amcatnlo-pythia8/"
-G1Jet_Pt_50To100_2016_NOExt = path_MC+"G1Jet_Pt-50To100_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
+G1Jet_Pt_50To100_2016_NOExt = path_MC+"G1Jet_Pt/G1Jet_Pt-50To100_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
 G1Jet_Pt_100To250_2016 = path_MC+"G1Jet_Pt-100To250_TuneCUETP8M1_13TeV-amcatnlo-pythia8/"
-G1Jet_Pt_100To250_2016_NOExt = path_MC+"G1Jet_Pt-100To250_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
+G1Jet_Pt_100To250_2016_NOExt = path_MC+"G1Jet_Pt/G1Jet_Pt-100To250_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
 G1Jet_Pt_250To400_2016 = path_MC+"G1Jet_Pt-250To400_TuneCUETP8M1_13TeV-amcatnlo-pythia8/"
-G1Jet_Pt_250To400_2016_NOExt = path_MC+"G1Jet_Pt-250To400_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
+G1Jet_Pt_250To400_2016_NOExt = path_MC+"G1Jet_Pt/G1Jet_Pt-250To400_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
 G1Jet_Pt_400To650_2016 = path_MC+"G1Jet_Pt-400To650_TuneCUETP8M1_13TeV-amcatnlo-pythia8/"
-G1Jet_Pt_400To650_2016_NOExt = path_MC+"G1Jet_Pt-400To650_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
+G1Jet_Pt_400To650_2016_NOExt = path_MC+"G1Jet_Pt/G1Jet_Pt-400To650_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
 G1Jet_Pt_650ToInf_2016 = path_MC+"G1Jet_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnlo-pythia8/"
-G1Jet_Pt_650ToInf_2016_NOExt = path_MC+"G1Jet_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
+G1Jet_Pt_650ToInf_2016_NOExt = path_MC+"G1Jet_Pt/G1Jet_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
 GJets_HT_40To100_2016 = path_MC+"GJets_HT-40To100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
 GJets_HT_100To200_2016 = path_MC+"GJets_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
 GJets_HT_200To400_2016 = path_MC+"GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
