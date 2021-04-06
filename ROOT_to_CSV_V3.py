@@ -14,12 +14,13 @@ ch=ROOT.TChain("Events")
 ch.Add(sdic['dir']+"/*.root")
 
 number_events=ch.GetEntries()
-number_events=5
+number_events=1000
 
 #Number of Particles in n events
 Nph=set()  # N Photons per Event in goodPhotons
 Nbj=set()
 Nj=set()
+NGbj=set()
 
 #List of Variables for The dataset
 Sel_photons=[]
@@ -56,10 +57,13 @@ for jentry in range(number_events):
    	Nj.add(nJet)
 
 	if nPhoton>1: continue
+	#if nbJet>1: continue
+
 	#lists of variables per event
 	RecoPhotons=[]          # kin of Reco Photons
    	RecoJets=[]             # kin of Reco Jets
    	GenJets=[]              # kin of G jets
+	GenbJets=[]
    	GenPhotons=[]           # kin of Gen Particles
    	bJets=[]
    	sel_photons=[]
@@ -77,6 +81,10 @@ for jentry in range(number_events):
 	for ID in range(int(nGenJet)): # Gen Jets   #List of Dictionary
 		GenJets.append({'index':ID,'pt':ch.GetLeaf('GenJet_pt').GetValue(ID),'eta':ch.GetLeaf('GenJet_eta').GetValue(ID),'phi':ch.GetLeaf('GenJet_phi').GetValue(ID)})
 
+        for ID in range(int(nGenJet)): # Gen Jets   #List of Dictionary
+		if abs(ch.GetLeaf('GenJet_partonFlavour').GetValue(ID))==5:
+                	GenbJets.append({'index':ID,'pt':ch.GetLeaf('GenJet_pt').GetValue(ID),'eta':ch.GetLeaf('GenJet_eta').GetValue(ID),'phi':ch.GetLeaf('GenJet_phi').GetValue(ID)})
+
 	for j in range(int(nJet)): # Reco JETS 
         	RecoJets.append({'index':j,'pt':ch.GetLeaf('goodJet_pt').GetValue(j),'phi':ch.GetLeaf('goodJet_phi').GetValue(j),'eta':ch.GetLeaf('goodJet_eta').GetValue(j)})
 
@@ -84,8 +92,11 @@ for jentry in range(number_events):
 		bJets.append({'index':j,'pt':ch.GetLeaf('goodbJet_pt').GetValue(j),'phi':ch.GetLeaf('goodbJet_phi').GetValue(j),'eta':ch.GetLeaf('goodbJet_eta').GetValue(j)})
    
 
-	print("LenGenJets---LenGenPhotons----LenRecoJets----LenRecobJets---LenRecoPhotons")
-   	print(len(GenJets)," " , len(GenPhotons) , " ",len(RecoJets)," ",len(bJets)," ",len(RecoPhotons))
+	print('event#',jentry)
+	#if len(GenbJets) != 0:
+		#print('OK')
+	#print("LenGenJets---LenGenPhotons----LenRecoJets----LenGenbJets----LenRecobJets---LenRecoPhotons")
+   	#print(len(GenJets)," " , len(GenPhotons) , " ",len(RecoJets),' ',len(GenbJets),' ',len(bJets)," ",len(RecoPhotons))
 
 # ------------PHOTON MATCHING INSIDE CONE dR----------------------------------------------
 	dR=[]
@@ -95,58 +106,17 @@ for jentry in range(number_events):
 			dR_Pho_Match = deltaR(photon["phi"],GenPhoton["phi"],photon["eta"],GenPhoton["eta"])
 			PtRatio=(GenPhoton["pt"]-photon["pt"])/(GenPhoton["pt"])
 			dR.append((dR_Pho_Match))
-			print('dr',dR_Pho_Match)
-			print('PtR',abs(PtRatio))
+			#print('dr',dR_Pho_Match)
+			#print('PtR',abs(PtRatio))
 			if abs(PtRatio) < 0.1 :
 				dRm.append(min(dR))
+			else:
+				dRm.append(200000)
+					
 	
-	
-	print(dRm)
-	 
-	print(' ')
-	
-	'''
-        for i,photon in enumerate(RecoPhotons):  # Matching GenPhoton-RecoPhoton in cone dR
-                dRm=[]
-                
-                for GenPhoton in GenPhotons:
-                        dR_Pho_Match = deltaR(photon["phi"],GenPhoton["phi"],photon["eta"],GenPhoton["eta"])
- 			dRm.append(dR_Pho_Match)
-	print(dRm)
-   	
-	min_dRm=dRm[0]
-	for j in dRm:
-                for i in GenPhotons:
-                        for s in RecoPhotons:
-                                PtRatio=(i["pt"]-s["pt"])/(i["pt"])
-                                print(PtRatio)
-
-		if   abs(PtRatio) > 0.1 :
-			dRm.remove(j)
-		else:
-			break
-	print(dRm)
-	'''				
- 	'''
-	min_index = dRm.index(min(dRm))
-	for j in range(min_index):
-		#PtRatio=0.
-		for i in GenPhotons:
-                	for s in RecoPhotons:
-                        	PtRatio=(i["pt"]-s["pt"])/(i["pt"])
-				print(PtRatio)
-		if abs(PtRatio) < 0.1:
-			break 
-		else:
-			dRm.remove(j)
-	
-	#print(PtRatio)
-	print(dRm)
-	print(' ')
-'''
-			
-
-
+	#print('dRm',dRm)
+	#print('min dRm',min(dRm))
+	#print(' ')
 
 	min_index = dRm.index(min(dRm)) # index of the min value in dRm List
 
@@ -163,34 +133,65 @@ for jentry in range(number_events):
 	for s in matched_photons:
 		for i in sel_photons:
 			PtRatio=(s["pt"]-i["pt"])/(s["pt"])
-	print(abs(PtRatio))
+	#print(abs(PtRatio))
+
+
 #----------- b Jet Matching --------------------------------------
 
+        dRJ=[]
+        dRmJ=[]
+        for i,jet in enumerate(bJets): 
+                for GenJet in GenbJets:
+                        dR_Jet_Match = deltaR(jet["phi"],GenJet["phi"],jet["eta"],GenJet["eta"])
+                        PtRatioJ=(GenJet["pt"]-jet["pt"])/(GenJet["pt"])
+                        dRJ.append((dR_Jet_Match))
+                        print('drJ',dR_Jet_Match)
+                        print('PtRJ',abs(PtRatioJ))
+                        if abs(PtRatioJ) < 0.1 :
+                                dRmJ=dRJ
+                        else:
+                                dRmJ.append(200000)
+
+	if len(dRmJ) == 0 : # in case dRmj is empty
+                continue
+
+        print('dRmJ',dRmJ)
+        print('min dRmJ',min(dRmJ))
+        #print(' ')
+
+        min_indexJ = dRmJ.index(min(dRmJ)) # index of the min value in dRm List
+
+        matched_jets=[]
+        if  min(dRmJ) <= 0.5:
+                matched_jets.append(GenJets[min_index])
+        print('matched_jet :',matched_jets)
+
+        sel_jets=[]
+        if min( dRmJ) <= 0.5:
+                sel_jets=bJets
+
+        #lead_bjets=sorted(sel_jets,key=lambda x:x['pt'],reverse=True)[:1]
+        #sublead_bjets=sorted(sel_jets,key=lambda x:x['pt'],reverse=True)[1:2]
 
 
+#------------- Labeling -------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	#s=[]
+	#b=[]
+	#labels=[]
+	#if good event labels.append s
+	#if not good event labels.append b
 
 #------------- Selecting good event-------------------------------
 
-	if PtRatio < 0.1 :
-		good_event=True #only after b matching
-	if not good_event: continue	 
+        if PtRatio < 0.1 and min(dRm)<0.5  :
+                good_event=True #only after b matching
+        if not good_event  : continue
+        #if len(dRm) == 0 : # having ptRatio >= 0.12 so dRm empty list
+                #continue
+
+
+
 	
 #------------- Getting Leading & SubLeading Jet---------------------
 
@@ -199,7 +200,7 @@ for jentry in range(number_events):
 	pt_jet=[]
 	for i in range(len(RecoJets)):
 		pt_jet=RecoJets[i]['pt']
-	        print('pt_jets:',pt_jet)
+	        #print('pt_jets:',pt_jet)
 
 #-----------Extract Selected Variables-----------------------------
         GPhotons+=matched_photons
@@ -207,6 +208,8 @@ for jentry in range(number_events):
 	nJets.append({'nJets':len(RecoJets)})
 	nbJets.append({'nbJets':len(bJets)})
    	Sel_photons+=sel_photons
+	if len(bJets)==0:
+		bJets.append({'pt':0,'eta':0,'phi':0})
    	Sel_jets+=lead_jets
 	Sublead_jets+=sublead_jets
    	Sel_bjets+=bJets
@@ -215,16 +218,20 @@ for jentry in range(number_events):
    	DRm+=dRms
    	Met_pt.append({'pt':met_pt})
    	Met_phi.append({'phi':met_phi})
+	NGbj.add(len(GenbJets))
         #print('nJet',nJet)
         #print('RecoJets', RecoJets)
-        print('Lead:',lead_jets)
-	print('subLead:',sublead_jets)
-	print('GenPhotons',GenPhotons)
-	print('ReoPhotons',RecoPhotons)
-	print('matched :',matched_photons)
-	print('selected :',sel_photons)
+	print('GenbJet',GenbJets)
+	print('bJet',bJets)
+        #print('Lead:',lead_jets)
+	#print('subLead:',sublead_jets)
+	#print('GenPhotons',GenPhotons)
+	#print('ReoPhotons',RecoPhotons)
+	#print('matched :',matched_photons)
+	#print('selected :',sel_photons)
 	print(' ')
-
+	#print(' sel bjets',Sel_bjets,' # ',jentry)
+	
 #---------Create Dataset's list---------------------------------
 
 written = []
@@ -288,7 +295,7 @@ for i in range(biggest_len): # from 0 to largest index
         try:
                 temp_dict['nGPhotons'] = nGPhotons[i]['nGPhotons']
         except IndexError:
-                temp_dict['nGphotons'] =0
+                temp_dict['nGPhotons'] =0
         try:
                 temp_dict['nJets'] = nJets[i]['nJets']
         except IndexError:
@@ -326,8 +333,8 @@ with open('GFG', 'w') as f:
 
 #------- Check for n objects in goodParticles--------
 
-#print(Nph)   # Check for extra photons in ngoodPhotons 
+print('Nph',Nph)   # Check for extra photons in ngoodPhotons 
 #print(Nj)
-#print(Nbj)
-
+print('nbJet', Nbj)
+print('nGbj', NGbj)
 	
