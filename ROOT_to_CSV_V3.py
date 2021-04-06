@@ -57,7 +57,7 @@ for jentry in range(number_events):
    	Nj.add(nJet)
 
 	if nPhoton>1: continue
-	if nbJet>1: continue
+	#if nbJet>1: continue
 
 	#lists of variables per event
 	RecoPhotons=[]          # kin of Reco Photons
@@ -147,6 +147,7 @@ for jentry in range(number_events):
                         dRJ.append((dR_Jet_Match))
                         print('drJ',dR_Jet_Match)
                         print('PtRJ',abs(PtRatioJ))
+			print('dRJ',dRJ)
                         if abs(PtRatioJ) < 0.1 :
                                 dRmJ=dRJ
                         else:
