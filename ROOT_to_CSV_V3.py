@@ -57,7 +57,7 @@ for jentry in range(number_events):
    	Nj.add(nJet)
 
 	if nPhoton>1: continue
-	#if nbJet>1: continue
+	if nbJet>1: continue
 
 	#lists of variables per event
 	RecoPhotons=[]          # kin of Reco Photons
@@ -169,7 +169,8 @@ for jentry in range(number_events):
         sel_jets=[]
         if min( dRmJ) <= 0.5:
                 sel_jets=bJets
-
+	
+	# TO GET ONE ROW PER EVENT:
         #lead_bjets=sorted(sel_jets,key=lambda x:x['pt'],reverse=True)[:1]
         #sublead_bjets=sorted(sel_jets,key=lambda x:x['pt'],reverse=True)[1:2]
 
