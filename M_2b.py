@@ -7,12 +7,18 @@ import json
 import os
 import pickle
 import operator
+from optparse import OptionParser
+
+parser = OptionParser()
+parser.add_option("--b", dest="b", default="1", action="store", help="1b or 2b")
+(options, args) = parser.parse_args()
+b=int(options.b)
 
 sample_dic=pickle.load(open("samples_ana.pkl",'rb'))
 mychain_dict  =  getChain(year=2016, stype='signal', sname='G1Jet_Pt', pfile='samples_ana.pkl', datatype='all', test=False)
 ch = mychain_dict[0]
 number_events=ch.GetEntries()
-number_events=2000
+number_events=500
 
 #Number of Particles in n events
 Nph=set()  # N Photons per Event in goodPhotons
@@ -154,11 +160,11 @@ for jentry in range(number_events):
     	if not good_event_Photon  : continue
 	
 #------------- 1b Matching ----------------------------------------
-	'''
+	
 	print('GenbJets', GenbJets)
 	print('bJets',bJets)
 
-	if nbJet == 1 :
+	if nbJet == 1 and b == 1 :
         	dRmJ=[]
         	for i,jet in enumerate(bJets):
                 	for  j,GenJet in enumerate (GenbJets):
@@ -190,10 +196,10 @@ for jentry in range(number_events):
                 	good_event_b=True
         	if not good_event_b  :
 			pass
-		'''
+		
 #----------------- 2b Matching ---------------------------------------------------------
 
-	if nbJet > 1 :
+	elif nbJet > 1 and b>1 :
 
 		lead_bjets=sorted(bJets,key=lambda x:x['pt'],reverse=True)[:1]
         	sublead_bjets=sorted(bJets,key=lambda x:x['pt'],reverse=True)[1:2]
@@ -406,27 +412,48 @@ for i in range(biggest_len): # from 0 to largest index
 #------- Write to CSV -------------------
 
 # field names
+if b==1:
 
-fields = [ 'nGphotons','ngooJets','ngoodbJets','Matched_GPhoton_pt','Matched_GPhoton_eta','Matched_GPhoton_phi','Photon_pt','Photon_eta','Photon_phi' ,'Lead_Jet_pt','Lead_Jet_eta','Lead_Jet_phi','SubLead_Jet_pt','SubLead_Jet_eta','SubLead_Jet_phi','Lead_bJet_pt','Lead_bJet_eta','Lead_bJet_phi','SubLead_bJet_pt','SubLead_bJet_eta','SubLeadbJet_phi','MET_pt','MET_phi','dR_Photon_Gen_Reco','Labels']
+	fields = [ 'nGphotons','ngooJets','ngoodbJets','Matched_GPhoton_pt','Matched_GPhoton_eta','Matched_GPhoton_phi','Photon_pt','Photon_eta','Photon_phi' ,'Lead_Jet_pt','Lead_Jet_eta','Lead_Jet_phi','SubLead_Jet_pt','SubLead_Jet_eta','SubLead_Jet_phi','Lead_bJet_pt','Lead_bJet_eta','Lead_bJet_phi','SubLead_bJet_pt','SubLead_bJet_eta','SubLeadbJet_phi','MET_pt','MET_phi','dR_Photon_Gen_Reco','Labels']
 
 
 # data rows of csv file
 
-rows = written
-with open('M_2b.csv', 'w') as f:
+	rows = written
+	with open('M1b.csv', 'w') as f:
 
     # using csv.writer method from CSV package
-    write = csv.writer(f)
-    write.writerow(fields)
-    for row in rows:
+    		write = csv.writer(f)
+    		write.writerow(fields)
+    		for row in rows:
         #r = [row[0]['pt'], row[0]['eta'], row[0]['phi'], row[0]['pt'], row[0]['eta'], row[0]['phi']]
-        r = [row['nGPhotons'],row['nJets'],row['nbJets'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'], row['jet_pt'],row['jet_eta'],row['jet_phi'],row['SLjet_pt'],row['SLjet_eta'],row['SLjet_phi'],row['bjet_pt'],row['bjet_eta'],row['bjet_phi'],row['SLbjet_pt'],row['SLbjet_eta'],row['SLbjet_phi'],row['met_pt'],row['met_phi'],row['dRm'],row['Labels']]
+        		r = [row['nGPhotons'],row['nJets'],row['nbJets'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'], row['jet_pt'],row['jet_eta'],row['jet_phi'],row['SLjet_pt'],row['SLjet_eta'],row['SLjet_phi'],row['bjet_pt'],row['bjet_eta'],row['bjet_phi'],row['SLbjet_pt'],row['SLbjet_eta'],row['SLbjet_phi'],row['met_pt'],row['met_phi'],row['dRm'],row['Labels']]
 
-        write.writerow(r)
+        		write.writerow(r)
+elif b>1:
 
+        fields = [ 'nGphotons','ngooJets','ngoodbJets','Matched_GPhoton_pt','Matched_GPhoton_eta','Matched_GPhoton_phi','Photon_pt','Photon_eta','Photon_phi' ,'Lead_Jet_pt','Lead_Jet_eta','Lead_Jet_phi','SubLead_Jet_pt','SubLead_Jet_eta','SubLead_Jet_phi','Lead_bJet_pt','Lead_bJet_eta','Lead_bJet_phi','SubLead_bJet_pt','SubLead_bJet_eta','SubLeadbJet_phi','MET_pt','MET_phi','dR_Photon_Gen_Reco','Labels']
+
+
+# data rows of csv file
+
+        rows = written
+        with open('M2b.csv', 'w') as f:
+
+    # using csv.writer method from CSV package
+        	write = csv.writer(f)
+        	write.writerow(fields)
+        	for row in rows:
+        #r = [row[0]['pt'], row[0]['eta'], row[0]['phi'], row[0]['pt'], row[0]['eta'], row[0]['phi']]
+                	r = [row['nGPhotons'],row['nJets'],row['nbJets'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'], row['jet_pt'],row['jet_eta'],row['jet_phi'],row['SLjet_pt'],row['SLjet_eta'],row['SLjet_phi'],row['bjet_pt'],row['bjet_eta'],row['bjet_phi'],row['SLbjet_pt'],row['SLbjet_eta'],row['SLbjet_phi'],row['met_pt'],row['met_phi'],row['dRm'],row['Labels']]
+
+                	write.writerow(r)
 
 #------- Check for n objects in goodParticles--------
-
+if b==1:
+	print('working with 1b')
+else:
+	print('working with 2b')
 print('Nph',Nph)   # Check for extra photons in ngoodPhotons
 #print(Nj)
 print('nbJet', Nbj)
