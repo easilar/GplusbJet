@@ -17,7 +17,7 @@ sample_dic=pickle.load(open("samples_ana.pkl",'rb'))
 mychain_dict  =  getChain(year=2016, stype='signal', sname='G1Jet_Pt', pfile='samples_ana.pkl', datatype='all', test=False)
 ch = mychain_dict[0]
 number_events=ch.GetEntries()
-#number_events=1000
+number_events=50000
 
 #Number of Particles in n events
 Nph=set()  # N Photons per Event in goodPhotons
@@ -321,10 +321,10 @@ for jentry in range(number_events):
         if met_phi==0:
                 met_phi=-999
         Met_phi.append({'phi':met_phi})
+
         if len(labels)==0:
                 labels.append({'label':-999})
         Labels+=labels
-
 	NGbj.add(len(GenbJets))
     	Match_1b.append(len(sel_jets_1b))
     	Match_2b.append(len(sel_jets_lb)+len(sel_jets_slb))
@@ -337,91 +337,36 @@ for k in Match_2b:
                 M_2b += k
 
 #---------Create Dataset's list---------------------------------
-
-written = []
-biggest_len = max(len(nGPhotons),len(nJets),len(nbJets),len(GenPhotons),len(Sel_photons), len(Sel_jets),len(Sublead_jets) , len(Sel_bjets), len(Met_pt),len(Met_phi),len(DRm),len(Labels),len(Sel_bjets),len(SubLead_bJets)) #Get biggest len
-#print(biggest_len)
-for i in range(biggest_len): # from 0 to largest index
-        temp_dict = {} #empty dict
-
-        try:
-                temp_dict['GPhoton_pt'] = GPhotons[i]['pt']
-                temp_dict['GPhoton_eta'] = GPhotons[i]['eta']
-                temp_dict['GPhoton_phi'] = GPhotons[i]['phi']
-        except IndexError:
-                temp_dict['GPhoton_pt'] =0 # or None
-                temp_dict['GPhoton_eta'] =0 
-                temp_dict['GPhoton_phi'] =0
-        try:
-                temp_dict['photon_pt'] = Sel_photons[i]['pt']
-                temp_dict['photon_eta'] = Sel_photons[i]['eta']
-        	temp_dict['photon_phi'] = Sel_photons[i]['phi']
-	except IndexError:
-                temp_dict['photon_pt'] =0
-                temp_dict['photon_eta'] =0
-                temp_dict['photon_phi'] =0
-        try:
-                temp_dict['jet_pt'] = Sel_jets[i]['pt']
-                temp_dict['jet_eta'] = Sel_jets[i]['eta']
-                temp_dict['jet_phi'] = Sel_jets[i]['phi']
-        except IndexError:
-                temp_dict['jet_pt'] =0
-                temp_dict['jet_eta'] =0
-                temp_dict['jet_phi'] =0
-        try:
-                temp_dict['SLjet_pt'] = Sublead_jets[i]['pt']
-                temp_dict['SLjet_eta'] = Sublead_jets[i]['eta']
-                temp_dict['SLjet_phi'] = Sublead_jets[i]['phi']
-        except IndexError:
-                temp_dict['SLjet_pt'] =0
-                temp_dict['SLjet_eta'] =0
-                temp_dict['SLjet_phi'] =0
-        try:
-                temp_dict['bjet_pt'] = Sel_bjets[i]['pt']
-                temp_dict['bjet_eta'] = Sel_bjets[i]['eta']
-                temp_dict['bjet_phi'] = Sel_bjets[i]['phi']
-        except IndexError:
-                temp_dict['bjet_pt'] =0
-                temp_dict['bjet_eta'] =0
-                temp_dict['bjet_phi'] =0
-  	try:
-                temp_dict['SLbjet_pt'] = SubLead_bJets[i]['pt']
-                temp_dict['SLbjet_eta'] = SubLead_bJets[i]['eta']
-                temp_dict['SLbjet_phi'] = SubLead_bJets[i]['phi']
-        except IndexError:
-                temp_dict['SLbjet_pt'] =0
-                temp_dict['SLbjet_eta'] =0
-                temp_dict['SLbjet_phi'] =0
-        try:
-                temp_dict['met_pt'] = Met_pt[i]['pt']
-        except IndexError:
-                temp_dict['met_pt'] =0
-        try:
-                temp_dict['met_phi'] = Met_phi[i]['phi']
-        except IndexError:
-                temp_dict['met_phi'] =0
-        try:
-                temp_dict['dRm'] = DRm[i]['dRm']
-        except IndexError:
-                temp_dict['dRm'] =0
-        try:
-                temp_dict['nGPhotons'] = nGPhotons[i]['nGPhotons']
-        except IndexError:
-                temp_dict['nGPhotons'] =0
-        try:
-                temp_dict['nJets'] = nJets[i]['nJets']
-        except IndexError:
-                temp_dict['nJets'] =0
-        try:
-                temp_dict['nbJets'] = nbJets[i]['nbJets']
-        except IndexError:
-                temp_dict['nbJets'] =0
-	try:
-                temp_dict['Labels'] = Labels[i]['label']
-        except IndexError:
-                temp_dict['Labels'] =0
-        written.append(temp_dict)
-
+written=[]
+biggest_len = len(GPhotons)
+for i in range(biggest_len):
+	temp_dict = {} #empty dict
+        temp_dict['GPhoton_pt'] = GPhotons[i]['pt']
+        temp_dict['GPhoton_eta'] = GPhotons[i]['eta']
+        temp_dict['GPhoton_phi'] = GPhotons[i]['phi']
+        temp_dict['photon_pt'] = Sel_photons[i]['pt']
+        temp_dict['photon_eta'] = Sel_photons[i]['eta']
+        temp_dict['photon_phi'] = Sel_photons[i]['phi']
+        temp_dict['jet_pt'] = Sel_jets[i]['pt']
+        temp_dict['jet_eta'] = Sel_jets[i]['eta']
+        temp_dict['jet_phi'] = Sel_jets[i]['phi']
+        temp_dict['SLjet_pt'] = Sublead_jets[i]['pt']
+        temp_dict['SLjet_eta'] = Sublead_jets[i]['eta']
+        temp_dict['SLjet_phi'] = Sublead_jets[i]['phi']
+        temp_dict['bjet_pt'] = Sel_bjets[i]['pt']
+        temp_dict['bjet_eta'] = Sel_bjets[i]['eta']
+        temp_dict['bjet_phi'] = Sel_bjets[i]['phi']
+        temp_dict['SLbjet_pt'] = SubLead_bJets[i]['pt']
+        temp_dict['SLbjet_eta'] = SubLead_bJets[i]['eta']
+        temp_dict['SLbjet_phi'] = SubLead_bJets[i]['phi']
+        temp_dict['met_pt'] = Met_pt[i]['pt']
+        temp_dict['met_phi'] = Met_phi[i]['phi']
+        temp_dict['dRm'] = DRm[i]['dRm']
+        temp_dict['nGPhotons'] = nGPhotons[i]['nGPhotons']
+        temp_dict['nJets'] = nJets[i]['nJets']
+        temp_dict['nbJets'] = nbJets[i]['nbJets']
+        temp_dict['Labels'] = Labels[i]['label']	
+	written.append(temp_dict)
 
 
 #------- Write to CSV -------------------
@@ -429,7 +374,7 @@ for i in range(biggest_len): # from 0 to largest index
 # field names
 if b==1:
 
-	fields = [ 'nGphotons','ngooJets','ngoodbJets','Matched_GPhoton_pt','Matched_GPhoton_eta','Matched_GPhoton_phi','Photon_pt','Photon_eta','Photon_phi' ,'Lead_Jet_pt','Lead_Jet_eta','Lead_Jet_phi','SubLead_Jet_pt','SubLead_Jet_eta','SubLead_Jet_phi','Lead_bJet_pt','Lead_bJet_eta','Lead_bJet_phi','SubLead_bJet_pt','SubLead_bJet_eta','SubLeadbJet_phi','MET_pt','MET_phi','dR_Photon_Gen_Reco','Labels']
+	fields = [ 'nGphotons','ngooJets','ngoodbJets','Matched_GPhoton_pt','Matched_GPhoton_eta','Matched_GPhoton_phi','Photon_pt','Photon_eta','Photon_phi' ,'Lead_Jet_pt','Lead_Jet_eta','Lead_Jet_phi','SubLead_Jet_pt','SubLead_Jet_eta','SubLead_Jet_phi','Lead_bJet_pt','Lead_bJet_eta','Lead_bJet_phi','MET_pt','MET_phi','dR_Photon_Gen_Reco','Labels']
 
 
 
@@ -439,7 +384,7 @@ if b==1:
     		write = csv.writer(f)
     		write.writerow(fields)
     		for row in rows:
-        		r = [row['nGPhotons'],row['nJets'],row['nbJets'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'], row['jet_pt'],row['jet_eta'],row['jet_phi'],row['SLjet_pt'],row['SLjet_eta'],row['SLjet_phi'],row['bjet_pt'],row['bjet_eta'],row['bjet_phi'],row['SLbjet_pt'],row['SLbjet_eta'],row['SLbjet_phi'],row['met_pt'],row['met_phi'],row['dRm'],row['Labels']]
+        		r = [row['nGPhotons'],row['nJets'],row['nbJets'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'], row['jet_pt'],row['jet_eta'],row['jet_phi'],row['SLjet_pt'],row['SLjet_eta'],row['SLjet_phi'],row['bjet_pt'],row['bjet_eta'],row['bjet_phi'],row['met_pt'],row['met_phi'],row['dRm'],row['Labels']]
 
         		write.writerow(r)
 elif b>1:
@@ -470,6 +415,5 @@ print('nGbj', NGbj)
 print(M_1b)
 print(M_2b)
 print(Number_b)
-#Match_eff=0.
 Match_eff =(M_1b+M_2b)/Number_b
 print('Match_eff',Match_eff)
