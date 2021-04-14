@@ -1,6 +1,5 @@
 import ROOT
 import helper
-from array import array
 from helper import *
 import csv
 import json
@@ -18,7 +17,7 @@ sample_dic=pickle.load(open("samples_ana.pkl",'rb'))
 mychain_dict  =  getChain(year=2016, stype='signal', sname='G1Jet_Pt', pfile='samples_ana.pkl', datatype='all', test=False)
 ch = mychain_dict[0]
 number_events=ch.GetEntries()
-number_events=1000
+#number_events=1000
 
 #Number of Particles in n events
 Nph=set()  # N Photons per Event in goodPhotons
@@ -325,34 +324,7 @@ for jentry in range(number_events):
         if len(labels)==0:
                 labels.append({'label':-999})
         Labels+=labels
-	'''
-    	if len(matched_photons)==0:
-                matched_photons.append({'pt':-999,'eta':-999,'phi':-999})
-    	GPhotons+=matched_photons
-    	nGPhotons.append({'nGPhotons':len(GenPhotons)})
-	nJets.append({'nJets':len(Jets)})
-	nbJets.append({'nbJets':len(bJets)})
-    	if len(sel_photons)==0:
-                sel_photons.append({'pt':-999,'eta':-999,'phi':-999})
-   	Sel_photons+=sel_photons
-	if len(lead_b)==0:
-		lead_b.append({'pt':-999,'eta':-999,'phi':-999})
-    	if len(sublead_b)==0:
-                sublead_b.append({'pt':-999,'eta':-999,'phi':-999})
-    	if len(lead_jets)==0:
-                lead_jets.append({'pt':-999,'eta':-999,'phi':-999})
-    	if len(sublead_jets)==0:
-                sublead_jets.append({'pt':-999,'eta':-999,'phi':-999})
-   	Sel_jets+=lead_jets
-	Sublead_jets+=sublead_jets
-   	Sel_bjets+=lead_b
-	SubLead_bJets+=sublead_b
-	dRms=[]
-	dRms.append({'dRm':dRm[0]['dR']})
-   	DRm+=dRms
-   	Met_pt.append({'pt':met_pt})
-   	Met_phi.append({'phi':met_phi})
-	'''
+
 	NGbj.add(len(GenbJets))
     	Match_1b.append(len(sel_jets_1b))
     	Match_2b.append(len(sel_jets_lb)+len(sel_jets_slb))
@@ -460,16 +432,13 @@ if b==1:
 	fields = [ 'nGphotons','ngooJets','ngoodbJets','Matched_GPhoton_pt','Matched_GPhoton_eta','Matched_GPhoton_phi','Photon_pt','Photon_eta','Photon_phi' ,'Lead_Jet_pt','Lead_Jet_eta','Lead_Jet_phi','SubLead_Jet_pt','SubLead_Jet_eta','SubLead_Jet_phi','Lead_bJet_pt','Lead_bJet_eta','Lead_bJet_phi','SubLead_bJet_pt','SubLead_bJet_eta','SubLeadbJet_phi','MET_pt','MET_phi','dR_Photon_Gen_Reco','Labels']
 
 
-# data rows of csv file
 
 	rows = written
 	with open('M1b_signal.csv', 'w') as f:
 
-    # using csv.writer method from CSV package
     		write = csv.writer(f)
     		write.writerow(fields)
     		for row in rows:
-        #r = [row[0]['pt'], row[0]['eta'], row[0]['phi'], row[0]['pt'], row[0]['eta'], row[0]['phi']]
         		r = [row['nGPhotons'],row['nJets'],row['nbJets'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'], row['jet_pt'],row['jet_eta'],row['jet_phi'],row['SLjet_pt'],row['SLjet_eta'],row['SLjet_phi'],row['bjet_pt'],row['bjet_eta'],row['bjet_phi'],row['SLbjet_pt'],row['SLbjet_eta'],row['SLbjet_phi'],row['met_pt'],row['met_phi'],row['dRm'],row['Labels']]
 
         		write.writerow(r)
@@ -478,16 +447,13 @@ elif b>1:
         fields = [ 'nGphotons','ngooJets','ngoodbJets','Matched_GPhoton_pt','Matched_GPhoton_eta','Matched_GPhoton_phi','Photon_pt','Photon_eta','Photon_phi' ,'Lead_Jet_pt','Lead_Jet_eta','Lead_Jet_phi','SubLead_Jet_pt','SubLead_Jet_eta','SubLead_Jet_phi','Lead_bJet_pt','Lead_bJet_eta','Lead_bJet_phi','SubLead_bJet_pt','SubLead_bJet_eta','SubLeadbJet_phi','MET_pt','MET_phi','dR_Photon_Gen_Reco','Labels']
 
 
-# data rows of csv file
 
         rows = written
         with open('M2b_signal.csv', 'w') as f:
 
-    # using csv.writer method from CSV package
         	write = csv.writer(f)
         	write.writerow(fields)
         	for row in rows:
-        #r = [row[0]['pt'], row[0]['eta'], row[0]['phi'], row[0]['pt'], row[0]['eta'], row[0]['phi']]
                 	r = [row['nGPhotons'],row['nJets'],row['nbJets'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'], row['jet_pt'],row['jet_eta'],row['jet_phi'],row['SLjet_pt'],row['SLjet_eta'],row['SLjet_phi'],row['bjet_pt'],row['bjet_eta'],row['bjet_phi'],row['SLbjet_pt'],row['SLbjet_eta'],row['SLbjet_phi'],row['met_pt'],row['met_phi'],row['dRm'],row['Labels']]
 
                 	write.writerow(r)
