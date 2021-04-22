@@ -243,7 +243,7 @@ def matching_particles(RecoPhotons=None, GenPhotons=None, pt_ratio=0.0, dr_cone=
 	selected , matched = matching_particles()
 
 	"""
-
+	
 	if not RecoPhotons or not GenPhotons:
 		return []
 
@@ -272,6 +272,11 @@ def matching_particles(RecoPhotons=None, GenPhotons=None, pt_ratio=0.0, dr_cone=
 		if dRm[0]['dR'] <= dr_cone:
 			selected_list[i] = photon
 			matched_list[i] = matched_photons
+	    # sel = {1: photon, 2: photon} mat = {1: [], 2: []}
+
+    # select the biggest pt from the photons
+    	#photon_biggest_pt = max([(key, val['pt']) for key, val in selected_list.items()], key=lambda x: x[1])
+    	#selected_list = list(selected_list[photon_biggest_pt[0]])
+    	#matched_list = list(matched_list[photon_biggest_pt[0]])
 
 	return selected_list, matched_list,dRm[0]['dR']
-
