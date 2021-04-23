@@ -172,7 +172,7 @@ for jentry in range(number_events):
    jets = []
    bjets = []
    for j in range(int(nJet)):
-	if ch.GetLeaf('Jet_pt').GetValue(j)>40 and abs(ch.GetLeaf('Jet_eta').GetValue(j))<2.4 and ch.GetLeaf('Jet_jetId').GetValue(j)>=7 and ch.GetLeaf('Jet_puId').GetValue(j)>=7:
+	if ch.GetLeaf('Jet_pt').GetValue(j)>40 and abs(ch.GetLeaf('Jet_eta').GetValue(j))<2.4 and ch.GetLeaf('Jet_jetId').GetValue(j)>=6 and ch.GetLeaf('Jet_puId').GetValue(j)>=7:
 		jets.append({'index':j,'pt':ch.GetLeaf('Jet_pt').GetValue(j),'phi':ch.GetLeaf('Jet_phi').GetValue(j),'eta':ch.GetLeaf('Jet_eta').GetValue(j)})
 		if ch.GetLeaf('Jet_btagDeepFlavB').GetValue(j)>=0.7221 : 
 			bjets.append({'index':j})
@@ -211,8 +211,7 @@ for jentry in range(number_events):
 		sel_photons.append(photon)
    ngoodPhoton[0] = len(sel_photons)
    #print("Before the photon cut")
-   if options.year == 2016 and len(sel_photons) < 1 : continue
-   if not options.year == 2016 and len(photons) < 1 : continue
+   if len(sel_photons) < 1 : continue
    #print("After the photon cut")
    PhotonSF_ = 1.0 
    if not options.stype == "data":

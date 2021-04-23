@@ -46,8 +46,8 @@ sel_1b = "&&".join([presel,cut_1b])
 sel_2b = "&&".join([presel,cut_2b])
 
 trigger = "(HLT_Photon30)"
-#prob_triggers = ["HLT_Photon33","HLT_Photon50","HLT_Photon75","HLT_Photon90","HLT_Photon120","HLT_Photon150","HLT_Photon165_R9Id90_HE10_IsoM","HLT_Photon175","HLT_Photon200"]
 prob_triggers = ["HLT_Photon50_R9Id90_HE10_IsoM","HLT_Photon75_R9Id90_HE10_IsoM","HLT_Photon90_R9Id90_HE10_IsoM","HLT_Photon120_R9Id90_HE10_IsoM","HLT_Photon165_R9Id90_HE10_IsoM"]
+#prob_triggers = ["HLT_Photon33","HLT_Photon50_R9Id90_HE10_IsoM","HLT_Photon75_R9Id90_HE10_IsoM","HLT_Photon90_R9Id90_HE10_IsoM","HLT_Photon120_R9Id90_HE10_IsoM","HLT_Photon165_R9Id90_HE10_IsoM","HLT_Photon200"]
 #prob_triggers = ["HLT_Photon30","HLT_Photon36","HLT_Photon50","HLT_Photon75","HLT_Photon90","HLT_Photon120","HLT_Photon150","HLT_Photon165_HE10","HLT_Photon175"]
 prob_trigger_2 = "(\
 HLT_Photon30_R9Id90_HE10_IsoM\
@@ -60,8 +60,8 @@ HLT_Photon30_R9Id90_HE10_IsoM\
 )"
 prob_trigger_3 = "(HLT_Photon165_HE10)"
 #ref_trigger = "(HLT_PFJet40)"
-ref_trigger = "(HLT_IsoMu27)"
-#ref_trigger = "(HLT_IsoMu24)"
+#ref_trigger = "(HLT_IsoMu27)"
+ref_trigger = "(HLT_IsoMu24)"
 #jet_photon_cut = "Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4&&Jet_pt>40&&abs(Jet_eta)<2.4&&Jet_jetId>=1&&Jet_pt[0]>100"
 jet_photon_cut = "Sum$(Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4)==1" #&&Jet_pt>40&&abs(Jet_eta)<2.4&&Jet_jetId>=1&&Jet_pt[0]>100"
 jet_cut = "(ngoodPhoton==1&&abs(goodPhoton_eta)<=1.4&&goodJet_pt[0]>100)"
