@@ -6,7 +6,8 @@ save_orig = False
 
 path_MC = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/"
 #path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/"
-path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/SinglePhoton/"
+path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/"
+path_data_prescaled_NoPtCut = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton_Trigger_Scaled_NoPtCut/"
 path_data_SM = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/SingleMuon/"
 path_data_SM_prescaled = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon_Trigger_Scaled/"
 path_data_SM_prescaled_NoPtCut = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon_Trigger_Scaled_NoPtCut/"
@@ -22,9 +23,9 @@ path_data_SM_UL18_prescaled_NoPtCut_merged = "/eos/user/e/ecasilar/SMPVJ_Gamma_B
 if save_orig:
   path_MC = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/"
   #path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/"
-  path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/"
+  #path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/"
   #path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_loose/SinglePhoton/"
-  #path_data = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/"
+  path_data = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/"
   path_data_SM = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SingleMuon/"
   path_data_SM_17 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2017/data/SingleMuon/"
   path_data_SM_18 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/SingleMuon/" 
@@ -55,15 +56,15 @@ GJets_HT_600ToInf_2016 = path_MC+"GJets_HT-600ToInf_TuneCUETP8M1_13TeV-madgraphM
 QCD_2016 = path_MC+"QCD_Pt-15to7000_TuneCUETP8M1_FlatP6_13TeV_pythia8/"
 QCD_h1_2016 = path_MC+"QCD_Pt-15to7000_TuneCUETHS1_FlatP6_13TeV_herwigpp/"
 QCD_h2_2016 = path_MC+"QCD_Pt-15to7000_TuneCUETHS1_Flat_13TeV_herwigpp/"
-QCD_HT_50to100_2016 = path_MC+"QCD_HT50to100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
-QCD_HT_100to200_2016 = path_MC+"QCD_HT100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
-QCD_HT_200to300_2016 = path_MC+"QCD_HT200to300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
-QCD_HT_300to500_2016 = path_MC+"QCD_HT300to500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
-QCD_HT_500to700_2016 = path_MC+"QCD_HT500to700_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
-QCD_HT_700to1000_2016 = path_MC+"QCD_HT700to1000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
-QCD_HT_1000to1500_2016 = path_MC+"QCD_HT1000to1500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
-QCD_HT_1500to2000_2016 = path_MC+"QCD_HT1500to2000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
-QCD_HT_2000toInf_2016 = path_MC+"QCD_HT2000toInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
+QCD_HT_50to100_2016 = path_MC+"QCD_HT50to100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_100to200_2016 = path_MC+"QCD_HT100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_200to300_2016 = path_MC+"QCD_HT200to300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_300to500_2016 = path_MC+"QCD_HT300to500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_500to700_2016 = path_MC+"QCD_HT500to700_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_700to1000_2016 = path_MC+"QCD_HT700to1000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_1000to1500_2016 = path_MC+"QCD_HT1000to1500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_1500to2000_2016 = path_MC+"QCD_HT1500to2000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_2000toInf_2016 = path_MC+"QCD_HT2000toInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
 TGJets_2016 = path_MC+"TGJets_TuneCUETP8M1_13TeV_amcatnlo_madspin_pythia8/"
 TTGJets_2016 = path_MC+"TTGJets_TuneCUETP8M1_13TeV-amcatnloFXFX-madspin-pythia8/"
 ST_s_channel_2016 = path_MC+"ST_s-channel_4f_InclusiveDecays_13TeV-amcatnlo-pythia8/"
@@ -148,6 +149,15 @@ Samples = {2016: \
       "G":{"dir":path_data+"Run2016G_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016G-02Apr2020-v1/NANOAOD"},\
       "H":{"dir":path_data+"Run2016H_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016H-02Apr2020-v1/NANOAOD"},\
       }, #single photon
+    "SinglePhoton_prescaled_NoPtCut_merged":{\
+                        "B":{"dir":path_data_prescaled_NoPtCut+"Run2016B_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016B-02Apr2020_ver2-v1/NANOAOD"},\
+                        "C":{"dir":path_data_prescaled_NoPtCut+"Run2016C_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016C-02Apr2020-v1/NANOAOD"},\
+                        "D":{"dir":path_data_prescaled_NoPtCut+"Run2016D_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016D-02Apr2020-v1/NANOAOD"},\
+                        "E":{"dir":path_data_prescaled_NoPtCut+"Run2016E_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016E-02Apr2020-v1/NANOAOD"},\
+                        "F":{"dir":path_data_prescaled_NoPtCut+"Run2016F_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016F-02Apr2020-v1/NANOAOD"},\
+                        "G":{"dir":path_data_prescaled_NoPtCut+"Run2016G_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016G-02Apr2020-v1/NANOAOD"},\
+                        "H":{"dir":path_data_prescaled_NoPtCut+"Run2016H_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016H-02Apr2020-v1/NANOAOD"},\
+                        }, #single photon prescaled NoPtCut merged
     "SingleMuon":{\
       "B":{"dir":path_data_SM+"Run2016B_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2016B-02Apr2020_ver2-v1/NANOAOD"},\
       "C":{"dir":path_data_SM+"Run2016C_02Apr2020-v1", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SingleMuon/Run2016C-02Apr2020-v1/NANOAOD"},\
