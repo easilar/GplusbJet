@@ -15,20 +15,26 @@ parser.add_option("--year", dest="year", default="2016", action="store", help="c
 parser.add_option("--sname", dest="sname", default="SinglePhoton", action="store", help="can be QCD , GJets_Pt ... ")
 parser.add_option("--stype", dest="stype", default="data", action="store", help="can be data or signal or bkg")
 parser.add_option("--letter", dest="letter", default="B", action="store", help="if data can be B,C,D,E,F,G,H;if signal GJets_Pt_100To200")
+parser.add_option("--ndiv", dest="ndiv", default="10", action="store", help="number of divitions for one root file")
+parser.add_option("--divIndex", dest="divIndex", default="0", action="store", help="index of divitions for one root file")
 parser.add_option("--filename", dest="filename", default="sample.root", action="store", help="should be the individual root file name")
 (options, args) = parser.parse_args()
 
 data_letter = options.letter
 f = options.filename
 exec("year="+options.year)
+exec("ndiv="+options.ndiv)
+exec("divIndex="+options.divIndex)
 stype = options.stype
 sname = options.sname
 
-afs_dir = os.environ["afs_dir"]
-targetdir_mainpath = os.environ["cern_box"] 
+#afs_dir = os.environ["afs_dir"]
+afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets/"
+targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
 pfile = afs_dir+"/samples_orig.pkl"
 #pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
+print(sample_dic[2016]["bkg"]["QCD_HT"].keys())
 sdict = sample_dic[year][stype][sname][data_letter]
 
 
@@ -64,15 +70,20 @@ pu68p6 = puweight_file.Get("h_ratio")
 photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/Fall17V2_2016_Tight_photons.root")
 SF_MC = photon_SF_file.Get("EGamma_SF2D")
 
-targetfilePath = targetdir+f
+targetfilePath = targetdir+f.split(".")[0]+"_"+str(divIndex)+".root"
 origFilePath = orig_dir+f
 print("Target path:" , targetfilePath)
 ch = ROOT.TChain("Events")
 ch.Add(origFilePath)
-#number_events = ch.GetEntries()
-ch.Draw(">>eList", "(PV_npvsGood>=1)")
-elist = ROOT.gDirectory.Get("eList")
-number_events = elist.GetN()
+number_events = ch.GetEntries()
+nEventsPerChunk = number_events/float(ndiv)
+print(nEventsPerChunk)
+ini_event = divIndex*int(nEventsPerChunk)
+fin_event = min((divIndex+1)*int(nEventsPerChunk),number_events)
+print(ini_event,fin_event)
+#ch.Draw(">>eList", "(PV_npvsGood>=1)")
+#elist = ROOT.gDirectory.Get("eList")
+#number_events = elist.GetN()
 print(" Creating new root-file ...")
 newFile = ROOT.TFile(targetfilePath,"recreate")
 print(" Creating new tree ...")
@@ -83,15 +94,15 @@ weight  = array('f',[0])
 puweight  = array('f',[0])
 PhotonSF  = array('f',[0])
 ngoodPhoton  = array('i',[0])
-goodPhoton_pt = array( 'd', 3*[ 0. ] )
-goodPhoton_eta = array( 'd', 3*[ 0. ] )
-goodPhoton_phi = array( 'd', 3*[ 0. ] )
-goodPhoton_minDR = array( 'd', 3*[ 0. ] )
-goodPhoton_sieie = array( 'd', 3*[ 0. ] )
-goodPhoton_r9 = array( 'd', 3*[ 0. ] )
-goodPhoton_hoe = array( 'd', 3*[ 0. ] )
-goodPhoton_pfRelIso03_all = array( 'd', 3*[ 0. ] )
-goodPhoton_pfRelIso03_chg = array( 'd', 3*[ 0. ] )
+goodPhoton_pt = array( 'd', 10*[ 0. ] )
+goodPhoton_eta = array( 'd', 10*[ 0. ] )
+goodPhoton_phi = array( 'd', 10*[ 0. ] )
+goodPhoton_minDR = array( 'd', 10*[ 0. ] )
+goodPhoton_sieie = array( 'd', 10*[ 0. ] )
+goodPhoton_r9 = array( 'd', 10*[ 0. ] )
+goodPhoton_hoe = array( 'd', 10*[ 0. ] )
+goodPhoton_pfRelIso03_all = array( 'd', 10*[ 0. ] )
+goodPhoton_pfRelIso03_chg = array( 'd', 10*[ 0. ] )
 tree.Branch("xsec",xsec,"xsec/F")
 tree.Branch("weight",weight,"weight/F")
 tree.Branch("puweight",puweight,"puweight/F")
@@ -131,14 +142,15 @@ tree.Branch("goodbJet_phi", goodbJet_phi, "goodbJet_phi[ngoodbJet]/D")
 tree.Branch("goodbJet_btagDeepFlavB", goodbJet_btagDeepFlavB, "goodbJet_btagDeepFlavB[ngoodbJet]/D")
 tree.Branch("goodbJet_btagDeepFlavC", goodbJet_btagDeepFlavC, "goodbJet_btagDeepFlavC[ngoodbJet]/D")
 print(number_events)
-for jentry in range(number_events):
-   #ch.GetEntry(elist.GetEntry(jentry))
+for jentry in range(ini_event,fin_event):
    ch.GetEntry(jentry)
+   #ch.GetEntry(elist.GetEntry(jentry))
    run = ch.GetLeaf('run').GetValue()
    lumi = ch.GetLeaf('luminosityBlock').GetValue()
    nPhoton = ch.GetLeaf('nPhoton').GetValue()
    nJet = ch.GetLeaf('nJet').GetValue()
    PV_npvsGood = ch.GetLeaf('PV_npvsGood').GetValue()
+   if not PV_npvsGood >= 1: continue
    if not options.stype=="data":Pileup_nTrueInt = ch.GetLeaf('Pileup_nTrueInt').GetValue()
    Flag_goodVertices = ch.GetLeaf('Flag_goodVertices').GetValue()
    Flag_1 = ch.GetLeaf('Flag_globalSuperTightHalo2016Filter').GetValue()
@@ -151,6 +163,7 @@ for jentry in range(number_events):
    if not year == 2016:
       Flag_7 = ch.GetLeaf('Flag_ecalBadCalibFilter').GetValue()
    if (jentry%50000 == 0) : print(jentry,run,lumi)
+   #print(jentry,run,lumi)
    if options.stype == "data":
    	if not str(int(run)) in data.keys(): continue
    	if str(int(run)) in data.keys():

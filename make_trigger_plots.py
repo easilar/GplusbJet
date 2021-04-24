@@ -11,7 +11,7 @@ ROOT.gROOT.Reset()
 
 from optparse import OptionParser
 parser = OptionParser()
-parser.add_option("--trig", dest="trig", default="0", action="store", help="can be 0 , 1 ,2")
+parser.add_option("--trig", dest="trig", default="0", action="store", help="can be 0 , 1 ,2...8")
 (options, args) = parser.parse_args()
 
 exec("tmp_index="+options.trig)
@@ -89,8 +89,8 @@ h_ratio = h_data_num.Clone('h_ratio')
 h_ratio.Sumw2()
 h_ratio.SetStats(0)
 h_ratio.Divide(h_data_den)
-h_ratio.SetMaximum(0.03)
-h_ratio.SetMinimum(0.000001)
+h_ratio.SetMaximum(1.2)
+#h_ratio.SetMinimum(0.0001)
 h_ratio.SetMarkerStyle(20)
 h_ratio.SetMarkerSize(1.1)
 h_ratio.SetMarkerColor(ROOT.kBlack)
@@ -103,20 +103,19 @@ h_ratio.Draw("E1")
 h_ratio.Fit(func,"R")
 fitResult = h_ratio.GetFunction("func")
 threshold = fitResult.GetParameter(2)
-platho = round(fitResult.GetParameter(0),3)
 print(threshold)
+platho = round(fitResult.GetParameter(0),2)
 print(platho)
 plato_X = 0
-for i in range(200):
-	#print(threshold+i*0.5)
-	print(round(fitResult(threshold+i),3))
-	if round(fitResult(threshold+i),3) == platho :
-		print(threshold+i,fitResult(threshold+i))
-		plato_X = threshold+i
+for i in range(500):
+	print(round(fitResult(threshold+i*1),2))
+	if round(fitResult(threshold+i*1),2) == platho :
+		print(threshold+i*1,fitResult(threshold+i*0.5))
+		plato_X = threshold+i*0.5
 		break
-	
 #Func.Draw("same")
 h_ratio.Draw("E1 Same")
+
 tex = ROOT.TLatex()
 tex.SetNDC()
 tex.SetTextFont(61)
@@ -140,7 +139,7 @@ tex.DrawLatex(0.2,0.8,"Prob. Trig.: "+prob_trigger)
 tex.DrawLatex(0.2,0.75,"Plateau: "+str(round(platho,3))+", Reached at "+str(round(plato_X,2))+" GeV")
 cb.cd()
 cb.Draw()
-cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff.png')
-cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff.pdf')
-cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff.root')
+cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff_v4.png')
+cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff_v4.pdf')
+cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff_v4.root')
 cb.Clear()

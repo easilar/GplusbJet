@@ -5,22 +5,22 @@ from math import pi, sqrt, cos, sin, sinh, log
 #target_lumi = 35.9  #fb^{-1}
 target_lumi = 41.53  #fb^{-1}
 #gamma Pt bins
-gPtBins  = array('d', [float(x) for x in range(40,160,5)\
-					+range(160,500,40)\
-					+range(500,660,160)\
-                                        #+range(1500,2500,1000)\
-                                        #+range(60,100,10)\
-                                       # +range(100,160,20)\
-                                       # +range(160,260,40)\
-                                        #+range(200,300,50)\
-                                       # +range(250,300,50)\
-                                        #+range(300,350,50)\
-                                        #+range(300,400,100)\
-                                        #+range(400,500,100)\
-                                        #+range(500,700,200)\
-                                        #+range(700,1000,300)\
-                                        #+range(1000,2000,1000)\
-                                        #+range(2000,3000,1000)\
+gPtBins  = array('d', [float(x) for x in range(40,180,5)\
+				+range(180,680,50)\
+				+range(680,980,100)\
+                                +range(980,2000,1120)\
+                                +range(2000,3000,1000)\
+                                #+range(130,190,10)\
+                                #+range(190,220,10)\
+                                #+range(220,250,30)\
+                                #+range(250,300,50)\
+                                #+range(300,350,50)\
+                                #+range(350,400,50)\
+                                #+range(400,500,100)\
+                                #+range(500,700,200)\
+                                #+range(700,1000,300)\
+                                #+range(1000,2000,1000)\
+                                #+range(2000,3000,1000)\
                                         ])
 
 ngood_vtx_cut = "(PV_npvsGood>=1)"
@@ -46,8 +46,8 @@ sel_1b = "&&".join([presel,cut_1b])
 sel_2b = "&&".join([presel,cut_2b])
 
 trigger = "(HLT_Photon30)"
+prob_triggers = ["HLT_Photon50_R9Id90_HE10_IsoM","HLT_Photon75_R9Id90_HE10_IsoM","HLT_Photon90_R9Id90_HE10_IsoM","HLT_Photon120_R9Id90_HE10_IsoM","HLT_Photon165_R9Id90_HE10_IsoM"]
 #prob_triggers = ["HLT_Photon33","HLT_Photon50_R9Id90_HE10_IsoM","HLT_Photon75_R9Id90_HE10_IsoM","HLT_Photon90_R9Id90_HE10_IsoM","HLT_Photon120_R9Id90_HE10_IsoM","HLT_Photon165_R9Id90_HE10_IsoM","HLT_Photon200"]
-prob_triggers = ["HLT_Photon33","HLT_Photon50","HLT_Photon75","HLT_Photon90","HLT_Photon120","HLT_Photon150","HLT_Photon165_R9Id90_HE10_IsoM","HLT_Photon175","HLT_Photon200"]
 #prob_triggers = ["HLT_Photon30","HLT_Photon36","HLT_Photon50","HLT_Photon75","HLT_Photon90","HLT_Photon120","HLT_Photon150","HLT_Photon165_HE10","HLT_Photon175"]
 prob_trigger_2 = "(\
 HLT_Photon30_R9Id90_HE10_IsoM\
