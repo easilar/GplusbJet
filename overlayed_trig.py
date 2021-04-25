@@ -9,21 +9,55 @@ year = 2016
 sample_dic = pickle.load(open(pfile,'rb'))
 
 if year == 2016:
-	sname = "SingleMuon_prescaled_NoPtCut_merged"
-	trigger_list = ["HLT_Photon36_R9Id90_HE10_IsoM","HLT_Photon50_R9Id90_HE10_IsoM","HLT_Photon75_R9Id90_HE10_IsoM","HLT_Photon90_R9Id90_HE10_IsoM","HLT_Photon120_R9Id90_HE10_IsoM","HLT_Photon165_R9Id90_HE10_IsoM","HLT_Photon175"]
-	color = [ROOT.kBlue ,ROOT.kMagenta,ROOT.kRed,ROOT.kOrange,ROOT.kGreen,ROOT.kCyan,ROOT.kPink+10]
+	sname = "SinglePhoton_prescaled_NoPtCut_merged"
+	ref_trigger = "(HLT_IsoMu24)"
+	trigger_list = [
+	{"trigger":"HLT_Photon36_R9Id90_HE10_IsoM","tex":"HLT_Photon36_R9Id90_HE10_IsoM", "color":ROOT.kBlue },
+	{"trigger":"HLT_Photon50_R9Id90_HE10_IsoM","tex":"HLT_Photon50_R9Id90_HE10_IsoM", "color":ROOT.kMagenta},
+	{"trigger":"HLT_Photon75_R9Id90_HE10_IsoM","tex":"HLT_Photon75_R9Id90_HE10_IsoM", "color":ROOT.kRed},
+	{"trigger":"HLT_Photon90_R9Id90_HE10_IsoM","tex":"HLT_Photon90_R9Id90_HE10_IsoM", "color":ROOT.kOrange},
+	{"trigger":"HLT_Photon120_R9Id90_HE10_IsoM","tex":"HLT_Photon120_R9Id90_HE10_IsoM", "color":ROOT.kGreen},
+	{"trigger":"HLT_Photon165_R9Id90_HE10_IsoM","tex":"HLT_Photon165_R9Id90_HE10_IsoM", "color":ROOT.kCyan }, 
+	{"trigger":"HLT_Photon175","tex":"HLT_Photon175_R9Id90_HE10_IsoM", "color":ROOT.kPink+10}
+	]
+
 elif year == 2017:
 	sname = "SingleMuon_UL_prescaled_NoPtCut_merged"
-	trigger_list = ["HLT_Photon50_R9Id90_HE10_IsoM","HLT_Photon75_R9Id90_HE10_IsoM","HLT_Photon90_R9Id90_HE10_IsoM","HLT_Photon120_R9Id90_HE10_IsoM","HLT_Photon165_R9Id90_HE10_IsoM","HLT_Photon200"]
-	color = [ROOT.kMagenta,ROOT.kRed,ROOT.kOrange,ROOT.kGreen,ROOT.kCyan,ROOT.kPink+10]
+	ref_trigger = "(HLT_IsoMu27)"
+	trigger_list = [
+	{"trigger":"HLT_Photon50_R9Id90_HE10_IsoM","tex":"HLT_Photon50_R9Id90_HE10_IsoM", "color":ROOT.kMagenta},
+	{"trigger":"HLT_Photon75_R9Id90_HE10_IsoM","tex":"HLT_Photon75_R9Id90_HE10_IsoM", "color":ROOT.kRed},
+	{"trigger":"HLT_Photon90_R9Id90_HE10_IsoM","tex":"HLT_Photon90_R9Id90_HE10_IsoM", "color":ROOT.kOrange},
+	{"trigger":"HLT_Photon120_R9Id90_HE10_IsoM","tex":"HLT_Photon120_R9Id90_HE10_IsoM", "color":ROOT.kGreen},
+	{"trigger":"HLT_Photon165_R9Id90_HE10_IsoM","tex":"HLT_Photon165_R9Id90_HE10_IsoM", "color":ROOT.kCyan }, 
+	{"trigger":"HLT_Photon175","tex":"HLT_Photon175_R9Id90_HE10_IsoM", "color":ROOT.kPink+10}
+	]
+	
 elif year == 2018:
 	sname = "SingleMuon_UL_prescaled_NoPtCut_merged"
-	trigger_list = ["HLT_Photon50_R9Id90_HE10_IsoM","HLT_Photon75_R9Id90_HE10_IsoM","HLT_Photon90_R9Id90_HE10_IsoM","HLT_Photon120_R9Id90_HE10_IsoM","HLT_Photon165_R9Id90_HE10_IsoM","HLT_Photon200"]
-	color = [ROOT.kMagenta+3,ROOT.kRed+2,ROOT.kOrange+7,ROOT.kGreen+2,ROOT.kCyan,ROOT.kBlue]
-lenght = len(trigger_list)
+	ref_trigger = "(HLT_IsoMu24)"
+	trigger_list = [
+	{"trigger":"HLT_Photon50_R9Id90_HE10_IsoM","tex":"HLT_Photon50_R9Id90_HE10_IsoM", "color":ROOT.kMagenta},
+	{"trigger":"HLT_Photon75_R9Id90_HE10_IsoM","tex":"HLT_Photon75_R9Id90_HE10_IsoM", "color":ROOT.kRed},
+	{"trigger":"HLT_Photon90_R9Id90_HE10_IsoM","tex":"HLT_Photon90_R9Id90_HE10_IsoM", "color":ROOT.kOrange},
+	{"trigger":"HLT_Photon120_R9Id90_HE10_IsoM","tex":"HLT_Photon120_R9Id90_HE10_IsoM", "color":ROOT.kGreen},
+	{"trigger":"HLT_Photon165_R9Id90_HE10_IsoM","tex":"HLT_Photon165_R9Id90_HE10_IsoM", "color":ROOT.kCyan }, 
+	{"trigger":"HLT_Photon175","tex":"HLT_Photon175_R9Id90_HE10_IsoM", "color":ROOT.kPink+10}
+	]
+	
 
 c = getChain(year=year, stype='data', sname=sname, pfile=pfile, datatype='all', test=False)
 print(sname)
+
+plot_int = 0
+for trg in trigger_list:
+	plot = getPlotFromChain(c[0],'goodPhoton_pt', (25,0,1000), cutString=trg["trigger"]+"&&"+ref_trigger+"&&"+"weight_trig>0", weight='weight_trig',binningIsExplicit=False, addOverFlowBin='both', variableBinning=(False,1))		
+#	plot = getPlotFromChain(c[0],'goodPhoton_pt', (25,0,1000), cutString=trg["trigger"]+"&&"+ref_trigger,binningIsExplicit=False, addOverFlowBin='both', variableBinning=(False,1))		
+	trg["histo"] = plot
+	plot_int+=trg["histo"].Integral()
+	del plot
+
+
 cb = ROOT.TCanvas("cb","cb",564,232,600,600)
 cb.SetHighLightColor(2)
 cb.Range(0,0,1,1)
@@ -46,6 +80,9 @@ latex.SetNDC()
 latex.SetTextSize(0.05)
 latex.SetTextAlign(11)
 
+leg = ROOT.TLegend(0.65,0.5,0.93,0.925)
+leg.SetBorderSize(1)
+
 Pad1 = ROOT.TPad("Pad1", "Pad1", 0,0.31,1,1)
 Pad1.Draw()
 Pad1.cd()
@@ -58,34 +95,40 @@ Pad1.SetTicky(1)
 Pad1.SetLeftMargin(0.18)
 Pad1.SetRightMargin(0.04)
 Pad1.SetTopMargin(0.055)
-Pad1.SetBottomMargin(0)
+Pad1.SetBottomMargin(0.3)
 Pad1.SetFrameFillStyle(0)
 Pad1.SetFrameBorderMode(0)
 Pad1.SetFrameFillStyle(0)
 Pad1.SetFrameBorderMode(0)
 Pad1.SetLogy()
+#plot1 = ROOT.TH1('plot1','plot1')
 
-leg = ROOT.TLegend(0.65,0.5,0.93,0.925)
-leg.SetBorderSize(1)
-plot = getPlotFromChain(c[0],'goodPhoton_pt', (20,0,1000), cutString=trigger_list[0], binningIsExplicit=False, addOverFlowBin='', variableBinning=(False,1))
-plot.SetLineColor(ROOT.kBlack)
-leg.AddEntry(plot,trigger_list[0] ,"f")
-plot.Draw("Histo")	
-print("Empty plot is created")
-del plot	
 print("LOOP is coming:")
-for i in range(1,lenght):
-	print(i)
-	plot = getPlotFromChain(c[0],'goodPhoton_pt', (20,0,1000), cutString=trigger_list[i], binningIsExplicit=False, addOverFlowBin='', variableBinning=(False,1))		
-	plot.SetLineColor(color[i])
-	print(color[i])
-#	leg.AddEntry(plot,trigger_list[i] ,"f")
+for trg in trigger_list:
+	print(trg["trigger"])
+	color = trg["color"]
+	plot = trg["histo"]
+	plot.SetLineColor(color)
+	plot.SetLineWidth(1)
+	plot.SetStats(0)
+	if year == 2016: plot.SetTitle("SingleMuon Run 2016 BCDEFGH")
+	if year == 2017: plot.SetTitle("SingleMuon_UL Run 2017 BCDEF")
+	if year == 2018: plot.SetTitle("SingleMuon_UL Run 2018 ABCD")
+	plot.GetXaxis().SetTitle('goodPhoton_pt')
+	Set_axis_pad1(plot)
+	leg.AddEntry(plot,trg["tex"]+" "+str(round(plot.Integral())) ,"f")
+	max_bin = plot.GetMaximum()*10000
+	plot.SetMaximum(max_bin)
+	plot.SetMinimum(0.11)
 	plot.Draw("Histo Same")
-	del plot 
-#leg.Draw()
+	del plot
+#tex = ROOT.TLatex()
+#tex.DrawLatex(1.,1000000.,"SingleMuon Run 2016 BCDEFGH")
+leg.Draw()
+Pad1.RedrawAxis()
 cb.cd()
 cb.Draw()
-cb.SaveAs(str(year)+".png")
-cb.SaveAs(str(year)+".pdf")
-cb.SaveAs(str(year)+".root")
+cb.SaveAs(str(year)+"_weightedSP.png")
+cb.SaveAs(str(year)+"_weightedSP.pdf")
+cb.SaveAs(str(year)+"_weightedSP.root")
 cb.Clear()
