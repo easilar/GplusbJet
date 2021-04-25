@@ -2,27 +2,26 @@ from array import array
 from math import pi, sqrt, cos, sin, sinh, log
 
 #Here we put plot configurations
-#target_lumi = 35.9  #fb^{-1}
-target_lumi = 41.53  #fb^{-1}
+target_lumi = 35.9  #fb^{-1}
+#target_lumi = 41.53  #fb^{-1}
 #gamma Pt bins
-gPtBins  = array('d', [float(x) for x in range(40,180,5)\
-				+range(180,680,50)\
-				+range(680,980,100)\
-                                +range(980,2000,1120)\
+gPtBins  = array('d', [float(x) for x in range(40,60,20)\
+				+range(60,90,30)\
+				+range(90,100,10)\
+                                +range(100,145,45)\
+                                +range(145,180,35)\
+                                +range(180,225,45)\
+                                +range(225,300,75)\
+                                +range(300,350,50)\
+                                +range(350,400,50)\
+                                +range(400,500,100)\
+                                +range(500,700,200)\
+                                +range(700,1000,300)\
+                                +range(1000,2000,1000)\
                                 +range(2000,3000,1000)\
-                                #+range(130,190,10)\
-                                #+range(190,220,10)\
-                                #+range(220,250,30)\
-                                #+range(250,300,50)\
-                                #+range(300,350,50)\
-                                #+range(350,400,50)\
-                                #+range(400,500,100)\
-                                #+range(500,700,200)\
-                                #+range(700,1000,300)\
-                                #+range(1000,2000,1000)\
-                                #+range(2000,3000,1000)\
                                         ])
 
+trigger_pt_cut ="((goodPhoton_pt>225)*HLT_Photon175||(goodPhoton_pt<=225&&goodPhoton_pt>180)*HLT_Photon165_R9Id90_HE10_IsoM||(goodPhoton_pt<=180&&goodPhoton_pt>145)*HLT_Photon120_R9Id90_HE10_IsoM||(goodPhoton_pt<=145&&goodPhoton_pt>100)*HLT_Photon90_R9Id90_HE10_IsoM||(goodPhoton_pt<=100&&goodPhoton_pt>90)*HLT_Photon75_R9Id90_HE10_IsoM||(goodPhoton_pt<=90&&goodPhoton_pt>60)*HLT_Photon50_R9Id90_HE10_IsoM||(goodPhoton_pt<=60&&goodPhoton_pt>40)*HLT_Photon36_R9Id90_HE10_IsoM)&&(weight_trig>=0)"
 ngood_vtx_cut = "(PV_npvsGood>=1)"
 met_filters= "(Flag_goodVertices)&&(Flag_globalSuperTightHalo2016Filter)&&(Flag_HBHENoiseFilter)&&(Flag_HBHENoiseIsoFilter)&&(Flag_EcalDeadCellTriggerPrimitiveFilter)&&(Flag_BadPFMuonFilter)"
 single_photon_cut = "(nPhoton>=1)"
@@ -70,7 +69,7 @@ jet_cut_trig = "(ngoodPhoton==1&&abs(goodPhoton_eta)<=1.4&&goodJet_pt[0]>100&&HL
 
 #Plots
 plotlist = {
-"Photon_pt":{"var":"Photon_pt","binning":(100,0,3000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Photon Pt[GeV]","title":"PhotonPt","bin_set":(True , 25)},
+"Photon_pt":{"var":"goodPhoton_pt","binning":(100,0,3000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Photon Pt[GeV]","title":"PhotonPt","bin_set":(True , 25)},
 "Photon_eta":{"var":"goodPhoton_eta","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Eta","title":"PhotonEta","bin_set":(False , 1)},
 "Photon_phi":{"var":"goodPhoton_phi","binning":(20,-4,4),"x_axis":"#phi(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Phi","title":"PhotonPhi","bin_set":(False , 1)},
 "Pileup_nTrueInt":{"var":"Pileup_nTrueInt","binning":(20,0,100),"x_axis":"N True Int.","y_axis":"Events","bin":(),"histoname":"Pileup_nTrueInt","title":"Pileup_nTrueInt","bin_set":(False , 1)},
