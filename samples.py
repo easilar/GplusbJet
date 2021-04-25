@@ -2,7 +2,7 @@
 
 import pickle
 
-save_orig = True
+save_orig = False
 
 path_MC = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/"
 #path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/"
