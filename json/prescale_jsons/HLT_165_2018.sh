@@ -1,0 +1,3 @@
+wget -O HLT_Photon165_R9Id90_HE10_IsoM_prescale0_2018_0p00.json https://ram1123.github.io/display_TriggerPreScale/2018/json/HLT_Photon165_R9Id90_HE10_IsoM/HLT_Photon165_R9Id90_HE10_IsoM_prescale0.json
+wget -O HLT_Photon165_R9Id90_HE10_IsoM_prescale1_2018_9p87.json https://ram1123.github.io/display_TriggerPreScale/2018/json/HLT_Photon165_R9Id90_HE10_IsoM/HLT_Photon165_R9Id90_HE10_IsoM_prescale1.json
+wget -O HLT_Photon165_R9Id90_HE10_IsoM_prescale4_2018_47p35.json https://ram1123.github.io/display_TriggerPreScale/2018/json/HLT_Photon165_R9Id90_HE10_IsoM/HLT_Photon165_R9Id90_HE10_IsoM_prescale4.json
