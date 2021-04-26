@@ -32,9 +32,7 @@ sname = options.sname
 afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets/"
 targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
 pfile = afs_dir+"/samples_orig.pkl"
-#pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
-print(sample_dic[2016]["bkg"]["QCD_HT"].keys())
 sdict = sample_dic[year][stype][sname][data_letter]
 
 
@@ -50,7 +48,8 @@ if options.stype == "data":
       cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt"   
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
-   targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+sdict["dir"].split("/")[-1]+"/"
+   targetdir_suffix = "High_PT"
+   targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-1]+"/"
    data = json.load(open(cert_json))
    xsec_v = 1.0
    weight_v = 1.0
@@ -179,7 +178,6 @@ for jentry in range(ini_event,fin_event):
    photons = []
    for ph in range(int(nPhoton)):
 	if ch.GetLeaf('Photon_cutBased').GetValue(ph)>=3 and ch.GetLeaf('Photon_pt').GetValue(ph)>=40 and (abs(ch.GetLeaf('Photon_eta').GetValue(ph))<1.4) :
-   		#print("found good photon")
 		photons.append({'index':ph,'phi':ch.GetLeaf('Photon_phi').GetValue(ph),'eta':ch.GetLeaf('Photon_eta').GetValue(ph),'pt':ch.GetLeaf('Photon_pt').GetValue(ph)})
 		
    jets = []
