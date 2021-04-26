@@ -2,21 +2,20 @@ import pickle
 import os
 
 pfile=os.environ["afs_dir"]+"/samples_orig.pkl"
-#pfile="/afs/cern.ch/user/m/myalvac/GPlusbJets/samples_orig.pkl"
 
 sample_dic = pickle.load(open(pfile,'rb'))
-#year = 2016
+year = 2016
 #year = 2017
-year = 2018
+#year = 2018
 #sname = "G1Jet_Pt"
-#sname = "QCD_HT"
-sname = "SingleMuon"
+sname = "QCD_HT"
+#sname = "SingleMuon"
 #sname = "SingleMuon_18"
-#stype = "bkg"
+stype = "bkg"
 #stype = "signal"
-stype = "data"
+#stype = "data"
 sdict = sample_dic[year][stype][sname]
-
+ndiv=20
 for ci,bin_name in enumerate(sdict.keys()):
 	#if not "_NOExt" in bin_name: continue
 	cur_dir = sdict[bin_name]["dir"]
@@ -32,4 +31,5 @@ for ci,bin_name in enumerate(sdict.keys()):
 			os.makedirs(os.environ["cern_box"]+"/MC/"+sname+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
 
 	for f in flist:
-		print("python "+os.environ["afs_dir"]+"analyse.py --year="+str(year)+" --sname="+sname+" --stype="+stype+" --letter="+bin_name+" --filename="+f)
+		for indiv in range(ndiv):
+			print("python "+os.environ["afs_dir"]+"analyse.py --year="+str(year)+" --sname="+sname+" --stype="+stype+" --letter="+bin_name+" --ndiv="+str(ndiv)+" --divIndex="+str(indiv)+" --filename="+f)

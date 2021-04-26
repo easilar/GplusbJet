@@ -64,15 +64,12 @@ template_condor = '''
 Executable   = {executable}
 Args         = $(ITEM)
 
-When_to_transfer_output = ON_EXIT
-
-#Log    = {log_dir}/{job_name}_$(Cluster).$(Process).log
-#Output = {log_dir}/{job_name}_$(Cluster).$(Process).out
-#Error  = {log_dir}/{job_name}_$(Cluster).$(Process).err
 Log    = {log_dir}/$(Cluster).$(Process).log
 Output = {log_dir}/$(Cluster).$(Process).out
 Error  = {log_dir}/$(Cluster).$(Process).err
-RequestCpus = 4
+request_cpus = 2
+request_memory = 500MB
+request_disk = 500MB
 +JobFlavour = {qtime}
 
 
@@ -120,7 +117,7 @@ with open(fname_condor, 'w') as f:
 
 submit_command = "condor_submit %s %s"%(fname_condor, ' '.join(condor_args) )
 os.system(submit_command)
-time.sleep(0.05)
+time.sleep(0.1)
 
 #if not args.keep_junk:
 #    shutil.rmtree(tempdir)
