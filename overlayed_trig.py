@@ -7,7 +7,9 @@ from configure import *
 pfile = "samples_ana.pkl"
 year = 2016
 sample_dic = pickle.load(open(pfile,'rb'))
-
+plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Trigger/'
+if not os.path.exists(plots_path):
+  os.makedirs(plots_path)
 if year == 2016:
 	sname = "SinglePhoton_prescaled_NoPtCut_merged"
 	ref_trigger = "(HLT_IsoMu24)"
