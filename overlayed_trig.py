@@ -7,7 +7,9 @@ from configure import *
 pfile = "samples_ana.pkl"
 year = 2016
 sample_dic = pickle.load(open(pfile,'rb'))
-
+plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Trigger/'
+if not os.path.exists(plots_path):
+  os.makedirs(plots_path)
 if year == 2016:
 	sname = "SingleMuon_prescaled_NoPtCut_merged"
 	trigger_list = ["HLT_Photon36_R9Id90_HE10_IsoM","HLT_Photon50_R9Id90_HE10_IsoM","HLT_Photon75_R9Id90_HE10_IsoM","HLT_Photon90_R9Id90_HE10_IsoM","HLT_Photon120_R9Id90_HE10_IsoM","HLT_Photon165_R9Id90_HE10_IsoM","HLT_Photon175"]
@@ -67,25 +69,25 @@ Pad1.SetLogy()
 
 leg = ROOT.TLegend(0.65,0.5,0.93,0.925)
 leg.SetBorderSize(1)
-plot = getPlotFromChain(c[0],'goodPhoton_pt', (20,0,1000), cutString=trigger_list[0], binningIsExplicit=False, addOverFlowBin='', variableBinning=(False,1))
+plot = getPlotFromChain(c[0],'goodPhoton_pt', (100,0,1000), weight="(weight_trig)",cutString=trigger_list[0]+"&&(weight_trig>=0)", binningIsExplicit=False, addOverFlowBin='', variableBinning=(False,1))
 plot.SetLineColor(ROOT.kBlack)
 leg.AddEntry(plot,trigger_list[0] ,"f")
-plot.Draw("Histo")	
+plot.Draw("E1")	
 print("Empty plot is created")
 del plot	
 print("LOOP is coming:")
 for i in range(1,lenght):
 	print(i)
-	plot = getPlotFromChain(c[0],'goodPhoton_pt', (20,0,1000), cutString=trigger_list[i], binningIsExplicit=False, addOverFlowBin='', variableBinning=(False,1))		
+	plot = getPlotFromChain(c[0],'goodPhoton_pt', (100,0,1000), weight="(weight_trig)",cutString=trigger_list[i]+"&&(weight_trig>=0)", binningIsExplicit=False, addOverFlowBin='', variableBinning=(False,1))		
 	plot.SetLineColor(color[i])
 	print(color[i])
 #	leg.AddEntry(plot,trigger_list[i] ,"f")
-	plot.Draw("Histo Same")
+	plot.Draw("E1 Same")
 	del plot 
 #leg.Draw()
 cb.cd()
 cb.Draw()
-cb.SaveAs(str(year)+".png")
-cb.SaveAs(str(year)+".pdf")
-cb.SaveAs(str(year)+".root")
+cb.SaveAs(plots_path+str(year)+".png")
+cb.SaveAs(plots_path+str(year)+".pdf")
+cb.SaveAs(plots_path+str(year)+".root")
 cb.Clear()
