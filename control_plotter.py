@@ -84,7 +84,7 @@ for bkg in bkg_list:
     bkg["chain"] = bkg["chain_all"][0]
     #bkg["weight"] = "(weight*puweight*PhotonSF)"
     bkg["weight"] = "(weight*puweight)"
-    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut, weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = "&&".join([plot_cut,trigger_pt_cut]), weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
     bkg["histo"] = h
     bkg_Int+=bkg["histo"].Integral()
     del h
@@ -98,7 +98,7 @@ data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin
 
 
 print('Ploting starts......')
-signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut, weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join([plot_cut,trigger_pt_cut]), weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 signalPlusbkg = bkg_Int+signal_dict["histo"].Integral()
 SF = data_dict["histo"].Integral()/signalPlusbkg
 print("MC Scale Factor: ", SF)
@@ -270,8 +270,8 @@ Func.Draw("same")
 h_ratio.Draw("E1 Same")
 cb.cd()
 cb.Draw()
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'WeightTrigPlusCut_muonVeto.png')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'WeightTrigPlusCut_muonVeto.pdf')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'WeightTrigPlusCut_muonVeto.root')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'WeightTrigPlusCut_alsoToMC_hightPT.png')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'WeightTrigPlusCut_alsoToMC_hightPT.pdf')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'WeightTrigPlusCut_alsoToMC_hightPT.root')
 cb.Clear()
 del h_Stack

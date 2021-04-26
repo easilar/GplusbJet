@@ -6,7 +6,7 @@ import operator
 
 import configure
 from configure import *
-ROOT.gROOT.Reset()
+#ROOT.gROOT.Reset()
 
 
 from optparse import OptionParser
@@ -15,27 +15,21 @@ parser.add_option("--trig", dest="trig", default="0", action="store", help="can 
 (options, args) = parser.parse_args()
 
 exec("tmp_index="+options.trig)
-print type(tmp_index)
 index = tmp_index
+#ref_trigger = "HLT_Photon165_R9Id90_HE10_IsoM"
+ref_trigger = "(1)"
 
-
-ROOT.gStyle.SetOptStat(0)
-plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Efficiency_Plots/Test/2018/'
+#ROOT.gStyle.SetOptStat(0)
+plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Efficiency_Plots/Test/2016/'
 if not os.path.exists(plots_path):
   os.makedirs(plots_path)
-
 pfile="samples_ana.pkl"
-
-data_dict = {"sample":"SingleMuon", "weight":"(1)", "chain":getChain(year=2018,stype="data",sname="SingleMuon",pfile=pfile)[0], "tex":"SingleMuon", "color":ROOT.kBlack}
-prob_triggers = prob_triggers
+data_dict = {"sample":"SinglePhoton", "weight":"(weight_trig*(weight_trig>0.0))", "chain":getChain(stype="data",sname="SinglePhoton_prescaled_NoPtCut_merged",pfile=pfile)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
 prob_trigger = prob_triggers[index]
-
 #define photon cuts
-presel_event_cut = presel
-num_cut = "&&".join(["Sum$(Photon_cutBased>=3&&Photon_pt>40&&abs(Photon_eta)<1.4)==1",ref_trigger,prob_trigger])
-den_cut = "&&".join(["Sum$(Photon_cutBased>=3&&Photon_pt>40&&abs(Photon_eta)<1.4)==1",ref_trigger])
-#num_cut = "&&".join(["ngoodPhoton==1",ref_trigger,prob_trigger])
-#den_cut = "&&".join(["ngoodPhoton==1",ref_trigger])
+#presel_event_cut = presel
+num_cut = "&&".join(["ngoodPhoton==1","(weight_trig>=0)",ref_trigger,prob_trigger])
+den_cut = "&&".join(["ngoodPhoton==1","(weight_trig>=0)",ref_trigger])
 print(num_cut)
 print(den_cut)
 c = data_dict["chain"]
@@ -66,19 +60,19 @@ latex.SetTextAlign(11)
 
 ROOT.gStyle.SetErrorX(.5)
 #start data
-h_data_den = getPlotFromChain(c, plot['var'], plot['bin'], cutString =den_cut , weight = "(1)" ,addOverFlowBin='both',variableBinning=plot["bin_set"]) 
-h_data_num = getPlotFromChain(c, plot['var'], plot['bin'], cutString =num_cut , weight = "(1)" ,addOverFlowBin='both',variableBinning=plot["bin_set"]) 
+h_data_den = getPlotFromChain(c, plot['var'], plot['bin'], cutString =den_cut , weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"]) 
+h_data_num = getPlotFromChain(c, plot['var'], plot['bin'], cutString =num_cut , weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"]) 
 Func = ROOT.TF1('Func',"[0]",plot['binning'][1],plot['binning'][2])
 Func.SetParameter(0,1)
 Func.SetLineColor(58)
 Func.SetLineWidth(2)
 
 #func = ROOT.TF1('func', '[0]*TMath::Erf((x-[1])/[2])', 40., 500.)  # non def pos erf
-func = ROOT.TF1("func", "([0]/(1+ TMath::Exp(-[1]*(x-[2]))))", 0., 500.) 
+func = ROOT.TF1("func", "([0]/(1+ TMath::Exp(-[1]*(x-[2]))))", 0., 2000.) 
 # func = ROOT.TF1('func', '0.5 * ([0]*TMath::Erf((x-[1])/[2]) + 1)', 25., 180.) # def pos erf
-func.SetParameter(0,  0.008)
+func.SetParameter(0,  1.)
 func.SetParameter(1,  1.)
-func.SetParameter(2,150)
+func.SetParameter(2,200)
 
 func.SetLineColor(ROOT.kRed)
 func.SetParName(0, 'plateau')
@@ -89,8 +83,8 @@ h_ratio = h_data_num.Clone('h_ratio')
 h_ratio.Sumw2()
 h_ratio.SetStats(0)
 h_ratio.Divide(h_data_den)
-h_ratio.SetMaximum(1.2)
-#h_ratio.SetMinimum(0.0001)
+h_ratio.SetMaximum(2.0)
+h_ratio.SetMinimum(0.001)
 h_ratio.SetMarkerStyle(20)
 h_ratio.SetMarkerSize(1.1)
 h_ratio.SetMarkerColor(ROOT.kBlack)
@@ -133,13 +127,13 @@ tex.SetNDC()
 tex.SetTextFont(61)
 tex.SetTextSize(0.03)
 tex.SetLineWidth(2)
-tex.DrawLatex(0.2,0.9,"SingleMuon Run 2018 ABCD ")
-tex.DrawLatex(0.2,0.85,"Ref. Trig.: HLT_IsoMu24 ")
+tex.DrawLatex(0.2,0.9,"SingleMuon Run 2016 BCDEFGH ")
+tex.DrawLatex(0.2,0.85,"Ref. Trig.: "+ref_trigger)
 tex.DrawLatex(0.2,0.8,"Prob. Trig.: "+prob_trigger)
 tex.DrawLatex(0.2,0.75,"Plateau: "+str(round(platho,3))+", Reached at "+str(round(plato_X,2))+" GeV")
 cb.cd()
 cb.Draw()
-cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff_v4.png')
-cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff_v4.pdf')
-cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff_v4.root')
+cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff.png')
+cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff.pdf')
+cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff.root')
 cb.Clear()
