@@ -18,7 +18,7 @@ sample_dic=pickle.load(open("samples_ana.pkl",'rb'))
 mychain_dict  =  getChain(year=2016, stype='signal', sname='G1Jet_Pt', pfile='samples_ana.pkl', datatype='all', test=False)
 ch = mychain_dict[0]
 number_events=ch.GetEntries()
-number_events=2100
+number_events=10000
 
 #Number of Particles in n events
 Nph=set()  # N Photons per Event in goodPhotons
@@ -27,45 +27,45 @@ Nj=set()
 NGbj=set()
 
 #List of Variables for The dataset
-NPhotons=[]
-nPhotons=[]
-nGPhotons=[]
-GPhotons=[]
-RGPhotons=[]
-RRPhotons=[]
-Sel_photons=[]
-RSel_photons=[]
-nJets=[]
-Sel_jets=[]
-Sublead_jets=[]
 
-nbJets=[]
-Sel_bjets=[]
-Lead_bJets=[]
-SubLead_bJets=[]
-RLead_bJets=[]
-RSubLead_bJets=[]
+NPhotons=[] # NPhotons before Matching
+nPhotons=[] # nPhotons after Matching
+nGPhotons=[] # nGenPhotons after Matching 
+GPhotons=[] # List of GenPhotns variables
+RGPhotons=[] # list of 'Raw' GenPhotons before Matching
+RRPhotons=[] # List of Photons before matching
+Sel_photons=[] # List of Photons after Matching
 
-Gbjets=[]
-SubLead_GbJets=[]
-RGbjets=[]
-RSubLead_GbJets=[]
+nJets=[] # nJets after selection
+Sel_jets=[] # Lead Jets after selection
+Sublead_jets=[]	# SubLead Jets after Selection
 
-Met_pt=[]
+nbJets=[] # 1/2 nbJets before Matching 
+Sel_bjets=[] # Lead bJets after Matching 
+SubLead_bJets=[] # SubLead bJets after Matching
+RLead_bJets=[] # Lead bJets before Matching 
+RSubLead_bJets=[] # SubLead bJets before Matching
+
+Gbjets=[] # Lead GenbJets after Matching
+SubLead_GbJets=[] # SubLead GenbJets after Matching
+RGbjets=[] # Lead GenbJets before Matching
+RSubLead_GbJets=[] # SubLead GenbJets before Matching 
+
+Met_pt=[] # Met_pt after Matching
 Met_phi=[]
 DRm=[]
 Labels=[]
-Match_ph=[]
-Match_1b=[]
-Match_2b=[] # List of int
-Number_b=0.
-M_1b=0.
-M_2b=0.
-Number_ph=0.
-M_ph=0.
-Npho=0.
-Npho1=0.
-Npho2=0.
+#Match_ph=[]
+Match_1b=[] # 1b Jets after Matching
+Match_2b=[] # 2b Jets after Matching
+Number_b=0. # Number 1/2b before Matching
+M_1b=0. # N 1b after
+M_2b=0. # N 2b after
+npho=0. # N Pho After 
+#M_ph=0.
+Npho=0. # N Pho  before
+#Npho1=0.
+#Npho2=0.
 
 #--------- First loop : Looping on Events ---------
 
@@ -116,7 +116,6 @@ for jentry in range(number_events):
 	subGlead_b=[]
 	dRms=[]
 	labels=[]
-	#nbJets.append({'nbJets':nbJet})
 	if b==0 and nbJet != 0:
 		nbJets.append({'nbJets':nbJet})
 		NPhotons.append(nPhoton)
@@ -126,8 +125,10 @@ for jentry in range(number_events):
         elif b==2 and nbJet > 1:
 		nbJets.append({'nbJets':nbJet})
                 NPhotons.append(nPhoton)
-        #elif b and nbJet == 0:
-                #nbJets.append({'nbJets':nbJet})
+        elif b and nbJet == 0:
+                nbJets.append({'nbJets':nbJet})
+	#for n in nbJets:
+                #Number_b += n['nbJets']	
 
 
 #---------- second loop : nVariables inside Particles-------------------
@@ -176,9 +177,15 @@ for jentry in range(number_events):
 	#print('GenPhotons',GenPhotons)
 	#print('Photons',Photons)
 
+#-------------Append raw variables-----------------------------------------------------
 
+	RRPhotons += Photons
+	lead_bJets=sorted(bJets,key=lambda x:x['pt'],reverse=True)[:1]
+	sublead_bJets=sorted(bJets,key=lambda x:x['pt'],reverse=True)[1:2]
+	RLead_bJets += lead_bJets
+	RSubLead_bJets += sublead_bJets
 # ------------PHOTON MATCHING INSIDE CONE dR----------------------------------------------
- 
+	
 	dRm=[]
 	#dRm.append({'index':j,'dR':0})
 	#if len(GenPhotons)==0:
@@ -199,7 +206,7 @@ for jentry in range(number_events):
 	dRm=sorted(dRm,key=lambda x:x['dR'])
 
     	for i in  dRm :
-            if abs(i['PtRatio']) < 0.1:
+            if abs(i['PtRatio']) < 0.5:
 		    ph = [j for j in GenPhotons if j['index'] == i['index']][0]		
                     matched_photons.append(ph)
                     break
@@ -229,7 +236,6 @@ for jentry in range(number_events):
 	
 	if nbJet == 1 and (b == 1 or b==0) :
         	dRmJ=[]
-		'''
         	for i,jet in enumerate(bJets):
                 	for  j,GenJet in enumerate (GenbJets):
                         	dR_Jet_Match = deltaR(jet["phi"],GenJet["phi"],jet["eta"],GenJet["eta"])
@@ -243,27 +249,20 @@ for jentry in range(number_events):
         	if len(dRmJ) == 0 :continue # in case dRmj is empty due to empty GenbJets
 		dRmJ=sorted(dRmJ,key=lambda x:x['dR'])
         	print('dRmJ',dRmJ)
-
+		if len(GenbJets) == 0 : continue
         	for i in  dRmJ :
                 	if abs(i['PtRatio']) < 0.1:
 				#jt=[j for j in GenbJets if j['index'] == i['index']][0]
                         	matched_jets_1b.append(GenbJets[dRmJ[0]['index']])
-                        break
+        	                break
                 else :
                         continue
 
         	if  len(matched_jets_1b) and dRmJ[0]['dR']  <= 0.5:
-                	sel_jets_1b=bJets
-			lead_b=sel_jets_1b
-		'''
-		GenbJets=sorted(GenbJets,key=lambda x:x['pt'],reverse=True)
+                        sel_jets_1b=bJets
+                        lead_b=sel_jets_1b
 		if len(GenbJets) != 0:
-			matched_jets_1b.append(GenbJets[0])
 			Glead_b=matched_jets_1b
-		#else:
-			#continue
-			sel_jets_1b=bJets
-			lead_b=sel_jets_1b
           	print('matched_jet_1b :',matched_jets_1b)
 		print('sel_jet_1b:',lead_b)
 
@@ -279,7 +278,6 @@ for jentry in range(number_events):
 		lead_bjets=sorted(bJets,key=lambda x:x['pt'],reverse=True)[:1]
         	sublead_bjets=sorted(bJets,key=lambda x:x['pt'],reverse=True)[1:2]
 		
-		'''
         	dRmJ_lb=[]
         	for i,jet in enumerate(lead_bjets):
             		for j,GenJet in enumerate(GenbJets):
@@ -303,23 +301,16 @@ for jentry in range(number_events):
                 	else :
                         	continue
         	if  len(matched_jets_lb) and dRmJ_lb[0]['dR'] <= 0.5:
-                	sel_jets_lb=lead_bjets
-			lead_b=sel_jets_lb
-		'''
+                        sel_jets_lb=lead_bjets
+                        lead_b=sel_jets_lb
 		if len(GenbJets) != 0:
-			matched_jets_lb.append(GenbJets[0])
 			Glead_b=matched_jets_lb
-		#else: 
-			#continue
-			sel_jets_lb=lead_bjets
-                	lead_b=sel_jets_lb
 
 		print('matched_jet_lb :',matched_jets_lb)
 		print('sel_jet_lb:',sel_jets_lb)
 
 
 
-		'''
             	dRmJ_slb=[]
             	for z,jt in enumerate(sublead_bjets):
                     for GenJt in GenbJets:
@@ -347,15 +338,8 @@ for jentry in range(number_events):
             	if len(matched_jets_slb) and  dRmJ_slb[0]['dR'] <= 0.5:
                         sel_jets_slb=sublead_bjets
                         sublead_b=sel_jets_slb
-
-		'''
 		if len(GenbJets) > 1:
-                	matched_jets_lb.append(GenbJets[1])
 			subGlead_b=matched_jets_lb
-		#else:
-			#continue
-                	sel_jets_slb=sublead_bjets
-                	sublead_b=sel_jets_slb
 			
 		print('matched_jet_slb :',matched_jets_slb)
 		print('sel_jet_slb:',sel_jets_slb)
@@ -384,7 +368,7 @@ for jentry in range(number_events):
 #-----------Extract Selected Variables----------------------------
 	Match_1b.append(len(sel_jets_1b))
         Match_2b.append(len(sel_jets_lb)+len(sel_jets_slb))
-        Match_ph.append(len(sel_photons))	
+        #Match_ph.append(len(sel_photons))	
         if len(matched_photons)==0:
                 matched_photons.append({'pt':-999,'eta':-999,'phi':-999})
 	GPhotons+=matched_photons
@@ -393,7 +377,7 @@ for jentry in range(number_events):
 	RGPhotons+=GenPhotons
 	if len(Photons)==0:
                 RRPhotons.append({'pt':-999,'eta':-999,'phi':-999})
-	RRPhotons+=Photons		
+	#RRPhotons+=Photons		
         if len(GenPhotons)==0:
                 nGPhotons.append({'nGPhotons':0})
 	nGPhotons.append({'nGPhotons':len(GenPhotons)})
@@ -453,14 +437,14 @@ for k in Match_2b:
                 M_2b += k
 for s in NPhotons:
                 Npho += s
-for s1 in NPhotons:
-                Npho1 += s1
-for s2 in NPhotons:
-                Npho2 += s2
+#for s1 in NPhotons:
+                #Npho1 += s1
+#for s2 in NPhotons:
+                #Npho2 += s2
 for n in nPhotons:
-                Number_ph += n['nPhotons']
-for k in Match_ph:
-                M_ph += k
+                npho += n['nPhotons']
+#for k in Match_ph:
+                #M_ph += k
 
 #---------Create Dataset's list---------------------------------
 written=[]
@@ -517,12 +501,12 @@ if b==1:
 
 
 	rows = written
-	with open('M_S_10_1.csv', 'w') as f:
+	with open('S_50_1.csv', 'w') as f:
 
     		write = csv.writer(f)
     		write.writerow(fields)
     		for row in rows:
-			r = [row['nGPhotons'],row['nJets'],row['nbJets'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'], row['jet_pt'],row['jet_eta'],row['jet_phi'],row['SLjet_pt'],row['SLjet_eta'],row['SLjet_phi'],row['Gbjet_pt'],row['Gbjet_eta'],row['Gbjet_phi'],row['GSLbjet_pt'],row['GSLbjet_eta'],row['GSLbjet_phi'],row['bjet_pt'],row['bjet_eta'],row['bjet_phi'],row['SLbjet_pt'],row['SLbjet_eta'],row['SLbjet_phi'],row['met_pt'],row['met_phi'],row['dRm'],row['Labels']]
+			r = [row['nGPhotons'],row['nJets'],row['nbJets'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['Rphoton_pt'],row['Rphoton_eta'],row['Rphoton_phi'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'], row['jet_pt'],row['jet_eta'],row['jet_phi'],row['SLjet_pt'],row['SLjet_eta'],row['SLjet_phi'],row['Gbjet_pt'],row['Gbjet_eta'],row['Gbjet_phi'],row['GSLbjet_pt'],row['GSLbjet_eta'],row['GSLbjet_phi'],row['bjet_pt'],row['bjet_eta'],row['bjet_phi'],row['SLbjet_pt'],row['SLbjet_eta'],row['SLbjet_phi'],row['met_pt'],row['met_phi'],row['dRm'],row['Labels']]
                         
         		write.writerow(r)
 elif b>1:
@@ -530,12 +514,12 @@ elif b>1:
 	fields = [ 'nGphotons','ngooJets','ngoodbJets','RMatched_GPhoton_pt','RMatched_GPhoton_eta','RMatched_GPhoton_phi','RPhoton_pt','RPhoton_eta','RPhoton_phi','Matched_GPhoton_pt','Matched_GPhoton_eta','Matched_GPhoton_phi','Photon_pt','Photon_eta','Photon_phi' ,'Lead_Jet_pt','Lead_Jet_eta','Lead_Jet_phi','SubLead_Jet_pt','SubLead_Jet_eta','SubLead_Jet_phi','GLead_bJet_pt','GLead_bJet_eta','GLead_bJet_phi','GSubLead_bJet_pt','GSubLead_bJet_eta','GSubLead_bJet_phi','Lead_bJet_pt','Lead_bJet_eta','Lead_bJet_phi','SubLead_bJet_pt','SubLead_bJet_eta','SubLead_bJet_phi','MET_pt','MET_phi','dR_Photon_Gen_Reco','Labels']
 
         rows = written
-        with open('M_S_10_2.csv', 'w') as f:
+        with open('S_50_2.csv', 'w') as f:
 
         	write = csv.writer(f)
         	write.writerow(fields)
         	for row in rows:
-                	r = [row['nGPhotons'],row['nJets'],row['nbJets'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'], row['jet_pt'],row['jet_eta'],row['jet_phi'],row['SLjet_pt'],row['SLjet_eta'],row['SLjet_phi'],row['Gbjet_pt'],row['Gbjet_eta'],row['Gbjet_phi'],row['GSLbjet_pt'],row['GSLbjet_eta'],row['GSLbjet_phi'],row['bjet_pt'],row['bjet_eta'],row['bjet_phi'],row['SLbjet_pt'],row['SLbjet_eta'],row['SLbjet_phi'],row['met_pt'],row['met_phi'],row['dRm'],row['Labels']]
+                	r = [row['nGPhotons'],row['nJets'],row['nbJets'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['Rphoton_pt'],row['Rphoton_eta'],row['Rphoton_phi'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'], row['jet_pt'],row['jet_eta'],row['jet_phi'],row['SLjet_pt'],row['SLjet_eta'],row['SLjet_phi'],row['Gbjet_pt'],row['Gbjet_eta'],row['Gbjet_phi'],row['GSLbjet_pt'],row['GSLbjet_eta'],row['GSLbjet_phi'],row['bjet_pt'],row['bjet_eta'],row['bjet_phi'],row['SLbjet_pt'],row['SLbjet_eta'],row['SLbjet_phi'],row['met_pt'],row['met_phi'],row['dRm'],row['Labels']]
                         write.writerow(r)
 elif b==0:
 
@@ -543,12 +527,12 @@ elif b==0:
 
 
 	rows = written
-        with open('M_S_10_0.csv', 'w') as f:
+        with open('S_50_0.csv', 'w') as f:
 
                 write = csv.writer(f)
                 write.writerow(fields)
                 for row in rows:
-			r = [row['nGPhotons'],row['nJets'],row['nbJets'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'], row['jet_pt'],row['jet_eta'],row['jet_phi'],row['SLjet_pt'],row['SLjet_eta'],row['SLjet_phi'],row['Gbjet_pt'],row['Gbjet_eta'],row['Gbjet_phi'],row['GSLbjet_pt'],row['GSLbjet_eta'],row['GSLbjet_phi'],row['bjet_pt'],row['bjet_eta'],row['bjet_phi'],row['SLbjet_pt'],row['SLbjet_eta'],row['SLbjet_phi'],row['met_pt'],row['met_phi'],row['dRm'],row['Labels']]
+			r = [row['nGPhotons'],row['nJets'],row['nbJets'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['Rphoton_pt'],row['Rphoton_eta'],row['Rphoton_phi'],row['GPhoton_pt'],row['GPhoton_eta'],row['GPhoton_phi'],row['photon_pt'],row['photon_eta'],row['photon_phi'], row['jet_pt'],row['jet_eta'],row['jet_phi'],row['SLjet_pt'],row['SLjet_eta'],row['SLjet_phi'],row['Gbjet_pt'],row['Gbjet_eta'],row['Gbjet_phi'],row['GSLbjet_pt'],row['GSLbjet_eta'],row['GSLbjet_phi'],row['bjet_pt'],row['bjet_eta'],row['bjet_phi'],row['SLbjet_pt'],row['SLbjet_eta'],row['SLbjet_phi'],row['met_pt'],row['met_phi'],row['dRm'],row['Labels']]
                         write.writerow(r)
 
 
@@ -568,7 +552,7 @@ print('N 2 bJets after Selection',M_2b)
 print('N bJets before Selection',Number_b)
 Match_eff_b =(M_1b+M_2b)/Number_b
 print('Match_eff_b',Match_eff_b)
-print('Nphoton after Selection',M_ph)
+print('Nphoton after Selection',npho)
 print('Nphoton Before Selection',Npho)
-Match_eff_ph =(M_ph)/Npho
+Match_eff_ph =(npho)/Npho
 print('Match_eff_ph',Match_eff_ph)
