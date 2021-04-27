@@ -242,7 +242,7 @@ for jentry in range(number_events):
                         	PtRatioJ=(GenJet["pt"]-jet["pt"])/(GenJet["pt"])
                  	      	print('drJ',dR_Jet_Match)
                         	print('PtRJ',abs(PtRatioJ))
-				dRmJ.append({'index':j,'dR':dR_Jet_Match,'PtRatio':PtRatioJ})
+				dRmJ.append({'index':GenJet['index'],'dR':dR_Jet_Match,'PtRatio':PtRatioJ})
 				GenJet['PtRatio'] =  PtRatioJ
 				GenJet['dR']	= dR_Jet_Match			
 
@@ -251,14 +251,14 @@ for jentry in range(number_events):
         	print('dRmJ',dRmJ)
 		if len(GenbJets) == 0 : continue
         	for i in  dRmJ :
-                	if abs(i['PtRatio']) < 0.1:
-				#jt=[j for j in GenbJets if j['index'] == i['index']][0]
-                        	matched_jets_1b.append(GenbJets[dRmJ[0]['index']])
+                	if abs(i['PtRatio']) < 0.5:
+				jt=[j for j in GenbJets if j['index'] == i['index']][0]
+                        	matched_jets_1b.append(jt)
         	                break
                 else :
                         continue
 
-        	if  len(matched_jets_1b) and dRmJ[0]['dR']  <= 0.5:
+        	if  len(matched_jets_1b) and matched_jets_1b[0]['dR']  <= 0.5:
                         sel_jets_1b=bJets
                         lead_b=sel_jets_1b
 		if len(GenbJets) != 0:
@@ -274,9 +274,12 @@ for jentry in range(number_events):
 #----------------- 2b Matching ---------------------------------------------------------
 
 	elif nbJet > 1  and (b>1 or b==0):
-
-		lead_bjets=sorted(bJets,key=lambda x:x['pt'],reverse=True)[:1]
-        	sublead_bjets=sorted(bJets,key=lambda x:x['pt'],reverse=True)[1:2]
+		
+		bJets=sorted(bJets,key=lambda x:x['pt'],reverse=True)
+		lead_bjets=[]
+		sublead_bjets=[]
+		lead_bjets.append(bJets[0])
+        	sublead_bjets.append(bJets[1])
 		
         	dRmJ_lb=[]
         	for i,jet in enumerate(lead_bjets):
@@ -285,7 +288,7 @@ for jentry in range(number_events):
                                 PtRatioJ_lb=(GenJet["pt"]-jet["pt"])/(GenJet["pt"])
                                	print('drJ_lb',dR_Jet_Match_lb)
                                 print('PtRJ_lb',abs(PtRatioJ_lb))
-				dRmJ_lb.append({'index':j,'dR':dR_Jet_Match_lb,'PtRatioJ_lb':PtRatioJ_lb})
+				dRmJ_lb.append({'index':GenJet['index'],'dR':dR_Jet_Match_lb,'PtRatioJ_lb':PtRatioJ_lb})
 				GenJet['PtRatioJ_lb'] =  PtRatioJ_lb
 				GenJet['dR'] =  dR_Jet_Match_lb
             	if len(dRmJ_lb) == 0 :continue # in case dRmj is empty due to empty GenbJets
@@ -294,13 +297,13 @@ for jentry in range(number_events):
             	print('dRmJ_lb',dRmJ_lb)
 
             	for i in  dRmJ_lb :
-                	if abs(i['PtRatioJ_lb']) < 0.1:
-				#jet = [j for j in GenbJets if j['index'] == i['index']][0]
-                        	matched_jets_lb.append(GenbJets[dRmJ_lb[0]['index']])
+                	if abs(i['PtRatioJ_lb']) < 0.5:
+				jet = [j for j in GenbJets if j['index'] == i['index']][0]
+                        	matched_jets_lb.append(jet)
                         	break
                 	else :
                         	continue
-        	if  len(matched_jets_lb) and dRmJ_lb[0]['dR'] <= 0.5:
+        	if  len(matched_jets_lb) and matched_jets_lb[0]['dR'] <= 0.5:
                         sel_jets_lb=lead_bjets
                         lead_b=sel_jets_lb
 		if len(GenbJets) != 0:
@@ -318,24 +321,24 @@ for jentry in range(number_events):
                                 PtRatioJ_slb=(GenJt["pt"]-jt["pt"])/(GenJt["pt"])
                                 print('drJ_slb',dR_Jet_Match_slb)
                                 print('PtRJ_slb',abs(PtRatioJ_slb))
-				dRmJ_slb.append({'index':z,'dR':dR_Jet_Match_slb,'PtRatioJ_slb':PtRatioJ_slb})
-				GenJet['PtRatioJ_slb'] =  PtRatioJ_lb
-                                GenJet['dR'] =  dR_Jet_Match_lb
+				dRmJ_slb.append({'index':GenJt['index'],'dR':dR_Jet_Match_slb,'PtRatioJ_slb':PtRatioJ_slb})
+				GenJt['PtRatioJ_slb'] =  PtRatioJ_lb
+                                GenJt['dR'] =  dR_Jet_Match_lb
 
             	if len(dRmJ_slb) == 0 :continue # in case dRmj is empty due to empty GenbJets
 		dRmJ_slb=sorted(dRmJ_slb,key=lambda x:x['dR'])
             	print('dRmJ_slb',dRmJ_slb)
 
-            	for d in  dRmJ_slb :
+            	for i in  dRmJ_slb :
 			#print('ABS PT_SLB',abs(d['PtRatioJ_slb']))
-                    	if abs(d['PtRatioJ_slb']) < 0.1:
-				#jtt = [j for j in GenbJets if j['index'] == i['index']][0]
-                                matched_jets_slb.append(GenbJets[dRmJ_slb[0]['index']])
+                    	if abs(i['PtRatioJ_slb']) < 0.5:
+				jtt = [j for j in GenbJets if j['index'] == i['index']][0]
+                                matched_jets_slb.append(jtt)
                                 break
                         else :
                                 continue
 
-            	if len(matched_jets_slb) and  dRmJ_slb[0]['dR'] <= 0.5:
+            	if len(matched_jets_slb) and  matched_jets_slb[0]['dR'] <= 0.5:
                         sel_jets_slb=sublead_bjets
                         sublead_b=sel_jets_slb
 		if len(GenbJets) > 1:
