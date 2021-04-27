@@ -16,16 +16,17 @@ parser.add_option("--trig", dest="trig", default="0", action="store", help="can 
 
 exec("tmp_index="+options.trig)
 index = tmp_index
-#ref_trigger = "HLT_Photon165_R9Id90_HE10_IsoM"
+#ref_trigger = "HLT_Photon36"
 ref_trigger = "(1)"
 
 #ROOT.gStyle.SetOptStat(0)
-plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Efficiency_Plots/Test/2016/'
+plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Efficiency_Plots/Test/2016_TriggerScaled/'
 if not os.path.exists(plots_path):
   os.makedirs(plots_path)
 pfile="samples_ana.pkl"
 data_dict = {"sample":"SinglePhoton", "weight":"(weight_trig*(weight_trig>0.0))", "chain":getChain(stype="data",sname="SinglePhoton_prescaled_NoPtCut_merged",pfile=pfile)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
 prob_trigger = prob_triggers[index]
+#ref_trigger = prob_triggers[index-1]
 #define photon cuts
 #presel_event_cut = presel
 num_cut = "&&".join(["ngoodPhoton==1","(weight_trig>=0)",ref_trigger,prob_trigger])

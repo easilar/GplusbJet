@@ -33,7 +33,7 @@ trigname = options.trigname
 #afs_dir = os.environ["afs_dir"]
 #targetdir_mainpath = os.environ["cern_box"] 
 #pfile = afs_dir+"/samples_orig.pkl"
-afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets/"
+afs_dir = "/afs/cern.ch/user/m/myalvac/GPlusbJets/"
 targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
 pfile = afs_dir+"/samples_orig.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
@@ -47,7 +47,7 @@ eff_lumi = eff_lumi.replace("p",".")
 eff_lumi = float(eff_lumi)
 print("eff_Lumi:",eff_lumi)
 #orig_dir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
-cert_json = "json/prescale_jsons/"+trigname
+cert_json = "/afs/cern.ch/user/m/myalvac/GPlusbJets/json/prescale_jsons/"+trigname
 if year == 2016:
    act_Lumi = 36.47
    trigger_list = ["HLT_Photon36_R9Id90_HE10_IsoM","HLT_Photon50_R9Id90_HE10_IsoM","HLT_Photon75_R9Id90_HE10_IsoM","HLT_Photon90_R9Id90_HE10_IsoM","HLT_Photon120_R9Id90_HE10_IsoM","HLT_Photon165_R9Id90_HE10_IsoM"]
