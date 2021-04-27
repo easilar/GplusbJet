@@ -41,7 +41,7 @@ ndiv=20
 for target_filename in  target_filename_dict.keys():
 	writing_file = open(target_filename, "a")
 	print(target_filename)
-	for trigger in target_filename_list[target_filename]:
+	for trigger in target_filename_dict[target_filename]:
 		for ci,bin_name in enumerate(sdict.keys()):
 			cur_dir = sdict[bin_name]["dir"]
 			flist = os.listdir(cur_dir)
