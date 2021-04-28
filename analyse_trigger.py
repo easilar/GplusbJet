@@ -16,7 +16,7 @@ parser.add_option("--sname", dest="sname", default="SinglePhoton", action="store
 parser.add_option("--stype", dest="stype", default="data", action="store", help="can be data or signal or bkg")
 parser.add_option("--letter", dest="letter", default="B", action="store", help="if data can be B,C,D,E,F,G,H;if signal GJets_Pt_100To200")
 parser.add_option("--filename", dest="filename", default="sample.root", action="store", help="should be the individual root file name")
-parser.add_option("--ndiv", dest="ndiv", default="10", action="store", help="number of divitions for one root file")
+parser.add_option("--ndiv", dest="ndiv", default="1", action="store", help="number of divitions for one root file")
 parser.add_option("--divIndex", dest="divIndex", default="0", action="store", help="index of divitions for one root file")
 parser.add_option("--trigname", dest="trigname", default="HLT_Photon36_R9Id90_HE10_IsoM_prescale1_2016_36p12.json", action="store", help="can be any json file from Json directory")
 (options, args) = parser.parse_args()
@@ -47,7 +47,7 @@ eff_lumi = eff_lumi.replace("p",".")
 eff_lumi = float(eff_lumi)
 print("eff_Lumi:",eff_lumi)
 #orig_dir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
-cert_json = "/afs/cern.ch/user/m/myalvac/GPlusbJets/json/prescale_jsons/"+trigname
+cert_json = afs_dir+"json/prescale_jsons/"+trigname
 if year == 2016:
    act_Lumi = 36.47
    trigger_list = ["HLT_Photon36_R9Id90_HE10_IsoM","HLT_Photon50_R9Id90_HE10_IsoM","HLT_Photon75_R9Id90_HE10_IsoM","HLT_Photon90_R9Id90_HE10_IsoM","HLT_Photon120_R9Id90_HE10_IsoM","HLT_Photon165_R9Id90_HE10_IsoM"]
@@ -205,7 +205,7 @@ for jentry in range(ini_event,fin_event):
 	if str(int(run)) in data.keys():
 		for lumiBlock in data[str(int(run))]:
 			if eff_lumi <= 0.00: continue
-              		elif (lumi >= lumiBlock[0] and lumi <= lumiBlock[1] ) : weight_v = float(act_Lumi)/float(eff_lumi)
+              		elif (lumi >= lumiBlock[0] and lumi <= lumiBlock[1] ) : weight_v = float(trigname.split("_")[-3].split("prescale")[1])
 	if not Flag_6 : continue
    exec("weight_trig_"+probed_trigger.split("_R9Id90")[0]+"[0]=weight_v")
    if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5 and Flag_7): continue
@@ -278,3 +278,4 @@ newFile.cd()
 tree.Write()
 newFile.Write()
 newFile.Close()
+print("CIMBOM")
