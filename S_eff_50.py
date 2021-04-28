@@ -17,6 +17,7 @@ b=int(options.b)
 sample_dic=pickle.load(open("samples_ana.pkl",'rb'))
 mychain_dict  =  getChain(year=2016, stype='signal', sname='G1Jet_Pt', pfile='samples_ana.pkl', datatype='all', test=False)
 ch = mychain_dict[0]
+
 number_events=ch.GetEntries()
 #number_events=10000
 
