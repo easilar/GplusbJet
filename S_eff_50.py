@@ -18,7 +18,7 @@ sample_dic=pickle.load(open("samples_ana.pkl",'rb'))
 mychain_dict  =  getChain(year=2016, stype='signal', sname='G1Jet_Pt', pfile='samples_ana.pkl', datatype='all', test=False)
 ch = mychain_dict[0]
 number_events=ch.GetEntries()
-number_events=10000
+#number_events=10000
 
 #Number of Particles in n events
 Nph=set()  # N Photons per Event in goodPhotons
@@ -94,7 +94,8 @@ for jentry in range(number_events):
 	
 	# variable = Running for 1 b or 2 b
 
-	if nPhoton != 1 and nbJet == 0 : continue     # Denominator cut satisfied
+	if nPhoton != 1 or nbJet == 0 : continue     # Denominator cut satisfied
+
 	count_events_den += 1 	
 
 	#lists of variables per event
