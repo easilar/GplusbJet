@@ -18,7 +18,7 @@ sample_dic=pickle.load(open("samples_ana.pkl",'rb'))
 mychain_dict  =  getChain(year=2016, stype='signal', sname='G1Jet_Pt', pfile='samples_ana.pkl', datatype='all', test=False)
 ch = mychain_dict[0]
 number_events=ch.GetEntries()
-number_events=50000
+number_events=10000
 
 #Number of Particles in n events
 Nph=set()  # N Photons per Event in goodPhotons
@@ -93,8 +93,8 @@ for jentry in range(number_events):
 	# Matching Efficiency  = (nEvents with 1 matched Photon and 1/2 matched bJet + 1 RecoPhoton + 1/2 RecobJets ) / ( nEvents with 1 RecoPhoton + 1/2 RecobJets)
 	
 	# variable = Running for 1 b or 2 b
-	if nPhoton != 1 and nbJet == 0 : 
-		continue # Denominator cut satisfied
+
+	if nPhoton != 1 and nbJet == 0 : continue     # Denominator cut satisfied
 	count_events_den += 1 	
 
 	#lists of variables per event
@@ -130,8 +130,8 @@ for jentry in range(number_events):
         elif b==2 and nbJet > 1:
 		nbJets.append({'nbJets':nbJet})
                 NPhotons.append(nPhoton)
-        elif b and nbJet == 0:
-                nbJets.append({'nbJets':nbJet})
+        #elif b and nbJet == 0:
+                #nbJets.append({'nbJets':nbJet})
 	#for n in nbJets:
                 #Number_b += n['nbJets']	
 
@@ -370,7 +370,7 @@ for jentry in range(number_events):
 	sublead_jets=sorted(Jets,key=lambda x:x['pt'],reverse=True)[1:2]
 	
 #-----------Extract Selected Variables----------------------------
-	Match_1b.append(len(lead_b))
+	Match_1b.append(0)
         Match_2b.append(len(lead_b)+len(sublead_b))
         #Match_ph.append(len(sel_photons))	
         if len(matched_photons)==0:
@@ -557,8 +557,8 @@ print('nbJet', Nbj)
 print('nGbj', NGbj)
 #print('lenNPhotons',len(nPhotons))
 #print('NPhotons',NPhotons)
-print('N 1 bJets after Selection', M_1b)
-print('N 2 bJets after Selection',M_2b)
+#print('N 1 bJets after Selection', M_1b)
+print('N bJets after Selection',M_2b)
 print('N bJets before Selection',Number_b)
 Match_eff_b =(M_1b+M_2b)/Number_b
 print('Match_eff_b',Match_eff_b)
@@ -566,5 +566,7 @@ print('Nphoton after Selection',npho)
 print('Nphoton Before Selection',Npho)
 Match_eff_ph =(npho)/Npho
 print('Match_eff_ph',Match_eff_ph)
+print('count_events_num',count_events_num)
+print('count_events_den',count_events_den)
 Matching_Events_eff=(count_events_num)/(count_events_den*1.0)
 print('Matching_Events_eff',Matching_Events_eff)
