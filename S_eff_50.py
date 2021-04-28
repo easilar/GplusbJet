@@ -18,7 +18,7 @@ sample_dic=pickle.load(open("samples_ana.pkl",'rb'))
 mychain_dict  =  getChain(year=2016, stype='signal', sname='G1Jet_Pt', pfile='samples_ana.pkl', datatype='all', test=False)
 ch = mychain_dict[0]
 number_events=ch.GetEntries()
-number_events=10000
+number_events=50000
 
 #Number of Particles in n events
 Nph=set()  # N Photons per Event in goodPhotons
@@ -66,7 +66,8 @@ npho=0. # N Pho After
 Npho=0. # N Pho  before
 #Npho1=0.
 #Npho2=0.
-
+count_events_num=0
+count_events_den=0
 #--------- First loop : Looping on Events ---------
 
 
@@ -88,10 +89,13 @@ for jentry in range(number_events):
 	Nph.add(nPhoton)
    	Nbj.add(nbJet)
    	Nj.add(nJet)
-
+	
+	# Matching Efficiency  = (nEvents with 1 matched Photon and 1/2 matched bJet + 1 RecoPhoton + 1/2 RecobJets ) / ( nEvents with 1 RecoPhoton + 1/2 RecobJets)
+	
 	# variable = Running for 1 b or 2 b
-	if nPhoton>1: continue
-
+	if nPhoton != 1 and nbJet == 0 : 
+		continue # Denominator cut satisfied
+	count_events_den += 1 	
 
 	#lists of variables per event
 	Photons=[]          # kin of Reco Photons
@@ -120,6 +124,7 @@ for jentry in range(number_events):
 		nbJets.append({'nbJets':nbJet})
 		NPhotons.append(nPhoton)
         elif b==1 and nbJet == 1:
+		
 		nbJets.append({'nbJets':nbJet})
                 NPhotons.append(nPhoton)
         elif b==2 and nbJet > 1:
@@ -130,7 +135,7 @@ for jentry in range(number_events):
 	#for n in nbJets:
                 #Number_b += n['nbJets']	
 
-
+	
 #---------- second loop : nVariables inside Particles-------------------
 
 	for ID in range(int(nGenPart)): # Gen Photons   #List of Dict
@@ -223,7 +228,6 @@ for jentry in range(number_events):
 	#sel_photons=Photons
 	'''
     	if len(matched_photons)   :
-		sel_photons=Photons
             	good_event_Photon=True
 		
     	#if not good_event_Photon  : continue
@@ -259,8 +263,7 @@ for jentry in range(number_events):
                         continue
 
         	if  len(matched_jets_1b) and matched_jets_1b[0]['dR']  <= 0.5:
-                        sel_jets_1b=bJets
-                        lead_b=sel_jets_1b
+                        lead_b=bJets
 		if len(GenbJets) != 0:
 			Glead_b=matched_jets_1b
           	print('matched_jet_1b :',matched_jets_1b)
@@ -304,8 +307,7 @@ for jentry in range(number_events):
                 	else :
                         	continue
         	if  len(matched_jets_lb) and matched_jets_lb[0]['dR'] <= 0.5:
-                        sel_jets_lb=lead_bjets
-                        lead_b=sel_jets_lb
+                        lead_b=lead_bjets
 		if len(GenbJets) != 0:
 			Glead_b=matched_jets_lb
 
@@ -331,7 +333,7 @@ for jentry in range(number_events):
 
             	for i in  dRmJ_slb :
 			#print('ABS PT_SLB',abs(d['PtRatioJ_slb']))
-                    	if abs(i['PtRatioJ_slb']) < 0.5:
+                    	if abs(i['PtRatioJ_slb']) < 0.2:
 				jtt = [j for j in GenbJets if j['index'] == i['index']][0]
                                 matched_jets_slb.append(jtt)
                                 break
@@ -339,8 +341,7 @@ for jentry in range(number_events):
                                 continue
 
             	if len(matched_jets_slb) and  matched_jets_slb[0]['dR'] <= 0.5:
-                        sel_jets_slb=sublead_bjets
-                        sublead_b=sel_jets_slb
+                        sublead_b=sublead_bjets
 		if len(GenbJets) > 1:
 			subGlead_b=matched_jets_lb
 			
@@ -369,8 +370,8 @@ for jentry in range(number_events):
 	sublead_jets=sorted(Jets,key=lambda x:x['pt'],reverse=True)[1:2]
 	
 #-----------Extract Selected Variables----------------------------
-	Match_1b.append(len(sel_jets_1b))
-        Match_2b.append(len(sel_jets_lb)+len(sel_jets_slb))
+	Match_1b.append(len(lead_b))
+        Match_2b.append(len(lead_b)+len(sublead_b))
         #Match_ph.append(len(sel_photons))	
         if len(matched_photons)==0:
                 matched_photons.append({'pt':-999,'eta':-999,'phi':-999})
@@ -432,6 +433,12 @@ for jentry in range(number_events):
     	#Match_2b.append(len(sel_jets_lb)+len(sel_jets_slb))
 	#Match_ph.append(len(sel_photons))
 	#NPhotons.append(nPhoton)
+	
+	if good_event_Photon and good_event_b : # num cut satisfied
+		count_events_num += 1
+		
+		
+
 for n in nbJets:
                 Number_b += n['nbJets']
 for m in Match_1b:
@@ -559,3 +566,5 @@ print('Nphoton after Selection',npho)
 print('Nphoton Before Selection',Npho)
 Match_eff_ph =(npho)/Npho
 print('Match_eff_ph',Match_eff_ph)
+Matching_Events_eff=(count_events_num)/(count_events_den*1.0)
+print('Matching_Events_eff',Matching_Events_eff)
