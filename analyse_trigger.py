@@ -208,7 +208,6 @@ for jentry in range(ini_event,fin_event):
               		elif (lumi >= lumiBlock[0] and lumi <= lumiBlock[1] ) : weight_v = float(trigname.split("_")[-3].split("prescale")[1])
 	if not Flag_6 : continue
    exec("weight_trig_"+probed_trigger.split("_R9Id90")[0]+"[0]=weight_v")
-   print("prescale",weight_v)
    if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5 and Flag_7): continue
    xsec[0] = xsec_v
    weight[0] = weight_xsec_v
