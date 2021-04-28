@@ -18,7 +18,7 @@ sample_dic=pickle.load(open("samples_ana.pkl",'rb'))
 mychain_dict  =  getChain(year=2016, stype='signal', sname='G1Jet_Pt', pfile='samples_ana.pkl', datatype='all', test=False)
 ch = mychain_dict[0]
 number_events=ch.GetEntries()
-number_events=10000
+#number_events=10000
 
 #Number of Particles in n events
 Nph=set()  # N Photons per Event in goodPhotons
@@ -214,7 +214,7 @@ for jentry in range(number_events):
 	dRm=sorted(dRm,key=lambda x:x['dR'])
 
     	for i in  dRm :
-            if abs(i['PtRatio']) < 0.5:
+            if abs(i['PtRatio']) < 0.2:
 		    ph = [j for j in GenPhotons if j['index'] == i['index']][0]		
                     matched_photons.append(ph)
                     break
