@@ -24,7 +24,9 @@ args = parser.parse_args()
 file_name = args.file
 job_name  = args.name if args.name else args.file
 #log_dir   = args.log_dir
-log_dir   = f'{args.log_dir}/{job_name}/'
+log_dir   = f'{args.log_dir}/log/{job_name}/'
+err_dir   = f'{args.log_dir}/err/{job_name}/'
+out_dir   = f'{args.log_dir}/out/{job_name}/'
 qtime = args.qtime
 
 lines = []
@@ -32,8 +34,12 @@ lines = []
 if not os.path.isdir(log_dir):
     print('log directory does not exist...I will make them')
     os.makedirs(log_dir)
-
-
+if not os.path.isdir(err_dir):
+    print('err directory does not exist...I will make them')
+    os.makedirs(err_dir)
+if not os.path.isdir(out_dir):
+    print('out directory does not exist...I will make them')
+    os.makedirs(out_dir)
 with open(file_name) as f:
     for line in f.read().split("\n"):
         if not line:
@@ -64,15 +70,12 @@ template_condor = '''
 Executable   = {executable}
 Args         = $(ITEM)
 
-When_to_transfer_output = ON_EXIT
-
-#Log    = {log_dir}/{job_name}_$(Cluster).$(Process).log
-#Output = {log_dir}/{job_name}_$(Cluster).$(Process).out
-#Error  = {log_dir}/{job_name}_$(Cluster).$(Process).err
 Log    = {log_dir}/$(Cluster).$(Process).log
-Output = {log_dir}/$(Cluster).$(Process).out
-Error  = {log_dir}/$(Cluster).$(Process).err
-RequestCpus = 4
+Output = {out_dir}/$(Cluster).$(Process).out
+Error  = {err_dir}/$(Cluster).$(Process).err
+request_cpus = 2
+request_memory = 300MB
+request_disk = 300MB
 +JobFlavour = {qtime}
 
 
@@ -114,13 +117,13 @@ with open(fname_jobrunner, 'w') as f:
 
 #fname_condor = os.path.join( tempdir, "condor_%s.submit"%job_temp_name )
 fname_condor = os.path.join( tempdir, "condor_script.submit" )
-condor_script = template_condor.format( log_dir=log_dir, qtime=qtime,file_name=file_name, job_name=job_name, executable=fname_jobrunner)
+condor_script = template_condor.format( log_dir=log_dir, out_dir=out_dir,err_dir=err_dir,qtime=qtime,file_name=file_name, job_name=job_name, executable=fname_jobrunner)
 with open(fname_condor, 'w') as f:
     print(condor_script, file=f)
 
 submit_command = "condor_submit %s %s"%(fname_condor, ' '.join(condor_args) )
 os.system(submit_command)
-time.sleep(0.05)
+time.sleep(0.1)
 
 #if not args.keep_junk:
 #    shutil.rmtree(tempdir)
