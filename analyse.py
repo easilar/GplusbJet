@@ -146,10 +146,12 @@ goodGenPhoton_pt = array( 'd', [ 0. ] )
 goodGenPhoton_eta = array( 'd', [ 0. ] )
 goodGenPhoton_phi = array( 'd', [ 0. ] )
 goodGenPhoton_GenPartIndex = array( 'd', [ 0. ] )
+goodGenPhoton_dr = array( 'd', [ 0. ] )
 tree.Branch("ngoodGenPhoton",ngoodGenPhoton,"ngoodGenPhoton/I")
 tree.Branch("goodGenPhoton_pt", goodGenPhoton_pt, "goodGenPhoton_pt/D")
 tree.Branch("goodGenPhoton_eta", goodGenPhoton_eta, "goodGenPhoton_eta/D")
 tree.Branch("goodGenPhoton_phi", goodGenPhoton_phi, "goodGenPhoton_phi/D")
+tree.Branch("goodGenPhoton_dr", goodGenPhoton_dr, "goodGenPhoton_dr/D")
 print(number_events)
 for jentry in range(ini_event,fin_event):
    ch.GetEntry(jentry)
@@ -251,6 +253,7 @@ for jentry in range(ini_event,fin_event):
 	goodGenPhoton_eta[0] =  -999
 	goodGenPhoton_phi[0] = -999
 	goodGenPhoton_GenPartIndex[0] = -999
+	goodGenPhoton_dr[0] = -999
 	if len(GenPhotons) > 0 :
 		dRm = sorted(GenPhotons, key=lambda x: x['dR'])
 		matched_genPhoton = dRm[0]
@@ -259,6 +262,7 @@ for jentry in range(ini_event,fin_event):
 		goodGenPhoton_eta[0] =  matched_genPhoton["eta"]
 		goodGenPhoton_phi[0] = matched_genPhoton["phi"]
 		goodGenPhoton_GenPartIndex[0] = matched_genPhoton["orig_index"]
+		goodGenPhoton_dr[0] = matched_genPhoton["dR"]
    PhotonSF_ = 1.0 
    if not options.stype == "data":
    	PhotonSF_ = SF_MC.GetBinContent(SF_MC.FindBin(sel_photons[0]["eta"],sel_photons[0]["pt"]))

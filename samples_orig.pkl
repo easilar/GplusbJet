@@ -480,7 +480,7 @@ p115
 sg14
 F8.335
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT/QCD_HT1500to2000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT1500to2000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/'
 p116
 ssS'QCD_HT_200To300'
 p117
@@ -499,7 +499,7 @@ p119
 sg14
 F0.0005846
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT/QCD_HT200to300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT200to300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/'
 p120
 ssS'QCD_HT_2000ToInf'
 p121
@@ -518,7 +518,7 @@ p123
 sg14
 F39.6
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT/QCD_HT2000toInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT2000toInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/'
 p124
 ssS'QCD_HT_700To1000'
 p125
@@ -537,7 +537,7 @@ p127
 sg14
 F0.1464
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT/QCD_HT700to1000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT700to1000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/'
 p128
 ssS'QCD_HT_100To200'
 p129
@@ -556,7 +556,7 @@ p131
 sg14
 F3.564e-05
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT/QCD_HT100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/'
 p132
 ssS'QCD_HT_300To500'
 p133
@@ -575,7 +575,7 @@ p135
 sg14
 F0.002878
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT/QCD_HT300to500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT300to500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/'
 p136
 ssS'QCD_HT_50To100'
 p137
@@ -594,7 +594,7 @@ p139
 sg14
 F4.061e-06
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT/QCD_HT50to100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT50to100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/'
 p140
 ssS'QCD_HT_500To700'
 p141
@@ -613,7 +613,7 @@ p143
 sg14
 F0.03119
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT/QCD_HT500to700_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT500to700_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/'
 p144
 ssS'QCD_HT_1000To1500'
 p145
@@ -632,7 +632,7 @@ p147
 sg14
 F0.8285
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT/QCD_HT1000to1500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/QCD_HT1000to1500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/'
 p148
 sssS'TTJets'
 p149
