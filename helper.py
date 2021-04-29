@@ -280,3 +280,46 @@ def matching_particles(RecoPhotons=None, GenPhotons=None, pt_ratio=0.0, dr_cone=
     	#matched_list = list(matched_list[photon_biggest_pt[0]])
 
 	return selected_list, matched_list,dRm[0]['dR']
+
+
+
+
+
+def matching(RecoPhoton=None, GenPhoton=None, pt_ratio=0.0, dr_cone=0.0):
+        """
+	
+        :param RecoPhoton: dict
+        :param GenPhoton: dict
+        :param pt_ratio: float
+        :param dr_cone: float
+        :return: bool and 1 dict if True
+
+        selected => {1: {1st recoPhotn}, 2: { 2nd recoPhot}} selected[1]
+        matched => {1: {match 1st recoPhot}, 2: {match 2nd reco} }
+        selected , matched = matching_particles()
+
+        """
+
+
+	Match = False 
+
+        
+        matched = {}
+		
+
+        dR_Pho_Match = deltaR(RecoPhoton["phi"], GenPhoton["phi"], RecoPhoton["eta"], GenPhoton["eta"])
+        PtRatio = (GenPhoton["pt"]-RecoPhoton["pt"]) / (GenPhoton["pt"])
+       	#dRm.append({'index': j, 'dR': dR_Pho_Match, 'PtRatio': PtRatio})
+	GenPhoton['dR'] = dR_Pho_Match
+	GenPhoton['PtRatio']=  PtRatio
+
+
+       	matched_photon = None
+       	if abs(GenPhoton['PtRatio']) < pt_ratio and GenPhoton['dR'] <= dr_cone:
+                                matched_photon = GenPhoton
+				Match = True
+
+     	if Match == True:
+                        matched = matched_photon
+
+        return (matched , Match) 

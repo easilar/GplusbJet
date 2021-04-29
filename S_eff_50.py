@@ -141,10 +141,13 @@ for jentry in range(number_events):
 
 	
 #---------- second loop : nVariables inside Particles-------------------
+	temp_index = 0
 
 	for ID in range(int(nGenPart)): # Gen Photons   #List of Dict
+		
 		if ch.GetLeaf('GenPart_pdgId').GetValue(ID)==22:
-			GenPhotons.append({'index':ID,'pt':ch.GetLeaf('GenPart_pt').GetValue(ID),'eta':ch.GetLeaf('GenPart_eta').GetValue(ID),'phi':ch.GetLeaf('GenPart_phi').GetValue(ID)})
+			GenPhotons.append({'index':temp_index,'orig_index':ID,'pt':ch.GetLeaf('GenPart_pt').GetValue(ID),'eta':ch.GetLeaf('GenPart_eta').GetValue(ID),'phi':ch.GetLeaf('GenPart_phi').GetValue(ID)})
+			temp_index += 1
 
 	if b==0  :	
 		for I in range(int(nPhoton)): # Reco PHOTONS
@@ -162,10 +165,11 @@ for jentry in range(number_events):
 
 	for ID in range(int(nGenJet)): # Gen Jets   #List of Dictionary
 		GenJets.append({'index':ID,'pt':ch.GetLeaf('GenJet_pt').GetValue(ID),'eta':ch.GetLeaf('GenJet_eta').GetValue(ID),'phi':ch.GetLeaf('GenJet_phi').GetValue(ID)})
-
+	temp_index = 0
         for ID in range(int(nGenJet)): # Gen Jets   #List of Dictionary
 		if abs(ch.GetLeaf('GenJet_partonFlavour').GetValue(ID))==5:
-                	GenbJets.append({'index':ID,'pt':ch.GetLeaf('GenJet_pt').GetValue(ID),'eta':ch.GetLeaf('GenJet_eta').GetValue(ID),'phi':ch.GetLeaf('GenJet_phi').GetValue(ID)})
+                	GenbJets.append({'index':temp_index,'orig_index':ID,'pt':ch.GetLeaf('GenJet_pt').GetValue(ID),'eta':ch.GetLeaf('GenJet_eta').GetValue(ID),'phi':ch.GetLeaf('GenJet_phi').GetValue(ID)})
+			temp_index += 1
 
 	for j in range(int(nJet)): # Reco JETS
         	Jets.append({'index':j,'pt':ch.GetLeaf('goodJet_pt').GetValue(j),'phi':ch.GetLeaf('goodJet_phi').GetValue(j),'eta':ch.GetLeaf('goodJet_eta').GetValue(j)})
@@ -216,8 +220,8 @@ for jentry in range(number_events):
 
     	for i in  dRm :
             if abs(i['PtRatio']) < 0.2:
-		    ph = [j for j in GenPhotons if j['index'] == i['index']][0]		
-                    matched_photons.append(ph)
+		    matched_GenPhoton=[x for x in GenPhotons if x['index']==i['index']][0]	
+                    matched_photons.append(matched_GenPhoton)
                     break
             else :
                     continue
@@ -283,16 +287,15 @@ for jentry in range(number_events):
 	elif nbJet > 1  and (b>1 or b==0):
 		
 		bJets=sorted(bJets,key=lambda x:x['pt'],reverse=True)
-		lead_bjets=[]
-		sublead_bjets=[]
-		lead_bjets.append(bJets[0])
-        	sublead_bjets.append(bJets[1])
+		#lead_bjet=[]
+		#sublead_bjet=[]
+		lead_bjet=(bJets[0])
+        	sublead_bjet=(bJets[1])
 		
         	dRmJ_lb=[]
-        	for i,jet in enumerate(lead_bjets):
-            		for j,GenJet in enumerate(GenbJets):
-                                dR_Jet_Match_lb = deltaR(jet["phi"],GenJet["phi"],jet["eta"],GenJet["eta"])
-                                PtRatioJ_lb=(GenJet["pt"]-jet["pt"])/(GenJet["pt"])
+            	for j,GenJet in enumerate(GenbJets):
+                                dR_Jet_Match_lb = deltaR(lead_bjet["phi"],GenJet["phi"],lead_bjet["eta"],GenJet["eta"])
+                                PtRatioJ_lb=(GenJet["pt"]-lead_bjet["pt"])/(GenJet["pt"])
                                	print('drJ_lb',dR_Jet_Match_lb)
                                 print('PtRJ_lb',abs(PtRatioJ_lb))
 				dRmJ_lb.append({'index':GenJet['index'],'dR':dR_Jet_Match_lb,'PtRatioJ_lb':PtRatioJ_lb})
@@ -305,26 +308,26 @@ for jentry in range(number_events):
 
             	for i in  dRmJ_lb :
                 	if abs(i['PtRatioJ_lb']) < 0.5:
-				jet = [j for j in GenbJets if j['index'] == i['index']][0]
-                        	matched_jets_lb.append(jet)
+				matched_GenbJet=[x for x in GenbJets if x['index']==i['index']][0]
+                        	matched_jets_lb.append(matched_GenbJet)
                         	break
                 	else :
                         	continue
         	if  len(matched_jets_lb) and matched_jets_lb[0]['dR'] <= 0.5:
-                        lead_b=lead_bjets
+                        lead_b.append(lead_bjet)
 		if len(GenbJets) != 0:
 			Glead_b=matched_jets_lb
-
+			res = list(filter(lambda i: i['index'] != Glead_b[0]['index'], GenbJets))
 		print('matched_jet_lb :',matched_jets_lb)
 		print('sel_jet_lb:',sel_jets_lb)
-
-
+		
+		GenbJets = res
+		if len(GenbJets) == 0 : continue 
 
             	dRmJ_slb=[]
-            	for z,jt in enumerate(sublead_bjets):
-                    for GenJt in GenbJets:
-                                dR_Jet_Match_slb = deltaR(jt["phi"],GenJt["phi"],jt["eta"],GenJet["eta"])
-                                PtRatioJ_slb=(GenJt["pt"]-jt["pt"])/(GenJt["pt"])
+                for GenJt in GenbJets:
+                                dR_Jet_Match_slb = deltaR(sublead_bjet["phi"],GenJt["phi"],sublead_bjet["eta"],GenJet["eta"])
+                                PtRatioJ_slb=(GenJt["pt"]-sublead_bjet["pt"])/(GenJt["pt"])
                                 print('drJ_slb',dR_Jet_Match_slb)
                                 print('PtRJ_slb',abs(PtRatioJ_slb))
 				dRmJ_slb.append({'index':GenJt['index'],'dR':dR_Jet_Match_slb,'PtRatioJ_slb':PtRatioJ_slb})
@@ -337,24 +340,25 @@ for jentry in range(number_events):
 
             	for i in  dRmJ_slb :
 			#print('ABS PT_SLB',abs(d['PtRatioJ_slb']))
+			print('i index',i['index'],'Gleadb index',Glead_b[0]['index'],'len gbjets',len(GenbJets))
+			if  i['index'] == Glead_b[0]['index']: continue
                     	if abs(i['PtRatioJ_slb']) < 0.2:
-				jtt = [j for j in GenbJets if j['index'] == i['index']][0]
-                                matched_jets_slb.append(jtt)
+				matched_GenbJet=[x for x in GenbJets if x['index']==i['index']][0]
+                                matched_jets_slb.append(matched_GenbJet)
                                 break
                         else :
                                 continue
 
             	if len(matched_jets_slb) and  matched_jets_slb[0]['dR'] <= 0.5:
-                        sublead_b=sublead_bjets
-		if len(GenbJets) > 1:
+                        sublead_b.append(sublead_bjet)
 			subGlead_b=matched_jets_lb
 			
 		print('matched_jet_slb :',matched_jets_slb)
 		print('sel_jet_slb:',sel_jets_slb)
 		if len( matched_jets_lb) or len(matched_jets_slb):
+				good_event_b=True
+		if len( matched_jets_lb) and len(matched_jets_slb):
 				good_event_2b=True
-		#print('lead_b',lead_b)
-      		if  len(matched_jets_lb) or len(matched_jets_slb) :
    				good_event_b=True
 	else: # BKG
 		pass
