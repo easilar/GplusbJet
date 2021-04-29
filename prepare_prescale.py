@@ -37,7 +37,7 @@ elif year == 2018:
 
 sdict = sample_dic[year][stype][sname]
 targetdir_suffix = "Low_PT"
-ndiv=20
+ndiv=10
 for target_filename in  target_filename_dict.keys():
 	writing_file = open(target_filename, "a")
 	for trigger in target_filename_dict[target_filename]:
