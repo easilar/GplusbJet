@@ -20,6 +20,11 @@ path_data_SM_UL17_prescaled_NoPtCut_merged = "/eos/user/e/ecasilar/SMPVJ_Gamma_B
 path_data_SM_UL18 = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2018/SingleMuon_UL/"
 path_data_SM_UL18_prescaled_NoPtCut = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2018/SingleMuon_UL_Trigger_Scaled_NoPtCut/"
 path_data_SM_UL18_prescaled_NoPtCut_merged = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2018/SingleMuon_UL_Trigger_Scaled_NoPtCut/"
+G1Jet_Pt_50To100_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-50To100_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
+G1Jet_Pt_100To250_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-100To250_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
+G1Jet_Pt_250To400_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-250To400_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
+G1Jet_Pt_400To650_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-400To650_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
+G1Jet_Pt_650ToInf_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
 if save_orig:
   path_MC = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/"
   #path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/"
@@ -31,6 +36,11 @@ if save_orig:
   path_data_SM_18 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/SingleMuon/" 
   path_data_SM_UL17 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2017/data/SingleMuon_UL/"
   path_data_SM_UL18 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/SingleMuon_UL/"
+  G1Jet_Pt_50To100_2016_NOExt  = path_MC+"G1Jet_Pt-50To100_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
+  G1Jet_Pt_100To250_2016_NOExt = path_MC+"G1Jet_Pt-100To250_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
+  G1Jet_Pt_250To400_2016_NOExt = path_MC+"G1Jet_Pt-250To400_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
+  G1Jet_Pt_400To650_2016_NOExt = path_MC+"G1Jet_Pt-400To650_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
+  G1Jet_Pt_650ToInf_2016_NOExt = path_MC+"G1Jet_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
 GJets_2016 = path_MC+"GJet_Pt-15To6000_TuneCUETP8M1-Flat_13TeV_pythia8_20M/"
 GJets_Pt_20To100_2016 = path_MC+"GJets_Pt-20To100_13TeV-sherpa/"
 GJets_Pt_100To200_2016 = path_MC+"GJets_Pt-100To200_13TeV-sherpa/"
@@ -39,15 +49,10 @@ GJets_Pt_500To1000_2016 = path_MC+"GJets_Pt-500To1000_13TeV-sherpa/"
 GJets_Pt_1000To2000_2016 = path_MC+"GJets_Pt-1000To2000_13TeV-sherpa/"
 GJets_Pt_2000To5000_2016 = path_MC+"GJets_Pt-2000To5000_13TeV-sherpa/"
 G1Jet_Pt_50To100_2016 = path_MC+"G1Jet_Pt-50To100_TuneCUETP8M1_13TeV-amcatnlo-pythia8/"
-G1Jet_Pt_50To100_2016_NOExt = path_MC+"G1Jet_Pt/G1Jet_Pt-50To100_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
 G1Jet_Pt_100To250_2016 = path_MC+"G1Jet_Pt-100To250_TuneCUETP8M1_13TeV-amcatnlo-pythia8/"
-G1Jet_Pt_100To250_2016_NOExt = path_MC+"G1Jet_Pt/G1Jet_Pt-100To250_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
 G1Jet_Pt_250To400_2016 = path_MC+"G1Jet_Pt-250To400_TuneCUETP8M1_13TeV-amcatnlo-pythia8/"
-G1Jet_Pt_250To400_2016_NOExt = path_MC+"G1Jet_Pt/G1Jet_Pt-250To400_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
 G1Jet_Pt_400To650_2016 = path_MC+"G1Jet_Pt-400To650_TuneCUETP8M1_13TeV-amcatnlo-pythia8/"
-G1Jet_Pt_400To650_2016_NOExt = path_MC+"G1Jet_Pt/G1Jet_Pt-400To650_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
 G1Jet_Pt_650ToInf_2016 = path_MC+"G1Jet_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnlo-pythia8/"
-G1Jet_Pt_650ToInf_2016_NOExt = path_MC+"G1Jet_Pt/G1Jet_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
 GJets_HT_40To100_2016 = path_MC+"GJets_HT-40To100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
 GJets_HT_100To200_2016 = path_MC+"GJets_HT-100To200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
 GJets_HT_200To400_2016 = path_MC+"GJets_HT-200To400_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/"
@@ -141,13 +146,13 @@ Samples = {2016: \
   # closes bkg
   "data":{\
     "SinglePhoton":{\
-      "B":{"dir":path_data+"Run2016B_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016B-02Apr2020_ver2-v1/NANOAOD"},\
-      "C":{"dir":path_data+"Run2016C_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016C-02Apr2020-v1/NANOAOD"},\
-      "D":{"dir":path_data+"Run2016D_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016D-02Apr2020-v1/NANOAOD"},\
-      "E":{"dir":path_data+"Run2016E_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016E-02Apr2020-v1/NANOAOD"},\
-      "F":{"dir":path_data+"Run2016F_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016F-02Apr2020-v1/NANOAOD"},\
-      "G":{"dir":path_data+"Run2016G_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016G-02Apr2020-v1/NANOAOD"},\
-      "H":{"dir":path_data+"Run2016H_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016H-02Apr2020-v1/NANOAOD"},\
+      "B":{"dir":path_data+"Run2016B_02Apr2020-v1/merged/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016B-02Apr2020_ver2-v1/NANOAOD"},\
+      "C":{"dir":path_data+"Run2016C_02Apr2020-v1/merged/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016C-02Apr2020-v1/NANOAOD"},\
+      "D":{"dir":path_data+"Run2016D_02Apr2020-v1/merged/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016D-02Apr2020-v1/NANOAOD"},\
+      "E":{"dir":path_data+"Run2016E_02Apr2020-v1/merged/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016E-02Apr2020-v1/NANOAOD"},\
+      "F":{"dir":path_data+"Run2016F_02Apr2020-v1/merged/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016F-02Apr2020-v1/NANOAOD"},\
+      "G":{"dir":path_data+"Run2016G_02Apr2020-v1/merged/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016G-02Apr2020-v1/NANOAOD"},\
+      "H":{"dir":path_data+"Run2016H_02Apr2020-v1/merged/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016H-02Apr2020-v1/NANOAOD"},\
       }, #single photon
     "SinglePhoton_prescaled_NoPtCut_merged":{\
                         "B":{"dir":path_data_prescaled_NoPtCut+"Run2016B_02Apr2020-v1/merged", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016B-02Apr2020_ver2-v1/NANOAOD"},\
