@@ -6,12 +6,14 @@ target_lumi = 35.9  #fb^{-1}
 #target_lumi = 41.53  #fb^{-1}
 #gamma Pt bins
 gLowPtBins  = array('d', [float(x) for x in \
-				range(40,60,20)\
+				range(0,40,20)\
+				+range(40,60,20)\
 				+range(60,90,30)\
 				+range(90,100,10)\
                                 +range(100,145,45)\
-                                +range(145,225,80)\
+                                +range(145,180,80)\
                                 +range(180,225,45)\
+                                +range(225,300,25)\
                                         ])
 
 gHighPtBins = array('d', [float(x) for x in \
@@ -42,7 +44,7 @@ gPtBins  = array('d', [float(x) for x in \
                                 +range(1000,2000,1000)\
                                 +range(2000,3000,1000)\
                                         ])
-                                       
+gPtBins = gLowPtBins                                       
 trigger_pt_cut ="((goodPhoton_pt>225)*HLT_Photon175||(goodPhoton_pt<=225&&goodPhoton_pt>180)*HLT_Photon165_R9Id90_HE10_IsoM||(goodPhoton_pt<=180&&goodPhoton_pt>145)*HLT_Photon120_R9Id90_HE10_IsoM||(goodPhoton_pt<=145&&goodPhoton_pt>100)*HLT_Photon90_R9Id90_HE10_IsoM||(goodPhoton_pt<=100&&goodPhoton_pt>90)*HLT_Photon75_R9Id90_HE10_IsoM||(goodPhoton_pt<=90&&goodPhoton_pt>60)*HLT_Photon50_R9Id90_HE10_IsoM||(goodPhoton_pt<=60&&goodPhoton_pt>40)*HLT_Photon36_R9Id90_HE10_IsoM)"
 ngood_vtx_cut = "(PV_npvsGood>=1)"
 met_filters= "(Flag_goodVertices)&&(Flag_globalSuperTightHalo2016Filter)&&(Flag_HBHENoiseFilter)&&(Flag_HBHENoiseIsoFilter)&&(Flag_EcalDeadCellTriggerPrimitiveFilter)&&(Flag_BadPFMuonFilter)"
