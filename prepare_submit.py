@@ -32,5 +32,5 @@ for ci,bin_name in enumerate(sdict.keys()):
 			os.makedirs(os.environ["cern_box"]+"/MC/"+sname+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
 
 	for f in flist:
-		for indiv in range(ndiv):
-			print("python "+os.environ["afs_dir"]+"analyse.py --year="+str(year)+" --sname="+sname+" --stype="+stype+" --letter="+bin_name+" --ndiv="+str(ndiv)+" --divIndex="+str(indiv)+" --filename="+f)
+		#for indiv in range(ndiv):
+		print("python "+os.environ["afs_dir"]+"analyse.py --year="+str(year)+" --sname="+sname+" --stype="+stype+" --letter="+bin_name+" --ndiv="+str(ndiv)+" --divIndex="+str(ndiv)+" --filename="+f)

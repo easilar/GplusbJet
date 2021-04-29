@@ -60,8 +60,28 @@ signal_dict["weight"] = "(weight*puweight)"
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
 #data dict al
-data_dict = {"sample":"SinglePhoton", "weight":"(weight_trig)", "chain":getChain(stype="data",sname="SinglePhoton_prescaled_NoPtCut_merged",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
-
+data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="SinglePhoton",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
+print("start taking chain.")
+chain_165 = ROOT.TChain("Events")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016B_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016C_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016D_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016E_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016F_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016G_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016H_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+data_dict_165 = {"sample":"SinglePhoton", "weight":"(weight_trig_HLT_Photon165)", "chain":chain_165, "tex":"SinglePhoton", "color":ROOT.kBlack}
+print("chain 165 is sobtained")
+chain_120 = ROOT.TChain("Events")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016B_02Apr2020-v1/HLT_Photon120_R9Id90_*.root")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016C_02Apr2020-v1/HLT_Photon120_R9Id90_*.root")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016D_02Apr2020-v1/HLT_Photon120_R9Id90_*.root")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016E_02Apr2020-v1/HLT_Photon120_R9Id90_*.root")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016F_02Apr2020-v1/HLT_Photon120_R9Id90_*.root")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016G_02Apr2020-v1/HLT_Photon120_R9Id90_*.root")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016H_02Apr2020-v1/HLT_Photon120_R9Id90_*.root")
+data_dict_120 = {"sample":"SinglePhoton", "weight":"(weight_trig_HLT_Photon120*(weight_trig_HLT_Photon120>0.0))", "chain":chain_120, "tex":"SinglePhoton", "color":ROOT.kBlack}
+print("chain 120 is obtained")
 #define photon cuts
 selections={
 "jetphoton": jet_photon_cut,\
@@ -84,7 +104,7 @@ for bkg in bkg_list:
     bkg["chain"] = bkg["chain_all"][0]
     #bkg["weight"] = "(weight*puweight*PhotonSF)"
     bkg["weight"] = "(weight*puweight)"
-    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = "&&".join([plot_cut,trigger_pt_cut]), weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut, weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
     bkg["histo"] = h
     bkg_Int+=bkg["histo"].Integral()
     del h
@@ -94,11 +114,17 @@ signal_dict["chain"] = signal_dict["chain_all"][0]
 print(signal_dict["chain"].GetEntries())
 data_dict["chain"] = data_dict["chain"]
 if plot_sig_stack : bkg_list.append(signal_dict)
-data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join([plot_cut,trigger_pt_cut,"(weight_trig>=0)"]), weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
-
-
 print('Ploting starts......')
-signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join([plot_cut,trigger_pt_cut]), weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut+"&&(goodPhoton_pt>=225)", weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+print("175 is taken")
+
+data_dict_165["histo"] = getPlotFromChain(data_dict_165["chain"], plot['var'], plot['bin'], cutString = plot_cut+"&&(goodPhoton_pt>=180&&goodPhoton_pt<225)", weight = data_dict_165["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+print("165 is taken")
+data_dict_120["histo"] = getPlotFromChain(data_dict_120["chain"], plot['var'], plot['bin'], cutString = plot_cut+"&&(goodPhoton_pt>=145&&goodPhoton_pt<180)", weight = data_dict_120["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+print("120 is taken")
+
+
+signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut, weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 signalPlusbkg = bkg_Int+signal_dict["histo"].Integral()
 SF = data_dict["histo"].Integral()/signalPlusbkg
 print("MC Scale Factor: ", SF)
@@ -158,12 +184,8 @@ print('BKG loop starting........')
 for bkg in bkg_list:
 	print(bkg['tex'])
 	color = bkg['color']
-	#htmp = "h_tmp"
-	#h = ROOT.TH1D(htmp, htmp, *plot['binning'])
-	#bkg["chain"][0].Draw(plot['var']+">>%s"%htmp, bkg['weight']+"*("+plot_cut+")", 'goff')    
-	#h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut, weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 	h = bkg["histo"]
-	h.Scale(SF)
+	#h.Scale(SF)
 	h.SetFillColor(color)
 	h.SetLineColor(ROOT.kBlack)
 	h.SetLineWidth(1)
@@ -187,6 +209,8 @@ h_Stack.SetTitle("")
 #start data
 color = ROOT.kBlack
 h_data = data_dict["histo"]
+h_data.Add(data_dict_165["histo"])
+h_data.Add(data_dict_120["histo"])
 h_data.SetMarkerStyle(20)
 h_data.SetMarkerSize(1.1)
 h_data.SetLineColor(color)
@@ -270,8 +294,8 @@ Func.Draw("same")
 h_ratio.Draw("E1 Same")
 cb.cd()
 cb.Draw()
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'WeightTrigPlusCut_alsoToMC_hightPT.png')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'WeightTrigPlusCut_alsoToMC_hightPT.pdf')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'WeightTrigPlusCut_alsoToMC_hightPT.root')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'_PtByPt.png')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'_PtByPt.pdf')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'_PtByPt.root')
 cb.Clear()
 del h_Stack
