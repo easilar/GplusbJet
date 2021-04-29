@@ -11,7 +11,7 @@ from optparse import OptionParser
 parser = OptionParser()
 parser.add_option("--test", dest="test", default=False, action="store", help="can be true or false")
 parser.add_option("--plot", dest="plot", default="Photon_pt", action="store", help="can be Photon_eta , LPhoton_pt ... ")
-parser.add_option("--region", dest="region", default="presel", action="store", help="can be 0b, 1b, 2b, presel ")
+parser.add_option("--region", dest="region", default="single_photon", action="store", help="can be 0b, 1b, 2b, presel ")
 (options, args) = parser.parse_args()
 
 plot_index = options.plot
@@ -60,7 +60,7 @@ signal_dict["weight"] = "(weight*puweight)"
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
 #data dict al
-data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="SinglePhoton",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
+data_dict = {"sample":"SinglePhoton", "weight":"(weight_trig)", "chain":getChain(stype="data",sname="SinglePhoton_prescaled_NoPtCut_merged",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
 
 #define photon cuts
 selections={
@@ -69,7 +69,7 @@ selections={
 "no_cut":"(1)",\
 "vtx_cut":ngood_vtx_cut,\
 "met_filters": "&&".join([ngood_vtx_cut,met_filters]),\
-"single_photon":"ngoodPhoton==1&&(abs(goodPhoton_eta)<=1.4)",\
+"single_photon":"ngoodPhoton==1",\
 "presel":"&&".join([ngood_vtx_cut,met_filters,single_photon_tight_cut,muon_veto,electron_veto]),\
 "1b":sel_1b,\
 "2b":sel_2b,\
@@ -84,7 +84,7 @@ for bkg in bkg_list:
     bkg["chain"] = bkg["chain_all"][0]
     #bkg["weight"] = "(weight*puweight*PhotonSF)"
     bkg["weight"] = "(weight*puweight)"
-    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut, weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = "&&".join([plot_cut,trigger_pt_cut]), weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
     bkg["histo"] = h
     bkg_Int+=bkg["histo"].Integral()
     del h
@@ -94,11 +94,11 @@ signal_dict["chain"] = signal_dict["chain_all"][0]
 print(signal_dict["chain"].GetEntries())
 data_dict["chain"] = data_dict["chain"]
 if plot_sig_stack : bkg_list.append(signal_dict)
-data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut, weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join([plot_cut,trigger_pt_cut,"(weight_trig>=0)"]), weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 
 
 print('Ploting starts......')
-signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut, weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join([plot_cut,trigger_pt_cut]), weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 signalPlusbkg = bkg_Int+signal_dict["histo"].Integral()
 SF = data_dict["histo"].Integral()/signalPlusbkg
 print("MC Scale Factor: ", SF)
@@ -186,7 +186,7 @@ h_Stack.SetMinimum(0.00001)
 h_Stack.SetTitle("")
 #start data
 color = ROOT.kBlack
-h_data = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut, weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"]) 
+h_data = data_dict["histo"]
 h_data.SetMarkerStyle(20)
 h_data.SetMarkerSize(1.1)
 h_data.SetLineColor(color)
@@ -270,8 +270,8 @@ Func.Draw("same")
 h_ratio.Draw("E1 Same")
 cb.cd()
 cb.Draw()
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'NoPhoSF.png')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'NoPhoSF.pdf')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'NoPhoSF.root')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'WeightTrigPlusCut_alsoToMC_hightPT.png')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'WeightTrigPlusCut_alsoToMC_hightPT.pdf')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'WeightTrigPlusCut_alsoToMC_hightPT.root')
 cb.Clear()
 del h_Stack

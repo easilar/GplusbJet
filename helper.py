@@ -228,3 +228,98 @@ def deltaPhi(phi1, phi2):
 def deltaR(phi1,phi2,eta1,eta2):
   return sqrt(deltaPhi(phi1, phi2)**2 + (eta1 - eta2)**2)
 
+
+def matching_particles(RecoPhotons=None, GenPhotons=None, pt_ratio=0.0, dr_cone=0.0):
+	"""
+
+	:param RecoPhotons: List
+	:param GenPhotons: List
+	:param pt_ratio: float
+	:param dr_cone: float
+	:return: tuple of two dictionaries
+
+	selected => {1: {1st recoPhotn}, 2: { 2nd recoPhot}} selected[1]
+	matched => {1: {match 1st recoPhot}, 2: {match 2nd reco} }
+	selected , matched = matching_particles()
+
+	"""
+	
+	if not RecoPhotons or not GenPhotons:
+		return []
+
+	selected_list = {}
+	matched_list = {}
+
+	for i, photon in enumerate(RecoPhotons):  # Matching GenPhoton-RecoPhoton in cone dR
+		dR = []
+		dRm = []
+		for j, GenPhoton in enumerate(GenPhotons):
+			dR_Pho_Match = deltaR(photon["phi"], GenPhoton["phi"], photon["eta"], GenPhoton["eta"])
+			PtRatio = (GenPhoton["pt"]-photon["pt"]) / (GenPhoton["pt"])
+			dR.append({'index': j, 'dR': dR_Pho_Match, 'PtRatio': PtRatio})
+
+		dRm = sorted(dR, key=lambda x: x['dR'])
+
+		matched_photons = None
+		for k in dRm:
+			# print abs((i['PtRatio']))
+			if abs(k['PtRatio']) < pt_ratio:
+				matched_photons = GenPhotons[dRm[0]['index']]
+				break
+			else:
+				continue
+
+		if dRm[0]['dR'] <= dr_cone:
+			selected_list[i] = photon
+			matched_list[i] = matched_photons
+	    # sel = {1: photon, 2: photon} mat = {1: [], 2: []}
+
+    # select the biggest pt from the photons
+    	#photon_biggest_pt = max([(key, val['pt']) for key, val in selected_list.items()], key=lambda x: x[1])
+    	#selected_list = list(selected_list[photon_biggest_pt[0]])
+    	#matched_list = list(matched_list[photon_biggest_pt[0]])
+
+	return selected_list, matched_list,dRm[0]['dR']
+
+
+
+
+
+def matching(RecoPhoton=None, GenPhoton=None, pt_ratio=0.0, dr_cone=0.0):
+        """
+	
+        :param RecoPhoton: dict
+        :param GenPhoton: dict
+        :param pt_ratio: float
+        :param dr_cone: float
+        :return: bool and 1 dict if True
+
+        selected => {1: {1st recoPhotn}, 2: { 2nd recoPhot}} selected[1]
+        matched => {1: {match 1st recoPhot}, 2: {match 2nd reco} }
+        selected , matched = matching_particles()
+
+        """
+
+
+	Match = False 
+
+        
+        matched = {}
+		
+
+        dR_Pho_Match = deltaR(RecoPhoton["phi"], GenPhoton["phi"], RecoPhoton["eta"], GenPhoton["eta"])
+        PtRatio = (GenPhoton["pt"]-RecoPhoton["pt"]) / (GenPhoton["pt"])
+       	#dRm.append({'index': j, 'dR': dR_Pho_Match, 'PtRatio': PtRatio})
+	GenPhoton['dR'] = dR_Pho_Match
+	GenPhoton['PtRatio']=  PtRatio
+
+
+       	matched_photon = None
+       	if abs(GenPhoton['PtRatio']) < pt_ratio and GenPhoton['dR'] <= dr_cone:
+                                matched_photon = GenPhoton
+				Match = True
+
+     	if Match == True:
+                        matched = matched_photon
+
+        return (matched , Match) 
