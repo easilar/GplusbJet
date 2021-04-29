@@ -6,11 +6,17 @@ import os
 import configure
 from configure import *
 
-#pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_orig.pkl"
+
+from optparse import OptionParser
+parser = OptionParser()
+parser.add_option("--ref_trig", dest="ref_trig", default="HLT_Photon165_R9Id90_HE10_IsoM", action="store", help="can be HLT_Photon165_R9Id90_HE10_IsoM")
+parser.add_option("--prob_trig", dest="prob_trig", default="HLT_Photon175", action="store", help="HLT_Photon175")
+parser.add_option("--plot", dest="plot", default="Photon_pt", action="store", help="photon_pt")
+(options, args) = parser.parse_args()
+
 pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
 import pickle
 sample_dic = pickle.load(open(pfile,'rb'))
-#c = getChain(stype="bkg",sname="QCD",pfile=pfile,test=True)
 chain = getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=False)
 c = chain[0]
 
@@ -18,15 +24,20 @@ plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Efficiency_Plots/'
 if not os.path.exists(plots_path):
   os.makedirs(plots_path)
 
-plot = plotlist["Photon_eta"]
+plot = plotlist[options.plot]
 if not plot["bin_set"][0]: plot["bin"] = plot["binning"]
+
+cut = "ngoodPhoton==1"
+ref_trig = options.ref_trig 
+prop_trig = options.prob_trig
 
 #h_den     = ROOT.TH1F('h_den'    , 'h_den'    , len(gPtBins)-1, gPtBins)
 #h_num     = ROOT.TH1F('h_num'    , 'h_num'    , len(gPtBins)-1, gPtBins)
 #c.Draw("Photon_pt[0]>>h_den",jet_cut+"*(weight)","goff")
+#c = getChain(stype="bkg",sname="QCD",pfile=pfile,test=True)
 #c.Draw("Photon_pt[0]>>h_num",jet_cut_trig+"*(weight)","goff")
-h_den = getPlotFromChain(c, plot["var"], plot['bin'], cutString = jet_cut, weight = "weight" ,addOverFlowBin='both',variableBinning=plot["bin_set"])
-h_num = getPlotFromChain(c, plot["var"], plot['bin'], cutString = jet_cut_trig, weight = "weight" ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+h_den = getPlotFromChain(c, plot["var"], plot['bin'], cutString = "&&".join([cut,ref_trig]), weight = "(weight*puweight)" ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+h_num = getPlotFromChain(c, plot["var"], plot['bin'], cutString = "&&".join([cut,ref_trig,prop_trig]), weight = "(weight*puweight)" ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 cb = ROOT.TCanvas("cb","cb",564,232,600,600)
 cb.SetHighLightColor(2)
 cb.Range(0,0,1,1)
@@ -61,9 +72,9 @@ ROOT.gStyle.SetOptStat(0)
 Draw_CMS_header(lumi_label=target_lumi)
 h_ratio.Draw("E1")
 cb.Draw()
-cb.SaveAs(plots_path+'_GJEtsTrigEff_'+plot["var"]+'.png')
-cb.SaveAs(plots_path+'_GJEtsTrigEff_'+plot["var"]+'.pdf')
-cb.SaveAs(plots_path+'_GJEtsTrigEff_'+plot["var"]+'.root')
+cb.SaveAs(plots_path+'_GJEtsTrigEff_'+plot["var"]+prop_trig+ref_trig+'_zoomed.png')
+cb.SaveAs(plots_path+'_GJEtsTrigEff_'+plot["var"]+prop_trig+ref_trig+'_zoomed.pdf')
+cb.SaveAs(plots_path+'_GJEtsTrigEff_'+plot["var"]+prop_trig+ref_trig+'_zoomed.root')
 cb.Clear()
 
 
