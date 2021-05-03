@@ -19,7 +19,7 @@ mychain_dict  =  getChain(year=2016, stype='signal', sname='G1Jet_Pt', pfile='sa
 ch = mychain_dict[0]
 
 number_events=ch.GetEntries()
-#number_events=10000
+number_events=100000
 
 #Number of Particles in n events
 Nph=set()  # N Photons per Event in goodPhotons
@@ -339,7 +339,7 @@ for jentry in range(number_events):
             	print('dRmJ_slb',dRmJ_slb)
 
             	for i in  dRmJ_slb :
-			#print('ABS PT_SLB',abs(d['PtRatioJ_slb']))
+			print('ABS PT_SLB',abs(i['PtRatioJ_slb']))
 			print('i index',i['index'],'Gleadb index',Glead_b[0]['index'],'len gbjets',len(GenbJets))
 			if  i['index'] == Glead_b[0]['index']: continue
                     	if abs(i['PtRatioJ_slb']) < 0.2:
