@@ -31,7 +31,7 @@ p14
 F11.18
 sS'dir'
 p15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/G1Jet_Pt/G1Jet_Pt-250To400_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/G1Jet_Pt/GenMatching/G1Jet_Pt-250To400_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/'
 p16
 ssS'G1Jet_Pt_400To650_NOExt'
 p17
@@ -50,7 +50,7 @@ p19
 sg14
 F91.08
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/G1Jet_Pt/G1Jet_Pt-400To650_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/G1Jet_Pt/GenMatching/G1Jet_Pt-400To650_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/'
 p20
 ssS'G1Jet_Pt_100To250_NOExt'
 p21
@@ -69,7 +69,7 @@ p23
 sg14
 F0.2606
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/G1Jet_Pt/G1Jet_Pt-100To250_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/G1Jet_Pt/GenMatching/G1Jet_Pt-100To250_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/'
 p24
 ssS'G1Jet_Pt_50To100_NOExt'
 p25
@@ -88,7 +88,7 @@ p27
 sg14
 F0.02261
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/G1Jet_Pt/G1Jet_Pt-50To100_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/G1Jet_Pt/GenMatching/G1Jet_Pt-50To100_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/'
 p28
 ssS'G1Jet_Pt_650ToInf_NOExt'
 p29
@@ -107,10 +107,8 @@ p31
 sg14
 F1088.0
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/G1Jet_Pt/G1Jet_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/'
-
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/G1Jet_Pt/GenMatching/G1Jet_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/'
 p32
-
 sssS'GJets'
 p33
 (dp34
@@ -1091,7 +1089,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/Run2016C_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/High_PT/Run2016C_02Apr2020-v1/merged/'
 p243
 sg14
 I1
@@ -1106,7 +1104,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/Run2016B_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/High_PT/Run2016B_02Apr2020-v1/merged/'
 p245
 sg14
 I1
@@ -1121,7 +1119,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/Run2016E_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/High_PT/Run2016E_02Apr2020-v1/merged/'
 p247
 sg14
 I1
@@ -1136,7 +1134,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/Run2016D_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/High_PT/Run2016D_02Apr2020-v1/merged/'
 p249
 sg14
 I1
@@ -1151,7 +1149,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/Run2016G_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/High_PT/Run2016G_02Apr2020-v1/merged/'
 p251
 sg14
 I1
@@ -1166,7 +1164,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/Run2016F_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/High_PT/Run2016F_02Apr2020-v1/merged/'
 p253
 sg14
 I1
@@ -1181,7 +1179,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/Run2016H_02Apr2020-v1'
+S'/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/High_PT/Run2016H_02Apr2020-v1/merged/'
 p255
 sg14
 I1
