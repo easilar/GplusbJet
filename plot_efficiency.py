@@ -20,6 +20,19 @@ sample_dic = pickle.load(open(pfile,'rb'))
 chain = getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=False)
 c = chain[0]
 
+
+#####
+chain_165 = ROOT.TChain("Events")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016B_02Apr2020-v1/merged_HLT_165/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016C_02Apr2020-v1/merged_HLT_165/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016D_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016E_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016F_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016G_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016H_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+data_dict_165 = {"sample":"SinglePhoton", "weight":"(weight_trig_HLT_Photon165)", "chain":chain_165, "tex":"SinglePhoton", "color":ROOT.kBlack}
+#####
+
 plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Efficiency_Plots/'
 if not os.path.exists(plots_path):
   os.makedirs(plots_path)
@@ -36,8 +49,8 @@ prop_trig = options.prob_trig
 #c.Draw("Photon_pt[0]>>h_den",jet_cut+"*(weight)","goff")
 #c = getChain(stype="bkg",sname="QCD",pfile=pfile,test=True)
 #c.Draw("Photon_pt[0]>>h_num",jet_cut_trig+"*(weight)","goff")
-h_den = getPlotFromChain(c, plot["var"], plot['bin'], cutString = "&&".join([cut,ref_trig]), weight = "(weight*puweight)" ,addOverFlowBin='both',variableBinning=plot["bin_set"])
-h_num = getPlotFromChain(c, plot["var"], plot['bin'], cutString = "&&".join([cut,ref_trig,prop_trig]), weight = "(weight*puweight)" ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+h_den = getPlotFromChain(c, plot["var"], plot['bin'], cutString = "&&".join([cut,ref_trig]), weight = "(1)" ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+h_num = getPlotFromChain(c, plot["var"], plot['bin'], cutString = "&&".join([cut,ref_trig,prop_trig]), weight = "(1)" ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 cb = ROOT.TCanvas("cb","cb",564,232,600,600)
 cb.SetHighLightColor(2)
 cb.Range(0,0,1,1)
@@ -72,9 +85,9 @@ ROOT.gStyle.SetOptStat(0)
 Draw_CMS_header(lumi_label=target_lumi)
 h_ratio.Draw("E1")
 cb.Draw()
-cb.SaveAs(plots_path+'_GJEtsTrigEff_'+plot["var"]+prop_trig+ref_trig+'_zoomed.png')
-cb.SaveAs(plots_path+'_GJEtsTrigEff_'+plot["var"]+prop_trig+ref_trig+'_zoomed.pdf')
-cb.SaveAs(plots_path+'_GJEtsTrigEff_'+plot["var"]+prop_trig+ref_trig+'_zoomed.root')
+cb.SaveAs(plots_path+'_GJEtsTrigEff_'+plot["var"]+prop_trig+ref_trig+'_DATA165_zoomed.png')
+cb.SaveAs(plots_path+'_GJEtsTrigEff_'+plot["var"]+prop_trig+ref_trig+'_DATA165_zoomed.pdf')
+cb.SaveAs(plots_path+'_GJEtsTrigEff_'+plot["var"]+prop_trig+ref_trig+'_DATA165_zoomed.root')
 cb.Clear()
 
 

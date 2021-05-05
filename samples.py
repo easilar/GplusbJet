@@ -2,7 +2,7 @@
 
 import pickle
 
-save_orig = True
+save_orig = False
 
 path_MC = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/"
 #path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/"
@@ -20,20 +20,20 @@ path_data_SM_UL17_prescaled_NoPtCut_merged = "/eos/user/e/ecasilar/SMPVJ_Gamma_B
 path_data_SM_UL18 = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2018/SingleMuon_UL/"
 path_data_SM_UL18_prescaled_NoPtCut = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2018/SingleMuon_UL_Trigger_Scaled_NoPtCut/"
 path_data_SM_UL18_prescaled_NoPtCut_merged = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2018/SingleMuon_UL_Trigger_Scaled_NoPtCut/"
-G1Jet_Pt_50To100_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-50To100_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
-G1Jet_Pt_100To250_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-100To250_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
-G1Jet_Pt_250To400_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-250To400_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
-G1Jet_Pt_400To650_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-400To650_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
-G1Jet_Pt_650ToInf_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/"
-QCD_HT_50to100_2016 = path_MC+"QCD_HT/QCD_HT50to100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
-QCD_HT_100to200_2016 = path_MC+"QCD_HT/QCD_HT100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
-QCD_HT_200to300_2016 = path_MC+"QCD_HT/QCD_HT200to300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
-QCD_HT_300to500_2016 = path_MC+"QCD_HT/QCD_HT300to500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
-QCD_HT_500to700_2016 = path_MC+"QCD_HT/QCD_HT500to700_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
-QCD_HT_700to1000_2016 = path_MC+"QCD_HT/QCD_HT700to1000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
-QCD_HT_1000to1500_2016 = path_MC+"QCD_HT/QCD_HT1000to1500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
-QCD_HT_1500to2000_2016 = path_MC+"QCD_HT/QCD_HT1500to2000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
-QCD_HT_2000toInf_2016 = path_MC+"QCD_HT/QCD_HT2000toInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+G1Jet_Pt_50To100_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-50To100_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/merged/"
+G1Jet_Pt_100To250_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-100To250_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/merged/"
+G1Jet_Pt_250To400_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-250To400_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/merged/"
+G1Jet_Pt_400To650_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-400To650_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/merged/"
+G1Jet_Pt_650ToInf_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/merged/"
+QCD_HT_50to100_2016 = path_MC+"QCD_HT/GenMatching/QCD_HT50to100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_100to200_2016 = path_MC+"QCD_HT/GenMatching/QCD_HT100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_200to300_2016 = path_MC+"QCD_HT/GenMatching/QCD_HT200to300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_300to500_2016 = path_MC+"QCD_HT/GenMatching/QCD_HT300to500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_500to700_2016 = path_MC+"QCD_HT/GenMatching/QCD_HT500to700_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_700to1000_2016 = path_MC+"QCD_HT/GenMatching/QCD_HT700to1000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_1000to1500_2016 = path_MC+"QCD_HT/GenMatching/QCD_HT1000to1500_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_1500to2000_2016 = path_MC+"QCD_HT/GenMatching/QCD_HT1500to2000_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
+QCD_HT_2000toInf_2016 = path_MC+"QCD_HT/GenMatching/QCD_HT2000toInf_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
 if save_orig:
   path_MC = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/MC/"
   #path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/"
