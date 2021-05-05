@@ -12,8 +12,11 @@ parser = OptionParser()
 parser.add_option("--test", dest="test", default=False, action="store", help="can be true or false")
 parser.add_option("--plot", dest="plot", default="Photon_pt", action="store", help="can be Photon_eta , LPhoton_pt ... ")
 parser.add_option("--region", dest="region", default="single_photon", action="store", help="can be 0b, 1b, 2b, presel ")
+parser.add_option("--divIndex", dest="divIndex", default="0", action="store", help="index of divitions for one root file")
+parser.add_option("--ndiv", dest="ndiv", default="10", action="store", help="number of divitions for one root file")
 (options, args) = parser.parse_args()
-
+exec("ndiv="+options.ndiv)
+exec("divIndex="+options.divIndex)
 plot_index = options.plot
 
 #ROOT.setTDRStyle()
@@ -72,7 +75,7 @@ selections={
 "presel":"&&".join([ngood_vtx_cut,met_filters,single_photon_tight_cut,muon_veto,electron_veto]),\
 "1b":sel_1b,\
 "2b":sel_2b,\
-"0b":"ngoodPhoton==1&&(goodPhoton_pt>=225)",\
+"0b":"ngoodPhoton==1&&(goodPhoton_pt>=225)&&(ngoodbJet==0)",\
 }
 
 plot_cut = selections[region]
