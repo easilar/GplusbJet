@@ -25,7 +25,7 @@ if not plot["bin_set"][0]: plot["bin"] = plot["binning"]
 
 region = options.region
 
-pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
+pfile = "samples_ana.pkl"
 
 test = options.test
 plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/G1Jet/'
