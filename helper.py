@@ -308,7 +308,7 @@ def matching(RecoPhoton=None, GenPhoton=None, pt_ratio=0.0, dr_cone=0.0):
 		
 
         dR_Pho_Match = deltaR(RecoPhoton["phi"], GenPhoton["phi"], RecoPhoton["eta"], GenPhoton["eta"])
-        PtRatio = (GenPhoton["pt"]-RecoPhoton["pt"]) / (GenPhoton["pt"])
+        PtRatio = abs(GenPhoton["pt"]-RecoPhoton["pt"]) / (GenPhoton["pt"])
        	#dRm.append({'index': j, 'dR': dR_Pho_Match, 'PtRatio': PtRatio})
 	GenPhoton['dR'] = dR_Pho_Match
 	GenPhoton['PtRatio']=  PtRatio

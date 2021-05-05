@@ -37,20 +37,17 @@ elif year == 2018:
 
 sdict = sample_dic[year][stype][sname]
 targetdir_suffix = "Low_PT"
-ndiv=20
+ndiv=10
 for target_filename in  target_filename_dict.keys():
 	writing_file = open(target_filename, "a")
-	print(target_filename)
 	for trigger in target_filename_dict[target_filename]:
 		for ci,bin_name in enumerate(sdict.keys()):
 			cur_dir = sdict[bin_name]["dir"]
 			flist = os.listdir(cur_dir)
-			print(bin_name)
 			if not os.path.exists(os.environ["cern_box"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-1]+"/"):
 				os.makedirs(os.environ["cern_box"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-1]+"/")
 			for f in flist:
-				print(f)
-				for indiv in range(ndiv):
+				for indiv in range(ndiv+1):
 					new_line="python "+os.environ["afs_dir"]+"analyse_trigger.py --year="+str(year)+" --sname="+sname+" --stype="+stype+" --letter="+bin_name+" --ndiv="+str(ndiv)+" --divIndex="+str(indiv)+" --trigname="+trigger+" --filename="+f+"\n"
 					writing_file.write(new_line)
         writing_file.close()
