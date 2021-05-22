@@ -28,23 +28,25 @@ gHighPtBins = array('d', [float(x) for x in \
                                         ])
 #gPtBins= gHighPtBins
 gPtBins  = array('d', [float(x) for x in \
-                                range(20,40,10)\
-                                +range(40,60,10)\
+                               # range(20,40,10)\
+                                #range(40,60,5)\
+                                #+range(60,90,30)\
+                                range(40,60,5)\
+                                #+range(100,140,20)\
                                 +range(60,90,10)\
-                                +range(90,100,10)\
-                                +range(100,140,20)\
-                                +range(140,200,20)\
                                # +range(180,225,45)\
-                                +range(200,300,20)\
-                                +range(300,350,50)\
-                                +range(350,400,50)\
-                                +range(400,500,100)\
-                                +range(500,700,200)\
-                                +range(700,1000,300)\
-                                +range(1000,2000,1000)\
-                                +range(2000,3000,1000)\
+                                +range(90,100,10)\
+                                +range(100,145,15)\
+                                +range(145,180,15)\
+                                +range(180,225,450)\
+                               # +range(350,400,50)\
+                                +range(225,1000,775)\
+                                +range(1000,1700,700)\
+                                #+range(700,1000,300)\
+                                #+range(1000,2000,1000)\
+                                #+range(2000,3000,1000)\
                                         ])
-gPtBins = gLowPtBins                                       
+#gPtBins = gLowPtBins                                       
 trigger_pt_cut ="((goodPhoton_pt>225)*HLT_Photon175||(goodPhoton_pt<=225&&goodPhoton_pt>180)*HLT_Photon165_R9Id90_HE10_IsoM||(goodPhoton_pt<=180&&goodPhoton_pt>145)*HLT_Photon120_R9Id90_HE10_IsoM||(goodPhoton_pt<=145&&goodPhoton_pt>100)*HLT_Photon90_R9Id90_HE10_IsoM||(goodPhoton_pt<=100&&goodPhoton_pt>90)*HLT_Photon75_R9Id90_HE10_IsoM||(goodPhoton_pt<=90&&goodPhoton_pt>60)*HLT_Photon50_R9Id90_HE10_IsoM||(goodPhoton_pt<=60&&goodPhoton_pt>40)*HLT_Photon36_R9Id90_HE10_IsoM)"
 ngood_vtx_cut = "(PV_npvsGood>=1)"
 met_filters= "(Flag_goodVertices)&&(Flag_globalSuperTightHalo2016Filter)&&(Flag_HBHENoiseFilter)&&(Flag_HBHENoiseIsoFilter)&&(Flag_EcalDeadCellTriggerPrimitiveFilter)&&(Flag_BadPFMuonFilter)"
@@ -69,7 +71,7 @@ sel_1b = "&&".join([presel,cut_1b])
 sel_2b = "&&".join([presel,cut_2b])
 
 trigger = "(HLT_Photon30)"
-prob_triggers = ["HLT_Photon50_R9Id90_HE10_IsoM","HLT_Photon75_R9Id90_HE10_IsoM","HLT_Photon90_R9Id90_HE10_IsoM","HLT_Photon120_R9Id90_HE10_IsoM","HLT_Photon165_R9Id90_HE10_IsoM","HLT_Photon175"]
+prob_triggers = ["HLT_Photon36_R9Id90_HE10_IsoM","HLT_Photon50_R9Id90_HE10_IsoM","HLT_Photon75_R9Id90_HE10_IsoM","HLT_Photon90_R9Id90_HE10_IsoM","HLT_Photon120_R9Id90_HE10_IsoM","HLT_Photon165_R9Id90_HE10_IsoM","HLT_Photon175"]
 #prob_triggers = ["HLT_Photon33","HLT_Photon50_R9Id90_HE10_IsoM","HLT_Photon75_R9Id90_HE10_IsoM","HLT_Photon90_R9Id90_HE10_IsoM","HLT_Photon120_R9Id90_HE10_IsoM","HLT_Photon165_R9Id90_HE10_IsoM","HLT_Photon200"]
 #prob_triggers = ["HLT_Photon30","HLT_Photon36","HLT_Photon50","HLT_Photon75","HLT_Photon90","HLT_Photon120","HLT_Photon150","HLT_Photon165_HE10","HLT_Photon175"]
 prob_trigger_2 = "(\
@@ -83,7 +85,7 @@ HLT_Photon30_R9Id90_HE10_IsoM\
 )"
 prob_trigger_3 = "(HLT_Photon165_HE10)"
 #ref_trigger = "(HLT_PFJet40)"
-#ref_trigger = "(HLT_IsoMu27)"
+ref_trigger = "(HLT_IsoMu24)"
 #ref_trigger = "(HLT_Photon165_R9Id90_HE10_IsoM)"
 #jet_photon_cut = "Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4&&Jet_pt>40&&abs(Jet_eta)<2.4&&Jet_jetId>=1&&Jet_pt[0]>100"
 jet_photon_cut = "Sum$(Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4)==1" #&&Jet_pt>40&&abs(Jet_eta)<2.4&&Jet_jetId>=1&&Jet_pt[0]>100"
