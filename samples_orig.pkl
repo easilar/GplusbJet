@@ -1089,7 +1089,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016C_02Apr2020-v1/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016C_02Apr2020-v1/'
 p243
 sg14
 I1
@@ -1104,7 +1104,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016B_02Apr2020-v1/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016B_02Apr2020-v1/'
 p245
 sg14
 I1
@@ -1119,7 +1119,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016E_02Apr2020-v1/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016E_02Apr2020-v1/'
 p247
 sg14
 I1
@@ -1134,7 +1134,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016D_02Apr2020-v1/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016D_02Apr2020-v1/'
 p249
 sg14
 I1
@@ -1149,7 +1149,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016G_02Apr2020-v1/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016G_02Apr2020-v1/'
 p251
 sg14
 I1
@@ -1164,7 +1164,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016F_02Apr2020-v1/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016F_02Apr2020-v1/'
 p253
 sg14
 I1
@@ -1179,7 +1179,7 @@ F0.0
 sg10
 I1
 sg15
-S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016H_02Apr2020-v1/merged/'
+S'/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/data/Run2016H_02Apr2020-v1/'
 p255
 sg14
 I1
