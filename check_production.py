@@ -1,7 +1,8 @@
 import ROOT
 import pickle
-import os
+import os, sys
 import warnings
+import numpy as np
 pfile=os.environ["afs_dir"]+"/samples_orig.pkl"
 
 sample_dic = pickle.load(open(pfile,'rb'))
@@ -54,15 +55,10 @@ for target_filename in  target_filename_dict.keys():
 							print("python "+os.environ["afs_dir"]+"analyse_trigger.py --year="+str(year)+" --sname="+sname+" --stype="+stype+" --letter="+bin_name+" --ndiv="+str(ndiv)+" --divIndex="+str(indiv)+" --trigname="+trigger+" --filename="+f+"\n")
 							
 						else:
-							with warnings.catch_warnings():
-								warnings.filterwarnings("error", "RuntimeWarning")
-								try:
-																	
-									rootfilename = ROOT.TFile(targetfilename,'r')
-							
-									myTree = rootfilename.Get("Events")
-								except RuntimeWarning:
-									print("#Error")
-									print("python "+os.environ["afs_dir"]+"analyse_trigger.py --year="+str(year)+" --sname="+sname+" --stype="+stype+" --letter="+bin_name+" --ndiv="+str(ndiv)+" --divIndex="+str(indiv)+" --trigname="+trigger+" --filename="+f+"\n")	
-
-
+								#rootfilename = ROOT.TFile(targetfilename,'r')
+								mfile = ROOT.TFile(targetfilename)
+								if mfile.IsZombie():
+									print("# File exist but not proper")
+									print("python "+os.environ["afs_dir"]+"analyse_trigger.py --year="+str(year)+" --sname="+sname+" --stype="+stype+" --letter="+bin_name+" --ndiv="+str(ndiv)+" --divIndex="+str(indiv)+" --trigname="+trigger+" --filename="+f+"\n")
+								#warnings.filterwarnings("error", "RuntimeWarning")
+								#except RuntimeWarning:
