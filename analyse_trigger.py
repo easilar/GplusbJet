@@ -33,7 +33,7 @@ trigname = options.trigname
 #afs_dir = os.environ["afs_dir"]
 #targetdir_mainpath = os.environ["cern_box"] 
 #pfile = afs_dir+"/samples_orig.pkl"
-afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets/"
+afs_dir = "/afs/cern.ch/user/m/myalvac/GPlusbJets/"
 targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
 pfile = afs_dir+"/samples_orig.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
@@ -278,3 +278,4 @@ newFile.cd()
 tree.Write()
 newFile.Write()
 newFile.Close()
+print("CIMBOM")
