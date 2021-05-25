@@ -48,18 +48,20 @@ if options.stype == "data":
       cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt"   
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
-   targetdir_suffix = "High_PT"
+   targetdir_suffix = "High_PT_LooseNotTight"
    targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-1]+"/"
    data = json.load(open(cert_json))
    xsec_v = 1.0
    weight_v = 1.0
    print("Working on data ",data_letter)
 else:
-   print("Working on MC", data_letter)
+   print("Working on MC")
+   print(sdict.keys()) 
    xsec_v = sdict["xsec"]*1000 #femtobarn
    weight_v = xsec_v*target_lumi*(1/float(sdict["nevents"]))
    orig_dir = sdict["dir"]
-   targetdir_suffix = "GenMatching"
+   #targetdir_suffix = "GenMatching"
+   targetdir_suffix = "High_PT_LooseNotTight"
    targetdir = targetdir_mainpath+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
 
 #For PU
@@ -189,9 +191,14 @@ for jentry in range(ini_event,fin_event):
    puweight[0] = 1.0
    if not options.stype=="data": puweight[0] = pu68p6.GetBinContent(pu68p6.FindBin(Pileup_nTrueInt))
    photons = []
-   for ph in range(int(nPhoton)):
-	if ch.GetLeaf('Photon_cutBased').GetValue(ph)>=3 and ch.GetLeaf('Photon_pt').GetValue(ph)>=40 and (abs(ch.GetLeaf('Photon_eta').GetValue(ph))<1.4) :
-		photons.append({'index':ph,'phi':ch.GetLeaf('Photon_phi').GetValue(ph),'eta':ch.GetLeaf('Photon_eta').GetValue(ph),'pt':ch.GetLeaf('Photon_pt').GetValue(ph)})
+   if "LooseNotTight" in targetdir_suffix:
+   	for ph in range(int(nPhoton)):
+		if ch.GetLeaf('Photon_cutBased').GetValue(ph)>=1 and ch.GetLeaf('Photon_cutBased').GetValue(ph)<3 and ch.GetLeaf('Photon_pt').GetValue(ph)>=40 and (abs(ch.GetLeaf('Photon_eta').GetValue(ph))<1.4) :
+			photons.append({'index':ph,'phi':ch.GetLeaf('Photon_phi').GetValue(ph),'eta':ch.GetLeaf('Photon_eta').GetValue(ph),'pt':ch.GetLeaf('Photon_pt').GetValue(ph)})
+   else:
+	   for ph in range(int(nPhoton)):
+		if ch.GetLeaf('Photon_cutBased').GetValue(ph)>=3 and ch.GetLeaf('Photon_pt').GetValue(ph)>=40 and (abs(ch.GetLeaf('Photon_eta').GetValue(ph))<1.4) :
+			photons.append({'index':ph,'phi':ch.GetLeaf('Photon_phi').GetValue(ph),'eta':ch.GetLeaf('Photon_eta').GetValue(ph),'pt':ch.GetLeaf('Photon_pt').GetValue(ph)})
 		
    jets = []
    bjets = []
@@ -274,3 +281,4 @@ tree.Write()
 newFile.Write()
 #newFile.Map()
 newFile.Close()
+print("CIMBOM")

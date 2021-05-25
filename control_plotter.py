@@ -73,12 +73,16 @@ selections={
 "met_filters": "&&".join([ngood_vtx_cut,met_filters]),\
 "single_photon":"ngoodPhoton==1&&(goodPhoton_pt>=225)",\
 "presel":"&&".join([ngood_vtx_cut,met_filters,single_photon_tight_cut,muon_veto,electron_veto]),\
-"1b":sel_1b,\
-"2b":sel_2b,\
-"0b":"ngoodPhoton==1&&(goodPhoton_pt>=225)&&(ngoodbJet==0)",\
+"1b":"ngoodbJet==1&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
+"2b":"ngoodbJet==2&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
+"0b":"ngoodbJet==0&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
 }
 
+CR = "goodPhoton_hoe>0.03"
+SR = "goodPhoton_hoe<=0.03"
+
 plot_cut = selections[region]
+plot_cut = CR+"&&"+plot_cut
 bkg_Int = 0
 for bkg in bkg_list:
     bkg["chain_all"] = getChain(stype="bkg",sname=bkg["sample"],pfile=pfile,test=test)
@@ -97,7 +101,7 @@ print(signal_dict["chain"].GetEntries())
 data_dict["chain"] = data_dict["chain"]
 if plot_sig_stack : bkg_list.append(signal_dict)
 print('Ploting starts......')
-data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut, weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join([CR,plot_cut]), weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 print("175 is taken")
 
 signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut+"&&(abs(goodGenPhoton_pt-goodPhoton_pt)/goodPhoton_pt<0.1)", weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
