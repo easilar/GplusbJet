@@ -26,7 +26,7 @@ def getChain(year=2016,stype="signal",sname="GJets",pfile="/afs/cern.ch/work/e/e
 			for f in slist:
 				schain.Add(sdict["dir"]+"/"+f)
 	else:
-		if sample_dic[year][stype][sname].keys()[0].startswith(sname):
+		if sample_dic[year][stype][sname].keys()[0].startswith(sname) or sname.startswith("CR"):
 			for s_bin in sample_dic[year][stype][sname].keys():
 				sdict = sample_dic[year][stype][sname][s_bin]
 				slist = os.listdir(sdict["dir"])
@@ -323,3 +323,5 @@ def matching(RecoPhoton=None, GenPhoton=None, pt_ratio=0.0, dr_cone=0.0):
                         matched = matched_photon
 
         return (matched , Match) 
+
+
