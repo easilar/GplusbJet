@@ -7,7 +7,7 @@ sample_dic = pickle.load(open(pfile,'rb'))
 year = 2016
 #year = 2017
 #year = 2018
-sname = "G1Jet_Pt"
+sname = "G1Jet_Pt" #Change only this !!!
 #sname = "QCD_HT"
 #sname = "SinglePhoton"
 #sname = "SingleMuon_18"
@@ -16,7 +16,8 @@ stype = "signal"
 #stype = "data"
 sdict = sample_dic[year][stype][sname]
 ndiv=5
-targetdir_suffix = "High_PT_LooseNotTight"
+#targetdir_suffix = "High_PT_LooseNotTight"
+targetdir_suffix = "High_PT_Tight"
 for ci,bin_name in enumerate(sdict.keys()):
 	#if not "_NOExt" in bin_name: continue
 	cur_dir = sdict[bin_name]["dir"]

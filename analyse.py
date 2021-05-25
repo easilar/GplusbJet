@@ -48,7 +48,7 @@ if options.stype == "data":
       cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt"   
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
-   targetdir_suffix = "High_PT_LooseNotTight"
+   targetdir_suffix = "High_PT_Tight"
    targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-1]+"/"
    data = json.load(open(cert_json))
    xsec_v = 1.0
@@ -61,7 +61,7 @@ else:
    weight_v = xsec_v*target_lumi*(1/float(sdict["nevents"]))
    orig_dir = sdict["dir"]
    #targetdir_suffix = "GenMatching"
-   targetdir_suffix = "High_PT_LooseNotTight"
+   targetdir_suffix = "High_PT_Tight"
    targetdir = targetdir_mainpath+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
 
 #For PU
