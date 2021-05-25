@@ -254,6 +254,9 @@ color = ROOT.kBlack
 h_data = data_dict_165["histo"]
 #h_data.Add(data_dict_120["histo"])
 h_data.Add(data_dict_90["histo"])
+h_data.Add(data_dict_75["histo"])
+h_data.Add(data_dict_50["histo"])
+h_data.Add(data_dict_36["histo"])
 h_data.SetMarkerStyle(20)
 h_data.SetMarkerSize(1.1)
 h_data.SetLineColor(color)
