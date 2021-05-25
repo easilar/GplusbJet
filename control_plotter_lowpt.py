@@ -10,7 +10,7 @@ from configure import *
 from optparse import OptionParser
 parser = OptionParser()
 parser.add_option("--test", dest="test", default=False, action="store", help="can be true or false")
-parser.add_option("--plot", dest="plot", default="Photon_pt", action="store", help="can be Photon_eta , LPhoton_pt ... ")
+parser.add_option("--plot", dest="plot", default="Photon_bin_pt", action="store", help="can be Photon_eta , LPhoton_pt ... ")
 parser.add_option("--region", dest="region", default="single_photon", action="store", help="can be 0b, 1b, 2b, presel ")
 (options, args) = parser.parse_args()
 
@@ -52,15 +52,48 @@ bkg_list = [
 ]
 
 #signal chain al
-#signal_dict = {"sample":"GJets", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kYellow}
 signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kAzure+6}
 signal_dict["weight"] = "(weight*puweight*PhotonSF)"
-#signal_dict["weight"] = "(weight*puweight)"
 
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
 #data dict al
 data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="SinglePhoton",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
+
+print("start taking chain.")
+chain_165 = ROOT.TChain("Events")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016B_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016C_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016D_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016E_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016F_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016G_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+chain_165.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016H_02Apr2020-v1/HLT_Photon165_R9Id90_*.root")
+data_dict_165 = {"sample":"SinglePhoton", "weight":"(1)", "chain":chain_165, "tex":"SinglePhoton", "color":ROOT.kBlack}
+print("chain 165 is sobtained")
+chain_120 = ROOT.TChain("Events")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016B_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016C_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016D_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016E_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016F_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016G_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
+chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016H_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
+#print(getYieldFromChain(chain_120, cutString = "&&".join(["ngoodPhoton==1","(goodPhoton_pt>=145&&goodPhoton_pt<180)","(HLT_Photon120_R9Id90_HE10_IsoM)"]), weight = "1"))
+data_dict_120 = {"sample":"SinglePhoton", "weight":"weight_trig_HLT_Photon120*(weight_trig_HLT_Photon120>0)", "chain":chain_120, "tex":"SinglePhoton", "color":ROOT.kBlack}
+print("chain 120 is obtained")
+chain_90 = ROOT.TChain("Events")
+chain_90.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016B_02Apr2020-v1/merged_HLT_90/HLT_Photon90_R9Id90_*.root")
+chain_90.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016C_02Apr2020-v1/merged_HLT_90/HLT_Photon90_R9Id90_*.root")
+chain_90.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016D_02Apr2020-v1/merged_HLT_90/HLT_Photon90_R9Id90_*.root")
+chain_90.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016E_02Apr2020-v1/merged_HLT_90/HLT_Photon90_R9Id90_*.root")
+chain_90.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016F_02Apr2020-v1/merged_HLT_90/HLT_Photon90_R9Id90_*.root")
+chain_90.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016G_02Apr2020-v1/merged_HLT_90/HLT_Photon90_R9Id90_*.root")
+chain_90.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016H_02Apr2020-v1/merged_HLT_90/HLT_Photon90_R9Id90_*.root")
+data_dict_90 = {"sample":"SinglePhoton", "weight":"weight_trig_HLT_Photon90*(weight_trig_HLT_Photon90>0)", "chain":chain_90, "tex":"SinglePhoton", "color":ROOT.kBlack}
+print("chain 90 is obtained")
+
+
 #define photon cuts
 selections={
 "jetphoton": jet_photon_cut,\
@@ -68,18 +101,14 @@ selections={
 "no_cut":"(1)",\
 "vtx_cut":ngood_vtx_cut,\
 "met_filters": "&&".join([ngood_vtx_cut,met_filters]),\
-"single_photon":"ngoodPhoton==1&&(goodPhoton_pt>=225)",\
+"single_photon":"ngoodPhoton==1&&(goodPhoton_pt<225)",\
 "presel":"&&".join([ngood_vtx_cut,met_filters,single_photon_tight_cut,muon_veto,electron_veto]),\
-"1b":"ngoodbJet==1&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
-"2b":"ngoodbJet==2&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
-"0b":"ngoodbJet==0&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
+"1b":sel_1b,\
+"2b":sel_2b,\
+"0b":sel_0b,\
 }
 
-CR = "goodPhoton_hoe>0.03"
-SR = "goodPhoton_hoe<=0.03"
-
 plot_cut = selections[region]
-plot_cut = CR+"&&"+plot_cut
 bkg_Int = 0
 for bkg in bkg_list:
     bkg["chain_all"] = getChain(stype="bkg",sname=bkg["sample"],pfile=pfile,test=test)
@@ -87,7 +116,7 @@ for bkg in bkg_list:
     bkg["chain"] = bkg["chain_all"][0]
     bkg["weight"] = "(weight*puweight*PhotonSF)"
     #bkg["weight"] = "(weight*puweight)"
-    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&ngoodGenPhoton==0", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&ngoodGenPhoton==0&&(abs(goodGenPhoton_pt-goodPhoton_pt)/goodPhoton_pt>0.1)&&!(event==2599441)", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
     bkg["histo"] = h
     bkg_Int+=bkg["histo"].Integral()
     del h
@@ -98,13 +127,18 @@ print(signal_dict["chain"].GetEntries())
 data_dict["chain"] = data_dict["chain"]
 if plot_sig_stack : bkg_list.append(signal_dict)
 print('Ploting starts......')
-data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join([CR,plot_cut]), weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
-print("175 is taken")
+
+data_dict_165["histo"] = getPlotFromChain(data_dict_165["chain"], plot['var'], plot['bin'], cutString = "&&".join(["ngoodPhoton==1&&goodPhoton_pt<225","(goodPhoton_pt>=180&&goodPhoton_pt<225)","(HLT_Photon165_R9Id90_HE10_IsoM)"]), weight = data_dict_165["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+print("165 is taken")
+data_dict_120["histo"] = getPlotFromChain(data_dict_120["chain"], plot['var'], plot['bin'], cutString = "&&".join(["ngoodPhoton==1&&goodPhoton_pt<225","(goodPhoton_pt>=145&&goodPhoton_pt<180)","(HLT_Photon120_R9Id90_HE10_IsoM)"]), weight = data_dict_120["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+print("120 is taken")
+data_dict_90["histo"] = getPlotFromChain(data_dict_90["chain"], plot['var'], plot['bin'], cutString = "&&".join(["ngoodPhoton==1&&goodPhoton_pt<225","(goodPhoton_pt>=100&&goodPhoton_pt<145)","HLT_Photon90_R9Id90_HE10_IsoM"]), weight = data_dict_90["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+print("90 is taken")
 
 signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut+"&&(abs(goodGenPhoton_pt-goodPhoton_pt)/goodPhoton_pt<0.1)", weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 signalPlusbkg = bkg_Int+signal_dict["histo"].Integral()
-SF = data_dict["histo"].Integral()/signalPlusbkg
-print("MC Scale Factor: ", SF)
+#SF = data_dict["histo"].Integral()/signalPlusbkg
+#print("MC Scale Factor: ", SF)
 print(plot["title"])
 cb = ROOT.TCanvas("cb","cb",564,232,600,600)
 cb.SetHighLightColor(2)
@@ -185,7 +219,9 @@ h_Stack.SetMinimum(0.00001)
 h_Stack.SetTitle("")
 #start data
 color = ROOT.kBlack
-h_data = data_dict["histo"]
+h_data = data_dict_165["histo"]
+h_data.Add(data_dict_120["histo"])
+h_data.Add(data_dict_90["histo"])
 h_data.SetMarkerStyle(20)
 h_data.SetMarkerSize(1.1)
 h_data.SetLineColor(color)
@@ -269,8 +305,8 @@ Func.Draw("same")
 h_ratio.Draw("E1 Same")
 cb.cd()
 cb.Draw()
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'High_pt.png')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'High_pt.pdf')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'High_pt.root')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'Low_pt_weight.png')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'Low_pt_weight.pdf')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'Low_pt_weight.root')
 cb.Clear()
 del h_Stack
