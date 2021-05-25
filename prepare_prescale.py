@@ -22,8 +22,8 @@ for target_filename in  target_filename_dict.keys():
 		for ci,bin_name in enumerate(sdict.keys()):
 			cur_dir = sdict[bin_name]["dir"]
 			flist = os.listdir(cur_dir)
-			if not os.path.exists(os.environ["cern_box"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-1]+"/"):
-				os.makedirs(os.environ["cern_box"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-1]+"/")
+			if not os.path.exists(os.environ["cern_box"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/"):
+				os.makedirs(os.environ["cern_box"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
 			for f in flist:
 				for indiv in range(ndiv+1):
 					new_line="python "+os.environ["afs_dir"]+"analyse_trigger.py --year="+str(year)+" --sname="+sname+" --stype="+stype+" --letter="+bin_name+" --ndiv="+str(ndiv)+" --divIndex="+str(indiv)+" --trigname="+trigger+" --filename="+f+"\n"
