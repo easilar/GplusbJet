@@ -76,7 +76,7 @@ for trigger in trigger_list:
 
 targetdir_suffix = "Low_PT"
 orig_dir = sdict["dir"]+"/"
-targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-1]+"/"
+targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
 data = json.load(open(cert_json))
 print("Working on data ",data_letter)
 
@@ -200,7 +200,6 @@ for jentry in range(ini_event,fin_event):
       Flag_7 = ch.GetLeaf('Flag_ecalBadCalibFilter').GetValue()
    if (jentry%50000 == 0) : print(jentry,run,lumi)
    if options.stype == "data":
-	if not ch.GetLeaf(probed_trigger).GetValue(): continue
 	if not str(int(run)) in data.keys(): continue
 	if str(int(run)) in data.keys():
 		for lumiBlock in data[str(int(run))]:
