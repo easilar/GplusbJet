@@ -32,15 +32,15 @@ gPtBins  = array('d', [float(x) for x in \
                                 #+range(60,90,30)\
                                 range(40,60,5)\
                                 #+range(100,140,20)\
-                                +range(60,90,5)\
+                                +range(60,100,10)\
                                # +range(180,225,45)\
-                                +range(90,150,10)\
+                                #+range(90,150,20)\
                                # +range(100,145,15)\
                                 #+range(145,180,35)\
-                                +range(150,300,30)\
+                                +range(100,200,50)\
                                # +range(350,400,50)\
                                # +range(230,300,35)\
-                                +range(300,500,50)\
+                                #+range(200,500,100)\
                                 #+range(500,1000,300)\
                                 #+range(1000,2000,1000)\
                                 #+range(2000,3000,1000)\
@@ -86,7 +86,7 @@ HLT_Photon30_R9Id90_HE10_IsoM\
 prob_trigger_3 = "(HLT_Photon165_HE10)"
 #ref_trigger = "(HLT_PFJet40)"
 ref_trigger = "(HLT_IsoMu24)"
-#ref_trigger = "(HLT_Photon165_R9Id90_HE10_IsoM)"
+#ref_trigger = "(HLT_Photon36_R9Id90_HE10_IsoM)"
 #jet_photon_cut = "Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4&&Jet_pt>40&&abs(Jet_eta)<2.4&&Jet_jetId>=1&&Jet_pt[0]>100"
 jet_photon_cut = "Sum$(Photon_cutBased>=3&&Photon_pt>200&&abs(Photon_eta)<1.4)==1" #&&Jet_pt>40&&abs(Jet_eta)<2.4&&Jet_jetId>=1&&Jet_pt[0]>100"
 jet_cut = "(ngoodPhoton==1&&abs(goodPhoton_eta)<=1.4&&goodJet_pt[0]>100)"

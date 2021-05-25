@@ -31,13 +31,13 @@ pfile="samples_ana.pkl"
 print("start taking chain.")
 
 chain_50 = ROOT.TChain("Events")
-chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016B_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
-chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016C_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
-chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016D_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
-chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016E_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
-chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016F_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
-chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016G_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
-chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton/Low_PT/Run2016H_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
+#chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016B_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
+chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016C_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
+chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016D_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
+#chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016E_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
+chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016F_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
+chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016G_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
+chain_50.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016H_02Apr2020-v1/merged_HLT_50/HLT_Photon50_R9Id90_*.root")
 data_dict_50 = {"sample":"SinglePhoton", "weight":"(1)", "chain":chain_50, "tex":"SinglePhoton", "color":ROOT.kBlack}
 #data_dict_50 = {"sample":"SinglePhoton", "weight":"(weight_trig_HLT_Photon50)", "chain":chain_50, "tex":"SinglePhoton", "color":ROOT.kBlack}
 print("chain 50 is obtained")
@@ -65,16 +65,16 @@ data_dict_120 = {"sample":"SinglePhoton", "weight":"(1)", "chain":chain_120, "te
 #data_dict_120 = {"sample":"SingleMuon", "weight":"(weight_trig_HLT_Photon120)", "chain":chain_120, "tex":"SingleMuon", "color":ROOT.kBlack}
 #print("chain 120 is obtained")
 
-chain_120 = ROOT.TChain("Events")
-chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016B_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
-chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016C_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
-chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016D_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
-chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016E_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
-chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016F_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
-chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016G_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
-chain_120.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016H_02Apr2020-v1/merged_HLT_120/HLT_Photon120_R9Id90_*.root")
+chain_75 = ROOT.TChain("Events")
+chain_75.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016B_02Apr2020-v1/merged_HLT_75/HLT_Photon75_R9Id90_*.root")
+chain_75.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016C_02Apr2020-v1/merged_HLT_75/HLT_Photon75_R9Id90_*.root")
+chain_75.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016D_02Apr2020-v1/merged_HLT_75/HLT_Photon75_R9Id90_*.root")
+chain_75.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016E_02Apr2020-v1/merged_HLT_75/HLT_Photon75_R9Id90_*.root")
+chain_75.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016F_02Apr2020-v1/merged_HLT_75/HLT_Photon75_R9Id90_*.root")
+chain_75.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016G_02Apr2020-v1/merged_HLT_75/HLT_Photon75_R9Id90_*.root")
+chain_75.Add("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/Run2016H_02Apr2020-v1/merged_HLT_75/HLT_Photon75_R9Id90_*.root")
 #data_dict_120 = {"sample":"SingleMuon", "weight":"(1)", "chain":chain_90, "tex":"SingleMuon", "color":ROOT.kBlack}
-data_dict_120 = {"sample":"SingleMuon", "weight":"(weight_trig_HLT_Photon120)", "chain":chain_120, "tex":"SingleMuon", "color":ROOT.kBlack}
+data_dict_75 = {"sample":"SingleMuon", "weight":"(weight_trig_HLT_Photon75)", "chain":chain_75, "tex":"SingleMuon", "color":ROOT.kBlack}
 
 print("chain 165 is obtained")
 '''
@@ -126,10 +126,10 @@ Func.SetLineColor(58)
 Func.SetLineWidth(2)
 
 #func = ROOT.TF1('func', '[0]*TMath::Erf((x-[1])/[2])', 40., 500.)  # non def pos erf
-func = ROOT.TF1("func", "([0]/(1+ TMath::Exp(-[1]*(x-[2]))))", 0., 1700.) 
+func = ROOT.TF1("func", "([0]/(1+ TMath::Exp(-[1]*(x-[2]))))", 0., 500.) 
 # func = ROOT.TF1('func', '0.5 * ([0]*TMath::Erf((x-[1])/[2]) + 1)', 25., 180.) # def pos erf
 func.SetParameter(0,  1.0)
-func.SetParameter(1,  0.01)
+func.SetParameter(1,  0.8)
 func.SetParameter(2,60)
 
 func.SetLineColor(ROOT.kRed)
@@ -141,7 +141,7 @@ h_ratio = h_data_num.Clone('h_ratio')
 h_ratio.Sumw2()
 h_ratio.SetStats(0)
 h_ratio.Divide(h_data_den)
-h_ratio.SetMaximum(0.03)
+h_ratio.SetMaximum(0.015)
 h_ratio.SetMinimum(0.001)
 h_ratio.SetMarkerStyle(20)
 h_ratio.SetMarkerSize(1.1)
@@ -156,12 +156,12 @@ h_ratio.Fit(func,"R")
 fitResult = h_ratio.GetFunction("func")
 threshold = fitResult.GetParameter(2)
 print(threshold)
-platho = round(fitResult.GetParameter(0),3)
+platho = round(fitResult.GetParameter(0),2)
 print(platho)
 plato_X = 0
 for i in range(500):
-	print(round(fitResult(threshold+i*1),3))
-	if round(fitResult(threshold+i*1),3) == platho :
+	print(round(fitResult(threshold+i*1),2))
+	if round(fitResult(threshold+i*1),2) == platho :
 		print(threshold+i*1,fitResult(threshold+i*0.5))
 		plato_X = threshold+i*0.5
 		break
@@ -186,18 +186,18 @@ tex.SetTextFont(61)
 tex.SetTextSize(0.03)
 tex.SetLineWidth(2)
 #tex.DrawLatex(0.2,0.9,"SingleMuon Run 2016 BCDEFGH ")
-tex.DrawLatex(0.2,0.9,"SinglePhoton Run 2016")
+tex.DrawLatex(0.2,0.9,"SingleMuon Run 2016")
 tex.DrawLatex(0.2,0.85,"Ref. Trig.: "+ref_trigger)
 tex.DrawLatex(0.2,0.8,"Prob. Trig.: "+prob_trigger)
 tex.DrawLatex(0.2,0.75,"Plateau: "+str(round(platho,2))+", Reached at "+str(round(plato_X,2))+" GeV")
-#tex.DrawLatex(0.2,0.7,"weight = HLT_Photon_50_R9Id90_HE10_IsoM")
-tex.DrawLatex(0.2,0.7,"weight = 1")
+tex.DrawLatex(0.2,0.7,"weight = HLT_Photon_50_R9Id90_HE10_IsoM")
+#tex.DrawLatex(0.2,0.7,"weight = 1")
 cb.cd()
 cb.Draw()
 #cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff.png')
 #cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff.pdf')
 #cb.SaveAs(plots_path+plot['title']+data_dict["tex"]+'_trig_'+prob_trigger+'Eff.root')
-cb.SaveAs(plots_path+plot['title']+data_dict_50["tex"]+'_trig_'+prob_trigger+'_Trig_Weight_Val.png')
-cb.SaveAs(plots_path+plot['title']+data_dict_50["tex"]+'_trig_'+prob_trigger+'_Trig_Weight_Val.pdf')
-cb.SaveAs(plots_path+plot['title']+data_dict_50["tex"]+'_trig_'+prob_trigger+'_Trig_Weight_Val.root')
+cb.SaveAs(plots_path+plot['title']+data_dict_50["tex"]+'_trig_'+prob_trigger+'_Trig_NOWeight.png')
+cb.SaveAs(plots_path+plot['title']+data_dict_50["tex"]+'_trig_'+prob_trigger+'_Trig_NOWeight.pdf')
+cb.SaveAs(plots_path+plot['title']+data_dict_50["tex"]+'_trig_'+prob_trigger+'_Trig_NOWeight.root')
 cb.Clear()
