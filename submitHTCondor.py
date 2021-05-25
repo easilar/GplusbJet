@@ -73,8 +73,9 @@ Args         = $(ITEM)
 Log    = {log_dir}/$(Cluster).$(Process).log
 Output = {out_dir}/$(Cluster).$(Process).out
 Error  = {err_dir}/$(Cluster).$(Process).err
-request_cpus = 1
-request_disk = 20MB
+request_cpus = 4
+request_memory = 1000MB
+request_disk = 1000MB
 +JobFlavour = {qtime}
 
 
