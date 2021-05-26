@@ -15,7 +15,7 @@ sname = "G1Jet_Pt" #Change only this !!!
 stype = "signal"
 #stype = "data"
 sdict = sample_dic[year][stype][sname]
-ndiv=5
+ndiv=20
 #targetdir_suffix = "High_PT_LooseNotTight"
 targetdir_suffix = "High_PT_Tight"
 for ci,bin_name in enumerate(sdict.keys()):
