@@ -51,12 +51,12 @@ bkg_list = [
 #{"sample":"TGJets", "weight":"(1)", "tex":"TGJets", "color":ROOT.kRed+3},
 #{"sample":"TTGJets", "weight":"(1)", "tex":"TTGJets", "color":ROOT.kBlue-7},
 #{"sample":"TTJets", "weight":"(1)",  "tex":"TTJets", "color":ROOT.kGray},
-{"sample":"QCD_HT", "weight":"(1)",  "tex":"QCD", "color":ROOT.kBlue-3}
+{"sample":"CR_QCD_HT", "weight":"(1)",  "tex":"QCD", "color":ROOT.kBlue-3}
 ]
 
 #signal chain al
 #signal_dict = {"sample":"GJets", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kYellow}
-signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kAzure+6}
+signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="CR_G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kAzure+6}
 signal_dict["weight"] = "(weight*puweight*PhotonSF)"
 #signal_dict["weight"] = "(weight*puweight)"
 
