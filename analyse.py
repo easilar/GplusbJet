@@ -46,8 +46,9 @@ if options.stype == "data":
       cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt"   
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
-   targetdir_suffix = "High_PT_Tight"
-   targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-1]+"/"
+   #targetdir_suffix = "High_PT_Tight"
+   targetdir_suffix = "High_PT_LooseNotTight"
+   targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
    data = json.load(open(cert_json))
    xsec_v = 1.0
    weight_v = 1.0
@@ -224,9 +225,10 @@ for jentry in range(ini_event,fin_event):
 	goodJet_phi[i] = ch.GetLeaf('Jet_phi').GetValue(jet["index"])
 	goodJet_btagDeepFlavB[i] = ch.GetLeaf('Jet_btagDeepFlavB').GetValue(jet["index"])
 	goodJet_btagDeepFlavC[i] = ch.GetLeaf('Jet_btagDeepFlavC').GetValue(jet["index"])
-	goodJet_hadronFlavour[i] = ch.GetLeaf('Jet_hadronFlavour').GetValue(jet["index"])
+	goodJet_hadronFlavour[i] = 0.0
 	#For btag SF
 	if not options.stype == "data": 
+		goodJet_hadronFlavour[i] = ch.GetLeaf('Jet_hadronFlavour').GetValue(jet["index"])
 		goodJet_flavor = ch.GetLeaf('Jet_hadronFlavour').GetValue(jet["index"])
 		print("Flavor:", goodJet_flavor)
 		if goodJet_flavor==5 : btagSF = getbTagSF(bdict=btagging_dict,flavor=0,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
@@ -239,9 +241,10 @@ for jentry in range(ini_event,fin_event):
 	goodbJet_phi[i] = ch.GetLeaf('Jet_phi').GetValue(bjet["index"])
 	goodbJet_btagDeepFlavB[i] = ch.GetLeaf('Jet_btagDeepFlavB').GetValue(bjet["index"])
 	goodbJet_btagDeepFlavC[i] = ch.GetLeaf('Jet_btagDeepFlavC').GetValue(bjet["index"])
-	goodbJet_hadronFlavour[i] = ch.GetLeaf('Jet_hadronFlavour').GetValue(bjet["index"])
+	goodbJet_hadronFlavour[i] = 0.0
 	#For btag SF
 	if not options.stype == "data": 
+		goodbJet_hadronFlavour[i] = ch.GetLeaf('Jet_hadronFlavour').GetValue(bjet["index"])
 		goodJet_flavor = ch.GetLeaf('Jet_hadronFlavour').GetValue(bjet["index"])
 		print("Flavor:", goodJet_flavor)
 		if goodJet_flavor==5 : btagSF = getbTagSF(bdict=btagging_dict,flavor=0,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
