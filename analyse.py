@@ -28,8 +28,8 @@ exec("divIndex="+options.divIndex)
 stype = options.stype
 sname = options.sname
 
-#afs_dir = os.environ["afs_dir"]
-afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets/"
+afs_dir = os.environ["afs_dir"]
+#afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets/"
 targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
 pfile = afs_dir+"/samples_orig.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
