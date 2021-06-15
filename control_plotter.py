@@ -13,8 +13,11 @@ parser.add_option("--test", dest="test", default=False, action="store", help="ca
 parser.add_option("--plot", dest="plot", default="Photon_pt", action="store", help="can be Photon_eta , LPhoton_pt ... ")
 parser.add_option("--region", dest="region", default="single_photon", action="store", help="can be 0b, 1b, 2b, presel ")
 parser.add_option("--s_samp", dest="s_samp", default="G1Jet_Pt", action="store", help="can be G1Jet_Pt , GJets_Pt ")
+parser.add_option("--divIndex", dest="divIndex", default="0", action="store", help="index of divitions for one root file")
+parser.add_option("--ndiv", dest="ndiv", default="10", action="store", help="number of divitions for one root file")
 (options, args) = parser.parse_args()
-
+exec("ndiv="+options.ndiv)
+exec("divIndex="+options.divIndex)
 plot_index = options.plot
 
 #ROOT.setTDRStyle()
@@ -31,7 +34,7 @@ signal_samp = options.s_samp
 pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
 
 test = options.test
-plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/G1Jet/'
+plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/G1Jet/CR_Plots/'
 if test: 
 	plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/WithData/'
 if not os.path.exists(plots_path):
@@ -59,7 +62,7 @@ if signal_samp == "GJets_Pt":
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
 #data dict al
-data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="SinglePhoton",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
+data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="CR_SinglePhoton",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
 #define photon cuts
 selections={
 "jetphoton": jet_photon_cut,\
