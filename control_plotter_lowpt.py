@@ -45,7 +45,8 @@ bkg_list = [
 
 #signal chain al
 signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kAzure+6}
-signal_dict["weight"] = "(weight*puweight*PhotonSF)"
+#signal_dict["weight"] = "(weight*puweight*PhotonSF)"
+signal_dict["weight"] = "(weight)"
 
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
@@ -139,8 +140,9 @@ for bkg in bkg_list:
     bkg["chain_all"] = getChain(stype="bkg",sname=bkg["sample"],pfile=pfile,test=test)
     print(bkg["sample"],bkg["chain_all"][1],bkg["chain_all"][2])
     bkg["chain"] = bkg["chain_all"][0]
-    bkg["weight"] = "(weight*puweight*PhotonSF)"
-    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&ngoodGenPhoton==0&&(abs(goodGenPhoton_pt-goodPhoton_pt)/goodPhoton_pt>0.1)&&!(event==2599441)", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+    #bkg["weight"] = "(weight*puweight*PhotonSF)"
+    bkg["weight"] = "(weight)"
+    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&!(event==2599441)", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
     bkg["histo"] = h
     bkg_Int+=bkg["histo"].Integral()
     del h
@@ -151,19 +153,19 @@ print(signal_dict["chain"].GetEntries())
 #data_dict["chain"] = data_dict["chain"]
 if plot_sig_stack : bkg_list.append(signal_dict)
 print('Ploting starts......')
-for Ddict in [data_dict_165,data_dict_120,data_dict_90,data_dict_75,data_dict_50,data_dict_36]:
-	Ddict["weight"] = "1"
+#for Ddict in [data_dict_165,data_dict_120,data_dict_90,data_dict_75,data_dict_50,data_dict_36]:
+#	Ddict["weight"] = "1"
 data_dict_165["histo"] = getPlotFromChain(data_dict_165["chain"], plot['var'], plot['bin'], cutString = "&&".join(["ngoodPhoton==1&&goodPhoton_pt<225","(goodPhoton_pt>=180&&goodPhoton_pt<225)","(weight_trig_HLT_Photon165>0)","(HLT_Photon165_R9Id90_HE10_IsoM)"]), weight = data_dict_165["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 print("165 is taken")
 data_dict_120["histo"] = getPlotFromChain(data_dict_120["chain"], plot['var'], plot['bin'], cutString = "&&".join(["ngoodPhoton==1&&goodPhoton_pt<225","(goodPhoton_pt>=145&&goodPhoton_pt<180)","(weight_trig_HLT_Photon120>0)","(HLT_Photon120_R9Id90_HE10_IsoM)"]), weight = data_dict_120["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 print("120 is taken")
-data_dict_90["histo"] = getPlotFromChain(data_dict_90["chain"], plot['var'], plot['bin'], cutString = "&&".join(["ngoodPhoton==1&&goodPhoton_pt<225","(goodPhoton_pt>=100&&goodPhoton_pt<145)","(weight_trig_HLT_Photon90>0)","HLT_Photon90_R9Id90_HE10_IsoM"]), weight = data_dict_90["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+data_dict_90["histo"] = getPlotFromChain(data_dict_90["chain"], plot['var'], plot['bin'], cutString = "&&".join(["ngoodPhoton==1&&goodPhoton_pt<225","(goodPhoton_pt>=100&&goodPhoton_pt<145)"  ,"(weight_trig_HLT_Photon90>0)","HLT_Photon90_R9Id90_HE10_IsoM"]), weight = data_dict_90["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 print("90 is taken")
-data_dict_75["histo"] = getPlotFromChain(data_dict_75["chain"], plot['var'], plot['bin'], cutString = "&&".join(["ngoodPhoton==1&&goodPhoton_pt<225","(goodPhoton_pt>=90&&goodPhoton_pt<100)","(weight_trig_HLT_Photon75>0)","HLT_Photon75_R9Id90_HE10_IsoM"]), weight = data_dict_75["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+data_dict_75["histo"] = getPlotFromChain(data_dict_75["chain"], plot['var'], plot['bin'], cutString = "&&".join(["ngoodPhoton==1&&goodPhoton_pt<225","(goodPhoton_pt>=90&&goodPhoton_pt<100)"   ,"(weight_trig_HLT_Photon75>0)","HLT_Photon75_R9Id90_HE10_IsoM"]), weight = data_dict_75["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 print("75 is taken")
-data_dict_50["histo"] = getPlotFromChain(data_dict_50["chain"], plot['var'], plot['bin'], cutString = "&&".join(["ngoodPhoton==1&&goodPhoton_pt<225","(goodPhoton_pt>=60&&goodPhoton_pt<90)","(weight_trig_HLT_Photon50>0)","HLT_Photon50_R9Id90_HE10_IsoM"]), weight = data_dict_50["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+data_dict_50["histo"] = getPlotFromChain(data_dict_50["chain"], plot['var'], plot['bin'], cutString = "&&".join(["ngoodPhoton==1&&goodPhoton_pt<225","(goodPhoton_pt>=60&&goodPhoton_pt<90)"    ,"(weight_trig_HLT_Photon50>0)","HLT_Photon50_R9Id90_HE10_IsoM"]), weight = data_dict_50["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 print("50 is taken")
-data_dict_36["histo"] = getPlotFromChain(data_dict_36["chain"], plot['var'], plot['bin'], cutString = "&&".join(["ngoodPhoton==1&&goodPhoton_pt<225","(goodPhoton_pt>=40&&goodPhoton_pt<60)","(weight_trig_HLT_Photon36>0)","HLT_Photon36_R9Id90_HE10_IsoM"]), weight = data_dict_36["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+data_dict_36["histo"] = getPlotFromChain(data_dict_36["chain"], plot['var'], plot['bin'], cutString = "&&".join(["ngoodPhoton==1&&goodPhoton_pt<225","(goodPhoton_pt>=40&&goodPhoton_pt<60)"    ,"(weight_trig_HLT_Photon36>0)","HLT_Photon36_R9Id90_HE10_IsoM"]), weight = data_dict_36["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 print("36 is taken")
 print("No 10 percent")
 signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut, weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
@@ -251,6 +253,7 @@ h_Stack.SetTitle("")
 #start data
 color = ROOT.kBlack
 h_data = data_dict_165["histo"]
+#h_data = data_dict_120["histo"]
 h_data.Add(data_dict_120["histo"])
 h_data.Add(data_dict_90["histo"])
 h_data.Add(data_dict_75["histo"])
@@ -339,8 +342,8 @@ Func.Draw("same")
 h_ratio.Draw("E1 Same")
 cb.cd()
 cb.Draw()
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'Low_pt_weight_1.png')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'Low_pt_weight_1.pdf')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'Low_pt_weight_1.root')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'Low_pt_weight_bare.png')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'Low_pt_weight_bare.pdf')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'Low_pt_weight_bare.root')
 cb.Clear()
 del h_Stack

@@ -12,6 +12,7 @@ parser = OptionParser()
 parser.add_option("--test", dest="test", default=False, action="store", help="can be true or false")
 parser.add_option("--plot", dest="plot", default="Photon_pt", action="store", help="can be Photon_eta , LPhoton_pt ... ")
 parser.add_option("--region", dest="region", default="single_photon", action="store", help="can be 0b, 1b, 2b, presel ")
+parser.add_option("--s_samp", dest="s_samp", default="G1Jet_Pt", action="store", help="can be G1Jet_Pt , GJets_Pt ")
 (options, args) = parser.parse_args()
 
 plot_index = options.plot
@@ -24,6 +25,8 @@ plot = plotlist[plot_index]
 if not plot["bin_set"][0]: plot["bin"] = plot["binning"]
 
 region = options.region
+
+signal_samp = options.s_samp
 
 pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
 
@@ -44,9 +47,12 @@ bkg_list = [
 ]
 
 #signal chain al
-#signal_dict = {"sample":"GJets", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kYellow}
-signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kAzure+6}
-signal_dict["weight"] = "(weight*puweight*PhotonSF)"
+if signal_samp == "G1Jet_Pt":
+	signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kAzure+6}
+	signal_dict["weight"] = "(weight*puweight*PhotonSF)"
+if signal_samp == "GJets_Pt":
+	signal_dict = {"sample":"GJets_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets_Pt",pfile=pfile,test=test), "tex":"GJets-Sherpa", "color":ROOT.kCyan-3}
+	signal_dict["weight"] = "(weight*PhotonSF)"
 #+goodbJet_btagSF[0]*(ngoodbJet==1)+goodbJet_btagSF[0]*goodbJet_btagSF[1]*(ngoodbJet==2)+(ngoodbJet==3)*goodbJet_btagSF[0]*goodbJet_btagSF[1]*goodbJet_btagSF[0]*goodbJet_btagSF[2]))"
 #signal_dict["weight"] = "(weight*puweight)"
 
@@ -259,8 +265,8 @@ Func.Draw("same")
 h_ratio.Draw("E1 Same")
 cb.cd()
 cb.Draw()
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'High_pt.png')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'High_pt.pdf')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'High_pt.root')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt.png')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt.pdf')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt.root')
 cb.Clear()
 del h_Stack
