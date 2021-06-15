@@ -30,22 +30,22 @@ gPtBins  = array('d', [float(x) for x in \
                                # range(20,40,10)\
                                 #range(40,60,5)\
                                 #+range(60,90,30)\
-                                range(40,60,5)\
+                                #range(50,60,5)\
                                 #+range(100,140,20)\
-                                +range(60,100,10)\
+                                #+range(60,80,5)\
                                # +range(180,225,45)\
                                 #+range(90,150,20)\
                                # +range(100,145,15)\
                                 #+range(145,180,35)\
-                                +range(100,200,50)\
-                               # +range(350,400,50)\
-                               # +range(230,300,35)\
-                                #+range(200,500,100)\
-                                #+range(500,1000,300)\
+                                range(80,120,5)\
+                                +range(120,160,10)\
+                                +range(160,210,50)\
+                                +range(210,310,100)\
+                               # +range(300,400,100)\
                                 #+range(1000,2000,1000)\
                                 #+range(2000,3000,1000)\
                                         ])
-gPtBins= gHighPtBins
+#gPtBins= gHighPtBins
 #gPtBins = gLowPtBins                                       
 trigger_pt_cut ="((goodPhoton_pt>225)*HLT_Photon175||(goodPhoton_pt<=225&&goodPhoton_pt>180)*HLT_Photon165_R9Id90_HE10_IsoM||(goodPhoton_pt<=180&&goodPhoton_pt>145)*HLT_Photon120_R9Id90_HE10_IsoM||(goodPhoton_pt<=145&&goodPhoton_pt>100)*HLT_Photon90_R9Id90_HE10_IsoM||(goodPhoton_pt<=100&&goodPhoton_pt>90)*HLT_Photon75_R9Id90_HE10_IsoM||(goodPhoton_pt<=90&&goodPhoton_pt>60)*HLT_Photon50_R9Id90_HE10_IsoM||(goodPhoton_pt<=60&&goodPhoton_pt>40)*HLT_Photon36_R9Id90_HE10_IsoM)"
 ngood_vtx_cut = "(PV_npvsGood>=1)"
