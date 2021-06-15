@@ -12,8 +12,12 @@ parser = OptionParser()
 parser.add_option("--test", dest="test", default=False, action="store", help="can be true or false")
 parser.add_option("--plot", dest="plot", default="Photon_pt", action="store", help="can be Photon_eta , LPhoton_pt ... ")
 parser.add_option("--region", dest="region", default="single_photon", action="store", help="can be 0b, 1b, 2b, presel ")
+parser.add_option("--s_samp", dest="s_samp", default="G1Jet_Pt", action="store", help="can be G1Jet_Pt , GJets_Pt ")
+parser.add_option("--divIndex", dest="divIndex", default="0", action="store", help="index of divitions for one root file")
+parser.add_option("--ndiv", dest="ndiv", default="10", action="store", help="number of divitions for one root file")
 (options, args) = parser.parse_args()
-
+exec("ndiv="+options.ndiv)
+exec("divIndex="+options.divIndex)
 plot_index = options.plot
 
 #ROOT.setTDRStyle()
@@ -25,10 +29,12 @@ if not plot["bin_set"][0]: plot["bin"] = plot["binning"]
 
 region = options.region
 
+signal_samp = options.s_samp
+
 pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
 
 test = options.test
-plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/G1Jet/'
+plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/G1Jet/CR_Plots/'
 if test: 
 	plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/WithData/'
 if not os.path.exists(plots_path):
@@ -40,27 +46,23 @@ plot_sig_stack = True
 #bkg chain al 
 #bkg listof dicts  olustur
 bkg_list = [
-#{"sample":"ST_tW_antitop", "weight":"(1)","tex":"ST_tW_antitop", "color":ROOT.kMagenta-4},
-#{"sample":"ST_tW_top", "weight":"(1)", "tex":"ST_tW_top", "color":ROOT.kSpring+7},
-#{"sample":"ST_s_channel", "weight":"(1)", "tex":"ST_s_channel", "color":ROOT.kViolet-6},
-#{"sample":"ST_t_channel_antitop", "weight":"(1)", "tex":"ST_t_channel_antitop", "color":ROOT.kPink},
-#{"sample":"ST_t_channel_top", "weight":"(1)","tex":"ST_t_channel_top", "color":ROOT.kGreen-1},
-#{"sample":"TGJets", "weight":"(1)", "tex":"TGJets", "color":ROOT.kRed+3},
-#{"sample":"TTGJets", "weight":"(1)", "tex":"TTGJets", "color":ROOT.kBlue-7},
-#{"sample":"TTJets", "weight":"(1)",  "tex":"TTJets", "color":ROOT.kGray},
 {"sample":"QCD_HT", "weight":"(1)",  "tex":"QCD", "color":ROOT.kBlue-3}
 ]
 
 #signal chain al
-#signal_dict = {"sample":"GJets", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kYellow}
-signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kAzure+6}
-signal_dict["weight"] = "(weight*puweight*PhotonSF)"
+if signal_samp == "G1Jet_Pt":
+	signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kAzure+6}
+	signal_dict["weight"] = "(weight*puweight*PhotonSF)"
+if signal_samp == "GJets_Pt":
+	signal_dict = {"sample":"GJets_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets_Pt",pfile=pfile,test=test), "tex":"GJets-Sherpa", "color":ROOT.kCyan-3}
+	signal_dict["weight"] = "(weight*PhotonSF)"
+#+goodbJet_btagSF[0]*(ngoodbJet==1)+goodbJet_btagSF[0]*goodbJet_btagSF[1]*(ngoodbJet==2)+(ngoodbJet==3)*goodbJet_btagSF[0]*goodbJet_btagSF[1]*goodbJet_btagSF[0]*goodbJet_btagSF[2]))"
 #signal_dict["weight"] = "(weight*puweight)"
 
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
 #data dict al
-data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="SinglePhoton",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
+data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="CR_SinglePhoton",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
 #define photon cuts
 selections={
 "jetphoton": jet_photon_cut,\
@@ -79,7 +81,6 @@ CR = "goodPhoton_hoe>0.03"
 SR = "goodPhoton_hoe<=0.03"
 
 plot_cut = selections[region]
-plot_cut = CR+"&&"+plot_cut
 bkg_Int = 0
 for bkg in bkg_list:
     bkg["chain_all"] = getChain(stype="bkg",sname=bkg["sample"],pfile=pfile,test=test)
@@ -87,7 +88,7 @@ for bkg in bkg_list:
     bkg["chain"] = bkg["chain_all"][0]
     bkg["weight"] = "(weight*puweight*PhotonSF)"
     #bkg["weight"] = "(weight*puweight)"
-    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&ngoodGenPhoton==0", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&ngoodGenPhoton==0&&!(event==2599441)", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
     bkg["histo"] = h
     bkg_Int+=bkg["histo"].Integral()
     del h
@@ -98,7 +99,7 @@ print(signal_dict["chain"].GetEntries())
 data_dict["chain"] = data_dict["chain"]
 if plot_sig_stack : bkg_list.append(signal_dict)
 print('Ploting starts......')
-data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join([CR,plot_cut]), weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join(["(1)",plot_cut]), weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 print("175 is taken")
 
 signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut+"&&(abs(goodGenPhoton_pt-goodPhoton_pt)/goodPhoton_pt<0.1)", weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
@@ -224,9 +225,7 @@ leg.SetFillColor(0)
 leg.SetLineColor(0)
 leg.Draw()
 Draw_CMS_header(lumi_label=target_lumi)
-#Pad1.RedrawAxis()
-
-
+Pad1.RedrawAxis()
 cb.cd()
 Pad2 = ROOT.TPad("Pad2", "Pad2",  0, 0, 1, 0.31)
 Pad2.Draw()
@@ -269,8 +268,8 @@ Func.Draw("same")
 h_ratio.Draw("E1 Same")
 cb.cd()
 cb.Draw()
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'High_pt.png')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'High_pt.pdf')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+'High_pt.root')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt.png')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt.pdf')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt.root')
 cb.Clear()
 del h_Stack
