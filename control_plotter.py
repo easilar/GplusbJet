@@ -77,8 +77,8 @@ selections={
 "0b":"ngoodbJet==0&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
 }
 
-CR = "goodPhoton_hoe>0.03"
-SR = "goodPhoton_hoe<=0.03"
+#CR = "goodPhoton_hoe>0.03"
+#SR = "goodPhoton_hoe<=0.03"
 
 plot_cut = selections[region]
 bkg_Int = 0
@@ -268,8 +268,8 @@ Func.Draw("same")
 h_ratio.Draw("E1 Same")
 cb.cd()
 cb.Draw()
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt.png')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt.pdf')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt.root')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test.png')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test.pdf')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test.root')
 cb.Clear()
 del h_Stack
