@@ -45,7 +45,7 @@ gPtBins  = array('d', [float(x) for x in \
                                 #+range(1000,2000,1000)\
                                 #+range(2000,3000,1000)\
                                         ])
-#gPtBins= gHighPtBins
+gPtBins= gHighPtBins
 #gPtBins = gLowPtBins                                       
 trigger_pt_cut ="((goodPhoton_pt>225)*HLT_Photon175||(goodPhoton_pt<=225&&goodPhoton_pt>180)*HLT_Photon165_R9Id90_HE10_IsoM||(goodPhoton_pt<=180&&goodPhoton_pt>145)*HLT_Photon120_R9Id90_HE10_IsoM||(goodPhoton_pt<=145&&goodPhoton_pt>100)*HLT_Photon90_R9Id90_HE10_IsoM||(goodPhoton_pt<=100&&goodPhoton_pt>90)*HLT_Photon75_R9Id90_HE10_IsoM||(goodPhoton_pt<=90&&goodPhoton_pt>60)*HLT_Photon50_R9Id90_HE10_IsoM||(goodPhoton_pt<=60&&goodPhoton_pt>40)*HLT_Photon36_R9Id90_HE10_IsoM)"
 ngood_vtx_cut = "(PV_npvsGood>=1)"

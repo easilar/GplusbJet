@@ -93,14 +93,14 @@ activ_func_last = options.activ_func_last
 DnnShape = options.DnnShape
 
 #import data
-dfb = pd.read_csv('/home/cms/barakat/looseMerged/Merged/MergedSignalLoose.csv')
+dfb = pd.read_csv('/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/DeepLearning/1b_loose_CSV/MergedSignalLoose.csv')
 dfb['Labels'] = dfb['Labels'].apply({'s':1, 'b':0}.get)
 
 dfb=dfb[dfb['Labels']==1]
 dfb=dfb[dfb['nbJets']==1]
 dfb=dfb[dfb['Photon_hoe']>0.03]
 
-dfQ =pd.read_csv('/home/cms/barakat/looseMerged/Merged/MergedQCDLoose.csv')
+dfQ =pd.read_csv('/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/DeepLearning/1b_loose_CSV/MergedQCDLoose.csv')
 dfQ['Labels'] = dfQ['Labels'].apply({'s':1, 'b':0}.get)
 dfQ['Labels'] = dfQ['Labels'].replace(1,0)
 #dfb=dfb[dfb['nbJets']==1]
