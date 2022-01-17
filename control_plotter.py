@@ -25,10 +25,12 @@ if not plot["bin_set"][0]: plot["bin"] = plot["binning"]
 
 region = options.region
 
-pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
+#pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
+pfile = "/afs/cern.ch/user/m/myalvac/GPlusbJets/samples_ana.pkl"
 
 test = options.test
-plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/G1Jet/'
+#plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/G1Jet/'
+plots_path = '/eos/user/m/myalvac/figures&plots'
 if test: 
 	plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/WithData/'
 if not os.path.exists(plots_path):
@@ -48,19 +50,19 @@ bkg_list = [
 #{"sample":"TGJets", "weight":"(1)", "tex":"TGJets", "color":ROOT.kRed+3},
 #{"sample":"TTGJets", "weight":"(1)", "tex":"TTGJets", "color":ROOT.kBlue-7},
 #{"sample":"TTJets", "weight":"(1)",  "tex":"TTJets", "color":ROOT.kGray},
-{"sample":"QCD_HT", "weight":"(1)",  "tex":"QCD", "color":ROOT.kBlue-3}
+{"sample":"QCD_HT_UL2016", "weight":"(1)",  "tex":"QCD", "color":ROOT.kBlue-3}
 ]
 
 #signal chain al
 #signal_dict = {"sample":"GJets", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kYellow}
-signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kAzure+6}
+signal_dict = {"sample":"G1Jet_LHEGpt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_LHEGpt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kAzure+6}
 signal_dict["weight"] = "(weight*puweight*PhotonSF)"
 #signal_dict["weight"] = "(weight*puweight)"
 
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
 #data dict al
-data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="SinglePhoton",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
+data_dict = {"sample":"SinglePhoton_UL", "weight":"(1)", "chain":getChain(stype="data",sname="SinglePhoton_UL",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
 #define photon cuts
 selections={
 "jetphoton": jet_photon_cut,\

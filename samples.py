@@ -5,8 +5,13 @@ import pickle
 save_orig = False
 
 path_MC = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/"
+path_MC_UL = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/UL_MC/"
 #path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/"
 path_data = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/High_PT/"
+path_data_UL = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/data/SinglePhoton/UL/"
+path_data_merged = "/eos/user/m/myalvac/GPlusBJets/"
+path_data_36_NoDoubleCount = "/eos/user/m/myalvac/GPlusBJets/HLT_36_L1_Prescaled/data/2016/SinglePhoton_36/Low_PT/"
+path_data_36_NoDC_L1 = "/eos/user/m/myalvac/GPlusBJets/HLT_36_L1_Prescaled/L1_Prescaled/data/2016/SinglePhoton_36_NoDoubleCount/Low_PT/"
 path_data_CR = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS//data/2016/SinglePhoton/High_PT_LooseNotTight/"
 path_data_prescaled_NoPtCut = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SinglePhoton_Trigger_Scaled_NoPtCut/"
 path_data_SM = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data/2016/SingleMuon/Low_PT/"
@@ -26,6 +31,19 @@ G1Jet_Pt_100To250_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-100To250_T
 G1Jet_Pt_250To400_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-250To400_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/merged/"
 G1Jet_Pt_400To650_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-400To650_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/merged/"
 G1Jet_Pt_650ToInf_2016_NOExt = path_MC+"G1Jet_Pt/GenMatching/G1Jet_Pt-650ToInf_TuneCUETP8M1_13TeV-amcatnlo-pythia8_NOExt/merged/"
+G1Jet_LHEGPt_150To250_2016 = path_MC_UL+"G1Jet/G1Jet_LHEGpT-150To250_TuneCP5_13TeV-amcatnlo-pythia8/"
+G1Jet_LHEGPt_250To400_2016 = path_MC_UL+"G1Jet/G1Jet_LHEGpT-250To400_TuneCP5_13TeV-amcatnlo-pythia8/"
+G1Jet_LHEGPt_400To675_2016 = path_MC_UL+"G1Jet/G1Jet_LHEGpT-400To675_TuneCP5_13TeV-amcatnlo-pythia8/"
+G1Jet_LHEGPt_675ToInf_2016 = path_MC_UL+"G1Jet/G1Jet_LHEGpT-675ToInf_TuneCP5_13TeV-amcatnlo-pythia8/"
+QCD_HT_50to100_UL_2016 = path_MC_UL+"QCD_HT/QCD_HT50to100_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_100to200_UL_2016 = path_MC_UL+"QCD_HT/QCD_HT100to200_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_200to300_UL_2016 = path_MC_UL+"QCD_HT/QCD_HT200to300_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_300to500_UL_2016 = path_MC_UL+"QCD_HT/QCD_HT300to500_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_500to700_UL_2016 = path_MC_UL+"QCD_HT/QCD_HT500to700_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_700to1000_UL_2016 = path_MC_UL+"QCD_HT/QCD_HT700to1000_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_1000to1500_UL_2016 = path_MC_UL+"QCD_HT/QCD_HT1000to1500_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_1500to2000_UL_2016 = path_MC_UL+"QCD_HT/QCD_HT1500to2000_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_2000toInf_UL_2016 = path_MC_UL+"QCD_HT/QCD_HT2000toInf_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
 QCD_HT_50to100_2016 = path_MC+"QCD_HT/GenMatching/QCD_HT50to100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
 QCD_HT_100to200_2016 = path_MC+"QCD_HT/GenMatching/QCD_HT100to200_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
 QCD_HT_200to300_2016 = path_MC+"QCD_HT/GenMatching/QCD_HT200to300_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/merged/"
@@ -119,6 +137,13 @@ Samples = {2016: \
 					"GJets_Pt_1000To2000":{"dir":GJets_Pt_1000To2000_2016,"nevents":399578,"xsec":0.02092,"xsec_unc":0.0001703,"equivalent_lumi":45040.0,"fraction_negative_weight":0.01466, "das_path":"/GJets_Pt-1000To2000_13TeV-sherpa/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"},\
 					"GJets_Pt_2000To5000":{"dir":GJets_Pt_2000To5000_2016,"nevents":299739,"xsec":0.00007451,"xsec_unc":0.0000007843,"equivalent_lumi":7537000.0,"fraction_negative_weight":0.1247, "das_path":"/GJets_Pt-2000To5000_13TeV-sherpa/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"},\
 					},\
+			"G1Jet_LHEGpt":\
+					{
+					"G1Jet_LHEGpt_150To250_2016":{"dir":G1Jet_LHEGPt_150To250_2016,"nevents":5862211,"xsec":2.262e+3,"xsec_unc":6.433e-1,"equivalent_lumi":1.882,"fraction_negative_weight":0.1738, "das_path":"/G1Jet_LHEGpT-150To250_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+					"G1Jet_LHEGpt_250To400_2016":{"dir":G1Jet_LHEGPt_250To400_2016,"nevents":3004010,"xsec":2.699e+1,"xsec_unc":0.08345,"equivalent_lumi":17.17,"fraction_negative_weight":0.1697, "das_path":"/G1Jet_LHEGpT-250To400_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+					"G1Jet_LHEGpt_400To675_2016":{"dir":G1Jet_LHEGPt_400To675_2016,"nevents":1000053,"xsec":3.395,"xsec_unc":0.007753,"equivalent_lumi":133.2,"fraction_negative_weight":0.1638, "das_path":"/G1Jet_LHEGpT-400To675_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+					"G1Jet_LHEGpt_675ToInf_2016":{"dir":G1Jet_LHEGPt_675ToInf_2016,"nevents":249174,"xsec":2.478e-1,"xsec_unc":0.0005027,"equivalent_lumi":1883.0,"fraction_negative_weight":0.1584, "das_path":"/G1Jet_LHEGpT-675ToInf_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+					},\
 			"G1Jet_Pt":\
 					{
 					"G1Jet_Pt_50To100_NOExt":{"dir":G1Jet_Pt_50To100_2016_NOExt,"nevents":4962870,"xsec":1.353e+4,"xsec_unc":55.01,"equivalent_lumi":0.02261,"fraction_negative_weight":0.2234, "das_path":"/G1Jet_Pt-50To100_TuneCUETP8M1_13TeV-amcatnlo-pythia8/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"},\
@@ -149,6 +174,19 @@ Samples = {2016: \
     "QCD":{"dir":QCD_2016,"nevents":9879256,"xsec":1370000000.0,"xsec_unc":2159000.0,"equivalent_lumi":7.301e-07,"fraction_negative_weight":0.0, "das_path":"/QCD_Pt-15to7000_TuneCUETP8M1_FlatP6_13TeV_pythia8/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"},\
     "QCD_h1":{"dir":QCD_h1_2016,"nevents":9497268,"xsec":964800.0,"xsec_unc":92360.0,"equivalent_lumi":7.301e-07,"fraction_negative_weight":0.0, "das_path":"/QCD_Pt-15to7000_TuneCUETHS1_FlatP6_13TeV_herwigpp/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"},\
     "QCD_h2":{"dir":QCD_h2_2016,"nevents":9865688,"xsec":309800000.0,"xsec_unc":7932000.0,"equivalent_lumi":7.301e-07,"fraction_negative_weight":0.0, "das_path":"/QCD_Pt-15to7000_TuneCUETHS1_Flat_13TeV_herwigpp/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"},\
+   
+     "QCD_HT_UL2016":\
+      {
+      "QCD_HT_UL2016_50To100":{"dir":QCD_HT_50to100_UL_2016,"nevents":11197186,"xsec":1.860e+8,"xsec_unc":4.897e+4,"equivalent_lumi":5.377e-06,"fraction_negative_weight":0.0, "das_path":"/QCD_HT50to100_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      "QCD_HT_UL2016_100To200":{"dir":QCD_HT_100to200_UL_2016,"nevents":23717410,"xsec":2.365e+7,"xsec_unc":4.467e+3,"equivalent_lumi":4.229e-05,"fraction_negative_weight":0.0, "das_path":"/QCD_HT100to200_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      "QCD_HT_UL2016_200To300":{"dir":QCD_HT_200to300_UL_2016,"nevents":17569141,"xsec":1.553e+6,"xsec_unc":3.499e+2,"equivalent_lumi":6.440e-04  ,"fraction_negative_weight":0.0, "das_path":"/QCD_HT200to300_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      "QCD_HT_UL2016_300To500":{"dir":QCD_HT_300to500_UL_2016,"nevents":16747056,"xsec":3.245e+5,"xsec_unc":75.53,"equivalent_lumi":3.082e-3,"fraction_negative_weight":0.0, "das_path":"/QCD_HT300to500_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      "QCD_HT_UL2016_500To700":{"dir":QCD_HT_500to700_UL_2016,"nevents":14212819,"xsec":3.028e+4,"xsec_unc":7.439,"equivalent_lumi":0.03303 ,"fraction_negative_weight":0.0, "das_path":"/QCD_HT500to700_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      "QCD_HT_UL2016_700To1000":{"dir":QCD_HT_700to1000_UL_2016,"nevents":13750537,"xsec":6.437e+3,"xsec_unc":1.658,"equivalent_lumi":0.1554,"fraction_negative_weight":0.0, "das_path":"/QCD_HT700to1000_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      "QCD_HT_UL2016_1000To1500":{"dir":QCD_HT_1000to1500_UL_2016,"nevents":4365993,"xsec":1.122e+3,"xsec_unc":0.5173,"equivalent_lumi":0.8911  ,"fraction_negative_weight":0.0, "das_path":"/QCD_HT1000to1500_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      "QCD_HT_UL2016_1500To2000":{"dir":QCD_HT_1500to2000_UL_2016,"nevents":3003707,"xsec":1.083e+2,"xsec_unc":0.05823,"equivalent_lumi":9.230,"fraction_negative_weight":0.0, "das_path":"/QCD_HT1500to2000_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      "QCD_HT_UL2016_2000ToInf":{"dir":QCD_HT_2000toInf_UL_2016,"nevents":1847781,"xsec":2.204e+1,"xsec_unc":0.01560,"equivalent_lumi":45.38,"fraction_negative_weight":0.0, "das_path":"/QCD_HT2000toInf_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      },
     "QCD_HT":\
       { 
       "QCD_HT_50To100":{"dir":QCD_HT_50to100_2016,"nevents":4180469,"xsec":2.464e+8,"xsec_unc":218700.0,"equivalent_lumi":4.061e-06,"fraction_negative_weight":0.0, "das_path":"/QCD_HT50to100_TuneCUETP8M1_13TeV-madgraphMLM-pythia8/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"},\
@@ -184,6 +222,17 @@ Samples = {2016: \
   },\
   # closes bkg
   "data":{\
+    "SinglePhoton_UL":{\
+      "B_ver1":{"dir":path_data_UL+"B_ver1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016B-ver1_HIPM_UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD"},\
+      "B_ver2":{"dir":path_data_UL+"B_ver2/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016B-ver2_HIPM_UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD"},\
+      "C":{"dir":path_data_UL+"Run2016C/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016C-HIPM_UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD"},\
+      "D":{"dir":path_data_UL+"Run2016D/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016D-HIPM_UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD"},\
+      "E":{"dir":path_data_UL+"Run2016E/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016E-HIPM_UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD"},\
+      "F":{"dir":path_data_UL+"Run2016F/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016F-HIPM_UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD"},\
+      "F_noHIPM":{"dir":path_data_UL+"run2016F_noHIPM/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016F-UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD"},\
+      "G":{"dir":path_data_UL+"Run2016G/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016G-UL2016_MiniAODv2_NanoAODv9-v2/NANOAOD"},\
+      "H":{"dir":path_data_UL+"Run2016H/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016H-UL2016_MiniAODv2_NanoAODv9-v2/NANOAOD"},\
+      }, #single photon UL2016
     "SinglePhoton":{\
       "B":{"dir":path_data+"Run2016B_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016B-02Apr2020_ver2-v1/NANOAOD"},\
       "C":{"dir":path_data+"Run2016C_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016C-02Apr2020-v1/NANOAOD"},\
@@ -193,6 +242,33 @@ Samples = {2016: \
       "G":{"dir":path_data+"Run2016G_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016G-02Apr2020-v1/NANOAOD"},\
       "H":{"dir":path_data+"Run2016H_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016H-02Apr2020-v1/NANOAOD"},\
       }, #single photon
+    "SinglePhoton_merged":{\
+      "B":{"dir":path_data_merged+"Run2016B_02Apr2020-v1/merged_HLT_120/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016B-02Apr2020_ver2-v1/NANOAOD"},\
+      "C":{"dir":path_data_merged+"Run2016C_02Apr2020-v1/merged_HLT_120/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016C-02Apr2020-v1/NANOAOD"},\
+      "D":{"dir":path_data_merged+"Run2016D_02Apr2020-v1/merged_HLT_120/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016D-02Apr2020-v1/NANOAOD"},\
+      "E":{"dir":path_data_merged+"Run2016E_02Apr2020-v1/merged_HLT_120/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016E-02Apr2020-v1/NANOAOD"},\
+      "F":{"dir":path_data_merged+"Run2016F_02Apr2020-v1/merged_HLT_120/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016F-02Apr2020-v1/NANOAOD"},\
+      "G":{"dir":path_data_merged+"Run2016G_02Apr2020-v1/merged_HLT_120/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016G-02Apr2020-v1/NANOAOD"},\
+      "H":{"dir":path_data_merged+"Run2016H_02Apr2020-v1/merged_HLT_120/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016H-02Apr2020-v1/NANOAOD"},\
+      }, #single photon_36
+    "SinglePhoton_36_NoDoubleCount":{\
+      "B":{"dir":path_data_36_NoDoubleCount+"Run2016B_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016B-02Apr2020_ver2-v1/NANOAOD"},\
+      "C":{"dir":path_data_36_NoDoubleCount+"Run2016C_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016C-02Apr2020-v1/NANOAOD"},\
+      "D":{"dir":path_data_36_NoDoubleCount+"Run2016D_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016D-02Apr2020-v1/NANOAOD"},\
+      "E":{"dir":path_data_36_NoDoubleCount+"Run2016E_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016E-02Apr2020-v1/NANOAOD"},\
+      "F":{"dir":path_data_36_NoDoubleCount+"Run2016F_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016F-02Apr2020-v1/NANOAOD"},\
+      "G":{"dir":path_data_36_NoDoubleCount+"Run2016G_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016G-02Apr2020-v1/NANOAOD"},\
+      "H":{"dir":path_data_36_NoDoubleCount+"Run2016H_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016H-02Apr2020-v1/NANOAOD"},\
+      }, #single photon_36 NoDoubleCount
+    "SinglePhoton_36_NoDC_L1":{\
+      "B":{"dir":path_data_36_NoDC_L1+"Run2016B_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016B-02Apr2020_ver2-v1/NANOAOD"},\
+      "C":{"dir":path_data_36_NoDC_L1+"Run2016C_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016C-02Apr2020-v1/NANOAOD"},\
+      "D":{"dir":path_data_36_NoDC_L1+"Run2016D_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016D-02Apr2020-v1/NANOAOD"},\
+      "E":{"dir":path_data_36_NoDC_L1+"Run2016E_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016E-02Apr2020-v1/NANOAOD"},\
+      "F":{"dir":path_data_36_NoDC_L1+"Run2016F_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016F-02Apr2020-v1/NANOAOD"},\
+      "G":{"dir":path_data_36_NoDC_L1+"Run2016G_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016G-02Apr2020-v1/NANOAOD"},\
+      "H":{"dir":path_data_36_NoDC_L1+"Run2016H_02Apr2020-v1/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016H-02Apr2020-v1/NANOAOD"},\
+      }, #single photon_36 NoDoubleCount
     "CR_SinglePhoton":{\
       "B":{"dir":path_data_CR+"Run2016B_02Apr2020-v1/merged/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016B-02Apr2020_ver2-v1/NANOAOD"},\
       "C":{"dir":path_data_CR+"Run2016C_02Apr2020-v1/merged/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/SinglePhoton/Run2016C-02Apr2020-v1/NANOAOD"},\

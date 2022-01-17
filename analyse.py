@@ -30,8 +30,9 @@ sname = options.sname
 
 afs_dir = os.environ["afs_dir"]
 #afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets/"
-targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
-pfile = afs_dir+"/samples_orig.pkl"
+#targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
+targetdir_mainpath = "/eos/user/m/myalvac/UL_data/"
+pfile = afs_dir+"/samples_ana.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
 sdict = sample_dic[year][stype][sname][data_letter]
 
@@ -39,7 +40,8 @@ sdict = sample_dic[year][stype][sname][data_letter]
 #orig_dir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
 if options.stype == "data":
    if year == 2016:
-      cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
+      #cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
+      cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt"
       print("working on 2016")
    elif year == 2017:
       cert_json = afs_dir+"/json/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt"
@@ -49,7 +51,8 @@ if options.stype == "data":
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
    targetdir_suffix = "High_PT_Tight"
-   targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-1]+"/"
+   #targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-1]+"/"
+   targetdir = targetdir_mainpath+"/"+sdict["dir"].split("/")[-1]+"/"
    data = json.load(open(cert_json))
    xsec_v = 1.0
    weight_v = 1.0
@@ -65,8 +68,14 @@ else:
    targetdir = targetdir_mainpath+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
 
 #For PU
-puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection.root")
-pu68p6 = puweight_file.Get("h_ratio")
+if not letter == G || letter == H:
+	puweight_file = ROOT.TFile(afs_dir+"/PUfiles/pileup_2016BF.root")
+	pu68p6 = puweight_file.Get("pileup")
+else : 
+	puweight_file = ROOT.TFile(afs_dir+"/PUfiles/pileup_2016GH.root")
+	pu68p6 = puweight_file.Get("pileup")
+#puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection.root")
+#pu68p6 = puweight_file.Get("h_ratio")
 
 #For Photon Scale Factor
 photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/Fall17V2_2016_Tight_photons.root")
@@ -214,13 +223,13 @@ for jentry in range(ini_event,fin_event):
 	goodJet_eta[i] = ch.GetLeaf('Jet_eta').GetValue(jet["index"])
 	goodJet_phi[i] = ch.GetLeaf('Jet_phi').GetValue(jet["index"])
 	goodJet_btagDeepFlavB[i] = ch.GetLeaf('Jet_btagDeepFlavB').GetValue(jet["index"])
-	goodJet_btagDeepFlavC[i] = ch.GetLeaf('Jet_btagDeepFlavC').GetValue(jet["index"])
+	goodJet_btagDeepFlavC[i] = ch.GetLeaf('Jet_btagDeepFlavCvB').GetValue(jet["index"])
    for i,bjet in enumerate(bjets):
 	goodbJet_pt[i] = ch.GetLeaf('Jet_pt').GetValue(bjet["index"])
 	goodbJet_eta[i] = ch.GetLeaf('Jet_eta').GetValue(bjet["index"])
 	goodbJet_phi[i] = ch.GetLeaf('Jet_phi').GetValue(bjet["index"])
 	goodbJet_btagDeepFlavB[i] = ch.GetLeaf('Jet_btagDeepFlavB').GetValue(bjet["index"])
-	goodbJet_btagDeepFlavC[i] = ch.GetLeaf('Jet_btagDeepFlavC').GetValue(bjet["index"])
+	goodbJet_btagDeepFlavC[i] = ch.GetLeaf('Jet_btagDeepFlavCvB').GetValue(bjet["index"])
 		
    sel_photons = []
    for i,photon in enumerate(photons):

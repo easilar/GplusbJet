@@ -1,3 +1,4 @@
+#This script compres prescaled L1 triggers in order to find an overlapped runs or events. It creates a pkl file for resolved overlapping L1 triggers. 
 import json
 import pickle
 
@@ -25,17 +26,25 @@ HLT_Photon36  = ["HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale1_2016_2p20.json",
 		 "HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale8_2016_0p00.json",
 		 "HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale80_2016_0p22.json",
 		 "HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale90_2016_1p13.json"]
+L1_SingleEG34 = ["HLT_Photon50_R9Id90_HE10_IsoM_L1_SingleEG34_prescale0_2016_4p00.json",
+                 "HLT_Photon50_R9Id90_HE10_IsoM_L1_SingleEG34_prescale1_2016_33p04.json"]
 
-trigger_name = (HLT_Photon36,"HLT_Photon36")
-prescale = trigger_name[0] 
+L1_SingleEG40 = ["HLT_Photon50_R9Id90_HE10_IsoM_L1_SingleEG40_prescale1_2016_36p52.json",
+                 "HLT_Photon50_R9Id90_HE10_IsoM_L1_SingleEG40_prescale0_2016_0p00.json"]
+#trigger_name = (HLT_Photon36,"HLT_Photon36")
+trigger_name = (L1_SingleEG40,"L1_SingleEG40")
+#print("tname: ",trigger_name)
+prescale = trigger_name[0]
+#print("pscale: ",prescale) 
 trig1 = prescale[0]
+#print(trig1)
 trig_list = prescale
 trig_list.remove(trig1)
 afs_dir = "/afs/cern.ch/user/m/myalvac/GPlusbJets/"
 cert_json1 = afs_dir+"json/prescale_jsons/L1/"+trig1
 data1 = json.load(open(cert_json1))
 run_number1 = data1.keys()
-#Run_dict = {}
+Run_dict = {}
 for run in run_number1:
 	lumi_blocks1 = data1[run]
 	set1_list = set([])
@@ -54,5 +63,5 @@ for run in run_number1:
 			set_ = set(lumi_list)
 			set_list.update(set_)
 	print(run,list(set1_list-set_list))
-	#Run_dict[run]=list(set1_list-set_list)
+#	Run_dict[run]=list(set1_list-set_list)
 #pickle.dump(Run_dict, open(afs_dir+"json/prescale_jsons/L1/"+trigger_name[1]+"_prescale1.pkl", "wb"))

@@ -1,19 +1,19 @@
 import pickle
 import os
 
-pfile=os.environ["afs_dir"]+"/samples_orig.pkl"
+pfile=os.environ["afs_dir"]+"/samples_ana.pkl"
 
 sample_dic = pickle.load(open(pfile,'rb'))
 year = 2016
 #year = 2017
 #year = 2018
-sname = "GJets_Pt" #Change only this !!!
+#sname = "GJets_Pt" #Change only this !!!
 #sname = "QCD_HT"
-#sname = "SinglePhoton"
+sname = "SinglePhoton_UL"
 #sname = "SingleMuon_18"
 #stype = "bkg"
-stype = "signal"
-#stype = "data"
+#stype = "signal"
+stype = "data"
 sdict = sample_dic[year][stype][sname]
 ndiv=5
 #targetdir_suffix = "High_PT_LooseNotTight"
@@ -25,12 +25,12 @@ for ci,bin_name in enumerate(sdict.keys()):
 	flist = os.listdir(cur_dir)
 	if stype=="data":
 		#print(os.environ["cern_box"]+"/data/"+sname+"/"+sdict[bin_name]["dir"].split("/")[-1]+"/")
-		if not os.path.exists(os.environ["cern_box"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-1]+"/"):
-			os.makedirs(os.environ["cern_box"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-1]+"/")
+		if not os.path.exists(os.environ["cern_box_mtn"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-1]+"/"):
+			os.makedirs(os.environ["cern_box_mtn"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-1]+"/")
 	else:
 		#print(os.environ["cern_box"]+"/MC/"+sname+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
-		if not os.path.exists(os.environ["cern_box"]+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/"):
-			os.makedirs(os.environ["cern_box"]+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
+		if not os.path.exists(os.environ["cern_box_mtn"]+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/"):
+			os.makedirs(os.environ["cern_box_mtn"]+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
 
 	for f in flist:
 		for indiv in range(ndiv+1):
