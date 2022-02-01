@@ -80,6 +80,33 @@ target_filename_dict_2016 ={
 "HLT_Photon165_2016.sh":(
 			"HLT_Photon165_R9Id90_HE10_IsoM_prescale1_2016_36p52.json",)
 }
+target_filename_L1_dict_2016 ={
+"HLT_Photon36_L1_2016.sh":(
+			"HLT_Photon36_prescale1.pkl",\
+#			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale0_2016_0p00.json",\
+#			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale10_2016_0p00.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale100_2016_1p98.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale120_2016_5p47.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale15_2016_0p01.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale150_2016_4p41.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale170_2016_2p70.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale180_2016_5p68.json",\
+#			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale20_2016_0p00.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale210_2016_5p32.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale250_2016_0p61.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale300_2016_3p73.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale350_2016_2p52.json",\
+#			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale4_2016_0p00.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale40_2016_0p01.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale400_2016_1p32.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale450_2016_0p62.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale50_2016_0p55.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale500_2016_0p20.json",\
+#			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale550_2016_0p00.json",\
+#			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale8_2016_0p00.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale80_2016_0p22.json",\
+			"HLT_Photon36_R9Id90_HE10_IsoM_L1_prescale90_2016_1p13.json"),\
+}
 
 target_filename_dict_2017 ={
 "HLT_Photon50_2017.sh":("HLT_Photon50_R9Id90_HE10_IsoM_prescale0_2017_0p00.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale1_2017_0p07.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale122_2017_5p47.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale129_2017_0p95.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale163_2017_6p50.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale172_2017_1p19.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale196_2017_1p63.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale198_2017_0p52.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale207_2017_0p46.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale224_2017_0p46.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale228_2017_0p91.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale240_2017_2p65.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale241_2017_0p61.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale251_2017_0p03.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale259_2017_2p83.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale261_2017_0p75.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale270_2017_0p13.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale294_2017_2p19.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale300_2017_0p01.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale326_2017_2p70.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale41_2017_0p25.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale43_2017_0p16.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale82_2017_2p41.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale86_2017_0p54.json","HLT_Photon50_R9Id90_HE10_IsoM_prescale90_2017_8p12.json"),\
