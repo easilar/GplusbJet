@@ -135,7 +135,8 @@ def Draw_CMS_header(lumi_label=12.88,CMS_Tag="Preliminary"):
    tex.SetTextFont(42)
    tex.SetTextSize(0.05)
    tex.SetLineWidth(2)
-   tex.DrawLatex(0.96,0.96,str(lumi_label)+" fb^{-1} (13 TeV)")
+   if lumi_label=="" : tex.DrawLatex(0.96,0.96,str(lumi_label)+"    (13 TeV)")
+   else : tex.DrawLatex(0.96,0.96,str(lumi_label)+" fb^{-1} (13 TeV)")
    tex = ROOT.TLatex()
    tex.SetNDC()
    tex.SetTextFont(61)
@@ -324,4 +325,32 @@ def matching(RecoPhoton=None, GenPhoton=None, pt_ratio=0.0, dr_cone=0.0):
 
         return (matched , Match) 
 
-
+def getbTagSF(bdict,flavor,pt,eta,disc):
+	btagging_dict = bdict
+	f = flavor
+	pt = pt
+	eta = abs(eta)
+	disc = disc
+	pt_lis_LB = btagging_dict[f]["pt_lis_LB"]
+	pt_lis_UB = btagging_dict[f]["pt_lis_UB"]
+	pt_UB = pt_lis_UB[pt_lis_UB>=pt][0]
+	pt_LB = pt_lis_LB[pt_lis_LB<pt][-1]
+	#print("pt bins :",btagging_dict[f].keys())
+	#print("pt:",pt,pt_LB,pt_UB)
+	eta_lis_LB = btagging_dict[f][(pt_LB,pt_UB)]["eta_lis_LB"]
+	eta_lis_UB = btagging_dict[f][(pt_LB,pt_UB)]["eta_lis_UB"]
+	if len(eta_lis_LB)==1:
+		eta_UB = eta_lis_UB[0]
+		eta_LB = eta_lis_LB[0]
+	else:
+		eta_UB = eta_lis_UB[eta_lis_UB>=eta][0]
+		eta_LB = eta_lis_LB[eta_lis_LB<eta][-1]
+	#print("eta:",eta,eta_LB,eta_UB)
+	disc_lis_LB = btagging_dict[f][(pt_LB,pt_UB)][(eta_LB,eta_UB)]["disc_lis_LB"]
+	disc_lis_UB = btagging_dict[f][(pt_LB,pt_UB)][(eta_LB,eta_UB)]["disc_lis_UB"]
+	disc_UB = disc_lis_UB[disc_lis_UB>=disc][0]
+	disc_LB = disc_lis_LB[disc_lis_LB<disc][-1]
+	#print("disc",disc,disc_LB,disc_UB)
+	exec("temp_btagSF="+btagging_dict[f][(pt_LB,pt_UB)][(eta_LB,eta_UB)][(disc_LB,disc_UB)]['formula'].replace("x",str(disc)))
+	#print("SF",temp_btagSF)
+	return temp_btagSF

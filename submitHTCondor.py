@@ -74,8 +74,8 @@ Log    = {log_dir}/$(Cluster).$(Process).log
 Output = {out_dir}/$(Cluster).$(Process).out
 Error  = {err_dir}/$(Cluster).$(Process).err
 request_cpus = 4
-request_memory = 1000MB
-request_disk = 1000MB
+request_memory = 200MB
+request_disk = 20MB
 +JobFlavour = {qtime}
 
 
