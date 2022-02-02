@@ -1,3 +1,4 @@
+#This script is a version of anlayse.py which adds weights of prescaled L1 triggers, uses .pkl files for overlapping issues due to the L1 prescales. 
 import ROOT
 import json
 import os
@@ -116,13 +117,14 @@ for jentry in range(ini_event,fin_event):
 			for lumiBlock in data[str(int(run))]:
 				if (lumi >= lumiBlock[0] and lumi <= lumiBlock[1] ) :
 					weight_v = float(trigname.split("_")[-3].split("prescale")[1])
-					print("weight_v : ", weight_v)
+					print(run, event, lumi, lumiBlock," weight_v : ", weight_v)
 		else: 
 			for lumiBlock in data[str(int(run))]:
 				if lumi == lumiBlock :
-					weight_v = 1
-					print("PRESCLAE1 from pkl", weight_v)
+					weight_v = 1.0
+					print(run, event, lumi, lumiBlock, "PRESCLAE1 from pkl", weight_v)
    weight_trig_L1_Photon36[0] = weight_v
+   print("before tree fill ", weight_trig_L1_Photon36[0])
    tree.Fill()			
     
 

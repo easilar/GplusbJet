@@ -42,10 +42,10 @@ if not os.path.exists(plots_path):
 
 plot_sig_stack = True
 
-
 #bkg chain al 
 #bkg listof dicts  olustur
 bkg_list = [
+
 {"sample":"QCD_HT", "weight":"(1)",  "tex":"QCD", "color":ROOT.kBlue-3}
 ]
 
@@ -62,7 +62,9 @@ if signal_samp == "GJets_Pt":
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
 #data dict al
+
 data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="CR_SinglePhoton",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
+
 #define photon cuts
 selections={
 "jetphoton": jet_photon_cut,\

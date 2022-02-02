@@ -1,3 +1,4 @@
+#this script prepares running commands for L1 prescaled triggers with proper options.
 import pickle
 import os
 from prepare_dict import *
@@ -17,8 +18,11 @@ targetdir_suffix = "Low_PT"
 ndiv=1
 for target_filename in  target_filename_dict.keys():
 	print(target_filename)
-	writing_file = open(target_filename, "a")
+
+#	writing_file = open(target_filename, "a")
 	for trigger in target_filename_dict[target_filename]:
+		print(trigger)
+'''
 		for ci,bin_name in enumerate(sdict.keys()):
 			cur_dir = sdict[bin_name]["dir"]
 			flist = os.listdir(cur_dir)
@@ -29,3 +33,4 @@ for target_filename in  target_filename_dict.keys():
 					new_line="python "+os.environ["afs_dir"]+"analyse_L1_trigger.py --year="+str(year)+" --sname="+sname+" --stype="+stype+" --letter="+bin_name+"  --ndiv="+str(ndiv)+" --divIndex="+str(indiv)+" --trigname="+trigger+" --filename="+f+"\n"
 					writing_file.write(new_line)
         writing_file.close()
+'''
