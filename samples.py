@@ -2,7 +2,7 @@
 
 import pickle
 
-save_orig = False
+save_orig = True
 
 path_MC = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/MC/"
 path_MC_UL = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2016/UL_MC/"
@@ -219,12 +219,7 @@ Samples = {2016: \
 
     },\
   "bkg":{\
-    "QCD":{"dir":QCD_2016,"nevents":9879256,"xsec":1370000000.0,"xsec_unc":2159000.0,"equivalent_lumi":7.301e-07,"fraction_negative_weight":0.0, "das_path":"/QCD_Pt-15to7000_TuneCUETP8M1_FlatP6_13TeV_pythia8/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"},\
-    "QCD_h1":{"dir":QCD_h1_2016,"nevents":9497268,"xsec":964800.0,"xsec_unc":92360.0,"equivalent_lumi":7.301e-07,"fraction_negative_weight":0.0, "das_path":"/QCD_Pt-15to7000_TuneCUETHS1_FlatP6_13TeV_herwigpp/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"},\
-    "QCD_h2":{"dir":QCD_h2_2016,"nevents":9865688,"xsec":309800000.0,"xsec_unc":7932000.0,"equivalent_lumi":7.301e-07,"fraction_negative_weight":0.0, "das_path":"/QCD_Pt-15to7000_TuneCUETHS1_Flat_13TeV_herwigpp/RunIISummer16NanoAODv7-PUMoriond17_Nano02Apr2020_102X_mcRun2_asymptotic_v8-v1/NANOAODSIM"},\
-   
-     "QCD_HT_UL2016":\
-      {
+     "QCD_HT_UL2016":{ \
       "QCD_HT_UL2016_50To100":{"dir":QCD_HT_50to100_UL_2016,"nevents":11197186,"xsec":1.860e+8,"xsec_unc":4.897e+4,"equivalent_lumi":5.377e-06,"fraction_negative_weight":0.0, "das_path":"/QCD_HT50to100_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
       "QCD_HT_UL2016_100To200":{"dir":QCD_HT_100to200_UL_2016,"nevents":23717410,"xsec":2.365e+7,"xsec_unc":4.467e+3,"equivalent_lumi":4.229e-05,"fraction_negative_weight":0.0, "das_path":"/QCD_HT100to200_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
       "QCD_HT_UL2016_200To300":{"dir":QCD_HT_200to300_UL_2016,"nevents":17569141,"xsec":1.553e+6,"xsec_unc":3.499e+2,"equivalent_lumi":6.440e-04  ,"fraction_negative_weight":0.0, "das_path":"/QCD_HT200to300_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
