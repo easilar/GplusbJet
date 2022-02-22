@@ -15,7 +15,7 @@ sname = "SinglePhoton_UL"
 #stype = "signal"
 stype = "data"
 sdict = sample_dic[year][stype][sname]
-ndiv=5
+ndiv=20
 #targetdir_suffix = "High_PT_LooseNotTight"
 targetdir_suffix = "High_PT_Tight"
 for ci,bin_name in enumerate(sdict.keys()):
@@ -24,13 +24,14 @@ for ci,bin_name in enumerate(sdict.keys()):
 	#print(cur_dir)
 	flist = os.listdir(cur_dir)
 	if stype=="data":
-		#print(os.environ["cern_box"]+"/data/"+sname+"/"+sdict[bin_name]["dir"].split("/")[-1]+"/")
-		if not os.path.exists(os.environ["cern_box_mtn"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-1]+"/"):
-			os.makedirs(os.environ["cern_box_mtn"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-1]+"/")
+
+		#print(os.environ["cern_box"]+"/data/"+sname+"/"+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
+		if not os.path.exists(os.environ["cern_box"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/"):
+			os.makedirs(os.environ["cern_box"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
 	else:
 		#print(os.environ["cern_box"]+"/MC/"+sname+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
-		if not os.path.exists(os.environ["cern_box_mtn"]+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/"):
-			os.makedirs(os.environ["cern_box_mtn"]+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
+		if not os.path.exists(os.environ["cern_box"]+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/"):
+			os.makedirs(os.environ["cern_box"]+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
 
 	for f in flist:
 		for indiv in range(ndiv+1):

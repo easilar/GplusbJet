@@ -3,7 +3,7 @@ import json
 import os
 import pickle
 import operator
-from helper import deltaR , matching
+from helper import deltaR , matching , getbTagSF
 from configure import *
 
 from ROOT import TFile, TTree, gRandom
@@ -36,8 +36,6 @@ pfile = afs_dir+"/samples_ana.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
 sdict = sample_dic[year][stype][sname][data_letter]
 
-
-#orig_dir = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/data_lumiapplied_HLT_Photon175_MetFilters/SinglePhoton/Run2016"+data_letter+"_02Apr2020-v1/"
 if options.stype == "data":
    if year == 2016:
       #cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
@@ -56,9 +54,12 @@ if options.stype == "data":
       photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight.root_UL18.root")
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
-   targetdir_suffix = "High_PT_Tight"
-   targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-1]+"/"
-   #targetdir = targetdir_mainpath+"/"+sdict["dir"].split("/")[-1]+"/"
+
+   #targetdir_suffix = "High_PT_Tight"
+   targetdir_suffix = "High_PT_LooseNotTight"
+   targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
+
+
    data = json.load(open(cert_json))
    xsec_v = 1.0
    weight_v = 1.0
@@ -85,6 +86,9 @@ pu68p6 = puweight_file.Get("h_ratio")
 
 #For Photon Scale Factor
 SF_MC = photon_SF_file.Get("EGamma_SF2D")
+
+#For btagging Scale Factor
+btagging_dict = pickle.load(open(afs_dir+"/SF_files/btag_SF.pkl",'rb'))
 
 targetfilePath = targetdir+f.split(".")[0]+"_"+str(divIndex)+".root"
 origFilePath = orig_dir+f
@@ -139,24 +143,32 @@ goodJet_eta = array( 'd', 25*[ 0. ] )
 goodJet_phi = array( 'd', 25*[ 0. ] )
 goodJet_btagDeepFlavB = array( 'd', 25*[ 0. ] )
 goodJet_btagDeepFlavC = array( 'd', 25*[ 0. ] )
+goodJet_btagSF  = array('d', 25*[0. ])
+goodJet_hadronFlavour  = array('d', 25*[0. ])
 tree.Branch("ngoodJet",ngoodJet,"ngoodJet/I")
 tree.Branch("goodJet_pt", goodJet_pt, "goodJet_pt[ngoodJet]/D")
 tree.Branch("goodJet_eta", goodJet_eta, "goodJet_eta[ngoodJet]/D")
 tree.Branch("goodJet_phi", goodJet_phi, "goodJet_phi[ngoodJet]/D")
 tree.Branch("goodJet_btagDeepFlavB", goodJet_btagDeepFlavB, "goodJet_btagDeepFlavB[ngoodJet]/D")
 tree.Branch("goodJet_btagDeepFlavC", goodJet_btagDeepFlavC, "goodJet_btagDeepFlavC[ngoodJet]/D")
+tree.Branch("goodJet_hadronFlavour", goodJet_hadronFlavour, "goodJet_hadronFlavour[ngoodJet]/D")
+tree.Branch("goodJet_btagSF", goodJet_btagSF, "goodJet_btagSF[ngoodJet]/D")
 ngoodbJet = array('i',[0])
 goodbJet_pt = array( 'd', 25*[ 0. ] )
 goodbJet_eta = array( 'd', 25*[ 0. ] )
 goodbJet_phi = array( 'd', 25*[ 0. ] )
 goodbJet_btagDeepFlavB = array( 'd', 25*[ 0. ] )
 goodbJet_btagDeepFlavCvL = array( 'd', 25*[ 0. ] )
+goodbJet_btagSF  = array('d', 25*[0. ])
+goodbJet_hadronFlavour  = array('d', 25*[0. ])
 tree.Branch("ngoodbJet",ngoodbJet,"ngoodbJet/I")
 tree.Branch("goodbJet_pt", goodbJet_pt, "goodbJet_pt[ngoodbJet]/D")
 tree.Branch("goodbJet_eta", goodbJet_eta, "goodbJet_eta[ngoodbJet]/D")
 tree.Branch("goodbJet_phi", goodbJet_phi, "goodbJet_phi[ngoodbJet]/D")
 tree.Branch("goodbJet_btagDeepFlavB", goodbJet_btagDeepFlavB, "goodbJet_btagDeepFlavB[ngoodbJet]/D")
-tree.Branch("goodbJet_btagDeepFlavCvL", goodbJet_btagDeepFlavCvL, "goodbJet_btagDeepFlavCvL[ngoodbJet]/D")
+tree.Branch("goodbJet_btagDeepFlavCvL", goodbJet_btagDeepFlavCvL, "goodbJet_btagDeepFlavCvL[ngoodbJet]/D"
+tree.Branch("goodbJet_btagSF", goodbJet_btagSF, "goodbJet_btagSF[ngoodbJet]/D")
+tree.Branch("goodbJet_hadronFlavour", goodbJet_hadronFlavour, "goodbJet_hadronFlavour[ngoodbJet]/D")
 ngoodGenPhoton  = array('i',[0])
 goodGenPhoton_pt = array( 'd', [ 0. ] )
 goodGenPhoton_eta = array( 'd', [ 0. ] )
@@ -228,13 +240,34 @@ for jentry in range(ini_event,fin_event):
 	goodJet_eta[i] = ch.GetLeaf('Jet_eta').GetValue(jet["index"])
 	goodJet_phi[i] = ch.GetLeaf('Jet_phi').GetValue(jet["index"])
 	goodJet_btagDeepFlavB[i] = ch.GetLeaf('Jet_btagDeepFlavB').GetValue(jet["index"])
-	goodJet_btagDeepFlavC[i] = ch.GetLeaf('Jet_btagDeepFlavCvB').GetValue(jet["index"])
+	goodJet_btagDeepFlavC[i] = ch.GetLeaf('Jet_btagDeepFlavC').GetValue(jet["index"])
+	goodJet_hadronFlavour[i] = 0.0
+	#For btag SF
+	if not options.stype == "data": 
+		goodJet_hadronFlavour[i] = ch.GetLeaf('Jet_hadronFlavour').GetValue(jet["index"])
+		goodJet_flavor = ch.GetLeaf('Jet_hadronFlavour').GetValue(jet["index"])
+		print("Flavor:", goodJet_flavor)
+		if goodJet_flavor==5 : btagSF = getbTagSF(bdict=btagging_dict,flavor=0,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
+		elif goodJet_flavor==4 : btagSF = getbTagSF(bdict=btagging_dict,flavor=1,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
+		else : btagSF = getbTagSF(bdict=btagging_dict,flavor=2,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i]) 
+		goodJet_btagSF[i] = btagSF
+
    for i,bjet in enumerate(bjets):
 	goodbJet_pt[i] = ch.GetLeaf('Jet_pt').GetValue(bjet["index"])
 	goodbJet_eta[i] = ch.GetLeaf('Jet_eta').GetValue(bjet["index"])
 	goodbJet_phi[i] = ch.GetLeaf('Jet_phi').GetValue(bjet["index"])
 	goodbJet_btagDeepFlavB[i] = ch.GetLeaf('Jet_btagDeepFlavB').GetValue(bjet["index"])
 	goodbJet_btagDeepFlavCvL[i] = ch.GetLeaf('Jet_btagDeepFlavCvL').GetValue(bjet["index"])
+	goodbJet_hadronFlavour[i] = 0.0
+	#For btag SF
+	if not options.stype == "data": 
+		goodbJet_hadronFlavour[i] = ch.GetLeaf('Jet_hadronFlavour').GetValue(bjet["index"])
+		goodJet_flavor = ch.GetLeaf('Jet_hadronFlavour').GetValue(bjet["index"])
+		print("Flavor:", goodJet_flavor)
+		if goodJet_flavor==5 : btagSF = getbTagSF(bdict=btagging_dict,flavor=0,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
+		elif goodJet_flavor==4 : btagSF = getbTagSF(bdict=btagging_dict,flavor=1,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
+		else : btagSF = getbTagSF(bdict=btagging_dict,flavor=2,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i]) 
+		goodbJet_btagSF[i] = btagSF
 		
    sel_photons = []
    for i,photon in enumerate(photons):
