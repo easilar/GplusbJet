@@ -57,8 +57,8 @@ if options.stype == "data":
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
    targetdir_suffix = "High_PT_Tight"
-   #targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-1]+"/"
-   targetdir = targetdir_mainpath+"/"+sdict["dir"].split("/")[-1]+"/"
+   targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-1]+"/"
+   #targetdir = targetdir_mainpath+"/"+sdict["dir"].split("/")[-1]+"/"
    data = json.load(open(cert_json))
    xsec_v = 1.0
    weight_v = 1.0
