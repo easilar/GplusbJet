@@ -97,7 +97,9 @@ jet_cut_trig = "(ngoodPhoton==1&&abs(goodPhoton_eta)<=1.4&&goodJet_pt[0]>100&&HL
 
 #Plots
 plotlist = {
-"Photon_pt":{"var":"goodPhoton_pt","binning":(100,0,3000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Photon Pt[GeV]","title":"PhotonPt","bin_set":(True , 20)},
+"Photon_pt":{"var":"Photon_pt","binning":(100,0,3000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Photon Pt[GeV]","title":"PhotonPt","bin_set":(True , 20)},
+"Jet_pt":{"var":"Jet_pt","binning":(50,0,1000),"x_axis":"Jet_p_{T}[GeV]","y_axis":"Events","bin":(),"histoname":"Leading Jet Pt[GeV]","title":"Jet_Pt","bin_set":(False , 1)},
+"goodPhoton_pt":{"var":"goodPhoton_pt","binning":(100,0,3000),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(len(gPtBins)-1,gPtBins),"histoname":"Photon Pt[GeV]","title":"PhotonPt","bin_set":(True , 20)},
 "Photon_bin_pt":{"var":"goodPhoton_pt","binning":(30,0,300),"x_axis":"p_{T}(#gamma)[GeV]","y_axis":"Events","bin":(),"histoname":"Photon Pt[GeV]","title":"PhotonPt","bin_set":(False , 1)},
 "Photon_eta":{"var":"goodPhoton_eta","binning":(10,-2,2),"x_axis":"#eta(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Eta","title":"PhotonEta","bin_set":(False , 1)},
 "Photon_phi":{"var":"goodPhoton_phi","binning":(20,-4,4),"x_axis":"#phi(#gamma)","y_axis":"Events","bin":(),"histoname":"Photon Phi","title":"PhotonPhi","bin_set":(False , 1)},

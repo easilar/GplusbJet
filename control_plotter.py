@@ -50,6 +50,7 @@ bkg_list = [
 ]
 
 #signal chain al
+
 if signal_samp == "G1Jet_Pt":
 	signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kAzure+6}
 	signal_dict["weight"] = "(weight*puweight*PhotonSF)"
@@ -83,11 +84,14 @@ selections={
 #SR = "goodPhoton_hoe<=0.03"
 
 plot_cut = selections[region]
+#plot_cut = CR+"&&"+plot_cut
+
 bkg_Int = 0
 for bkg in bkg_list:
     bkg["chain_all"] = getChain(stype="bkg",sname=bkg["sample"],pfile=pfile,test=test)
     print(bkg["sample"],bkg["chain_all"][1],bkg["chain_all"][2])
     bkg["chain"] = bkg["chain_all"][0]
+
     bkg["weight"] = "(weight*puweight*PhotonSF)"
     #bkg["weight"] = "(weight*puweight)"
     h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&ngoodGenPhoton==0&&!(event==2599441)", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
@@ -101,10 +105,12 @@ print(signal_dict["chain"].GetEntries())
 data_dict["chain"] = data_dict["chain"]
 if plot_sig_stack : bkg_list.append(signal_dict)
 print('Ploting starts......')
+
 data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join(["(1)",plot_cut]), weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 print("175 is taken")
 
-signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut+"&&(abs(goodGenPhoton_pt-goodPhoton_pt)/goodPhoton_pt<0.1)", weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+#signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut+"&&(abs(goodGenPhoton_pt-goodPhoton_pt)/goodPhoton_pt<0.1)", weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut, weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 signalPlusbkg = bkg_Int+signal_dict["histo"].Integral()
 SF = data_dict["histo"].Integral()/signalPlusbkg
 print("MC Scale Factor: ", SF)
