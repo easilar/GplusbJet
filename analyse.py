@@ -30,8 +30,8 @@ sname = options.sname
 
 afs_dir = os.environ["afs_dir"]
 #afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets/"
-#targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
-targetdir_mainpath = "/eos/user/m/myalvac/UL_data/"
+targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
+#targetdir_mainpath = "/eos/user/m/myalvac/UL_data/"
 pfile = afs_dir+"/samples_ana.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
 sdict = sample_dic[year][stype][sname][data_letter]
@@ -40,18 +40,14 @@ if options.stype == "data":
    if year == 2016:
       #cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
       cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt"
-      if "HIPM" in sdict["das_path"]: photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16.root")
-      else : photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16_postVFP.root")
       print("working on 2016")
    elif year == 2017:
       #cert_json = afs_dir+"/json/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt"
       cert_json = afs_dir+"/json/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt"
-      photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Tight_UL17.root")
       print("working on 2017")
    elif year == 2018:
       #cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt"   
       cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt"   
-      photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight.root_UL18.root")
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
    #targetdir_suffix = "High_PT_Tight"
@@ -71,14 +67,14 @@ else:
    #targetdir_suffix = "GenMatching"
    targetdir_suffix = "High_PT_Tight"
    targetdir = targetdir_mainpath+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
+   if year == 2016:
+	   if "HIPM" in sdict["das_path"]: photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16.root")
+	   else : photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16_postVFP.root")
+   elif year == 2017:
+      photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Tight_UL17.root")
+   elif year == 2018:
+      photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight.root_UL18.root")
 
-#For PU
-#if not letter == G || letter == H:
-#	puweight_file = ROOT.TFile(afs_dir+"/PUfiles/pileup_2016BF.root")
-#	pu68p6 = puweight_file.Get("pileup")
-#else : 
-#	puweight_file = ROOT.TFile(afs_dir+"/PUfiles/pileup_2016GH.root")
-#	pu68p6 = puweight_file.Get("pileup")
 puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection.root")
 pu68p6 = puweight_file.Get("h_ratio")
 
@@ -164,7 +160,7 @@ tree.Branch("goodbJet_pt", goodbJet_pt, "goodbJet_pt[ngoodbJet]/D")
 tree.Branch("goodbJet_eta", goodbJet_eta, "goodbJet_eta[ngoodbJet]/D")
 tree.Branch("goodbJet_phi", goodbJet_phi, "goodbJet_phi[ngoodbJet]/D")
 tree.Branch("goodbJet_btagDeepFlavB", goodbJet_btagDeepFlavB, "goodbJet_btagDeepFlavB[ngoodbJet]/D")
-tree.Branch("goodbJet_btagDeepFlavCvL", goodbJet_btagDeepFlavCvL, "goodbJet_btagDeepFlavCvL[ngoodbJet]/D"
+tree.Branch("goodbJet_btagDeepFlavCvL", goodbJet_btagDeepFlavCvL, "goodbJet_btagDeepFlavCvL[ngoodbJet]/D")
 tree.Branch("goodbJet_btagSF", goodbJet_btagSF, "goodbJet_btagSF[ngoodbJet]/D")
 tree.Branch("goodbJet_hadronFlavour", goodbJet_hadronFlavour, "goodbJet_hadronFlavour[ngoodbJet]/D")
 ngoodGenPhoton  = array('i',[0])

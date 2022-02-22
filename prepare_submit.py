@@ -1,27 +1,18 @@
 import pickle
 import os
 
-pfile=os.environ["afs_dir"]+"/samples_ana.pkl"
+pfile=os.environ["afs_dir"]+"/samples_orig.pkl"
 
 sample_dic = pickle.load(open(pfile,'rb'))
+print(sample_dic[2016]["bkg"].keys())
 year = 2016
-#year = 2017
-#year = 2018
-#sname = "GJets_Pt" #Change only this !!!
-#sname = "QCD_HT"
-sname = "SinglePhoton_UL"
-#sname = "SingleMuon_18"
-#stype = "bkg"
-#stype = "signal"
-stype = "data"
+sname = "QCD_HT_UL2016"
+stype = "bkg" # "signal", "data`"
 sdict = sample_dic[year][stype][sname]
 ndiv=20
-#targetdir_suffix = "High_PT_LooseNotTight"
 targetdir_suffix = "High_PT_Tight"
 for ci,bin_name in enumerate(sdict.keys()):
-	#if not "_NOExt" in bin_name: continue
 	cur_dir = sdict[bin_name]["dir"]
-	#print(cur_dir)
 	flist = os.listdir(cur_dir)
 	if stype=="data":
 
