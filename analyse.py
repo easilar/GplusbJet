@@ -40,12 +40,18 @@ if options.stype == "data":
    if year == 2016:
       #cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
       cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt"
+      if "HIPM" in sdict["das_path"]: photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16.root")
+      else : photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16_postVFP.root")
       print("working on 2016")
    elif year == 2017:
-      cert_json = afs_dir+"/json/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt"
+      #cert_json = afs_dir+"/json/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt"
+      cert_json = afs_dir+"/json/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt"
+      photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Tight_UL17.root")
       print("working on 2017")
    elif year == 2018:
-      cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt"   
+      #cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt"   
+      cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt"   
+      photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight.root_UL18.root")
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
    #targetdir_suffix = "High_PT_Tight"
@@ -67,17 +73,16 @@ else:
    targetdir = targetdir_mainpath+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
 
 #For PU
-if not letter == G || letter == H:
-	puweight_file = ROOT.TFile(afs_dir+"/PUfiles/pileup_2016BF.root")
-	pu68p6 = puweight_file.Get("pileup")
-else : 
-	puweight_file = ROOT.TFile(afs_dir+"/PUfiles/pileup_2016GH.root")
-	pu68p6 = puweight_file.Get("pileup")
-#puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection.root")
-#pu68p6 = puweight_file.Get("h_ratio")
+#if not letter == G || letter == H:
+#	puweight_file = ROOT.TFile(afs_dir+"/PUfiles/pileup_2016BF.root")
+#	pu68p6 = puweight_file.Get("pileup")
+#else : 
+#	puweight_file = ROOT.TFile(afs_dir+"/PUfiles/pileup_2016GH.root")
+#	pu68p6 = puweight_file.Get("pileup")
+puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection.root")
+pu68p6 = puweight_file.Get("h_ratio")
 
 #For Photon Scale Factor
-photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/Fall17V2_2016_Tight_photons.root")
 SF_MC = photon_SF_file.Get("EGamma_SF2D")
 
 #For btagging Scale Factor
@@ -151,7 +156,7 @@ goodbJet_pt = array( 'd', 25*[ 0. ] )
 goodbJet_eta = array( 'd', 25*[ 0. ] )
 goodbJet_phi = array( 'd', 25*[ 0. ] )
 goodbJet_btagDeepFlavB = array( 'd', 25*[ 0. ] )
-goodbJet_btagDeepFlavC = array( 'd', 25*[ 0. ] )
+goodbJet_btagDeepFlavCvL = array( 'd', 25*[ 0. ] )
 goodbJet_btagSF  = array('d', 25*[0. ])
 goodbJet_hadronFlavour  = array('d', 25*[0. ])
 tree.Branch("ngoodbJet",ngoodbJet,"ngoodbJet/I")
@@ -159,7 +164,7 @@ tree.Branch("goodbJet_pt", goodbJet_pt, "goodbJet_pt[ngoodbJet]/D")
 tree.Branch("goodbJet_eta", goodbJet_eta, "goodbJet_eta[ngoodbJet]/D")
 tree.Branch("goodbJet_phi", goodbJet_phi, "goodbJet_phi[ngoodbJet]/D")
 tree.Branch("goodbJet_btagDeepFlavB", goodbJet_btagDeepFlavB, "goodbJet_btagDeepFlavB[ngoodbJet]/D")
-tree.Branch("goodbJet_btagDeepFlavC", goodbJet_btagDeepFlavC, "goodbJet_btagDeepFlavC[ngoodbJet]/D")
+tree.Branch("goodbJet_btagDeepFlavCvL", goodbJet_btagDeepFlavCvL, "goodbJet_btagDeepFlavCvL[ngoodbJet]/D"
 tree.Branch("goodbJet_btagSF", goodbJet_btagSF, "goodbJet_btagSF[ngoodbJet]/D")
 tree.Branch("goodbJet_hadronFlavour", goodbJet_hadronFlavour, "goodbJet_hadronFlavour[ngoodbJet]/D")
 ngoodGenPhoton  = array('i',[0])
@@ -224,7 +229,7 @@ for jentry in range(ini_event,fin_event):
    for j in range(int(nJet)):
 	if ch.GetLeaf('Jet_pt').GetValue(j)>40 and abs(ch.GetLeaf('Jet_eta').GetValue(j))<2.4 and ch.GetLeaf('Jet_jetId').GetValue(j)>=6 and ch.GetLeaf('Jet_puId').GetValue(j)>=7:
 		jets.append({'index':j,'pt':ch.GetLeaf('Jet_pt').GetValue(j),'phi':ch.GetLeaf('Jet_phi').GetValue(j),'eta':ch.GetLeaf('Jet_eta').GetValue(j)})
-		if ch.GetLeaf('Jet_btagDeepFlavB').GetValue(j)>=0.7221 : 
+		if ch.GetLeaf('Jet_btagDeepFlavB').GetValue(j)>=0.6502 : 
 			bjets.append({'index':j})
    ngoodJet[0] = len(jets)
    ngoodbJet[0] = len(bjets)
@@ -250,7 +255,7 @@ for jentry in range(ini_event,fin_event):
 	goodbJet_eta[i] = ch.GetLeaf('Jet_eta').GetValue(bjet["index"])
 	goodbJet_phi[i] = ch.GetLeaf('Jet_phi').GetValue(bjet["index"])
 	goodbJet_btagDeepFlavB[i] = ch.GetLeaf('Jet_btagDeepFlavB').GetValue(bjet["index"])
-	goodbJet_btagDeepFlavC[i] = ch.GetLeaf('Jet_btagDeepFlavC').GetValue(bjet["index"])
+	goodbJet_btagDeepFlavCvL[i] = ch.GetLeaf('Jet_btagDeepFlavCvL').GetValue(bjet["index"])
 	goodbJet_hadronFlavour[i] = 0.0
 	#For btag SF
 	if not options.stype == "data": 
