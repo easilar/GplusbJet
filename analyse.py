@@ -50,9 +50,11 @@ if options.stype == "data":
       cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt"   
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
+
    #targetdir_suffix = "High_PT_Tight"
    targetdir_suffix = "High_PT_LooseNotTight"
    targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
+
 
    data = json.load(open(cert_json))
    xsec_v = 1.0
