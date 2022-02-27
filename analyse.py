@@ -58,6 +58,7 @@ if options.stype == "data":
    weight_v = 1.0
    print("Working on data ",data_letter)
 else:
+   target_lumi=100.0
    print("Working on MC")
    print(sdict.keys()) 
    xsec_v = sdict["xsec"]*1000 #femtobarn
