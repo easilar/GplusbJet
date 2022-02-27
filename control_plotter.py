@@ -68,7 +68,7 @@ selections={
 "vtx_cut":ngood_vtx_cut,\
 "met_filters": "&&".join([ngood_vtx_cut,met_filters]),\
 "single_photon":"ngoodPhoton==1&&(goodPhoton_pt>=225)",\
-"presel":"&&".join([ngood_vtx_cut,met_filters,single_photon_tight_cut,muon_veto,electron_veto]),\
+"presel":"ngoodPhoton==1&&(goodPhoton_pt>=225)&&goodJet_pt[0]>100",\
 "1b":"ngoodbJet==1&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
 "2b":"ngoodbJet==2&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
 "0b":"ngoodbJet==0&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
