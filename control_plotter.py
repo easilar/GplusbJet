@@ -1,5 +1,5 @@
 import helper
-from helper import getChain, Set_axis_pad2, Set_axis_pad1, Draw_CMS_header, getPlotFromChain , setElist
+from helper import getChain, Set_axis_pad2, Set_axis_pad1, Draw_CMS_header, getPlotFromChain , setElist, Draw_era_tag
 import ROOT
 import os
 import operator
@@ -31,40 +31,34 @@ region = options.region
 
 signal_samp = options.s_samp
 
-pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_ana.pkl"
+pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets_UL/samples_ana.pkl"
 
 test = options.test
-plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Control_Plots/G1Jet/CR_Plots/'
-if test: 
-	plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/Test_Plots/WithData/'
+plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/UL/Control_Plots/G1Jet/CR_Plots/'
 if not os.path.exists(plots_path):
   os.makedirs(plots_path)
 
 plot_sig_stack = True
 
+era_tag = "UL 2016 Pre-VFP"
+
 #bkg chain al 
 #bkg listof dicts  olustur
 bkg_list = [
-
-{"sample":"QCD_HT", "weight":"(1)",  "tex":"QCD", "color":ROOT.kBlue-3}
+{"sample":"QCD_HT_UL2016_PreVFP", "weight":"(1)",  "tex":"QCD", "color":ROOT.kBlue-3}
 ]
 
 #signal chain al
 
 if signal_samp == "G1Jet_Pt":
-	signal_dict = {"sample":"G1Jet_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_Pt",pfile=pfile,test=test), "tex":"GJets", "color":ROOT.kAzure+6}
+	signal_dict = {"sample":"G1Jet_LHEGPt_PreVFP", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_LHEGPt_PreVFP",pfile=pfile,test=test), "tex":"G+1Jet", "color":ROOT.kAzure+6}
 	signal_dict["weight"] = "(weight*puweight*PhotonSF)"
-if signal_samp == "GJets_Pt":
-	signal_dict = {"sample":"GJets_Pt", "weight":"(1)", "chain_all":getChain(stype="signal",sname="GJets_Pt",pfile=pfile,test=test), "tex":"GJets-Sherpa", "color":ROOT.kCyan-3}
-	signal_dict["weight"] = "(weight*PhotonSF)"
-#+goodbJet_btagSF[0]*(ngoodbJet==1)+goodbJet_btagSF[0]*goodbJet_btagSF[1]*(ngoodbJet==2)+(ngoodbJet==3)*goodbJet_btagSF[0]*goodbJet_btagSF[1]*goodbJet_btagSF[0]*goodbJet_btagSF[2]))"
-#signal_dict["weight"] = "(weight*puweight)"
 
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
-#data dict al
 
-data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="CR_SinglePhoton",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
+#data dict al
+data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="SinglePhoton_UL_PreVFP",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
 
 #define photon cuts
 selections={
@@ -80,21 +74,16 @@ selections={
 "0b":"ngoodbJet==0&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
 }
 
-#CR = "goodPhoton_hoe>0.03"
-#SR = "goodPhoton_hoe<=0.03"
 
 plot_cut = selections[region]
-#plot_cut = CR+"&&"+plot_cut
 
 bkg_Int = 0
 for bkg in bkg_list:
     bkg["chain_all"] = getChain(stype="bkg",sname=bkg["sample"],pfile=pfile,test=test)
     print(bkg["sample"],bkg["chain_all"][1],bkg["chain_all"][2])
     bkg["chain"] = bkg["chain_all"][0]
-
     bkg["weight"] = "(weight*puweight*PhotonSF)"
-    #bkg["weight"] = "(weight*puweight)"
-    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&ngoodGenPhoton==0&&!(event==2599441)", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&ngoodGenPhoton==0", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
     bkg["histo"] = h
     bkg_Int+=bkg["histo"].Integral()
     del h
@@ -109,7 +98,6 @@ print('Ploting starts......')
 data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join(["(1)",plot_cut]), weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 print("175 is taken")
 
-#signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut+"&&(abs(goodGenPhoton_pt-goodPhoton_pt)/goodPhoton_pt<0.1)", weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut, weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 signalPlusbkg = bkg_Int+signal_dict["histo"].Integral()
 SF = data_dict["histo"].Integral()/signalPlusbkg
@@ -180,9 +168,8 @@ for bkg in bkg_list:
 	h.SetTitle("")
 	Set_axis_pad1(h)
 	leg.AddEntry(h, bkg['tex']+" "+str(round(h.Integral())),"f")
-	print("Integral of"+bkg['tex']+":" , h.Integral()) 
-        h_Stack.Add(bkg["histo"])
-        #leg_sig.AddEntry(bkg["histo"], bkg['tex'],"f")
+	print("Integral of"+bkg['tex']+":" , h.Integral())
+	h_Stack.Add(bkg["histo"])
 	del h
 print('BKG loop finished.......')
 if plot["bin_set"][0]: stack_hist=ROOT.TH1F("stack_hist","stack_hist", plot['bin'][0],plot['bin'][1]) 
@@ -233,6 +220,7 @@ leg.SetFillColor(0)
 leg.SetLineColor(0)
 leg.Draw()
 Draw_CMS_header(lumi_label=target_lumi)
+Draw_era_tag(era_tag=era_tag)
 Pad1.RedrawAxis()
 cb.cd()
 Pad2 = ROOT.TPad("Pad2", "Pad2",  0, 0, 1, 0.31)

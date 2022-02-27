@@ -17,8 +17,8 @@ parser.add_argument("--name", default='job', help="job name")
 parser.add_argument("--qtime", default='workday', help="qtime espresso(20 dk) , longlunch(2h)")
 parser.add_argument("--keep_junk", default=False, action="store_true")
 parser.add_argument("--dry_run", default=False, action="store_true")
-parser.add_argument("--log_dir", default="/afs/cern.ch/work/e/ecasilar/GplusbJets/logs/", help="location of log files. Make sure dir exists or jobs will be held hostage.")
-parser.add_argument("--junk_dir", default="/afs/cern.ch/work/e/ecasilar/GplusbJets/junk/")
+parser.add_argument("--log_dir", default="/afs/cern.ch/work/e/ecasilar/GplusbJets_UL/logs/", help="location of log files. Make sure dir exists or jobs will be held hostage.")
+parser.add_argument("--junk_dir", default="/afs/cern.ch/work/e/ecasilar/GplusbJets_UL/junk/")
 args = parser.parse_args()
 
 file_name = args.file
