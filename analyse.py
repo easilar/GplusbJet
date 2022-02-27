@@ -28,35 +28,28 @@ exec("divIndex="+options.divIndex)
 stype = options.stype
 sname = options.sname
 
-afs_dir = os.environ["afs_dir"]
-#afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets/"
-#targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
-targetdir_mainpath = "/eos/user/m/myalvac/UL_data/"
-pfile = afs_dir+"/samples_ana.pkl"
+#afs_dir = os.environ["afs_dir"]
+afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets_UL/"
+targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
+#targetdir_mainpath = "/eos/user/m/myalvac/UL_data/"
+pfile = afs_dir+"/samples_orig.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
 sdict = sample_dic[year][stype][sname][data_letter]
 
 if options.stype == "data":
    if year == 2016:
-      #cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_23Sep2016ReReco_Collisions16_JSON.txt"
       cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt"
-      if "HIPM" in sdict["das_path"]: photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16.root")
-      else : photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16_postVFP.root")
       print("working on 2016")
    elif year == 2017:
-      #cert_json = afs_dir+"/json/Cert_294927-306462_13TeV_EOY2017ReReco_Collisions17_JSON_v1.txt"
       cert_json = afs_dir+"/json/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt"
-      photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Tight_UL17.root")
       print("working on 2017")
    elif year == 2018:
-      #cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_17SeptEarlyReReco2018ABC_PromptEraD_Collisions18_JSON.txt"   
       cert_json = afs_dir+"/json/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt"   
-      photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight.root_UL18.root")
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
 
-   #targetdir_suffix = "High_PT_Tight"
-   targetdir_suffix = "High_PT_LooseNotTight"
+   targetdir_suffix = "High_PT_Tight"
+   #targetdir_suffix = "High_PT_LooseNotTight"
    targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
 
 
@@ -73,19 +66,19 @@ else:
    #targetdir_suffix = "GenMatching"
    targetdir_suffix = "High_PT_Tight"
    targetdir = targetdir_mainpath+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
+   if year == 2016:
+	   if "HIPM" in sdict["das_path"]: photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16.root")
+	   else : photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16_postVFP.root")
+   elif year == 2017:
+      photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Tight_UL17.root")
+   elif year == 2018:
+      photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight.root_UL18.root")
+   #For Photon Scale Factor
+   SF_MC = photon_SF_file.Get("EGamma_SF2D")
 
-#For PU
-#if not letter == G || letter == H:
-#	puweight_file = ROOT.TFile(afs_dir+"/PUfiles/pileup_2016BF.root")
-#	pu68p6 = puweight_file.Get("pileup")
-#else : 
-#	puweight_file = ROOT.TFile(afs_dir+"/PUfiles/pileup_2016GH.root")
-#	pu68p6 = puweight_file.Get("pileup")
 puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection.root")
 pu68p6 = puweight_file.Get("h_ratio")
 
-#For Photon Scale Factor
-SF_MC = photon_SF_file.Get("EGamma_SF2D")
 
 #For btagging Scale Factor
 btagging_dict = pickle.load(open(afs_dir+"/SF_files/btag_SF.pkl",'rb'))
@@ -142,7 +135,7 @@ goodJet_pt = array( 'd', 25*[ 0. ] )
 goodJet_eta = array( 'd', 25*[ 0. ] )
 goodJet_phi = array( 'd', 25*[ 0. ] )
 goodJet_btagDeepFlavB = array( 'd', 25*[ 0. ] )
-goodJet_btagDeepFlavC = array( 'd', 25*[ 0. ] )
+goodJet_btagDeepFlavCvL = array( 'd', 25*[ 0. ] )
 goodJet_btagSF  = array('d', 25*[0. ])
 goodJet_hadronFlavour  = array('d', 25*[0. ])
 tree.Branch("ngoodJet",ngoodJet,"ngoodJet/I")
@@ -150,7 +143,7 @@ tree.Branch("goodJet_pt", goodJet_pt, "goodJet_pt[ngoodJet]/D")
 tree.Branch("goodJet_eta", goodJet_eta, "goodJet_eta[ngoodJet]/D")
 tree.Branch("goodJet_phi", goodJet_phi, "goodJet_phi[ngoodJet]/D")
 tree.Branch("goodJet_btagDeepFlavB", goodJet_btagDeepFlavB, "goodJet_btagDeepFlavB[ngoodJet]/D")
-tree.Branch("goodJet_btagDeepFlavC", goodJet_btagDeepFlavC, "goodJet_btagDeepFlavC[ngoodJet]/D")
+tree.Branch("goodJet_btagDeepFlavCvL", goodJet_btagDeepFlavCvL, "goodJet_btagDeepFlavCvL[ngoodJet]/D")
 tree.Branch("goodJet_hadronFlavour", goodJet_hadronFlavour, "goodJet_hadronFlavour[ngoodJet]/D")
 tree.Branch("goodJet_btagSF", goodJet_btagSF, "goodJet_btagSF[ngoodJet]/D")
 ngoodbJet = array('i',[0])
@@ -166,7 +159,7 @@ tree.Branch("goodbJet_pt", goodbJet_pt, "goodbJet_pt[ngoodbJet]/D")
 tree.Branch("goodbJet_eta", goodbJet_eta, "goodbJet_eta[ngoodbJet]/D")
 tree.Branch("goodbJet_phi", goodbJet_phi, "goodbJet_phi[ngoodbJet]/D")
 tree.Branch("goodbJet_btagDeepFlavB", goodbJet_btagDeepFlavB, "goodbJet_btagDeepFlavB[ngoodbJet]/D")
-tree.Branch("goodbJet_btagDeepFlavCvL", goodbJet_btagDeepFlavCvL, "goodbJet_btagDeepFlavCvL[ngoodbJet]/D"
+tree.Branch("goodbJet_btagDeepFlavCvL", goodbJet_btagDeepFlavCvL, "goodbJet_btagDeepFlavCvL[ngoodbJet]/D")
 tree.Branch("goodbJet_btagSF", goodbJet_btagSF, "goodbJet_btagSF[ngoodbJet]/D")
 tree.Branch("goodbJet_hadronFlavour", goodbJet_hadronFlavour, "goodbJet_hadronFlavour[ngoodbJet]/D")
 ngoodGenPhoton  = array('i',[0])
@@ -190,7 +183,6 @@ for jentry in range(ini_event,fin_event):
    nJet = ch.GetLeaf('nJet').GetValue()
    if not options.stype=="data": nGenPart=int(ch.GetLeaf('nGenPart').GetValue())
    PV_npvsGood = ch.GetLeaf('PV_npvsGood').GetValue()
-   if not PV_npvsGood >= 1: continue
    if not options.stype=="data":Pileup_nTrueInt = ch.GetLeaf('Pileup_nTrueInt').GetValue()
    Flag_goodVertices = ch.GetLeaf('Flag_goodVertices').GetValue()
    Flag_1 = ch.GetLeaf('Flag_globalSuperTightHalo2016Filter').GetValue()
@@ -210,6 +202,7 @@ for jentry in range(ini_event,fin_event):
         	for lumiBlock in data[str(int(run))]:
                 	if not (lumi >= lumiBlock[0] and lumi <= lumiBlock[1] ) : continue
 	if not Flag_6 : continue
+   if not PV_npvsGood >= 1: continue
    if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5 and Flag_7): continue
    #print("Event passed json and met filters")
    xsec[0] = xsec_v 
@@ -240,13 +233,12 @@ for jentry in range(ini_event,fin_event):
 	goodJet_eta[i] = ch.GetLeaf('Jet_eta').GetValue(jet["index"])
 	goodJet_phi[i] = ch.GetLeaf('Jet_phi').GetValue(jet["index"])
 	goodJet_btagDeepFlavB[i] = ch.GetLeaf('Jet_btagDeepFlavB').GetValue(jet["index"])
-	goodJet_btagDeepFlavC[i] = ch.GetLeaf('Jet_btagDeepFlavC').GetValue(jet["index"])
+	goodJet_btagDeepFlavCvL[i] = ch.GetLeaf('Jet_btagDeepFlavCvL').GetValue(jet["index"])
 	goodJet_hadronFlavour[i] = 0.0
 	#For btag SF
 	if not options.stype == "data": 
 		goodJet_hadronFlavour[i] = ch.GetLeaf('Jet_hadronFlavour').GetValue(jet["index"])
 		goodJet_flavor = ch.GetLeaf('Jet_hadronFlavour').GetValue(jet["index"])
-		print("Flavor:", goodJet_flavor)
 		if goodJet_flavor==5 : btagSF = getbTagSF(bdict=btagging_dict,flavor=0,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
 		elif goodJet_flavor==4 : btagSF = getbTagSF(bdict=btagging_dict,flavor=1,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
 		else : btagSF = getbTagSF(bdict=btagging_dict,flavor=2,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i]) 
@@ -263,7 +255,6 @@ for jentry in range(ini_event,fin_event):
 	if not options.stype == "data": 
 		goodbJet_hadronFlavour[i] = ch.GetLeaf('Jet_hadronFlavour').GetValue(bjet["index"])
 		goodJet_flavor = ch.GetLeaf('Jet_hadronFlavour').GetValue(bjet["index"])
-		print("Flavor:", goodJet_flavor)
 		if goodJet_flavor==5 : btagSF = getbTagSF(bdict=btagging_dict,flavor=0,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
 		elif goodJet_flavor==4 : btagSF = getbTagSF(bdict=btagging_dict,flavor=1,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
 		else : btagSF = getbTagSF(bdict=btagging_dict,flavor=2,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i]) 
