@@ -10,7 +10,7 @@ from math import pi, sqrt, cos, sin, sinh, log
 def getChain(year=2016,stype="signal",sname="GJets",pfile="/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_orig.pkl",datatype="all", test=False):
 	sample_dic = pickle.load(open(pfile,'rb'))
 	schain = ROOT.TChain("Events")
- 	if stype=="data": 
+	if stype=="data":
 		sxsec = "(1)" 
 		if datatype=="all":
 			sdict = sample_dic[year][stype][sname]
@@ -151,68 +151,76 @@ def Draw_CMS_header(lumi_label=12.88,CMS_Tag="Preliminary"):
    tex.DrawLatex(0.29,0.96,CMS_Tag)
    return
 
+def Draw_era_tag(era_tag):
+   tex = ROOT.TLatex()
+   tex.SetNDC()
+   tex.SetTextFont(61)
+   tex.SetTextSize(0.05)
+   tex.SetLineWidth(2)
+   tex.DrawLatex(0.25,0.8, era_tag)	
+   return
+
 def applyLumi(origFilePath,newfilePath,cert_json_path):
-        data = json.load(open(cert_json_path))
-        curfile = origFilePath
-        newfilename = newfilePath
-        ch = ROOT.TChain("Events")
-        ch.Add(curfile)
-        nentries = ch.GetEntries()
-        print(" Creating new root-file ...")
-        newFile = ROOT.TFile(newfilename,"recreate")
-        print(" Creating new tree ...")
-        newchain = ch.CloneTree(0)
-        tree = newchain.GetTree()
-        print(nentries)
-        for jentry in range(nentries):
-           ch.GetEntry(jentry)
-           run = ch.GetLeaf('run').GetValue()
-           lumi = ch.GetLeaf('luminosityBlock').GetValue()
-           nPhoton = ch.GetLeaf('nPhoton').GetValue()
-           nJet = ch.GetLeaf('nJet').GetValue()
-           PV_npvsGood = ch.GetLeaf('PV_npvsGood').GetValue()
-           Flag_goodVertices = ch.GetLeaf('Flag_goodVertices').GetValue()
-           Flag_1 = ch.GetLeaf('Flag_globalSuperTightHalo2016Filter').GetValue()
-           Flag_2 = ch.GetLeaf('Flag_HBHENoiseFilter').GetValue()
-           Flag_3 = ch.GetLeaf('Flag_HBHENoiseIsoFilter').GetValue()
-           Flag_4 = ch.GetLeaf('Flag_EcalDeadCellTriggerPrimitiveFilter').GetValue()
-           Flag_5 = ch.GetLeaf('Flag_BadPFMuonFilter').GetValue()
-           Flag_6 = ch.GetLeaf('Flag_eeBadScFilter').GetValue()
-           if (jentry%50000 == 0) : print(jentry,run,lumi)
-           if not str(int(run)) in data.keys(): continue
-	   if not (PV_npvsGood>=1 and nPhoton>=1 and nJet>=1): continue
-	   if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5 and Flag_6): continue
-           if str(int(run)) in data.keys():
-                for lumiBlock in data[str(int(run))]:
-                        if (lumi >= lumiBlock[0] and lumi <= lumiBlock[1] ) : tree.Fill()
-        newFile.cd()
-        tree.Write()
-        #newFile.Close()
-        return
+	data = json.load(open(cert_json_path))
+	curfile = origFilePath
+	newfilename = newfilePath
+	ch = ROOT.TChain("Events")
+	ch.Add(curfile)
+	nentries = ch.GetEntries()
+	print(" Creating new root-file ...")
+	newFile = ROOT.TFile(newfilename,"recreate")
+	print(" Creating new tree ...")
+	newchain = ch.CloneTree(0)
+	tree = newchain.GetTree()
+	print(nentries)
+	for jentry in range(nentries):
+		ch.GetEntry(jentry)
+		run = ch.GetLeaf('run').GetValue()
+		lumi = ch.GetLeaf('luminosityBlock').GetValue()
+		nPhoton = ch.GetLeaf('nPhoton').GetValue()
+		nJet = ch.GetLeaf('nJet').GetValue()
+		PV_npvsGood = ch.GetLeaf('PV_npvsGood').GetValue()
+		Flag_goodVertices = ch.GetLeaf('Flag_goodVertices').GetValue()
+		Flag_1 = ch.GetLeaf('Flag_globalSuperTightHalo2016Filter').GetValue()
+		Flag_2 = ch.GetLeaf('Flag_HBHENoiseFilter').GetValue()
+		Flag_3 = ch.GetLeaf('Flag_HBHENoiseIsoFilter').GetValue()
+		Flag_4 = ch.GetLeaf('Flag_EcalDeadCellTriggerPrimitiveFilter').GetValue()
+		Flag_5 = ch.GetLeaf('Flag_BadPFMuonFilter').GetValue()
+		Flag_6 = ch.GetLeaf('Flag_eeBadScFilter').GetValue()
+		if (jentry%50000 == 0) : print(jentry,run,lumi)
+		if not str(int(run)) in data.keys(): continue
+		if not (PV_npvsGood>=1 and nPhoton>=1 and nJet>=1): continue
+		if not (Flag_goodVertices and Flag_1 and Flag_2 and Flag_3 and Flag_4 and Flag_5 and Flag_6): continue
+		if str(int(run)) in data.keys():
+		     for lumiBlock in data[str(int(run))]:
+		             if (lumi >= lumiBlock[0] and lumi <= lumiBlock[1] ) : tree.Fill()
+	newFile.cd()
+	tree.Write()
+	return
 
 def applyminCut(origChain,newfilePath):
-        newfilename = newfilePath
-        ch = origChain
-        nentries = ch.GetEntries()
-  	ch.Draw(">>eList", "PV_npvsGood>=1&&nPhoton>=1&&nJet>=1")
-  	elist = ROOT.gDirectory.Get("eList")
-  	number_events = elist.GetN()
-        print(" Creating new root-file ...")
-        newFile = ROOT.TFile(newfilename,"recreate")
-        print(" Creating new tree ...")
-        newchain = ch.CloneTree(0)
-        tree = newchain.GetTree()
-        print(number_events)
-        for jentry in range(number_events):
-           ch.GetEntry(elist.GetEntry(jentry))
-           if (jentry%50000 == 0) : print(jentry)
-           tree.Fill()
-        newFile.cd()
-        tree.Write()
+	newfilename = newfilePath
+	ch = origChain
+	nentries = ch.GetEntries()
+	ch.Draw(">>eList", "PV_npvsGood>=1&&nPhoton>=1&&nJet>=1")
+	elist = ROOT.gDirectory.Get("eList")
+	number_events = elist.GetN()
+	print(" Creating new root-file ...")
+	newFile = ROOT.TFile(newfilename,"recreate")
+	print(" Creating new tree ...")
+	newchain = ch.CloneTree(0)
+	tree = newchain.GetTree()
+	print(number_events)
+	for jentry in range(number_events):
+		ch.GetEntry(elist.GetEntry(jentry))
+		if (jentry%50000 == 0) : print(jentry)
+		tree.Fill()
+	newFile.cd()
+	tree.Write()
 	newFile.Write()
 	newFile.Map()
-        newFile.Close()
-        return
+	newFile.Close()
+	return
 
 def setElist(c,cut):
 	c.Draw(">>eList", cut)
@@ -287,43 +295,41 @@ def matching_particles(RecoPhotons=None, GenPhotons=None, pt_ratio=0.0, dr_cone=
 
 
 def matching(RecoPhoton=None, GenPhoton=None, pt_ratio=0.0, dr_cone=0.0):
-        """
-	
-        :param RecoPhoton: dict
-        :param GenPhoton: dict
-        :param pt_ratio: float
-        :param dr_cone: float
-        :return: bool and 1 dict if True
+	"""
 
-        selected => {1: {1st recoPhotn}, 2: { 2nd recoPhot}} selected[1]
-        matched => {1: {match 1st recoPhot}, 2: {match 2nd reco} }
-        selected , matched = matching_particles()
+	:param RecoPhoton: dict
+	:param GenPhoton: dict
+	:param pt_ratio: float
+	:param dr_cone: float
+	:return: bool and 1 dict if True
 
-        """
+	selected => {1: {1st recoPhotn}, 2: { 2nd recoPhot}} selected[1]
+	matched => {1: {match 1st recoPhot}, 2: {match 2nd reco} }
+	selected , matched = matching_particles()
+
+	"""
 
 
-	Match = False 
-
-        
-        matched = {}
+	Match = False
+	matched = {}
 		
 
-        dR_Pho_Match = deltaR(RecoPhoton["phi"], GenPhoton["phi"], RecoPhoton["eta"], GenPhoton["eta"])
-        PtRatio = abs(GenPhoton["pt"]-RecoPhoton["pt"]) / (GenPhoton["pt"])
-       	#dRm.append({'index': j, 'dR': dR_Pho_Match, 'PtRatio': PtRatio})
+	dR_Pho_Match = deltaR(RecoPhoton["phi"], GenPhoton["phi"], RecoPhoton["eta"], GenPhoton["eta"])
+	PtRatio = abs(GenPhoton["pt"]-RecoPhoton["pt"]) / (GenPhoton["pt"])
+	#dRm.append({'index': j, 'dR': dR_Pho_Match, 'PtRatio': PtRatio})
 	GenPhoton['dR'] = dR_Pho_Match
 	GenPhoton['PtRatio']=  PtRatio
 
 
-       	matched_photon = None
-       	if abs(GenPhoton['PtRatio']) < pt_ratio and GenPhoton['dR'] <= dr_cone:
-                                matched_photon = GenPhoton
+	matched_photon = None
+	if abs(GenPhoton['PtRatio']) < pt_ratio and GenPhoton['dR'] <= dr_cone:
+				matched_photon = GenPhoton
 				Match = True
 
-     	if Match == True:
-                        matched = matched_photon
+	if Match == True:
+			matched = matched_photon
 
-        return (matched , Match) 
+	return (matched , Match) 
 
 def getbTagSF(bdict,flavor,pt,eta,disc):
 	btagging_dict = bdict
