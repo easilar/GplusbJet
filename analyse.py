@@ -29,12 +29,13 @@ stype = options.stype
 sname = options.sname
 
 #afs_dir = os.environ["afs_dir"]
-afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets_UL/"
-targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
-#targetdir_mainpath = "/eos/user/m/myalvac/UL_data/"
+afs_dir = "/afs/cern.ch/user/m/myalvac/GPlusbJets_UL"
+#targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
+targetdir_mainpath = "/eos/user/m/myalvac/GPlusBJets/"
 pfile = afs_dir+"/samples_orig.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
 sdict = sample_dic[year][stype][sname][data_letter]
+btag_WP = {2016:0.6377,2017:0.7476,2018:0.7100}
 
 if options.stype == "data":
    if year == 2016:
@@ -48,6 +49,7 @@ if options.stype == "data":
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
 
+export cern_box="/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
    targetdir_suffix = "High_PT_Tight"
    #targetdir_suffix = "High_PT_LooseNotTight"
    targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
@@ -223,10 +225,16 @@ for jentry in range(ini_event,fin_event):
    jets = []
    bjets = []
    for j in range(int(nJet)):
-	if ch.GetLeaf('Jet_pt').GetValue(j)>40 and abs(ch.GetLeaf('Jet_eta').GetValue(j))<2.4 and ch.GetLeaf('Jet_jetId').GetValue(j)>=6 and ch.GetLeaf('Jet_puId').GetValue(j)>=7:
-		jets.append({'index':j,'pt':ch.GetLeaf('Jet_pt').GetValue(j),'phi':ch.GetLeaf('Jet_phi').GetValue(j),'eta':ch.GetLeaf('Jet_eta').GetValue(j)})
-		if ch.GetLeaf('Jet_btagDeepFlavB').GetValue(j)>=0.6502 : 
-			bjets.append({'index':j})
+	if ch.GetLeaf('Jet_pt').GetValue(j)>40 and abs(ch.GetLeaf('Jet_eta').GetValue(j))<2.4 and ch.GetLeaf('Jet_jetId').GetValue(j)>=6 :
+		if ch.GetLeaf('Jet_pt').GetValue(j)<50 and ch.GetLeaf('Jet_puId').GetValue(j)>=7:
+			jets.append({'index':j,'pt':ch.GetLeaf('Jet_pt').GetValue(j),'phi':ch.GetLeaf('Jet_phi').GetValue(j),'eta':ch.GetLeaf('Jet_eta').GetValue(j)})
+			if ch.GetLeaf('Jet_btagDeepFlavB').GetValue(j)>=btag_WP[year] : 
+				bjets.append({'index':j})
+		if ch.GetLeaf('Jet_pt').GetValue(j)>=50:
+			jets.append({'index':j,'pt':ch.GetLeaf('Jet_pt').GetValue(j),'phi':ch.GetLeaf('Jet_phi').GetValue(j),'eta':ch.GetLeaf('Jet_eta').GetValue(j)})
+			if ch.GetLeaf('Jet_btagDeepFlavB').GetValue(j)>=btag_WP[year] : 
+				bjets.append({'index':j})
+			
    ngoodJet[0] = len(jets)
    ngoodbJet[0] = len(bjets)
    for i,jet in enumerate(jets):
