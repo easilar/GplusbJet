@@ -35,7 +35,7 @@ targetdir_mainpath = "/eos/user/m/myalvac/GPlusBJets/"
 pfile = afs_dir+"/samples_orig.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
 sdict = sample_dic[year][stype][sname][data_letter]
-btag_WP = {2016:0.6377,2017:0.7476,2018:0.7100}
+btag_WP = {20161:0.6377,20162:0.6502,2017:0.7476,2018:0.7100}
 
 if options.stype == "data":
    if year == 2016:
