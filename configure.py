@@ -2,9 +2,9 @@ from array import array
 from math import pi, sqrt, cos, sin, sinh, log
 
 #Here we put plot configurations
-target_lumi = 19.5  #fb^{-1}
+#target_lumi = 19.5  #fb^{-1}
 #target_lumi = 35.9  #fb^{-1}
-#target_lumi = 41.53  #fb^{-1}
+target_lumi = 41.48  #fb^{-1}
 #gamma Pt bins
 gLowPtBins  = array('d', [float(x) for x in \
 				range(0,40,20)\
@@ -26,25 +26,6 @@ gHighPtBins = array('d', [float(x) for x in \
                                 +range(700,1000,300)\
                                 +range(1000,2000,1000)\
                                 +range(2000,3000,1000)\
-                                        ])
-gPtBins  = array('d', [float(x) for x in \
-                               # range(20,40,10)\
-                                #range(40,60,5)\
-                                #+range(60,90,30)\
-                                #range(50,60,5)\
-                                #+range(100,140,20)\
-                                #+range(60,80,5)\
-                               # +range(180,225,45)\
-                                #+range(90,150,20)\
-                               # +range(100,145,15)\
-                                #+range(145,180,35)\
-                                range(80,120,5)\
-                                +range(120,160,10)\
-                                +range(160,210,50)\
-                                +range(210,310,100)\
-                               # +range(300,400,100)\
-                                #+range(1000,2000,1000)\
-                                #+range(2000,3000,1000)\
                                         ])
 
 gPtBins= gHighPtBins
