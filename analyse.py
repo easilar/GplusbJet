@@ -77,14 +77,14 @@ else:
    elif year == 2017:
       photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Tight_UL17.root")
       btagging_dict = pickle.load(open(afs_dir+"/SF_files/btag_SF_17UL.pkl",'rb'))
+      puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection_2017UL.root")
+      pu68p6 = puweight_file.Get("h_ratio")
 
    elif year == 2018:
       photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight.root_UL18.root")
    #For Photon Scale Factor
    SF_MC = photon_SF_file.Get("EGamma_SF2D")
 
-puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection.root")
-pu68p6 = puweight_file.Get("h_ratio")
 
 
 targetfilePath = targetdir+f.split(".")[0]+"_"+str(divIndex)+".root"
