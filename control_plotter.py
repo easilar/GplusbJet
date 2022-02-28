@@ -33,32 +33,34 @@ signal_samp = options.s_samp
 
 pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets_UL/samples_ana.pkl"
 
+year = 2017
+era_tag = "UL 2017"
+lumi_weight = float(41.48)/100 
+
 test = options.test
-plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/UL/Control_Plots/G1Jet/CR_Plots/'
+plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/UL/'+str(year)+'/Control_Plots/G1Jet/CR_Plots/'
 if not os.path.exists(plots_path):
   os.makedirs(plots_path)
 
 plot_sig_stack = True
 
-era_tag = "UL 2016 Pre-VFP"
-
 #bkg chain al 
 #bkg listof dicts  olustur
 bkg_list = [
-{"sample":"QCD_HT_UL2016_PreVFP", "weight":"(1)",  "tex":"QCD", "color":ROOT.kBlue-3}
+{"sample":"QCD_HT_UL2017", "weight":"(1)",  "tex":"QCD", "color":ROOT.kBlue-3}
 ]
 
 #signal chain al
 
 if signal_samp == "G1Jet_Pt":
-	signal_dict = {"sample":"G1Jet_LHEGPt_PreVFP", "weight":"(1)", "chain_all":getChain(stype="signal",sname="G1Jet_LHEGPt_PreVFP",pfile=pfile,test=test), "tex":"G+1Jet", "color":ROOT.kAzure+6}
-	signal_dict["weight"] = "(weight*puweight*PhotonSF)"
+	signal_dict = {"sample":"G1Jet_LHEGpt", "weight":"(1)", "chain_all":getChain(year=year,stype="signal",sname="G1Jet_LHEGpt",pfile=pfile,test=test), "tex":"G+1Jet", "color":ROOT.kAzure+6}
+	signal_dict["weight"] = str(lumi_weight)+"*(weight*PhotonSF)"
 
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
 
 #data dict al
-data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(stype="data",sname="SinglePhoton_UL_PreVFP",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
+data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(year=year,stype="data",sname="SinglePhoton_UL",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
 
 #define photon cuts
 selections={
@@ -68,7 +70,7 @@ selections={
 "vtx_cut":ngood_vtx_cut,\
 "met_filters": "&&".join([ngood_vtx_cut,met_filters]),\
 "single_photon":"ngoodPhoton==1&&(goodPhoton_pt>=225)",\
-"presel":"&&".join([ngood_vtx_cut,met_filters,single_photon_tight_cut,muon_veto,electron_veto]),\
+"presel":"ngoodPhoton==1&&HLT_Photon200&&(goodPhoton_pt>=225)&&goodJet_pt[0]>100",\
 "1b":"ngoodbJet==1&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
 "2b":"ngoodbJet==2&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
 "0b":"ngoodbJet==0&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
@@ -79,10 +81,10 @@ plot_cut = selections[region]
 
 bkg_Int = 0
 for bkg in bkg_list:
-    bkg["chain_all"] = getChain(stype="bkg",sname=bkg["sample"],pfile=pfile,test=test)
+    bkg["chain_all"] = getChain(year=year,stype="bkg",sname=bkg["sample"],pfile=pfile,test=test)
     print(bkg["sample"],bkg["chain_all"][1],bkg["chain_all"][2])
     bkg["chain"] = bkg["chain_all"][0]
-    bkg["weight"] = "(weight*puweight*PhotonSF)"
+    bkg["weight"] = str(lumi_weight)+"*(weight*PhotonSF)"
     h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&ngoodGenPhoton==0", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
     bkg["histo"] = h
     bkg_Int+=bkg["histo"].Integral()
@@ -96,7 +98,7 @@ if plot_sig_stack : bkg_list.append(signal_dict)
 print('Ploting starts......')
 
 data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join(["(1)",plot_cut]), weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
-print("175 is taken")
+print("data is taken")
 
 signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut, weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 signalPlusbkg = bkg_Int+signal_dict["histo"].Integral()

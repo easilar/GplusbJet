@@ -20,8 +20,8 @@ for ci,bin_name in enumerate(sdict.keys()):
 			os.makedirs(os.environ["cern_box"]+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
 	else:
 		#print(os.environ["cern_box"]+"/MC/"+sname+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
-		if not os.path.exists(os.environ["cern_box"]+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/"):
-			os.makedirs(os.environ["cern_box"]+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
+		if not os.path.exists(os.environ["cern_box"]+"/MC/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/"):
+			os.makedirs(os.environ["cern_box"]+"/MC/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict[bin_name]["dir"].split("/")[-2]+"/")
 
 	for f in flist:
 		for indiv in range(ndiv+1):
