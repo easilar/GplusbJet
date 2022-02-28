@@ -29,9 +29,8 @@ stype = options.stype
 sname = options.sname
 
 #afs_dir = os.environ["afs_dir"]
-afs_dir = "/afs/cern.ch/user/m/myalvac/GPlusbJets_UL"
-#targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
-targetdir_mainpath = "/eos/user/m/myalvac/GPlusBJets/"
+afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets_UL/"
+targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
 pfile = afs_dir+"/samples_orig.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
 sdict = sample_dic[year][stype][sname][data_letter]
@@ -49,7 +48,6 @@ if options.stype == "data":
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
 
-export cern_box="/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
    targetdir_suffix = "High_PT_Tight"
    #targetdir_suffix = "High_PT_LooseNotTight"
    targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
@@ -68,7 +66,7 @@ else:
    orig_dir = sdict["dir"]
    #targetdir_suffix = "GenMatching"
    targetdir_suffix = "High_PT_Tight"
-   targetdir = targetdir_mainpath+"/MC/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
+   targetdir = targetdir_mainpath+"/MC/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
    if year == 2016:
 	   if "HIPM" in sdict["das_path"]: 
 		photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16.root")
@@ -251,9 +249,9 @@ for jentry in range(ini_event,fin_event):
 	if not options.stype == "data": 
 		goodJet_hadronFlavour[i] = ch.GetLeaf('Jet_hadronFlavour').GetValue(jet["index"])
 		goodJet_flavor = ch.GetLeaf('Jet_hadronFlavour').GetValue(jet["index"])
-		if goodJet_flavor==5 : btagSF = getbTagSF(bdict=btagging_dict,flavor=0,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
-		elif goodJet_flavor==4 : btagSF = getbTagSF(bdict=btagging_dict,flavor=1,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
-		else : btagSF = getbTagSF(bdict=btagging_dict,flavor=2,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i]) 
+		if goodJet_flavor==5 : btagSF = getbTagSF(bdict=btagging_dict,flavor=5,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
+		elif goodJet_flavor==4 : btagSF = getbTagSF(bdict=btagging_dict,flavor=4,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
+		else : btagSF = getbTagSF(bdict=btagging_dict,flavor=0,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i]) 
 		goodJet_btagSF[i] = btagSF
 
    for i,bjet in enumerate(bjets):
@@ -267,9 +265,9 @@ for jentry in range(ini_event,fin_event):
 	if not options.stype == "data": 
 		goodbJet_hadronFlavour[i] = ch.GetLeaf('Jet_hadronFlavour').GetValue(bjet["index"])
 		goodJet_flavor = ch.GetLeaf('Jet_hadronFlavour').GetValue(bjet["index"])
-		if goodJet_flavor==5 : btagSF = getbTagSF(bdict=btagging_dict,flavor=0,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
-		elif goodJet_flavor==4 : btagSF = getbTagSF(bdict=btagging_dict,flavor=1,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
-		else : btagSF = getbTagSF(bdict=btagging_dict,flavor=2,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i]) 
+		if goodJet_flavor==5 : btagSF = getbTagSF(bdict=btagging_dict,flavor=5,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
+		elif goodJet_flavor==4 : btagSF = getbTagSF(bdict=btagging_dict,flavor=4,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
+		else : btagSF = getbTagSF(bdict=btagging_dict,flavor=0,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i]) 
 		goodbJet_btagSF[i] = btagSF
 		
    sel_photons = []
