@@ -1,12 +1,13 @@
-python control_plotter.py --plot=Photon_eta
-python control_plotter.py --plot=Photon_phi
-python control_plotter.py --plot=PV_npvsGood
-python control_plotter.py --plot=Photon_pfRelIso03_all
-python control_plotter.py --plot=Photon_pfRelIso03_chg
-python control_plotter.py --plot=Photon_r9   
-python control_plotter.py --plot=Photon_hoe   
-python control_plotter.py --plot=Photon_sieie   
-python control_plotter.py --plot=LJet_pt   
-python control_plotter.py --plot=LJet_phi   
-python control_plotter.py --plot=nBJet   
-python control_plotter.py --plot=MET_pt   
+python control_plotter.py --region=presel --plot=Photon_pt
+python control_plotter.py --region=presel --plot=Photon_eta
+python control_plotter.py --region=presel --plot=Photon_phi
+python control_plotter.py --region=presel --plot=PV_npvsGood
+python control_plotter.py --region=presel --plot=Photon_pfRelIso03_all
+python control_plotter.py --region=presel --plot=Photon_pfRelIso03_chg
+python control_plotter.py --region=presel --plot=Photon_r9   
+python control_plotter.py --region=presel --plot=Photon_hoe   
+python control_plotter.py --region=presel --plot=Photon_sieie   
+python control_plotter.py --region=presel --plot=LJet_pt   
+python control_plotter.py --region=presel --plot=LJet_phi   
+python control_plotter.py --region=presel --plot=nBJet   
+python control_plotter.py --region=presel --plot=MET_pt   

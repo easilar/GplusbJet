@@ -335,6 +335,7 @@ def getbTagSF(bdict,flavor,pt,eta,disc):
 	btagging_dict = bdict
 	f = flavor
 	pt = pt
+	if pt >=1000.0: pt=1000.0
 	eta = abs(eta)
 	disc = disc
 	pt_lis_LB = btagging_dict[f]["pt_lis_LB"]
