@@ -49,7 +49,6 @@ if options.stype == "data":
       print("working on 2018")
    orig_dir = sdict["dir"]+"/"
 
-export cern_box="/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
    targetdir_suffix = "High_PT_Tight"
    #targetdir_suffix = "High_PT_LooseNotTight"
    targetdir = targetdir_mainpath+"/data/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"

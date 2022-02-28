@@ -4,7 +4,7 @@ import os
 pfile=os.environ["afs_dir"]+"/samples_orig.pkl"
 
 sample_dic = pickle.load(open(pfile,'rb'))
-year = 2016
+year = 2017
 sname = "SinglePhoton_UL"
 stype =  "data" #"signal" #"bkg",  "data"
 sdict = sample_dic[year][stype][sname]
