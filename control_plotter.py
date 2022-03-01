@@ -54,7 +54,7 @@ bkg_list = [
 
 if signal_samp == "G1Jet_Pt":
 	signal_dict = {"sample":"G1Jet_LHEGpt", "weight":"(1)", "chain_all":getChain(year=year,stype="signal",sname="G1Jet_LHEGpt",pfile=pfile,test=test), "tex":"G+1Jet", "color":ROOT.kAzure+6}
-	signal_dict["weight"] = str(lumi_weight)+"*(weight*PhotonSF)"
+	signal_dict["weight"] = str(lumi_weight)+"*(weight*puweight*PhotonSF)"
 
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
@@ -76,7 +76,7 @@ selections={
 "0b":"ngoodbJet==0&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
 }
 
-
+hightweightcut="!(event==50233261||event==171503688||event==331789209)"
 plot_cut = selections[region]
 
 bkg_Int = 0
@@ -84,8 +84,8 @@ for bkg in bkg_list:
     bkg["chain_all"] = getChain(year=year,stype="bkg",sname=bkg["sample"],pfile=pfile,test=test)
     print(bkg["sample"],bkg["chain_all"][1],bkg["chain_all"][2])
     bkg["chain"] = bkg["chain_all"][0]
-    bkg["weight"] = str(lumi_weight)+"*(weight*PhotonSF)"
-    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&ngoodGenPhoton==0", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+    bkg["weight"] = str(lumi_weight)+"*(weight*puweight*PhotonSF)"
+    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&ngoodGenPhoton==0&&("+hightweightcut+")", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
     bkg["histo"] = h
     bkg_Int+=bkg["histo"].Integral()
     del h
