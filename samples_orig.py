@@ -58,6 +58,19 @@ QCD_HT_700to1000_UL_2017 = path_MC_UL_17+"QCD_HT/QCD_HT700to1000_TuneCP5_PSWeigh
 QCD_HT_1000to1500_UL_2017 = path_MC_UL_17+"QCD_HT/QCD_HT1000to1500_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
 QCD_HT_1500to2000_UL_2017 = path_MC_UL_17+"QCD_HT/QCD_HT1500to2000_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
 QCD_HT_2000toInf_UL_2017 = path_MC_UL_17+"QCD_HT/QCD_HT2000toInf_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+
+
+QCD_HT_50to100_UL_2018 = path_MC_UL_18+"QCD_HT/QCD_HT50to100_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_100to200_UL_2018 = path_MC_UL_18+"QCD_HT/QCD_HT100to200_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_200to300_UL_2018 = path_MC_UL_18+"QCD_HT/QCD_HT200to300_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_300to500_UL_2018 = path_MC_UL_18+"QCD_HT/QCD_HT300to500_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_500to700_UL_2018 = path_MC_UL_18+"QCD_HT/QCD_HT500to700_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_700to1000_UL_2018 = path_MC_UL_18+"QCD_HT/QCD_HT700to1000_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_1000to1500_UL_2018 = path_MC_UL_18+"QCD_HT/QCD_HT1000to1500_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_1500to2000_UL_2018 = path_MC_UL_18+"QCD_HT/QCD_HT1500to2000_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+QCD_HT_2000toInf_UL_2018 = path_MC_UL_18+"QCD_HT/QCD_HT2000toInf_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
+
+
 ###xsect dictionary: valuses are taken from https://cms-gen-dev.cern.ch/xsdb/ Metin!!!!###
 ###Das paths are Added####
 Samples = {2016: \
@@ -168,6 +181,17 @@ Samples = {2016: \
 	},\
 	#closes signal
 	"bkg":{
+     		"QCD_HT_UL2018":{ \
+      			"QCD_HT_UL2018_50To100":{"dir":QCD_HT_50to100_UL_2018,"nevents":26243010,"xsec":1.860e+8,"xsec_unc":4.897e+4,"equivalent_lumi":5.377e-06,"fraction_negative_weight":0.0, "das_path":"/QCD_HT50to100_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      			"QCD_HT_UL2018_100To200":{"dir":QCD_HT_100to200_UL_2018,"nevents":54381393,"xsec":2.365e+7,"xsec_unc":4.467e+3,"equivalent_lumi":4.229e-05,"fraction_negative_weight":0.0, "das_path":"/QCD_HT100to200_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      			"QCD_HT_UL2018_200To300":{"dir":QCD_HT_200to300_UL_2018,"nevents":42714435,"xsec":1.553e+6,"xsec_unc":3.499e+2,"equivalent_lumi":6.440e-04  ,"fraction_negative_weight":0.0, "das_path":"/QCD_HT200to300_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      			"QCD_HT_UL2018_300To500":{"dir":QCD_HT_300to500_UL_2018,"nevents":43429979,"xsec":3.245e+5,"xsec_unc":75.53,"equivalent_lumi":3.082e-3,"fraction_negative_weight":0.0, "das_path":"/QCD_HT300to500_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      			"QCD_HT_UL2018_500To700":{"dir":QCD_HT_500to700_UL_2018,"nevents":36194860,"xsec":3.028e+4,"xsec_unc":7.439,"equivalent_lumi":0.03303 ,"fraction_negative_weight":0.0, "das_path":"/QCD_HT500to700_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      			"QCD_HT_UL2018_700To1000":{"dir":QCD_HT_700to1000_UL_2018,"nevents":32934816,"xsec":6.437e+3,"xsec_unc":1.658,"equivalent_lumi":0.1554,"fraction_negative_weight":0.0, "das_path":"/QCD_HT700to1000_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      			"QCD_HT_UL2018_1000To1500":{"dir":QCD_HT_1000to1500_UL_2018,"nevents":10186734,"xsec":1.122e+3,"xsec_unc":0.5173,"equivalent_lumi":0.8911  ,"fraction_negative_weight":0.0, "das_path":"/QCD_HT1000to1500_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+     			"QCD_HT_UL2018_1500To2000":{"dir":QCD_HT_1500to2000_UL_2018,"nevents":7701876,"xsec":1.083e+2,"xsec_unc":0.05823,"equivalent_lumi":9.230,"fraction_negative_weight":0.0, "das_path":"/QCD_HT1500to2000_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+      			"QCD_HT_UL2018_2000ToInf":{"dir":QCD_HT_2000toInf_UL_2018,"nevents":4112573,"xsec":2.204e+1,"xsec_unc":0.01560,"equivalent_lumi":45.38,"fraction_negative_weight":0.0, "das_path":"/QCD_HT2000toInf_TuneCP5_PSWeights_13TeV-madgraph-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+	}\
 	},\
 	#closes bkg
   	"data":{\
