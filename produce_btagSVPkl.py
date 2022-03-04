@@ -2,7 +2,7 @@ import pickle
 import pandas as pd
 import numpy as np
 
-data = pd.read_csv("SF_files/wp_deepJet_106XUL17_v3.csv")
+data = pd.read_csv("SF_files/wp_deepJet_106XUL18_v2.csv")
 data_central = data[data['sysType'] == 'central']
 btag_SF_dict = {}
 print(data.columns)
@@ -40,4 +40,4 @@ for f in btag_SF_dict.keys():
 			btag_SF_dict[f][pt][eta]["disc_lis_UB"] = disc_lis_UB
 			btag_SF_dict[f][pt][eta]["disc_lis_LB"] = disc_lis_LB
 
-pickle.dump(btag_SF_dict, open("SF_files/btag_SF_17UL.pkl", "wb"))
+pickle.dump(btag_SF_dict, open("SF_files/btag_SF_18UL.pkl", "wb"))

@@ -8,6 +8,8 @@ path_data_UL = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gam
 path_MC_UL_17 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2017/UL_MC/"
 path_data_UL_17 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2017/data/SinglePhoton_UL/"
 
+path_MC_UL_18 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/UL_MC/"
+
 G1Jet_LHEGPt_150To250_2016 = path_MC_UL+"G1Jet/G1Jet_LHEGpT-150To250_TuneCP5_13TeV-amcatnlo-pythia8/"
 G1Jet_LHEGPt_250To400_2016 = path_MC_UL+"G1Jet/G1Jet_LHEGpT-250To400_TuneCP5_13TeV-amcatnlo-pythia8/"
 G1Jet_LHEGPt_400To675_2016 = path_MC_UL+"G1Jet/G1Jet_LHEGpT-400To675_TuneCP5_13TeV-amcatnlo-pythia8/"
@@ -21,6 +23,11 @@ G1Jet_LHEGPt_150To250_2017 = path_MC_UL_17+"G1Jet/G1Jet_LHEGpT-150To250_TuneCP5_
 G1Jet_LHEGPt_250To400_2017 = path_MC_UL_17+"G1Jet/G1Jet_LHEGpT-250To400_TuneCP5_13TeV-amcatnlo-pythia8/"
 G1Jet_LHEGPt_400To675_2017 = path_MC_UL_17+"G1Jet/G1Jet_LHEGpT-400To675_TuneCP5_13TeV-amcatnlo-pythia8/"
 G1Jet_LHEGPt_675ToInf_2017 = path_MC_UL_17+"G1Jet/G1Jet_LHEGpT-675ToInf_TuneCP5_13TeV-amcatnlo-pythia8/"
+
+G1Jet_LHEGPt_150To250_2018 = path_MC_UL_18+"G1Jet/G1Jet_LHEGpT-150To250_TuneCP5_13TeV-amcatnlo-pythia8/"
+G1Jet_LHEGPt_250To400_2018 = path_MC_UL_18+"G1Jet/G1Jet_LHEGpT-250To400_TuneCP5_13TeV-amcatnlo-pythia8/"
+G1Jet_LHEGPt_400To675_2018 = path_MC_UL_18+"G1Jet/G1Jet_LHEGpT-400To675_TuneCP5_13TeV-amcatnlo-pythia8/"
+G1Jet_LHEGPt_675ToInf_2018 = path_MC_UL_18+"G1Jet/G1Jet_LHEGpT-675ToInf_TuneCP5_13TeV-amcatnlo-pythia8/"
 
 QCD_HT_50to100_UL_2016 = path_MC_UL+"QCD_HT/QCD_HT50to100_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
 QCD_HT_100to200_UL_2016 = path_MC_UL+"QCD_HT/QCD_HT100to200_TuneCP5_PSWeights_13TeV-madgraph-pythia8/"
@@ -151,6 +158,13 @@ Samples = {2016: \
   2018: \
   {
 	"signal":{
+		"G1Jet_LHEGpt":\
+				{
+			"G1Jet_LHEGpt_150To250_2018":{"dir":G1Jet_LHEGPt_150To250_2018,"nevents":11616288,"xsec":2.262e+2,"xsec_unc":6.433e-1,"equivalent_lumi":1.882,"fraction_negative_weight":0.1738, "das_path":"/G1Jet_LHEGpT-150To250_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+			"G1Jet_LHEGpt_250To400_2018":{"dir":G1Jet_LHEGPt_250To400_2018,"nevents":5994569,"xsec":2.699e+1,"xsec_unc":0.08345,"equivalent_lumi":17.17,"fraction_negative_weight":0.1697, "das_path":"/G1Jet_LHEGpT-250To400_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+			"G1Jet_LHEGpt_400To675_2018":{"dir":G1Jet_LHEGPt_400To675_2018,"nevents":1999564,"xsec":3.395,"xsec_unc":0.007753,"equivalent_lumi":133.2,"fraction_negative_weight":0.1638, "das_path":"/G1Jet_LHEGpT-400To675_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+			"G1Jet_LHEGpt_675ToInf_2018":{"dir":G1Jet_LHEGPt_675ToInf_2018,"nevents":498411,"xsec":2.478e-1,"xsec_unc":0.0005027,"equivalent_lumi":1883.0,"fraction_negative_weight":0.1584, "das_path":"/G1Jet_LHEGpT-675ToInf_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM"},\
+				},\
 	},\
 	#closes signal
 	"bkg":{
