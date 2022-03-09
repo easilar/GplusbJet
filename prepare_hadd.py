@@ -4,9 +4,9 @@ import os
 pfile=os.environ["afs_dir"]+"/samples_orig.pkl"
 
 sample_dic = pickle.load(open(pfile,'rb'))
-year = 2017
-sname = "G1Jet_LHEGpt"
-stype =  "signal" #"signal" #"bkg",  "data"
+year = 2018
+sname = "EGamma_UL"
+stype =  "data" #"signal" #"bkg",  "data"
 sdict = sample_dic[year][stype][sname]
 ndiv=0
 targetdir_suffix = "High_PT_Tight"
