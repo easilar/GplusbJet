@@ -8,7 +8,7 @@ path_data_UL = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gam
 path_MC_UL_17 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2017/UL_MC/"
 path_data_UL_17 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2017/data/SinglePhoton_UL/"
 path_MC_UL_18 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/UL_MC/"
-path_data_UL_18 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/EGamma_UL/EGamma"
+path_data_UL_18 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/EGamma_UL/EGamma/"
 
 G1Jet_LHEGPt_150To250_2016 = path_MC_UL+"G1Jet/G1Jet_LHEGpT-150To250_TuneCP5_13TeV-amcatnlo-pythia8/"
 G1Jet_LHEGPt_250To400_2016 = path_MC_UL+"G1Jet/G1Jet_LHEGpT-250To400_TuneCP5_13TeV-amcatnlo-pythia8/"
@@ -194,7 +194,7 @@ Samples = {2016: \
 	},\
 	#closes bkg
   	"data":{\
-"EGamma_UL":{\
+		"EGamma_UL":{\
                         "A":{"dir":path_data_UL_18+"Run2018A/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/EGamma/Run2018A-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD"},\
                         "B":{"dir":path_data_UL_18+"Run2018B/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/EGamma/Run2018B-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD"},\
                         "C":{"dir":path_data_UL_18+"Run2018C/", "xsec":1,"xsec_unc":1,"equivalent_lumi":1,"fraction_negative_weight":0.0, "das_path":"/EGamma/Run2018C-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD"},\
