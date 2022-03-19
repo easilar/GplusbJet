@@ -5,11 +5,11 @@ pfile=os.environ["afs_dir"]+"/samples_orig.pkl"
 
 sample_dic = pickle.load(open(pfile,'rb'))
 year = 2017
-sname = "SinglePhoton_UL"
-stype =  "data" #"bkg","signal",  "data"
+sname = "QCD_HT_UL2017"
+stype =  "bkg" #"bkg","signal",  "data"
 sdict = sample_dic[year][stype][sname]
 ndiv=50
-targetdir_suffix = "High_PT_Tight"
+targetdir_suffix = "High_PT_LooseNotTight"
 for ci,bin_name in enumerate(sdict.keys()):
 	cur_dir = sdict[bin_name]["dir"]
 	flist = os.listdir(cur_dir)

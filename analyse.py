@@ -65,15 +65,22 @@ else:
    weight_v = xsec_v*target_lumi*(1/float(sdict["nevents"]))
    orig_dir = sdict["dir"]
    #targetdir_suffix = "GenMatching"
-   targetdir_suffix = "High_PT_Tight"
+   #targetdir_suffix = "High_PT_Tight"
+   targetdir_suffix = "High_PT_LooseNotTight"
    targetdir = targetdir_mainpath+"/MC/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
    if year == 2016:
 	   if "HIPM" in sdict["das_path"]: 
 		photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16.root")
+      		btagging_dict = pickle.load(open(afs_dir+"/SF_files/btag_SF_16UL_preVFP.pkl",'rb'))
 		btag_WP[2016] = 0.6502 
+      		puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection_2016_preVFPUL.root")
+      		pu68p6 = puweight_file.Get("h_ratio")
 	   else : 
 		photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16_postVFP.root")
+      		btagging_dict = pickle.load(open(afs_dir+"/SF_files/btag_SF_16UL_postVFP.pkl",'rb'))
 		btag_WP[2016] = 0.6377 
+      		puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection_2016_postVFPUL.root")
+      		pu68p6 = puweight_file.Get("h_ratio")
    elif year == 2017:
       photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Tight_UL17.root")
       btagging_dict = pickle.load(open(afs_dir+"/SF_files/btag_SF_17UL.pkl",'rb'))
