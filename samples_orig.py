@@ -10,6 +10,8 @@ path_data_UL_17 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/
 path_MC_UL_18 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/UL_MC/"
 path_data_UL_18 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/data/EGamma_UL/EGamma/"
 
+path_MC_UL_18 = "/eos/cms/store/group/phys_smp/AnalysisFramework/Baobab/Metin/gammaplusb/2018/UL_MC/"
+
 G1Jet_LHEGPt_150To250_2016 = path_MC_UL+"G1Jet/G1Jet_LHEGpT-150To250_TuneCP5_13TeV-amcatnlo-pythia8/"
 G1Jet_LHEGPt_250To400_2016 = path_MC_UL+"G1Jet/G1Jet_LHEGpT-250To400_TuneCP5_13TeV-amcatnlo-pythia8/"
 G1Jet_LHEGPt_400To675_2016 = path_MC_UL+"G1Jet/G1Jet_LHEGpT-400To675_TuneCP5_13TeV-amcatnlo-pythia8/"
@@ -23,7 +25,6 @@ G1Jet_LHEGPt_150To250_2017 = path_MC_UL_17+"G1Jet/G1Jet_LHEGpT-150To250_TuneCP5_
 G1Jet_LHEGPt_250To400_2017 = path_MC_UL_17+"G1Jet/G1Jet_LHEGpT-250To400_TuneCP5_13TeV-amcatnlo-pythia8/"
 G1Jet_LHEGPt_400To675_2017 = path_MC_UL_17+"G1Jet/G1Jet_LHEGpT-400To675_TuneCP5_13TeV-amcatnlo-pythia8/"
 G1Jet_LHEGPt_675ToInf_2017 = path_MC_UL_17+"G1Jet/G1Jet_LHEGpT-675ToInf_TuneCP5_13TeV-amcatnlo-pythia8/"
-
 
 G1Jet_LHEGPt_150To250_2018 = path_MC_UL_18+"G1Jet/G1Jet_LHEGpT-150To250_TuneCP5_13TeV-amcatnlo-pythia8/"
 G1Jet_LHEGPt_250To400_2018 = path_MC_UL_18+"G1Jet/G1Jet_LHEGpT-250To400_TuneCP5_13TeV-amcatnlo-pythia8/"
