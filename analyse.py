@@ -29,8 +29,10 @@ stype = options.stype
 sname = options.sname
 
 #afs_dir = os.environ["afs_dir"]
-afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets_UL/"
-targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
+#afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets_UL/"
+afs_dir = "/afs/cern.ch/user/m/myalvac/GPlusbJets_UL"
+#targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
+targetdir_mainpath = "/eos/user/m/myalvac/GPlusBJets/"
 pfile = afs_dir+"/samples_orig.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
 sdict = sample_dic[year][stype][sname][data_letter]

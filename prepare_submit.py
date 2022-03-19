@@ -4,6 +4,7 @@ import os
 pfile=os.environ["afs_dir"]+"/samples_orig.pkl"
 
 sample_dic = pickle.load(open(pfile,'rb'))
+
 year = 2017
 sname = "QCD_HT_UL2017"
 stype =  "bkg" #"bkg","signal",  "data"
