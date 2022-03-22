@@ -42,6 +42,10 @@ if options.stype == "data":
    if year == 2016:
       cert_json = afs_dir+"/json/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt"
       print("working on 2016")
+      if "HIPM" in sdict["das_path"]:
+                btag_WP[2016] = 0.6502
+      else :
+                btag_WP[2016] = 0.6377
    elif year == 2017:
       cert_json = afs_dir+"/json/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt"
       print("working on 2017")
@@ -67,8 +71,8 @@ else:
    weight_v = xsec_v*target_lumi*(1/float(sdict["nevents"]))
    orig_dir = sdict["dir"]
    #targetdir_suffix = "GenMatching"
-   #targetdir_suffix = "High_PT_Tight"
-   targetdir_suffix = "High_PT_LooseNotTight"
+   targetdir_suffix = "High_PT_Tight"
+   #targetdir_suffix = "High_PT_LooseNotTight"
    targetdir = targetdir_mainpath+"/MC/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
    if year == 2016:
 	   if "HIPM" in sdict["das_path"]: 
