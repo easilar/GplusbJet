@@ -157,7 +157,7 @@ def Draw_era_tag(era_tag):
    tex.SetTextFont(61)
    tex.SetTextSize(0.05)
    tex.SetLineWidth(2)
-   tex.DrawLatex(0.25,0.8, era_tag)	
+   tex.DrawLatex(0.7,0.7, era_tag)	
    return
 
 def applyLumi(origFilePath,newfilePath,cert_json_path):
