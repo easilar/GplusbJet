@@ -14,7 +14,7 @@ gLowPtBins  = array('d', [float(x) for x in \
                                 +range(100,145,45)\
                                 +range(145,180,80)\
                                 +range(180,225,45)\
-                                +range(225,300,25)\
+                                +range(225,300,25)
                                         ])
 
 gHighPtBins = array('d', [float(x) for x in \
