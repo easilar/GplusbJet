@@ -2,9 +2,10 @@ from array import array
 from math import pi, sqrt, cos, sin, sinh, log
 
 #Here we put plot configurations
-#target_lumi = 19.5  #fb^{-1}
+#target_lumi = 59.83  #fb^{-1}
+target_lumi = {"UL 2016 PreVFP":19.52,"UL 2016 PostVFP":16.81,"UL 2017":41.48,"UL 2018":59.83}
 #target_lumi = 35.9  #fb^{-1}
-target_lumi = 41.48  #fb^{-1}
+#target_lumi = 41.48  #fb^{-1}
 #gamma Pt bins
 gLowPtBins  = array('d', [float(x) for x in \
 				range(0,40,20)\

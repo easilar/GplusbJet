@@ -27,7 +27,7 @@ exec("ndiv="+options.ndiv)
 exec("divIndex="+options.divIndex)
 stype = options.stype
 sname = options.sname
-
+letter = options.letter
 #afs_dir = os.environ["afs_dir"]
 #afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets_UL/"
 afs_dir = "/afs/cern.ch/user/m/myalvac/GPlusbJets_UL"
@@ -35,7 +35,8 @@ afs_dir = "/afs/cern.ch/user/m/myalvac/GPlusbJets_UL"
 targetdir_mainpath = "/eos/user/m/myalvac/GPlusBJets/"
 pfile = afs_dir+"/samples_orig.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
-sdict = sample_dic[year][stype][sname][data_letter]
+#sdict = sample_dic[year][stype][sname][data_letter]
+sdict = sample_dic[year][stype][sname][letter]
 btag_WP = {20161:0.6377,20162:0.6502,2017:0.7476,2018:0.7100}
 
 if options.stype == "data":

@@ -31,14 +31,17 @@ region = options.region
 
 signal_samp = options.s_samp
 
-pfile = "/afs/cern.ch/work/e/ecasilar/GplusbJets_UL/samples_ana.pkl"
+pfile = "/afs/cern.ch/user/m/myalvac/GPlusbJets_UL/samples_ana.pkl"
 
-year = 2017
-era_tag = "UL 2017"
-lumi_weight = float(41.48)/100 
+year = 2018
+era_tag = "UL 2018"
+target_lumi_dict = {"UL 2016 PreVFP":19.52,"UL 2016 PostVFP":16.81,"UL 2017":41.48,"UL 2018":59.83}
+lumi_weight = float(target_lumi_dict[era_tag])/100 
 
 test = options.test
-plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/UL/'+str(year)+'/Control_Plots/G1Jet/CR_Plots/'
+#plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/UL/'+era_tag.replace(' ','_')+'/Control_Plots/G1Jet/CR_Plots/'
+plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/UL/'+era_tag.replace(' ','_')+'/Control_Plots/GJets/CR_Plots/'
+print(plots_path)
 if not os.path.exists(plots_path):
   os.makedirs(plots_path)
 
@@ -47,21 +50,38 @@ plot_sig_stack = True
 #bkg chain al 
 #bkg listof dicts  olustur
 bkg_list = [
-{"sample":"QCD_HT_UL2017", "weight":"(1)",  "tex":"QCD", "color":ROOT.kBlue-3}
+{"sample":"TGJets_UL_2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"TGJets", "color":ROOT.kViolet-3},
+{"sample":"TTGJets_UL_2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"TTGJets", "color":ROOT.kGreen-3},
+{"sample":"WZG_UL_2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"WZG", "color":ROOT.kYellow-3},
+{"sample":"ZGToLLG_UL_2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"ZGToLLg", "color":ROOT.kOrange-3},
+{"sample":"QCD_HT_UL2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)&&(ngoodbJet==0)", "tex":"QCD", "color":ROOT.kBlue-3},
+{"sample":"QCD_bEnriched_HT_UL2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)&&(ngoodbJet==1||ngoodbJet==2)", "tex":"QCD_bEnriched", "color":ROOT.kBlue-3}
 ]
 
-#signal chain al
 
+#signal chain al
+'''
 if signal_samp == "G1Jet_Pt":
-	signal_dict = {"sample":"G1Jet_LHEGpt", "weight":"(1)", "chain_all":getChain(year=year,stype="signal",sname="G1Jet_LHEGpt",pfile=pfile,test=test), "tex":"G+1Jet", "color":ROOT.kAzure+6}
+	signal_dict = {"sample":"G1Jet_LHEGPt_PreVFP", "weight":"(1)", "chain_all":getChain(year=year,stype="signal",sname="G1Jet_LHEGPt_PreVFP",pfile=pfile,test=test), "tex":"G+1Jet", "color":ROOT.kAzure+6}
+	signal_dict["weight"] = str(lumi_weight)+"*(weight*puweight*PhotonSF)"
+
+
+print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
+'''
+if signal_samp == "GJets_DR_0p4_HT":
+	signal_dict = {"sample":"GJets_DR_0p4_HT", "weight":"(1)", "chain_all":getChain(year=year,stype="signal",sname="GJets_DR_0p4_HT",pfile=pfile,test=test), "tex":"GJets_DR_0p4_HT", "color":ROOT.kAzure+6}
 	signal_dict["weight"] = str(lumi_weight)+"*(weight*puweight*PhotonSF)"
 
 
 print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"][2])
 
 #data dict al
-data_dict = {"sample":"SinglePhoton", "weight":"(1)", "chain":getChain(year=year,stype="data",sname="SinglePhoton_UL",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
-
+#data_dict = {"sample":"SinglePhoton_UL", "weight":"(1)", "chain":getChain(year=year,stype="data",sname="SinglePhoton_UL",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
+data_dict = {"sample":"EGamma_UL", "weight":"(1)", "chain":getChain(year=year,stype="data",sname="EGamma_UL",pfile=pfile,test=test)[0], "tex":"Egamma", "color":ROOT.kBlack}
+if year == 2016:
+	HLT_Trigger = "HLT_Photon175"
+else: 
+	HLT_Trigger = "HLT_Photon200"
 #define photon cuts
 selections={
 "jetphoton": jet_photon_cut,\
@@ -70,7 +90,7 @@ selections={
 "vtx_cut":ngood_vtx_cut,\
 "met_filters": "&&".join([ngood_vtx_cut,met_filters]),\
 "single_photon":"ngoodPhoton==1&&(goodPhoton_pt>=225)",\
-"presel":"ngoodPhoton==1&&HLT_Photon200&&(goodPhoton_pt>=225)&&goodJet_pt[0]>100",\
+"presel":"ngoodPhoton==1&&(goodPhoton_pt>=225)&&goodJet_pt[0]>100"+"&&"+HLT_Trigger,\
 "1b":"ngoodbJet==1&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
 "2b":"ngoodbJet==2&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
 "0b":"ngoodbJet==0&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
@@ -85,12 +105,12 @@ for bkg in bkg_list:
     print(bkg["sample"],bkg["chain_all"][1],bkg["chain_all"][2])
     bkg["chain"] = bkg["chain_all"][0]
     bkg["weight"] = str(lumi_weight)+"*(weight*puweight*PhotonSF)"
-    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&ngoodGenPhoton==0&&("+hightweightcut+")", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+    h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&"+bkg["bjet_cut"]+"&&("+hightweightcut+")", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
     bkg["histo"] = h
     bkg_Int+=bkg["histo"].Integral()
     del h
     print(bkg["chain"].GetEntries())
-
+print(bkg_Int)
 signal_dict["chain"] = signal_dict["chain_all"][0]
 print(signal_dict["chain"].GetEntries())
 data_dict["chain"] = data_dict["chain"]
@@ -161,7 +181,7 @@ for bkg in bkg_list:
 	print(bkg['tex'])
 	color = bkg['color']
 	h = bkg["histo"]
-	#h.Scale(SF)
+	h.Scale(SF)
 	h.SetFillColor(color)
 	h.SetLineColor(ROOT.kBlack)
 	h.SetLineWidth(1)
@@ -170,6 +190,7 @@ for bkg in bkg_list:
 	h.SetTitle("")
 	Set_axis_pad1(h)
 	leg.AddEntry(h, bkg['tex']+" "+str(round(h.Integral())),"f")
+	leg.AddEntry(h, "SF "+str(SF),"f")
 	print("Integral of"+bkg['tex']+":" , h.Integral())
 	h_Stack.Add(bkg["histo"])
 	del h
@@ -216,12 +237,13 @@ if not plot_sig_stack :
 	print("Integral of Signal:" , h_sig.Integral()) 
 h_data.Draw("E1 Same")
 leg.AddEntry(h_data, "Data "+str(h_data.Integral()),"PL")
+leg.AddEntry(h_data, "Data/MC "+str(SF),"L")
 print("Integral of BKG:" , stack_hist.Integral())   
 print("Integral of DATA:" , h_data.Integral())
 leg.SetFillColor(0)
 leg.SetLineColor(0)
 leg.Draw()
-Draw_CMS_header(lumi_label=target_lumi)
+Draw_CMS_header(lumi_label=target_lumi_dict[era_tag])
 Draw_era_tag(era_tag=era_tag)
 Pad1.RedrawAxis()
 cb.cd()
@@ -251,8 +273,10 @@ h_ratio = h_data.Clone('h_ratio')
 h_ratio.Sumw2()
 h_ratio.SetStats(0)
 h_ratio.Divide(stack_hist)
-h_ratio.SetMaximum(2)
-h_ratio.SetMinimum(0.01)
+h_ratio.SetMaximum(1.7)
+#h_ratio.SetMinimum(0.0)
+#h_ratio.SetMaximum(min(1.7,((h_ratio.GetMaximum()+h_ratio.GetMinimum())/2e+8)))
+h_ratio.SetMinimum(max(0.7,h_ratio.GetMinimum()-0.3))
 h_ratio.SetMarkerStyle(20)
 h_ratio.SetMarkerSize(1.1)
 h_ratio.SetMarkerColor(ROOT.kBlack)
