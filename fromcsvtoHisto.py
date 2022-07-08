@@ -2,7 +2,7 @@ from csv import DictReader
 import ROOT
 from helper import *
 
-csv_path =  "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/DeepLearning/PhotonHoe_Qcd_Preds.csv"
+csv_path =  "S_50_0.csv"
 
 h_truth = ROOT.TH1F("h_truth","",50,0.,1000)
 h_pred = ROOT.TH1F("h_pred","",50,0.,1000)
@@ -113,7 +113,8 @@ Func.Draw("same")
 h_ratio.Draw("E1 Same")
 cb.cd()
 cb.Draw()
-cb.SaveAs("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/DeepLearning/DL_Plots/Photon_pt_PredTrue.png")
-cb.SaveAs("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/DeepLearning/DL_Plots/Photon_pt_PredTrue.root")
-cb.SaveAs("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/DeepLearning/DL_Plots/Photon_pt_PredTrue.pdf")
+cb.SaveAs("Signal_0b.pdf")
+#cb.SaveAs("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/DeepLearning/DL_Plots/Photon_pt_PredTrue.png")
+#cb.SaveAs("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/DeepLearning/DL_Plots/Photon_pt_PredTrue.root")
+#cb.SaveAs("/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/DeepLearning/DL_Plots/Photon_pt_PredTrue.pdf")
 cb.Clear()

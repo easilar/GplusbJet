@@ -1,13 +1,14 @@
-python control_plotter.py --region=presel --plot=Photon_pt
-python control_plotter.py --region=presel --plot=Photon_eta
-python control_plotter.py --region=presel --plot=Photon_phi
-python control_plotter.py --region=presel --plot=PV_npvsGood
-python control_plotter.py --region=presel --plot=Photon_pfRelIso03_all
-python control_plotter.py --region=presel --plot=Photon_pfRelIso03_chg
-python control_plotter.py --region=presel --plot=Photon_r9   
-python control_plotter.py --region=presel --plot=Photon_hoe   
-python control_plotter.py --region=presel --plot=Photon_sieie   
-python control_plotter.py --region=presel --plot=LJet_pt   
-python control_plotter.py --region=presel --plot=LJet_phi   
-python control_plotter.py --region=presel --plot=nBJet   
-python control_plotter.py --region=presel --plot=MET_pt   
+python control_plotter.py --region=presel --plot=Photon_pt              --s_samp=GJets_DR_0p4_HT 
+python control_plotter.py --region=presel --plot=Photon_eta             --s_samp=GJets_DR_0p4_HT
+python control_plotter.py --region=presel --plot=Photon_phi		--s_samp=GJets_DR_0p4_HT
+python control_plotter.py --region=presel --plot=PV_npvsGood		--s_samp=GJets_DR_0p4_HT
+python control_plotter.py --region=presel --plot=Photon_pfRelIso03_all	--s_samp=GJets_DR_0p4_HT
+python control_plotter.py --region=presel --plot=Photon_pfRelIso03_chg	--s_samp=GJets_DR_0p4_HT
+python control_plotter.py --region=presel --plot=Photon_r9   		--s_samp=GJets_DR_0p4_HT
+python control_plotter.py --region=presel --plot=Photon_hoe   		--s_samp=GJets_DR_0p4_HT
+python control_plotter.py --region=presel --plot=Photon_sieie   	--s_samp=GJets_DR_0p4_HT	
+python control_plotter.py --region=presel --plot=LJet_pt   		--s_samp=GJets_DR_0p4_HT
+python control_plotter.py --region=presel --plot=LJet_phi   		--s_samp=GJets_DR_0p4_HT
+python control_plotter.py --region=presel --plot=nBJet   		--s_samp=GJets_DR_0p4_HT
+python control_plotter.py --region=presel --plot=nJet   		--s_samp=GJets_DR_0p4_HT
+python control_plotter.py --region=presel --plot=MET_pt   		--s_samp=GJets_DR_0p4_HT
