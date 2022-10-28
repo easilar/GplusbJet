@@ -1,5 +1,5 @@
 import helper
-from helper import getChain, Set_axis_pad2, Set_axis_pad1, Draw_CMS_header, getPlotFromChain , setElist, Draw_era_tag
+from helper import getChain, Set_axis_pad2, Set_axis_pad1, Draw_CMS_header, getPlotFromChain , setElist, Draw_era_tag, obtain_bin_sys
 import ROOT
 import os
 import operator
@@ -15,11 +15,12 @@ parser.add_option("--region", dest="region", default="single_photon", action="st
 parser.add_option("--s_samp", dest="s_samp", default="G1Jet_Pt", action="store", help="can be G1Jet_Pt , GJets_Pt ")
 parser.add_option("--divIndex", dest="divIndex", default="0", action="store", help="index of divitions for one root file")
 parser.add_option("--ndiv", dest="ndiv", default="10", action="store", help="number of divitions for one root file")
+parser.add_option("--blind", dest="blind", default=False, action="store", help="Blinding data for signal region")
 (options, args) = parser.parse_args()
 exec("ndiv="+options.ndiv)
 exec("divIndex="+options.divIndex)
 plot_index = options.plot
-
+blind=options.blind
 #ROOT.setTDRStyle()
 ROOT.gStyle.SetOptStat(0)
 
@@ -39,8 +40,9 @@ target_lumi_dict = {"UL 2016 PreVFP":19.52,"UL 2016 PostVFP":16.81,"UL 2017":41.
 lumi_weight = float(target_lumi_dict[era_tag])/100 
 
 test = options.test
+plots_path ='/eos/user/m/myalvac/www/new/'
 #plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/UL/'+era_tag.replace(' ','_')+'/Control_Plots/G1Jet/CR_Plots/'
-plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/UL/'+era_tag.replace(' ','_')+'/Control_Plots/GJets/CR_Plots/'
+#plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/UL/'+era_tag.replace(' ','_')+'/Control_Plots/GJets/CR_Plots/'
 print(plots_path)
 if not os.path.exists(plots_path):
   os.makedirs(plots_path)
@@ -54,6 +56,8 @@ bkg_list = [
 {"sample":"TTGJets_UL_2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"TTGJets", "color":ROOT.kGreen-3},
 {"sample":"WZG_UL_2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"WZG", "color":ROOT.kYellow-3},
 {"sample":"ZGToLLG_UL_2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"ZGToLLg", "color":ROOT.kOrange-3},
+{"sample":"WJetsToLNu_HT", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"WJets", "color":ROOT.kCyan-3},
+{"sample":"DYJetsToLL_M_50_HT", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"DYJets", "color":ROOT.kOrange+3},
 {"sample":"QCD_HT_UL2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)&&(ngoodbJet==0)", "tex":"QCD", "color":ROOT.kBlue-3},
 {"sample":"QCD_bEnriched_HT_UL2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)&&(ngoodbJet==1||ngoodbJet==2)", "tex":"QCD_bEnriched", "color":ROOT.kBlue-3}
 ]
@@ -62,7 +66,7 @@ bkg_list = [
 #signal chain al
 '''
 if signal_samp == "G1Jet_Pt":
-	signal_dict = {"sample":"G1Jet_LHEGPt_PreVFP", "weight":"(1)", "chain_all":getChain(year=year,stype="signal",sname="G1Jet_LHEGPt_PreVFP",pfile=pfile,test=test), "tex":"G+1Jet", "color":ROOT.kAzure+6}
+	signal_dict = {"sample":"G1Jet_LHEGpt", "weight":"(1)", "chain_all":getChain(year=year,stype="signal",sname="G1Jet_LHEGpt",pfile=pfile,test=test), "tex":"G+1Jet", "color":ROOT.kAzure+6}
 	signal_dict["weight"] = str(lumi_weight)+"*(weight*puweight*PhotonSF)"
 
 
@@ -77,7 +81,7 @@ print(signal_dict["sample"],signal_dict["chain_all"][1],signal_dict["chain_all"]
 
 #data dict al
 #data_dict = {"sample":"SinglePhoton_UL", "weight":"(1)", "chain":getChain(year=year,stype="data",sname="SinglePhoton_UL",pfile=pfile,test=test)[0], "tex":"SinglePhoton", "color":ROOT.kBlack}
-data_dict = {"sample":"EGamma_UL", "weight":"(1)", "chain":getChain(year=year,stype="data",sname="EGamma_UL",pfile=pfile,test=test)[0], "tex":"Egamma", "color":ROOT.kBlack}
+data_dict = {"sample":"EGamma_UL", "weight":"(1)", "chain":getChain(year=year,stype="data",sname="EGamma_UL",pfile=pfile,test=test)[0], "tex":"Egamma", "color":ROOT.kBlack, "blind_cut":"(goodPhoton_hoe>0.04)"}
 if year == 2016:
 	HLT_Trigger = "HLT_Photon175"
 else: 
@@ -90,10 +94,13 @@ selections={
 "vtx_cut":ngood_vtx_cut,\
 "met_filters": "&&".join([ngood_vtx_cut,met_filters]),\
 "single_photon":"ngoodPhoton==1&&(goodPhoton_pt>=225)",\
-"presel":"ngoodPhoton==1&&(goodPhoton_pt>=225)&&goodJet_pt[0]>100"+"&&"+HLT_Trigger,\
-"1b":"ngoodbJet==1&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
-"2b":"ngoodbJet==2&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
-"0b":"ngoodbJet==0&&ngoodPhoton==1&&(goodPhoton_pt>=225)",\
+"presel":"ngoodPhoton==1&&(goodPhoton_pt>=225)&&goodJet_pt[0]>=225"+"&&"+HLT_Trigger,\
+"1b":"ngoodbJet==1&&ngoodPhoton==1&&(goodPhoton_pt>=225)&&goodJet_pt[0]>=225"+"&&"+HLT_Trigger,\
+"2b":"ngoodbJet==2&&ngoodPhoton==1&&(goodPhoton_pt>=225)&&goodJet_pt[0]>=225"+"&&"+HLT_Trigger,\
+"0b":"ngoodbJet==0&&ngoodPhoton==1&&(goodPhoton_pt>=225)&&goodJet_pt[0]>=225"+"&&"+HLT_Trigger,\
+"1b_inc":"ngoodbJet>=1&&ngoodPhoton==1&&(goodPhoton_pt>=225)&&goodJet_pt[0]>=225"+"&&"+HLT_Trigger,\
+"2b_inc":"ngoodbJet>=2&&ngoodPhoton==1&&(goodPhoton_pt>=225)&&goodJet_pt[0]>=225"+"&&"+HLT_Trigger,\
+"0b_inc":"ngoodbJet>=0&&ngoodPhoton==1&&(goodPhoton_pt>=225)&&goodJet_pt[0]>=225"+"&&"+HLT_Trigger,\
 }
 
 hightweightcut="!(event==50233261||event==171503688||event==331789209)"
@@ -116,13 +123,15 @@ print(signal_dict["chain"].GetEntries())
 data_dict["chain"] = data_dict["chain"]
 if plot_sig_stack : bkg_list.append(signal_dict)
 print('Ploting starts......')
-
-data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join(["(1)",plot_cut]), weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+if not blind: data_dict["blind_cut"]="(1)"
+data_dict["histo"] = getPlotFromChain(data_dict["chain"], plot['var'], plot['bin'], cutString = "&&".join(["(1)",plot_cut,data_dict["blind_cut"]]), weight = data_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
 print("data is taken")
 
 signal_dict["histo"] = getPlotFromChain(signal_dict["chain"], plot['var'], plot['bin'], cutString = plot_cut, weight = signal_dict["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
+
+SF=1
 signalPlusbkg = bkg_Int+signal_dict["histo"].Integral()
-SF = data_dict["histo"].Integral()/signalPlusbkg
+if not blind: SF = data_dict["histo"].Integral()/signalPlusbkg
 print("MC Scale Factor: ", SF)
 print(plot["title"])
 cb = ROOT.TCanvas("cb","cb",564,232,600,600)
@@ -190,14 +199,26 @@ for bkg in bkg_list:
 	h.SetTitle("")
 	Set_axis_pad1(h)
 	leg.AddEntry(h, bkg['tex']+" "+str(round(h.Integral())),"f")
-	leg.AddEntry(h, "SF "+str(SF),"f")
+	#leg.AddEntry(h, "SF "+str(SF),"f")
 	print("Integral of"+bkg['tex']+":" , h.Integral())
 	h_Stack.Add(bkg["histo"])
 	del h
 print('BKG loop finished.......')
+h_Stack.Draw("histo")
 if plot["bin_set"][0]: stack_hist=ROOT.TH1F("stack_hist","stack_hist", plot['bin'][0],plot['bin'][1]) 
 else: stack_hist=ROOT.TH1F("stack_hist","stack_hist",plot['bin'][0],plot['bin'][1],plot['bin'][2])
 stack_hist.Merge(h_Stack.GetHists())
+for i in range(1, stack_hist.GetNbinsX()+1):
+    	bincontent=stack_hist.GetBinContent(i)
+	binerror=obtain_bin_sys(bincontent,i)
+	#binerror=(bincontent*0.5)
+        if bincontent!=0:
+ 		print("binnumber:",i,"bincontent:",bincontent,"binerror:",binerror)
+	stack_hist.SetBinError(i,binerror)
+stack_hist.SetFillColor(14)
+stack_hist.SetFillStyle(3001)
+stack_hist.Draw("Same E2")
+#h_Stack=stack_hist.Clone()
 max_bin = stack_hist.GetMaximum()*10000
 h_Stack.SetMaximum(max_bin) 
 h_Stack.SetMinimum(0.00001)
@@ -214,10 +235,10 @@ h_data.SetTitle("")
 #h_data.GetYaxis().SetTitleSize(0.05)
 #h_data.GetYaxis().SetLabelSize(0.05)
 Set_axis_pad1(h_data)
-h_data.Draw("E1")
+h_data.Draw(" Same E1")
 h_data.SetMaximum(max_bin)
 h_data.SetMinimum(0.11)
-h_Stack.Draw("HistoSame")
+#h_Stack.Draw("HistoSame")
 htmp = "h_tmp"
 #h_sig = ROOT.TH1D(htmp, htmp, *plot['binning'])
 #signal_dict["chain"][0].Draw(plot['var']+">>%s"%htmp, signal_dict['weight']+"*("+plot_cut+")", 'goff')
@@ -236,6 +257,7 @@ if not plot_sig_stack :
 	leg_sig.Draw()
 	print("Integral of Signal:" , h_sig.Integral()) 
 h_data.Draw("E1 Same")
+stack_hist.Draw("Same E2")
 leg.AddEntry(h_data, "Data "+str(h_data.Integral()),"PL")
 leg.AddEntry(h_data, "Data/MC "+str(SF),"L")
 print("Integral of BKG:" , stack_hist.Integral())   
@@ -273,10 +295,10 @@ h_ratio = h_data.Clone('h_ratio')
 h_ratio.Sumw2()
 h_ratio.SetStats(0)
 h_ratio.Divide(stack_hist)
-h_ratio.SetMaximum(1.7)
-#h_ratio.SetMinimum(0.0)
+h_ratio.SetMaximum(2.0)
+h_ratio.SetMinimum(0.0)
 #h_ratio.SetMaximum(min(1.7,((h_ratio.GetMaximum()+h_ratio.GetMinimum())/2e+8)))
-h_ratio.SetMinimum(max(0.7,h_ratio.GetMinimum()-0.3))
+#h_ratio.SetMinimum(max(0.7,h_ratio.GetMinimum()-0.3))
 h_ratio.SetMarkerStyle(20)
 h_ratio.SetMarkerSize(1.1)
 h_ratio.SetMarkerColor(ROOT.kBlack)
@@ -288,10 +310,26 @@ h_ratio.GetYaxis().SetNdivisions(505)
 h_ratio.Draw("E1")
 Func.Draw("same")
 h_ratio.Draw("E1 Same")
+
+h_err=ROOT.TH1F("h_err","h_err", *plot['binning'])
+for i in range(1, h_ratio.GetNbinsX()+1):
+        #bincontent=stack_hist.GetBinContent(i)
+        print("binerror:",binerror)
+	binerror=obtain_bin_sys(1)
+        if h_ratio.GetBinContent(i)!=0:
+		binerror=(stack_hist.GetBinError(i)/stack_hist.GetBinContent(i))
+	#binerror2=stack_hist.GetBinError(i)
+        #print("stack_hist_BINCONTENT:",stack_hist.GetBinContent(i),"bincontent:",h_err.GetBinContent(i),"binerror:",binerror)
+        h_err.SetBinError(i,binerror)
+h_err.SetFillColor(14)
+h_err.SetFillStyle(3001)
+h_err.Draw("same e2")
+
 cb.cd()
 cb.Draw()
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test.png')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test.pdf')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test.root')
+#cb.SaveAs("/eos/user/m/myalvac/www/G1Jets_withUNC/mtntestsamplesNEW.png")
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test_UNC.png')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test_UNC.pdf')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test_UNC.root')
 cb.Clear()
 del h_Stack
