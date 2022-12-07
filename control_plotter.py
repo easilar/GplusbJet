@@ -40,7 +40,7 @@ target_lumi_dict = {"UL 2016 PreVFP":19.52,"UL 2016 PostVFP":16.81,"UL 2017":41.
 lumi_weight = float(target_lumi_dict[era_tag])/100 
 
 test = options.test
-plots_path ='/eos/user/m/myalvac/www/new/'
+plots_path ='/eos/user/m/myalvac/www/MC_GEN_study/'
 #plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/UL/'+era_tag.replace(' ','_')+'/Control_Plots/G1Jet/CR_Plots/'
 #plots_path = '/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/Plots/UL/'+era_tag.replace(' ','_')+'/Control_Plots/GJets/CR_Plots/'
 print(plots_path)
@@ -52,13 +52,16 @@ plot_sig_stack = True
 #bkg chain al 
 #bkg listof dicts  olustur
 bkg_list = [
-{"sample":"TGJets_UL_2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"TGJets", "color":ROOT.kViolet-3},
-{"sample":"TTGJets_UL_2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"TTGJets", "color":ROOT.kGreen-3},
-{"sample":"WZG_UL_2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"WZG", "color":ROOT.kYellow-3},
-{"sample":"ZGToLLG_UL_2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"ZGToLLg", "color":ROOT.kOrange-3},
-{"sample":"WJetsToLNu_HT", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"WJets", "color":ROOT.kCyan-3},
-{"sample":"DYJetsToLL_M_50_HT", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"DYJets", "color":ROOT.kOrange+3},
+{"sample":"TGJets_UL_2018", "weight":"(1)","bjet_cut":"(1)", "tex":"TGJets", "color":ROOT.kViolet-3},
+{"sample":"TTGJets_UL_2018", "weight":"(1)","bjet_cut":"(1)", "tex":"TTGJets", "color":ROOT.kGreen-3},
+{"sample":"WZG_UL_2018", "weight":"(1)","bjet_cut":"(1)", "tex":"WZG", "color":ROOT.kYellow-3},
+{"sample":"ZGToLLG_UL_2018", "weight":"(1)","bjet_cut":"(1)", "tex":"ZGToLLg", "color":ROOT.kOrange-3},
+#{"sample":"WJetsToLNu_HT", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"WJets", "color":ROOT.kCyan-3},
+{"sample":"WJetsToLNu_HT", "weight":"(1)","bjet_cut":"(1)", "tex":"WJets", "color":ROOT.kCyan-3},
+#{"sample":"DYJetsToLL_M_50_HT", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"DYJets", "color":ROOT.kOrange+3},
+{"sample":"DYJetsToLL_M_50_HT", "weight":"(1)","bjet_cut":"(1)", "tex":"DYJets", "color":ROOT.kOrange+3},
 {"sample":"QCD_HT_UL2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)&&(ngoodbJet==0)", "tex":"QCD", "color":ROOT.kBlue-3},
+#{"sample":"QCD_HT_UL2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)", "tex":"QCD", "color":ROOT.kBlue-3}
 {"sample":"QCD_bEnriched_HT_UL2018", "weight":"(1)","bjet_cut":"(ngoodGenPhoton==0)&&(ngoodbJet==1||ngoodbJet==2)", "tex":"QCD_bEnriched", "color":ROOT.kBlue-3}
 ]
 
@@ -112,6 +115,7 @@ for bkg in bkg_list:
     print(bkg["sample"],bkg["chain_all"][1],bkg["chain_all"][2])
     bkg["chain"] = bkg["chain_all"][0]
     bkg["weight"] = str(lumi_weight)+"*(weight*puweight*PhotonSF)"
+    print(bkg["weight"])
     h = getPlotFromChain(bkg['chain'], plot['var'], plot['bin'], cutString = plot_cut+"&&"+bkg["bjet_cut"]+"&&("+hightweightcut+")", weight = bkg["weight"] ,addOverFlowBin='both',variableBinning=plot["bin_set"])
     bkg["histo"] = h
     bkg_Int+=bkg["histo"].Integral()
@@ -208,7 +212,10 @@ h_Stack.Draw("histo")
 if plot["bin_set"][0]: stack_hist=ROOT.TH1F("stack_hist","stack_hist", plot['bin'][0],plot['bin'][1]) 
 else: stack_hist=ROOT.TH1F("stack_hist","stack_hist",plot['bin'][0],plot['bin'][1],plot['bin'][2])
 stack_hist.Merge(h_Stack.GetHists())
+print("#ofbins:",stack_hist.GetNbinsX())
 for i in range(1, stack_hist.GetNbinsX()+1):
+#for i in range(1, 10):
+	print("binnumber:",i)
     	bincontent=stack_hist.GetBinContent(i)
 	binerror=obtain_bin_sys(bincontent,i)
 	#binerror=(bincontent*0.5)
@@ -313,9 +320,10 @@ h_ratio.Draw("E1 Same")
 
 h_err=ROOT.TH1F("h_err","h_err", *plot['binning'])
 for i in range(1, h_ratio.GetNbinsX()+1):
-        #bincontent=stack_hist.GetBinContent(i)
+        bincontent=stack_hist.GetBinContent(i)
         print("binerror:",binerror)
 	binerror=obtain_bin_sys(1)
+	#binerror=(bincontent*0.5)
         if h_ratio.GetBinContent(i)!=0:
 		binerror=(stack_hist.GetBinError(i)/stack_hist.GetBinContent(i))
 	#binerror2=stack_hist.GetBinError(i)
@@ -328,8 +336,8 @@ h_err.Draw("same e2")
 cb.cd()
 cb.Draw()
 #cb.SaveAs("/eos/user/m/myalvac/www/G1Jets_withUNC/mtntestsamplesNEW.png")
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test_UNC.png')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test_UNC.pdf')
-cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test_UNC.root')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test.png')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test.pdf')
+cb.SaveAs(plots_path+'_'+region+'_'+plot['title']+signal_samp+'_High_pt_test.root')
 cb.Clear()
 del h_Stack
