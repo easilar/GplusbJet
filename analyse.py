@@ -32,11 +32,12 @@ letter = options.letter
 #afs_dir = "/afs/cern.ch/work/e/ecasilar/GplusbJets_UL/"
 afs_dir = "/afs/cern.ch/user/m/myalvac/GPlusbJets_UL"
 #targetdir_mainpath = "/eos/user/e/ecasilar/SMPVJ_Gamma_BJETS/"
-targetdir_mainpath = "/eos/user/m/myalvac/GPlusBJets/"
+targetdir_mainpath = "/eos/user/m/myalvac/GPlusBJets/test/"
 pfile = afs_dir+"/samples_orig.pkl"
 sample_dic = pickle.load(open(pfile,'rb'))
 #sdict = sample_dic[year][stype][sname][data_letter]
 sdict = sample_dic[year][stype][sname][letter]
+#sdict = sample_dic[year][stype][sname]
 btag_WP = {20161:0.6377,20162:0.6502,2017:0.7476,2018:0.7100}
 
 if options.stype == "data":
@@ -74,7 +75,7 @@ else:
    #targetdir_suffix = "GenMatching"
    targetdir_suffix = "High_PT_Tight"
    #targetdir_suffix = "High_PT_LooseNotTight"
-   targetdir = targetdir_mainpath+"/MC/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
+   targetdir = targetdir_mainpath+"/MC/UNC/"+str(year)+"/"+sname+"/"+targetdir_suffix+"/"+sdict["dir"].split("/")[-2]+"/"
    if year == 2016:
 	   if "HIPM" in sdict["das_path"]: 
 		photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Pho_Tight_UL16.root")
@@ -89,7 +90,7 @@ else:
       		puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection_2016_postVFPUL.root")
       		pu68p6 = puweight_file.Get("h_ratio")
    elif year == 2017:
-      photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_Tight_UL17.root")
+      photon_SF_file = ROOT.TFile(afs_dir+"/SF_files/egammaEffi.txt_EGM2D_PHO_Tight_UL17.root")
       btagging_dict = pickle.load(open(afs_dir+"/SF_files/btag_SF_17UL.pkl",'rb'))
       puweight_file = ROOT.TFile(afs_dir+"/PUfiles/puCorrection_2017UL.root")
       pu68p6 = puweight_file.Get("h_ratio")
@@ -127,6 +128,8 @@ xsec = array('f',[0])
 weight  = array('f',[0])
 puweight  = array('f',[0])
 PhotonSF  = array('f',[0])
+PhotonSF_up  = array('f',[0])
+PhotonSF_down  = array('f',[0])
 ngoodPhoton  = array('i',[0])
 goodPhoton_pt = array( 'd', 10*[ 0. ] )
 goodPhoton_eta = array( 'd', 10*[ 0. ] )
@@ -137,10 +140,14 @@ goodPhoton_r9 = array( 'd', 10*[ 0. ] )
 goodPhoton_hoe = array( 'd', 10*[ 0. ] )
 goodPhoton_pfRelIso03_all = array( 'd', 10*[ 0. ] )
 goodPhoton_pfRelIso03_chg = array( 'd', 10*[ 0. ] )
+goodPhoton_genmatch = array( 'i', 10*[0] )
+goodPhoton_genmatchdR = array( 'd', 10*[ 0. ] )
 tree.Branch("xsec",xsec,"xsec/F")
 tree.Branch("weight",weight,"weight/F")
 tree.Branch("puweight",puweight,"puweight/F")
 tree.Branch("PhotonSF",PhotonSF,"PhotonSF/F")
+tree.Branch("PhotonSF_up",PhotonSF_up,"PhotonSF_up/F")
+tree.Branch("PhotonSF_down",PhotonSF_down,"PhotonSF_down/F")
 tree.Branch("ngoodPhoton",ngoodPhoton,"ngoodPhoton/I")
 tree.Branch("goodPhoton_pt", goodPhoton_pt, "goodPhoton_pt[ngoodPhoton]/D")
 tree.Branch("goodPhoton_eta", goodPhoton_eta, "goodPhoton_eta[ngoodPhoton]/D")
@@ -151,6 +158,8 @@ tree.Branch("goodPhoton_r9", goodPhoton_r9, "goodPhoton_r9[ngoodPhoton]/D")
 tree.Branch("goodPhoton_hoe", goodPhoton_hoe, "goodPhoton_hoe[ngoodPhoton]/D")
 tree.Branch("goodPhoton_pfRelIso03_all", goodPhoton_pfRelIso03_all, "goodPhoton_pfRelIso03_all[ngoodPhoton]/D")
 tree.Branch("goodPhoton_pfRelIso03_chg", goodPhoton_pfRelIso03_chg, "goodPhoton_pfRelIso03_chg[ngoodPhoton]/D")
+tree.Branch("goodPhoton_genmatch", goodPhoton_genmatch, "goodPhoton_genmatch[ngoodPhoton]/I")
+tree.Branch("goodPhoton_genmatchdR", goodPhoton_genmatchdR, "goodPhoton_genmatchdR[ngoodPhoton]/D")
 ngoodJet = array('i',[0])
 goodJet_pt = array( 'd', 25*[ 0. ] )
 goodJet_eta = array( 'd', 25*[ 0. ] )
@@ -286,14 +295,38 @@ for jentry in range(ini_event,fin_event):
 		elif goodJet_flavor==4 : btagSF = getbTagSF(bdict=btagging_dict,flavor=4,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i])
 		else : btagSF = getbTagSF(bdict=btagging_dict,flavor=0,pt=goodJet_pt[i],eta=goodJet_eta[i] ,disc=goodJet_btagDeepFlavB[i]) 
 		goodbJet_btagSF[i] = btagSF
-		
+	
+#Matching starts for Photons in MC
+   if not options.stype == "data":
+        GenPhotons=[]
+        ###Finding all the gen photons that are in the dr and pt proximity of the selected reco photon
+        for igen in range(nGenPart):
+		#print("STATUS FLAG", bin(ch.GetLeaf('GenPart_statusFlags').GetValue(igen)).split('b')[1][7], type(bin(ch.GetLeaf('GenPart_statusFlags').GetValue(igen)).split('b')[1][7]))
+		status_flag = int(ch.GetLeaf('GenPart_statusFlags').GetValue(igen))
+	
+                if ch.GetLeaf('GenPart_pdgId').GetValue(igen)==22 and ch.GetLeaf('GenPart_pt').GetValue(igen)>0.01 and bin(status_flag).split('b')[1][7]==1:
+                        GenPhoton = {'orig_index':igen,'pt':ch.GetLeaf('GenPart_pt').GetValue(igen),'eta':ch.GetLeaf('GenPart_eta').GetValue(igen),'phi':ch.GetLeaf('GenPart_phi').GetValue(igen),'pdg_Id':ch.GetLeaf('GenPart_pdgId').GetValue(igen),'isHardProcess':bin(status_flag).split('b')[1][7]}
+                        GenPhotons.append(GenPhoton)
+                #       print("Gen PHOTONS",GenPhoton)
+
+        if len(GenPhotons)>1: print("WE HAVE MORE THAN 1 GEN PHOTONS !!!")
+        if len(GenPhotons)<1: print("WE HAVE NO GEN PHOTON !!!")
+   match_ = ({'dR':-999},True)	
    sel_photons = []
    for i,photon in enumerate(photons):
+	if not options.stype == "data":
+		if len(GenPhotons) ==1:
+			match_ = matching(RecoPhoton=photon, GenPhoton=GenPhotons[0], pt_ratio=0.10, dr_cone=0.5)
+			match = match_[1]
+		else: match = False
+	else: match = True
+	
+
    	dRs = []
 	for jet in jets:
 		dR_Pho_Jet = deltaR(photon["phi"],jet["phi"],photon["eta"],jet["eta"])
 		dRs.append(dR_Pho_Jet)
-   	if len(dRs) and min(dRs) >= 0.5 : 
+   	if len(dRs) and min(dRs) >= 0.5: 
    		#print("found good photon isolated from jets")
 		goodPhoton_pt[i] = ch.GetLeaf('Photon_pt').GetValue(photon["index"])
 		goodPhoton_eta[i] = ch.GetLeaf('Photon_eta').GetValue(photon["index"])
@@ -304,42 +337,50 @@ for jentry in range(ini_event,fin_event):
 		goodPhoton_hoe[i] = ch.GetLeaf('Photon_hoe').GetValue(photon["index"])
 		goodPhoton_pfRelIso03_all[i] = ch.GetLeaf('Photon_pfRelIso03_all').GetValue(photon["index"])
 		goodPhoton_pfRelIso03_chg[i] = ch.GetLeaf('Photon_pfRelIso03_chg').GetValue(photon["index"])
+		goodPhoton_genmatch[i] = match
+		goodPhoton_genmatchdR[i] = match_[0]['dR']
 		sel_photons.append(photon)
+
    ngoodPhoton[0] = len(sel_photons)
    #print("Before the photon cut")
    if len(sel_photons) < 1 : continue
    #print("After the photon cut")
 
-   #Matching starts for Photons in MC
-   if not options.stype == "data":
-	GenPhotons=[]
-	for igen in range(nGenPart):
-		if ch.GetLeaf('GenPart_pdgId').GetValue(igen)==22:
-			GenPhoton = {'orig_index':igen,'pt':ch.GetLeaf('GenPart_pt').GetValue(igen),'eta':ch.GetLeaf('GenPart_eta').GetValue(igen),'phi':ch.GetLeaf('GenPart_phi').GetValue(igen)}
-			RecoPhoton = sel_photons[0]
-			match = matching(RecoPhoton=RecoPhoton, GenPhoton=GenPhoton, pt_ratio=0.10, dr_cone=0.5)
-			if match[1] : GenPhotons.append(match[0])
-	
-	ngoodGenPhoton[0] = 0
-	goodGenPhoton_pt[0] = -999
-	goodGenPhoton_eta[0] =  -999
-	goodGenPhoton_phi[0] = -999
-	goodGenPhoton_GenPartIndex[0] = -999
-	goodGenPhoton_dr[0] = -999
-	if len(GenPhotons) > 0 :
-		dRm = sorted(GenPhotons, key=lambda x: x['dR'])
-		matched_genPhoton = dRm[0]
-		ngoodGenPhoton[0] = 1
-		goodGenPhoton_pt[0] = matched_genPhoton["pt"]
-		goodGenPhoton_eta[0] =  matched_genPhoton["eta"]
-		goodGenPhoton_phi[0] = matched_genPhoton["phi"]
-		goodGenPhoton_GenPartIndex[0] = matched_genPhoton["orig_index"]
-		goodGenPhoton_dr[0] = matched_genPhoton["dR"]
+   ngoodGenPhoton[0] = 0
+   goodGenPhoton_pt[0] = -999
+   goodGenPhoton_eta[0] =  -999
+   goodGenPhoton_phi[0] = -999
+   goodGenPhoton_GenPartIndex[0] = -999
+   goodGenPhoton_dr[0] = -999
+   ### Finding the Gen Photon with minimum dR among the Gen Photons selected previously
+   if len(GenPhotons) > 0 :
+	ngoodGenPhoton[0] = len(GenPhotons) 
+	goodGenPhoton_pt[0] = GenPhotons[0]["pt"]
+	goodGenPhoton_eta[0] =  GenPhotons[0]["eta"]
+	goodGenPhoton_phi[0] = GenPhotons[0]["phi"]
+	goodGenPhoton_GenPartIndex[0] = GenPhotons[0]["orig_index"]
+	goodGenPhoton_dr[0] = GenPhotons[0]["dR"]
+
    PhotonSF_ = 1.0 
+   PhotonSF_up_ = 1.0 
+   PhotonSF_down_ = 1.0 
    if not options.stype == "data":
    	PhotonSF_ = SF_MC.GetBinContent(SF_MC.FindBin(sel_photons[0]["eta"],sel_photons[0]["pt"]))
+	PhotonSF_Uncertainty = SF_MC.GetBinError(SF_MC.FindBin(sel_photons[0]["eta"],sel_photons[0]["pt"]))
+	print("SF:",PhotonSF_, "UNC:",PhotonSF_Uncertainty)
+   	PhotonSF_up_ = PhotonSF_ + PhotonSF_Uncertainty 
+	#print(PhotonSF_up_)
+   	PhotonSF_down_ = PhotonSF_ - PhotonSF_Uncertainty 
+	#print(PhotonSF_down_)
    	if PhotonSF_ < 0.01 : PhotonSF_ = 1.0
+   	if PhotonSF_up_ < 0.01 : PhotonSF_up_ = 1.0
+   	if PhotonSF_down_ < 0.01 : PhotonSF_down_ = 1.0
    PhotonSF[0] = PhotonSF_
+   #print(PhotonSF[0])
+   PhotonSF_up[0] = PhotonSF_up_
+   print("SF_up:", PhotonSF_up[0])
+   PhotonSF_down[0] = PhotonSF_down_
+   print("SF_down:",PhotonSF_down[0])
    tree.Fill()
 newFile.cd()
 tree.Write()

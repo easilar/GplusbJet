@@ -5,7 +5,21 @@ import pickle
 import json
 from math import pi, sqrt, cos, sin, sinh, log
 
-
+def obtain_bin_sys(bincontent=1,binnumber=1):
+	syst_file= "/afs/cern.ch/user/m/myalvac/GPlusbJets_UL/syst_unc.pkl"
+	syst_dict=pickle.load(open(syst_file,'rb'))
+        lumi_error        = syst_dict["2018"][binnumber]["Lumi_unc"]["percent_up"]
+        JES_error         = syst_dict["2018"][binnumber]["JES"]["percent_up"]
+        JER_error         = syst_dict["2018"][binnumber]["JER"]["percent_up"]
+        photon_ESR_error  = syst_dict["2018"][binnumber]["Photon_ESR"]["percent_up"]
+        PileUP_error      = syst_dict["2018"][binnumber]["Pileup_Unc"]["percent_up"]
+        photon_ID_error   = syst_dict["2018"][binnumber]["PhotonID"]["percent_up"]
+        HLT_Trigger_error = syst_dict["2018"][binnumber]["HLT_Trigger_ineff"]["percent_up"]
+        btag_error        = syst_dict["2018"][binnumber]["b_tag_unc"]["percent_up"]
+        binerror= sqrt(lumi_error**2+JES_error**2+JER_error**2+photon_ESR_error**2+PileUP_error**2+photon_ID_error**2+HLT_Trigger_error**2+btag_error**2)
+	binerror = bincontent*binerror/100
+        #binerror= sqrt(lumi_error**2+photon_ID_error**2)
+	return binerror
 
 def getChain(year=2016,stype="signal",sname="GJets",pfile="/afs/cern.ch/work/e/ecasilar/GplusbJets/samples_orig.pkl",datatype="all", test=False):
 	sample_dic = pickle.load(open(pfile,'rb'))
@@ -296,42 +310,20 @@ def matching_particles(RecoPhotons=None, GenPhotons=None, pt_ratio=0.0, dr_cone=
 
 
 
-def matching(RecoPhoton=None, GenPhoton=None, pt_ratio=0.0, dr_cone=0.0):
-	"""
-
-	:param RecoPhoton: dict
-	:param GenPhoton: dict
-	:param pt_ratio: float
-	:param dr_cone: float
-	:return: bool and 1 dict if True
-
-	selected => {1: {1st recoPhotn}, 2: { 2nd recoPhot}} selected[1]
-	matched => {1: {match 1st recoPhot}, 2: {match 2nd reco} }
-	selected , matched = matching_particles()
-
-	"""
-
+def matching(RecoPhoton={}, GenPhoton={}, pt_ratio=0.0, dr_cone=0.0):
 
 	Match = False
-	matched = {}
-		
 
 	dR_Pho_Match = deltaR(RecoPhoton["phi"], GenPhoton["phi"], RecoPhoton["eta"], GenPhoton["eta"])
 	PtRatio = abs(GenPhoton["pt"]-RecoPhoton["pt"]) / (GenPhoton["pt"])
-	#dRm.append({'index': j, 'dR': dR_Pho_Match, 'PtRatio': PtRatio})
 	GenPhoton['dR'] = dR_Pho_Match
 	GenPhoton['PtRatio']=  PtRatio
 
 
-	matched_photon = None
 	if abs(GenPhoton['PtRatio']) < pt_ratio and GenPhoton['dR'] <= dr_cone:
-				matched_photon = GenPhoton
-				Match = True
+		Match = True
 
-	if Match == True:
-			matched = matched_photon
-
-	return (matched , Match) 
+	return (GenPhoton,Match) 
 
 def getbTagSF(bdict,flavor,pt,eta,disc):
 	btagging_dict = bdict
